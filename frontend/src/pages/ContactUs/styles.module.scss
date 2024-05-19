@@ -1,0 +1,145 @@
+@import "src/styles/_mixins";
+
+.contacts {
+  min-height: 90vh;
+  display: flex;
+  max-width: 1580px;
+  flex-wrap: wrap;
+  padding: 3rem;
+  width: 100%;
+  @include md-max {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  @include sm-max {
+    padding: 1.5rem;
+  }
+}
+.right_section {
+  width: 40%;
+  min-width: 450px;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h2 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+  }
+  p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #818181;
+    margin-bottom: 2rem;
+  }
+  .contactDetalsBox {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    margin-right: 3rem;
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.8rem;
+      height: 2.8rem;
+      border: 1px solid #b4b4b4;
+      border-radius: 50%;
+      svg {
+        color: #1f2b37;
+        width: 1.3rem;
+        height: 1.3rem;
+      }
+    }
+    .contactDetals {
+      h3 {
+        color: #1f2b37;
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+  @include md-max {
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem 0.8rem;
+    h2 {
+      font-size: 3rem;
+    }
+  }
+  @include sm-max {
+    min-width: auto;
+    h2 {
+      font-size: 2.5rem;
+    }
+    .contactDetalsBox {
+      margin-right: 2rem;
+      .icon {
+        width: 2.3rem;
+        height: 2.3rem;
+        svg {
+          width: 1.1rem;
+          height: 1.1rem;
+        }
+      }
+      .contactDetals {
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  @include xsm-max {
+    h2 {
+      font-size: 2rem;
+    }
+    .contactDetalsBox {
+      margin-right: 1rem;
+      .icon {
+        width: 2rem;
+        height: 2rem;
+        svg {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+      .contactDetals {
+        h3 {
+          font-size: 1rem;
+        }
+        p {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+.left_section {
+  flex: 1;
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  @include md-max {
+    padding: 3.5rem;
+  }
+
+  form {
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+  @include xsm-max {
+    padding: 2rem 0.8rem;
+  }
+}

@@ -1,0 +1,20 @@
+.features {
+  width: 100%;
+  .slick-prev:hover,
+  .slick-prev:focus,
+  .slick-next:hover,
+  .slick-next:focus {
+    color: unset;
+    background: unset;
+  }
+  .slick-prev,
+  .slick-next {
+    color: unset;
+    background: unset;
+  }
+  .slick-prev:before,
+  .slick-next:before {
+    opacity: 1;
+    color: unset;
+  }
+}
