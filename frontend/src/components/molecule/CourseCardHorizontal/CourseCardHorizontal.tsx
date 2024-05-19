@@ -13,7 +13,7 @@ const CourseCardHorizontal: React.FC<Course> = ({
   title,
   duration,
   seatsLeft,
-  description,
+  // description,
   curriculum,
   placement,
   brochureLink,

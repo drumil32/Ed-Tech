@@ -6,7 +6,7 @@ import Carausal from "../../molecule/Carausal/Carausal";
 import image1 from "../../../assets/images/carousal/image1.svg";
 import image2 from "../../../assets/images/carousal/image2.svg";
 import image3 from "../../../assets/images/carousal/image3.svg";
-import profileImage from "../../../assets/images/carousal/profileImage.jpeg"
+// import profileImage from "../../../assets/images/carousal/profileImage.jpeg"
 
 export interface ProfileData {
   image: string;
@@ -23,8 +23,8 @@ export interface SlideData {
 }
 
 const Hero: React.FC = () => {
-  const [inputName, setInputName] = useState<string>("");
-  const [inputNumber, setInputNumber] = useState<number | string>("");
+  // const [inputName, setInputName] = useState<string>("");
+  // const [inputNumber, setInputNumber] = useState<number | string>("");
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
 
   const carausalData: SlideData[] = [
@@ -80,7 +80,7 @@ const Hero: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(inputName, inputNumber);
+    // console.log(inputName, inputNumber);
 
     // Here you can perform further validation before submitting the form or API call
     setFormSubmitted(true);
