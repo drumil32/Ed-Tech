@@ -1,16 +1,18 @@
 @import "/src/styles/_mixins";
 
 .courseCardHorizontal {
-    display: grid;
-    grid-template-columns: 0.9fr 2.1fr;
+    // display: grid;
+    // grid-template-columns: 0.9fr 2.1fr;
+    display: flex;
+    flex-direction: column;
     z-index: 5;
     width: 100%;
     max-width: 1050px;
     background-image: linear-gradient(to left, #cff8f6 0%, #fed6e3 100%);
     border-radius: 0.75rem;
     color: #1f2b37;
-    padding-right: 0.5rem;
-    box-shadow: 0px 6px 20px 5px rgba(168,168,168,1);
+    // padding-right: 0.5rem;
+    box-shadow: 0px 6px 15px 5px rgba(168,168,168,1);
     transition: all 0.2s ease-in-out;
     position: relative;
     &:hover {
@@ -19,7 +21,10 @@
     transform: scale(1.02);
     }
 
-    .titleBox {
+    .courseCardWrapper{
+      display: flex;
+      .titleBox {
+        width: 450px;
         min-height: 8rem;
         position: relative;
         display: flex;
@@ -81,12 +86,17 @@
         display: flex;
         justify-content: flex-start;
         gap: 3rem;
+        border-top-right-radius: 0.75rem;
+        border-bottom-left-radius: 0.75rem;
       }
       .curriculum, .placement {
         margin-bottom: 1.5rem;
         h3 {
             font-size: 1rem;
             margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, hsla(205, 67%, 46%, 1) 0%, hsla(263, 33%, 48%, 1) 100%, hsla(276, 41%, 27%, 1) 100%);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
             svg{
               height: 15px;
               width: 15px;
@@ -133,6 +143,40 @@
                 background-color: #96b9ee91;
                 color: #6050ec;
             }
+        }
+      }
+    }
+      .features{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin: 1.5rem;
+        padding: 0.7rem;
+        border-radius: 10px;
+        background-color: white;
+        .feature_comp{
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          .icons{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #71d86d46;
+            height: 30px;
+            width: 30px;
+          }
+          .content{
+            .heading{
+              font-weight: 800;
+              font-size: 14px;
+            }
+            .body{
+              font-size: 12px;
+            }
+          }
         }
       }
 }

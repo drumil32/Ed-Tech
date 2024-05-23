@@ -4,16 +4,14 @@
   width: 100%;
   padding: 3rem;
   background-color: var(--primary-background-color);
-  background: url("../../../assets/backgrounds/coursesBackground.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background: url("../../../assets/backgrounds/coursesBackground.jpg") no-repeat center/cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   position: relative;
+
   &::before {
     content: "";
     position: absolute;
@@ -23,20 +21,52 @@
     right: 0;
     background-color: #ffffffc4;
   }
+
   @include xsm-max {
     padding: 2rem 1rem;
   }
 
   .sectionTitle {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 800;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     letter-spacing: 0.1rem;
+    text-transform: uppercase;
     z-index: 5;
-    @include xsm-max {
-        font-size: 1.6rem;
-      }
+    letter-spacing: 5px;
+    background: linear-gradient(90deg, hsla(205, 67%, 46%, 1) 0%, hsla(263, 33%, 48%, 1) 100%, hsla(276, 41%, 27%, 1) 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
   }
+
+  .sction_sub_title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: rgba(128, 128, 128, 0.61);
+    z-index: 5;
+
+    span {
+      font-weight: 700;
+      background: linear-gradient(90deg, hsla(13, 93%, 67%, 1) 0%, hsla(21, 91%, 73%, 1) 100%);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+    }
+  }
+
+  .description {
+    white-space: nowrap;
+    position: relative;
+    display: flex;
+    margin-bottom: 2rem; 
+    z-index: 5;
+    word-spacing: 3px;
+    .infinite_scroll_text {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+  }
+  
 
   .cources {
     display: flex;
@@ -44,5 +74,4 @@
     flex-wrap: wrap;
     width: 100%;
   }
-  
 }

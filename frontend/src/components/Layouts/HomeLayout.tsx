@@ -1,16 +1,19 @@
-import React from 'react'
-import Header from '../organisms/Header/Header'
-import { Outlet } from 'react-router-dom'
-import Footer from '../organisms/Footer/Footer'
+import React, { useEffect } from "react";
+import Header from "../organisms/Header/Header";
+import { Outlet, useLocation } from "react-router-dom";
+import Footer from "../organisms/Footer/Footer";
 
-const HomeLayout:React.FC = () => {
+const HomeLayout: React.FC = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [useLocation().pathname]);
   return (
     <>
-     <Header />
-     <Outlet />
-     <Footer /> 
+      <Header />
+      <Outlet />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default HomeLayout
+export default HomeLayout;

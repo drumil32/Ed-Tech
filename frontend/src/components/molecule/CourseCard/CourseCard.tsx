@@ -1,25 +1,37 @@
 import React from "react";
 import styles from "./style.module.scss";
 import { Course } from "../../../types/types";
-import { IoIosPeople } from "react-icons/io";
-import { MdAccessTime } from "react-icons/md";
+// import { IoIosPeople } from "react-icons/io";
+// import { MdAccessTime } from "react-icons/md";
 import { FaGraduationCap } from "react-icons/fa6";
 import { FaSuitcase } from "react-icons/fa";
-import { MdOutlineFileDownload } from "react-icons/md";
-import { MdKeyboardArrowRight } from "react-icons/md";
+// import { MdOutlineFileDownload } from "react-icons/md";
+// import { MdKeyboardArrowRight } from "react-icons/md";
 import developerImg from '../../../assets/images/developer.png';
+import { CiTimer } from "react-icons/ci";
+import { IoCloudOfflineOutline } from "react-icons/io5";
+import { MdSupportAgent } from "react-icons/md";
+import { FaHandsHelping } from "react-icons/fa";
+// import { LuBadgeInfo } from "react-icons/lu";
 
 const CourseCard: React.FC<Course> = ({
   title,
-  duration,
-  seatsLeft,
-  description,
+  // duration,
+  // seatsLeft,
+  // description,
   curriculum,
   placement,
-  brochureLink,
-  learnMoreLink,
+  // brochureLink,
+  // learnMoreLink,
   catagory,
 }) => {
+  const courseDetails = [
+    { icon: <CiTimer size={20} color={'green'}/>, key: 'Duration', value: '8 months' },
+    { icon: <IoCloudOfflineOutline size={20} color={'green'}/>, key: 'Features', value: 'In-class doubt sessions' },
+    { icon: <MdSupportAgent size={20} color={'green'}/>, key: 'Support', value: '1:1 mentor support' },
+    { icon: <FaHandsHelping size={20} color={'green'}/>, key: 'Partners', value: '15+ Companies' },
+    // { icon: <LuBadgeInfo size={20} color={'green'}/>, key: 'Outcome', value: '100% Job assistance' },
+  ];
   return (
     <div className={styles.courseCard}>
       <div className={styles.cardCatagory}>{catagory}</div>
@@ -28,7 +40,7 @@ const CourseCard: React.FC<Course> = ({
         <h2 className={styles.cardTitle}>{title}</h2>
       </div>
       <div className={styles.cardContent}>
-        <div className={styles.courseInfo}>
+        {/* <div className={styles.courseInfo}>
           <h5>
             <MdAccessTime/>
             Duration: <span>{duration}</span>
@@ -38,7 +50,7 @@ const CourseCard: React.FC<Course> = ({
             Seats Left: <span>{seatsLeft}</span>
           </h5>
         </div>
-        <p className={styles.description}>{description}</p>
+        <p className={styles.description}>{description}</p> */}
         <div className={styles.curriculum}>
           <h3><FaGraduationCap /> CURRICULUM</h3>
           <ul>
@@ -55,10 +67,27 @@ const CourseCard: React.FC<Course> = ({
             ))}
           </ul>
         </div>
-        <div className={styles.cardButtons}>
+        {/* <div className={styles.cardButtons}>
           <a href={brochureLink || "#"}>Brochure <MdOutlineFileDownload /></a>
           <a href={learnMoreLink || "#"}>Learn More <MdKeyboardArrowRight /></a>
-        </div>
+        </div> */}
+      </div>
+      <div className={styles.features}>
+        {
+          courseDetails.map((item) => {
+            return(
+              <div className={styles.feature_comp}>
+                <div className={styles.icons}>{item.icon}</div>
+                <div className={styles.content}>
+                  <p className={styles.heading}>{item.key}</p>
+                  <p className={styles.body}>{item.value}</p>
+                </div>
+              </div>
+              
+            )
+          })
+        }
+        
       </div>
     </div>
   );

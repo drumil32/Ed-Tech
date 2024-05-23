@@ -22,59 +22,29 @@ header {
     align-items: center;
     width: 100%;
     max-width: 1580px;
-    padding: 1rem 6rem;
+    padding: 1.4rem 6rem;
     @include md-max {
       padding: 1rem 2rem;
     }
     @include xsm-max {
-      padding: 0.5rem 0.3rem;
+      padding: 0.5rem 1rem;
     }
     &_logo {
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--primary-text-color);
-      margin-right: 1.2rem;
-      cursor: pointer;
-
-      &:hover {
-        color: #3a10e5;
-      }
-      @include xsm-max {
-        font-size: 0.75rem;
-        margin-right: 0.8rem;
-      }
-    }
-    &_navigation {
-      ul {
-        display: flex;
-        align-items: center;
-        list-style: none;
-        gap: 1rem;
-      }
-      li {
-        color: #10162f;
-        font-weight: 600;
-        cursor: pointer;
-
-        &:hover {
-          color: #3a10e5;
-        }
-      }
-      .active li {
-        color: #3a10e5;
-        font-weight: 800;
-      }
-      @include md-max {
-        display: none;
-      }
-    }
-
-    &_right_section {
-      margin-left: auto;
       display: flex;
+      justify-content: center;
       align-items: center;
       gap: 1rem;
+      h2 {
+        a {
+          font-size: 1.5rem;
+          color: var(--primary-text-color);
+          cursor: pointer;
 
+          &:hover {
+            color: #3a10e5;
+          }
+        }
+      }
       & .hamburgerIcon {
         cursor: pointer;
         font-size: 1.4rem;
@@ -86,6 +56,42 @@ header {
         @include xsm-max {
           font-size: 1rem;
         }
+      }
+      @include xsm-max {
+        font-size: 0.75rem;
+        justify-content: flex-start;
+        width: 100%;
+      }
+    }
+    &_navigation {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 6rem;
+      ul {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        gap: 3rem;
+      }
+      li {
+        a {
+          color: #10162f;
+          font-weight: 600;
+          cursor: pointer;
+
+          &:hover {
+            color: #3a10e5;
+          }
+        }
+      }
+      a.active {
+        color: #3a10e5;
+        font-weight: 800;
+      }
+      @include md-max {
+        display: none;
       }
     }
   }
@@ -115,21 +121,24 @@ header {
     margin: 0;
   }
   li {
-    text-align: center;
-    padding: 0.5rem 0;
-    font-weight: 600;
-    color: #10162f;
-    cursor: pointer;
-    &:hover {
-      background-color: var(--primary-background-color);
-      color: #3a10e5;
-      transform: scale(1.05);
+    a {
+      display: block;
+      text-align: center;
+      padding: 0.5rem 0;
+      font-weight: 600;
+      color: #10162f;
+      cursor: pointer;
+      &:hover {
+        background-color: var(--primary-background-color);
+        color: #3a10e5;
+        transform: scale(1.05);
+      }
     }
-  }
-  .active li {
-    transform: scale(1.05);
-    color: #3a10e5;
-    font-weight: 800;
+    a.active {
+      transform: scale(1.05);
+      color: #3a10e5;
+      font-weight: 800;
+    }
   }
 }
 

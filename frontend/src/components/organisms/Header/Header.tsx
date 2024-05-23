@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
-import Button from "../../atoms/Button/Button";
 import MobileNavbar from "./MobileNavbar";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const [scrollToCourses, setScrollToCourses] = useState<boolean>(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,46 +22,75 @@ const Header: React.FC = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  
+  useEffect(() => {
+    if (scrollToCourses && location.pathname === "/") {
+      const timer = setTimeout(() => {
+        const element = document.getElementById("courses");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+        setScrollToCourses(false);
+      }, 300); // Delay to ensure DOM is ready
+
+      return () => clearTimeout(timer);
+    }
+  }, [location, scrollToCourses]);
+
+  const handleCoursesClick = () => {
+    if (location.pathname === "/") {
+      const element = document.getElementById("courses");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      setScrollToCourses(true);
+      navigate("/");
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <header className={scrolled ? "scrolled" : ""}>
       <div className="header">
         <div className={"header_logo"}>
-          <h2>CodeCademy</h2>
+          <MobileNavbar />
+          <h2>
+            <Link to="/" onClick={scrollToTop}>
+              CodeCademy
+            </Link>
+          </h2>
         </div>
         <nav className={"header_navigation"}>
           <ul>
-            <NavLink
-              to="/"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <li>Home</li>
-            </NavLink>
-            <Link to="#">
-              <li>About Us</li>
-            </Link>
-            <NavLink
-              to="/faqs"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <li>FAQs</li>
-            </NavLink>
-            <Link to="#">
-              <li>Pricing</li>
-            </Link>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <li>Contacts</li>
-            </NavLink>
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? "active" : "")}
+                onClick={scrollToTop}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <a onClick={handleCoursesClick}>Courses</a>
+            </li>
+            <li>
+              <HashLink to="#">Our Values</HashLink>
+            </li>
+            <li>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Contact Us
+              </NavLink>
+            </li>
           </ul>
         </nav>
-        <div className={"header_right_section"}>
-          <Button text="Log In" className="header_login" />
-          <Button text="Sign Up" />
-          <MobileNavbar />
-        </div>
       </div>
     </header>
   );

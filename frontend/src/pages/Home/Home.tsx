@@ -5,6 +5,7 @@ import Courses from '../../components/organisms/Courses/Courses';
 import Features from '../../components/organisms/Features/Features';
 
 const Home: React.FC = () => {
+  
   return (
     <div className='home'>
       <Hero />

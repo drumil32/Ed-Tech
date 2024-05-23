@@ -1,23 +1,18 @@
 [
     {
-        "title": "MERN Full-Stack Development Track",
-        "duration": "8 MONTHS",
-        "seatsLeft": 62,
-        "description": "Deep Dive into JavaScript, it's MERN Frameworks to become a Full Stack Developer",
+        "title": "MERN Full-Stack Course",
         "curriculum": [
-            "Aptitude & DSA in JavaScript",
-            "Frontend Development with React.js Redux",
-            "Backend Development with Node.js, Express.js",
-            "Internship / Capstone Project",
-            "Mock Interviews",
-            "Mentorship Sessions"
+            "Logical reasoning & DSA",
+            "Frontend development with react.js",
+            "Backend development with node.js",
+            "4 real-world projects"
         ],
         "placement": [
-            "Pay after Placement Option",
-            "Dedicated Learning Coach"
+            "2-month internship",
+            "Job guarantee on course completion",
+            "At least 4 mock interviews",
+            "1:1 in-person placement support"            
         ],
-        "brochureLink": "/brochure",
-        "learnMoreLink": "/learn-more",
         "catagory": "Software"
     }
 ]
