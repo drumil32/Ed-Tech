@@ -1,14 +1,7 @@
 import React from "react";
 import styles from "./style.module.scss";
-import CourseListData from "../../../data/courseInfo.json";
-import CourseCard from "../../molecule/CourseCard/CourseCard";
-import { nanoid } from "nanoid";
-import { Course } from "../../../types/types";
-import { useMedia } from "react-use";
-import CourseCardHorizontal from "../../molecule/CourseCardHorizontal/CourseCardHorizontal";
 
 const Courses: React.FC = () => {
-  const isWide = useMedia("(min-width: 1024px)");
   return (
   <>
     <section className={styles.courcesContainer} id="courses">
