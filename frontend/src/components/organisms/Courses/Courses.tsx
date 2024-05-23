@@ -10,6 +10,7 @@ import CourseCardHorizontal from "../../molecule/CourseCardHorizontal/CourseCard
 const Courses: React.FC = () => {
   const isWide = useMedia("(min-width: 1024px)");
   return (
+  <>
     <section className={styles.courcesContainer} id="courses">
       <h5 className={styles.sectionTitle}>Course Overview</h5>
       <p className={styles.sction_sub_title}><span>Classroom</span> Full-Stack Web Development Program</p>
@@ -22,17 +23,81 @@ const Courses: React.FC = () => {
         </p> */}
        
       </div>
-      <div className={styles.cources}>
-         {CourseListData.map((course: Course) =>
-          isWide ? ( 
-            <CourseCardHorizontal {...course} key={nanoid()} />
-          ) : ( 
-            <CourseCard {...course} key={nanoid()} />
-          )
-        )}
-        
-      </div>
     </section>
+     <div className={styles.ag_format_container}>
+        
+     <div className={styles.ag_courses_box}>
+         <div className={styles.ag_courses_item}>
+             <a href="#" className={styles.ag_courses_item_link}>
+                 <div className={styles.ag_courses_item_bg}></div>
+
+                 <div className={styles.ag_courses_item_title}>
+                     Curriculum
+                 </div>
+                 <div className={styles.ag_courses_item_date_box}>
+                     1:
+                     <span className={styles.ag_courses_item_date}>
+                         Logical reasining and DSA.
+                     </span>
+                 </div>
+                 <div className={styles.ag_courses_item_date_box}>
+                     2:
+                     <span className={styles.ag_courses_item_date}>
+                     Logical reasining and DSA.
+                     </span>
+                 </div>
+                 <div className={styles.ag_courses_item_date_box}>
+                     3:
+                     <span className={styles.ag_courses_item_date}>
+                     Logical reasining and DSA.
+                     </span>
+                 </div>
+                 <div className={styles.ag_courses_item_date_box}>
+                     4:
+                     <span className={styles.ag_courses_item_date}>
+                     Logical reasining and DSA.
+                     </span>
+                 </div>
+             </a>
+         </div>
+
+         <div className={styles.ag_courses_item}>
+             <a href="#" className={styles.ag_courses_item_link}>
+                 <div className={styles.ag_courses_item_bg}></div>
+
+                 <div className={styles.ag_courses_item_title}>
+                     Curriculum
+                 </div>
+                 <div className={styles.ag_courses_item_date_box}>
+                     1:
+                     <span className={styles.ag_courses_item_date}>
+                         Logical reasining and DSA.
+                     </span>
+                 </div>
+                 <div className={styles.ag_courses_item_date_box}>
+                     2:
+                     <span className={styles.ag_courses_item_date}>
+                     Logical reasining and DSA.
+                     </span>
+                 </div>
+                 <div className={styles.ag_courses_item_date_box}>
+                     3:
+                     <span className={styles.ag_courses_item_date}>
+                     Logical reasining and DSA.
+                     </span>
+                 </div>
+                 <div className={styles.ag_courses_item_date_box}>
+                     4:
+                     <span className={styles.ag_courses_item_date}>
+                     Logical reasining and DSA.
+                     </span>
+                 </div>
+             </a>
+         </div>
+
+     </div>
+ </div>
+ </>
   );
 };
 
