@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import styles from "./styles.module.scss";
-import { WhyChooseUs } from "../../../types/types";
+import React, { useState } from 'react';
+import './card.scss';
 
+interface CardProps {
+  title: string;
+  subtitle: string;
+  details: string;
+}
 
-const FeaturesCard: React.FC<WhyChooseUs> = ({ title, subtitle, detail }) => {
+const Card: React.FC<CardProps> = ({ title, subtitle, details }) => {
   return (
-
     <div className="page-container">
-      <BlogCard title={title} subtitle={subtitle} details={detail} />
+      <BlogCard title={title} subtitle={subtitle} details={details} />
       <footer>
         Image credit: <a href="https://78.media.tumblr.com/d98fb931adb117c70f0dbced9e947520/tumblr_pe582mbWip1tlgv32o1_1280.png">8pxl on Tumblr</a>
       </footer>
     </div>
   );
 };
-
 
 interface BlogCardProps {
   title: string;
@@ -78,5 +80,4 @@ const ImageArea: React.FC<ImageAreaProps> = ({ title, subtitle }) => {
   );
 };
 
-
-export default FeaturesCard;
+export default Card;

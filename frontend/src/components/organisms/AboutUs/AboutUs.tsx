@@ -1,6 +1,7 @@
 import React from 'react';
 import instructorListData from '../../../data/teamInfo.json';
 import { Instructor } from '../../../types/types';
+import Card from '../../molecule/FeaturesCard/Card';
 
 const AboutUs: React.FC = () => {
     return (
@@ -26,7 +27,7 @@ const AboutUs: React.FC = () => {
                 ))
             }
         </div>
-    )
+    );
 }
 
 export default AboutUs;

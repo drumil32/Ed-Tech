@@ -10,13 +10,13 @@ import "./style.scss";
 
 const FeaturesCarausal: React.FC = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
+    speed: 0,
     slidesToShow: 3,
     slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
+    autoplay: false,
+    autoplaySpeed: 0,
     cssEase: "linear",
     responsive: [
       {
