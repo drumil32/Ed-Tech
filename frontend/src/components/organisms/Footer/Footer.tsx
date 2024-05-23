@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.scss";
 import PagesName from "./PagesName";
+import { Link } from "react-router-dom";
 import ContactInfo from "./ContactInfo";
 
 const Footer: React.FC = () => {
@@ -12,10 +13,13 @@ const Footer: React.FC = () => {
           <div className="footer_rightSection">
             <PagesName />
             <div className="social-media">
-              <a
+
+              <Link to="/faqs" >FAQs</Link>
+              <Link to="/" >Terms of Use</Link>
+              <Link to="/" >Privacy Policy</Link>
+              {/* <a
                 href="#"
-                target="_blank
-          "
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 <i className="fa-brands fa-facebook-f"></i>{" "}
@@ -23,8 +27,7 @@ const Footer: React.FC = () => {
               </a>
               <a
                 href="#"
-                target="_blank
-          "
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 <i className="fa-brands fa-linkedin-in"></i>{" "}
@@ -32,8 +35,7 @@ const Footer: React.FC = () => {
               </a>
               <a
                 href="#"
-                target="_blank
-          "
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 <i className="fa-brands fa-instagram"></i>{" "}
@@ -41,16 +43,15 @@ const Footer: React.FC = () => {
               </a>
               <a
                 href="#"
-                target="_blank
-          "
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 <i className="fa-brands fa-twitter"></i> <span>Twitter</span>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
-        <p className="copyright">Copyright © Fluidesigns Pvt. Ltd.</p>
+        {/* <p className="copyright">Copyright © Fluidesigns Pvt. Ltd.</p> */}
       </div>
     </footer>
   );

@@ -52,9 +52,9 @@ const PagesName: React.FC = () => {
         <li>
           <Link to="/contact" onClick={scrollToTop}>Contact Us</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/faqs" onClick={scrollToTop}>FAQs</Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

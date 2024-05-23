@@ -12,7 +12,7 @@ const ContactInfo: React.FC = () => {
     const contactInfoArray: ContactInfo[] = [
         {
             icon: <i className="fa-solid fa-phone-volume"></i>,
-            title: "+91 123 123 123"
+            title: "+91 8802940317"
         },
         {
             icon: <i className="fa-regular fa-envelope"></i>,
