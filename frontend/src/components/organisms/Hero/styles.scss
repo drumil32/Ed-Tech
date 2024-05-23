@@ -68,6 +68,25 @@
       p {
         font-size: 0.85rem;
       }
+
+      .timeSlot{
+        // width:20%;
+        border:1px solid black;
+        padding:7px 35px 7px 35px;
+        box-sizing:border-box;
+        border-radius: 5px;
+        background-color: white;
+      }
+
+      .sizeBox{
+        width: 20px;
+      }
+
+      .timeSlot:hover{
+        color: white;
+        border: 1px solid white;
+        background-color: #3a10e5;
+      }
     }
   }
 }
