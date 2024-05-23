@@ -24,7 +24,7 @@ const Courses: React.FC = () => {
        
       </div>
     </section>
-     <div className={styles.ag_format_container}>
+    <div className={styles.ag_format_container}>
         
      <div className={styles.ag_courses_box}>
          <div className={styles.ag_courses_item}>
@@ -32,30 +32,26 @@ const Courses: React.FC = () => {
                  <div className={styles.ag_courses_item_bg}></div>
 
                  <div className={styles.ag_courses_item_title}>
-                     Curriculum
+                     CURRICULUM
                  </div>
                  <div className={styles.ag_courses_item_date_box}>
-                     1:
                      <span className={styles.ag_courses_item_date}>
                          Logical reasining and DSA.
                      </span>
                  </div>
                  <div className={styles.ag_courses_item_date_box}>
-                     2:
                      <span className={styles.ag_courses_item_date}>
-                     Logical reasining and DSA.
+                     Frontend development with react.js
                      </span>
                  </div>
                  <div className={styles.ag_courses_item_date_box}>
-                     3:
                      <span className={styles.ag_courses_item_date}>
-                     Logical reasining and DSA.
+                     Backend development with node.js
                      </span>
                  </div>
                  <div className={styles.ag_courses_item_date_box}>
-                     4:
                      <span className={styles.ag_courses_item_date}>
-                     Logical reasining and DSA.
+                     4 real-world projects
                      </span>
                  </div>
              </a>
@@ -66,37 +62,51 @@ const Courses: React.FC = () => {
                  <div className={styles.ag_courses_item_bg}></div>
 
                  <div className={styles.ag_courses_item_title}>
-                     Curriculum
+                 PLACEMENT
                  </div>
                  <div className={styles.ag_courses_item_date_box}>
-                     1:
                      <span className={styles.ag_courses_item_date}>
-                         Logical reasining and DSA.
+                     2-month internship
                      </span>
                  </div>
                  <div className={styles.ag_courses_item_date_box}>
-                     2:
                      <span className={styles.ag_courses_item_date}>
-                     Logical reasining and DSA.
+                     Job guarantee on course completion
                      </span>
                  </div>
                  <div className={styles.ag_courses_item_date_box}>
-                     3:
                      <span className={styles.ag_courses_item_date}>
-                     Logical reasining and DSA.
+                     At least 4 mock interviews
                      </span>
                  </div>
                  <div className={styles.ag_courses_item_date_box}>
-                     4:
                      <span className={styles.ag_courses_item_date}>
-                     Logical reasining and DSA.
+                     1:1 in-person placement support
                      </span>
                  </div>
              </a>
          </div>
 
      </div>
- </div>
+    </div>
+    <section className={styles.courseHighlights}>
+    <h5 className={styles.sectionTitle}>Course Overview</h5>
+      <h5>Course Overview</h5>
+      <div className={styles.banner}>
+      <h1>Join in on Something Big</h1>
+      <div className={styles.styles}>
+        <p>5 Cr+</p>
+        <p>190+</p>
+        <p>300 Cr+</p>
+      </div>
+      <div className={styles.details}>
+        <p>Learners</p>
+        <p>Countries</p>
+        <p>Code submits</p>
+      </div>
+    </div>
+
+    </section>
  </>
   );
 };
