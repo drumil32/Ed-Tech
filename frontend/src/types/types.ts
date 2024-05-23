@@ -10,6 +10,7 @@ export interface WhyChooseUs {
   subtitle: string;
   detail: string;
   clipArt: string;
+  backGroundColor: string;
 }
 
 export interface Faqs {

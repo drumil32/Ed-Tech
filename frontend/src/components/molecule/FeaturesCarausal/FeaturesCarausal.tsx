@@ -3,7 +3,6 @@ import { WhyChooseUs } from "../../../types/types";
 import { nanoid } from "nanoid";
 import FeaturesCard from "../FeaturesCard/FeaturesCard";
 import WhyChooseUsListData from "../../../data/whyChooseUsInfo.json";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.scss";
@@ -37,11 +36,11 @@ const FeaturesCarausal: React.FC = () => {
   };
   return (
     <div className="features">
-      <Slider {...settings}>
+      {/* <Slider {...settings}> */}
         {WhyChooseUsListData.map((whyChooseUs: WhyChooseUs) => (
           <FeaturesCard {...whyChooseUs} key={nanoid()} />
         ))}
-      </Slider>
+      {/* </Slider> */}
     </div>
   );
 };
