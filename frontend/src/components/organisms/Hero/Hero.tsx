@@ -109,6 +109,17 @@ const Hero: React.FC = () => {
                 value={inputNumber}
                 onChange={(e) => setInputNumber(e.target.value)}
               />
+              <div style={{display:"flex",flexDirection:"row",textAlign:"center",justifyContent:"center",color:"black"}}>
+                <div className="timeSlot">
+                  <p>15 Jun</p>
+                  <p>11:00 AM</p>
+                </div>
+                <div className="sizeBox"></div>
+                <div className="timeSlot">
+                  <p>22 Jun</p>
+                  <p>4:00 PM</p>
+                </div>
+              </div>
               <Button text="Book a Live Class" style={{ width: "100%" }} />
             </form>
             {formSubmitted && (
