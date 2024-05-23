@@ -1,17 +1,13 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import { WhyChooseUs } from "../../../types/types";
 
-interface CardProps {
-  title: string;
-  description: string;
-  detail: string;
-}
 
-const FeaturesCard: React.FC<CardProps> = ({ title, description, detail }) => {
+const FeaturesCard: React.FC<WhyChooseUs> = ({ title, subtitle, detail }) => {
   return (
     <div className={styles.featureCard}>
       <p>{title}</p>
-      <p>{description}</p>
+      <p>{subtitle}</p>
       <p>{detail}</p>
     </div>
   );

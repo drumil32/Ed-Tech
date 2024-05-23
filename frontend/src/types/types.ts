@@ -8,8 +8,9 @@ export interface Course {
 
 export interface WhyChooseUs {
   title: string;
-  description: string;
+  subtitle: string;
   detail: string;
+  clipArt:string;
 }
 
 export interface Faqs {

@@ -1,22 +1,14 @@
 [
     {
-        "title": "Result-oriented Programme",
-        "description": "2-month internship for all",
-        "detail": "Guaranteed Jobs on course completion"
+        "title": "Our Programme",
+        "subtitle": "Specially curated for real-world learning",
+        "detail": "We have gone beyond the traditional tech courses. We have included fundamental skill areas like logical reasoning, mental models, and ways of working in our curriculum.",
+        "clipArt":"art link"
     },
     {
-        "title": "Live in-Class Learning",
-        "description": "Live in-class lectures",
-        "detail": "Live in-class doubt clearance"
-    },
-    {
-        "title": "Content Curated Just For You",
-        "description": "Holistic curriculum",
-        "detail": "Covers Logical Reasoning & Basic Maths"
-    },
-    {
-        "title": "Real-World Learning",
-        "description": "+4 real world projects",
-        "detail": "Interactive content from Day 1"
+        "title": "Our Center",
+        "subtitle": "Dedicated centre for your all-round growth",
+        "detail": "We’re building a world-class learning environment with a primary focus on effective classroom learning, building peer learning groups, and an overall effective growth environment.",
+        "clipArt":"art link"
     }
 ]
