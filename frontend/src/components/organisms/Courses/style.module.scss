@@ -48,6 +48,7 @@
     color: silver;
     z-index: 5;
     margin-bottom: 0.5rem;
+
     span {
       font-weight: 700;
       background: linear-gradient(90deg, hsla(13, 93%, 67%, 1) 0%, hsla(21, 91%, 73%, 1) 100%);
@@ -60,18 +61,20 @@
     white-space: nowrap;
     position: relative;
     display: flex;
-    margin-bottom: 2rem; 
+    margin-bottom: 2rem;
     z-index: 5;
     // font-size: 1.8rem;
     word-spacing: 3px;
     color: silver;
+
     .infinite_scroll_text {
+      color: '#505862';
       display: inline;
       font-size: 1.2rem;
       font-weight: bold;
     }
   }
-  
+
 
   .cources {
     display: flex;
@@ -91,10 +94,11 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   justify-content: center;
-  padding-bottom:50px ;
+  padding-bottom: 50px;
   background-color: #10162F;
 
 }
+
 .ag_courses_item {
   -ms-flex-preferred-size: calc(33.33333% - 30px);
   flex-basis: calc(23.33333% - 30px);
@@ -105,6 +109,7 @@
 
   border-radius: 28px;
 }
+
 .ag_courses_item_link {
   display: block;
   padding: 30px 20px;
@@ -114,16 +119,19 @@
 
   position: relative;
 }
+
 .ag_courses_item_link:hover,
 .ag_courses_item_link:hover .ag_courses_item_date {
   text-decoration: none;
   color: black;
 }
+
 .ag_courses_item_link:hover .ag_courses_item_bg {
   -webkit-transform: scale(10);
   -ms-transform: scale(10);
   transform: scale(10);
 }
+
 .ag_courses_item_title {
   min-height: 87px;
   margin: 0 0 25px;
@@ -137,6 +145,7 @@
   z-index: 2;
   position: relative;
 }
+
 .ag_courses_item_date_box {
   font-size: 18px;
   color: black;
@@ -144,6 +153,7 @@
   z-index: 2;
   position: relative;
 }
+
 .ag_courses_item_date {
   font-weight: bold;
   color: black;
@@ -152,6 +162,7 @@
   -o-transition: color .5s ease;
   transition: color .5s ease
 }
+
 .ag_courses_item_bg {
   height: 128px;
   width: 128px;
@@ -168,18 +179,23 @@
   -o-transition: all .5s ease;
   transition: all .5s ease;
 }
+
 .ag_courses_item:nth-child(2n) .ag_courses_item_bg {
   background-color: #3ecd5e;
 }
+
 .ag_courses_item:nth-child(3n) .ag_courses_item_bg {
   background-color: #e44002;
 }
+
 .ag_courses_item:nth-child(4n) .ag_courses_item_bg {
   background-color: #952aff;
 }
+
 .ag_courses_item:nth-child(5n) .ag_courses_item_bg {
   background-color: #cd3e94;
 }
+
 .ag_courses_item:nth-child(6n) .ag_courses_item_bg {
   background-color: #4c49ea;
 }
@@ -195,10 +211,10 @@
    * flex-wrap: wrap;
    */
   flex-flow: row wrap;
-  
+
   /* Then we define how is distributed the remaining space */
   justify-content: space-around;
-  
+
   padding: 0;
   margin: 0;
   list-style: none;
@@ -212,16 +228,16 @@
   font-size: 3em;
   text-align: center;
 
-  .title{
+  .title {
     font-size: 35px;
   }
 
-  .subTitle{
+  .subTitle {
     font-size: 15px;
   }
 }
 
-.highLightTitle{
+.highLightTitle {
   font-size: 15px;
 }
 
@@ -245,41 +261,41 @@
 
 
 
-//   &::before {
-//     content: "";
-//     position: absolute;
-//     top: 0;
-//     bottom: 0;
-//     left: 0;
-//     right: 0;
-//     background-color: #3A10E5;
-//   }
-//   .banner {
-//     background-color: #007bff;
-//     // background-color: #dbdddf;
+  //   &::before {
+  //     content: "";
+  //     position: absolute;
+  //     top: 0;
+  //     bottom: 0;
+  //     left: 0;
+  //     right: 0;
+  //     background-color: #3A10E5;
+  //   }
+  //   .banner {
+  //     background-color: #007bff;
+  //     // background-color: #dbdddf;
 
-//     color: #fff;
-//     text-align: center;
-//     padding: 20px 0;
-// }
+  //     color: #fff;
+  //     text-align: center;
+  //     padding: 20px 0;
+  // }
 
-// h1 {
-//     color: white;
-//     font-size: 3em;
-//     margin-bottom: 20px;
-// }
+  // h1 {
+  //     color: white;
+  //     font-size: 3em;
+  //     margin-bottom: 20px;
+  // }
 
-// .stats,
-// .details {
-//     display: flex;
-//     justify-content: space-around;
-// }
+  // .stats,
+  // .details {
+  //     display: flex;
+  //     justify-content: space-around;
+  // }
 
-// .stats p,
-// .details p {
-//     font-size: 1.5em;
-//     margin: 0 10px;
-// }
+  // .stats p,
+  // .details p {
+  //     font-size: 1.5em;
+  //     margin: 0 10px;
+  // }
 
 }
 
@@ -290,6 +306,7 @@
     -ms-flex-preferred-size: calc(50% - 30px);
     flex-basis: calc(50% - 30px);
   }
+
   .ag-courses-item_title {
     font-size: 24px;
   }
@@ -301,22 +318,25 @@
   }
 
 }
+
 @media only screen and (max-width: 639px) {
   .ag-courses_item {
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
   }
+
   .ag-courses-item_title {
     min-height: 72px;
     line-height: 1;
 
     font-size: 24px;
   }
+
   .ag-courses-item_link {
     padding: 22px 40px;
   }
+
   .ag-courses-item_date-box {
     font-size: 16px;
   }
 }
-   

@@ -2,22 +2,28 @@ import React from "react";
 import styles from "./style.module.scss";
 
 const Courses: React.FC = () => {
-  
+
   return (
     <>
       <section className={styles.courcesContainer} id="courses">
-        <h5 className={styles.sectionTitle}>Course Overview</h5>
-        <p className={styles.sction_sub_title}><span>Classroom</span> Full-Stack Web Development Program</p>
+        <h5 className={styles.sectionTitle} style={{
+          fontSize: '16px',
+          fontWeight: 700
+        }}>Course Overview</h5>
+        {/* // color: var(--Orange-600, #e04f16),
+        // text-align: center, */}
+        <p className={styles.sction_sub_title} style={{
+          color: '#e04f16',
+          fontSize: '32px',
+          fontWeight: '700',
+          lineHeight: '130%',
+        }}><span>Classroom</span><span> Full-Stack Web Development Program</span></p>
         <div className={styles.description}>
           <p className={styles.infinite_scroll_text}>
             A tailored offline program, designed to empower you for a successful career in tech.
           </p>
-          {/* <p className={styles.infinite_scroll_text2}>
-          A tailored offline program, designed to empower you for a successful career in tech.
-        </p> */}
-
         </div>
-      </section>
+      </section >
       <div className={styles.ag_format_container}>
 
         <div className={styles.ag_courses_box}>
@@ -84,35 +90,35 @@ const Courses: React.FC = () => {
         </div>
       </div>
       <section className={styles.courseHighlights}>
-      <div className={styles.flexcontainer}>
-        <div className={styles.flexitem}>
+        <div className={styles.flexcontainer}>
+          <div className={styles.flexitem}>
             <h2 className={styles.title}>8 Months</h2>
             <h4 className={styles.subTitle}>Duration</h4>
-        </div>
-        <div className={styles.flexitem}>
-          <div className="highLightBox">
-            <h2 className={styles.title}>Offline weekend classes</h2>
-            <h4 className={styles.subTitle}>Format </h4>
+          </div>
+          <div className={styles.flexitem}>
+            <div className="highLightBox">
+              <h2 className={styles.title}>Offline weekend classes</h2>
+              <h4 className={styles.subTitle}>Format </h4>
 
+            </div>
+          </div>
+          <div className={styles.flexitem}>
+            <div className="highLightBox">
+              <h2 className={styles.title}>15+ Companies</h2>
+              <h4 className={styles.subTitle}>Partners </h4>
+            </div>
+          </div>
+          <div className={styles.flexitem}>
+            <div className="highLightBox">
+              <h2 className={styles.title}>100% Job assistance</h2>
+              <h4 className={styles.subTitle}>Outcome </h4>
+            </div>
           </div>
         </div>
-        <div className={styles.flexitem}>
-          <div className="highLightBox">
-            <h2 className={styles.title}>15+ Companies</h2>
-            <h4 className={styles.subTitle}>Partners </h4>
-          </div>
-        </div>
-        <div className={styles.flexitem}>
-          <div className="highLightBox">
-            <h2 className={styles.title}>100% Job assistance</h2>
-            <h4 className={styles.subTitle}>Outcome </h4>
-          </div>
-        </div>
-      </div>
-</section>
+      </section>
 
       {/* <section className={styles.courseHighlights}> */}
-        {/* <h5 className={styles.sectionTitle}>Course Overview</h5>
+      {/* <h5 className={styles.sectionTitle}>Course Overview</h5>
       <h5>Course Overview</h5>
       <div className={styles.banner}>
       <h1>Join in on Something Big</h1>
