@@ -5,12 +5,12 @@ import { WhyChooseUs } from "../../../types/types";
 const FeaturesCard: React.FC<WhyChooseUs> = ({ title, subtitle, detail, clipArt, backGroundColor }) => {
   return (
     <div className="page-container">
-      <BlogCard 
-        title={title} 
-        subtitle={subtitle} 
-        details={detail} 
-        clipArt={clipArt} 
-        backGroundColor={backGroundColor} 
+      <BlogCard
+        title={title}
+        subtitle={subtitle}
+        details={detail}
+        clipArt={clipArt}
+        backGroundColor={backGroundColor}
       />
     </div>
   );
@@ -33,16 +33,16 @@ const BlogCard: React.FC<BlogCardProps> = ({ title, subtitle, details, clipArt, 
 
   return (
     <div className={`card-container${flipped ? " flipped" : ""}`}>
-      <Front 
-        title={title} 
-        subtitle={subtitle} 
-        clipArt={clipArt} 
-        backGroundColor={backGroundColor} 
-        flip={flip} 
+      <Front
+        title={title}
+        subtitle={subtitle}
+        clipArt={clipArt}
+        backGroundColor={backGroundColor}
+        flip={flip}
       />
-      <Back 
-        details={details} 
-        flip={flip} 
+      <Back
+        details={details}
+        flip={flip}
       />
     </div>
   );
@@ -59,14 +59,13 @@ interface FrontProps {
 const Front: React.FC<FrontProps> = ({ title, subtitle, clipArt, backGroundColor, flip }) => {
   return (
     <div className="front">
-      <ImageArea 
-        title={title} 
-        subtitle={subtitle} 
-        clipArt={clipArt} 
-        backGroundColor={backGroundColor} 
-        flip={flip} 
+      <ImageArea
+        title={title}
+        subtitle={subtitle}
+        clipArt={clipArt}
+        backGroundColor={backGroundColor}
+        flip={flip}
       />
-      {/* <MainArea /> */}
     </div>
   );
 };
@@ -82,11 +81,11 @@ const Back: React.FC<BackProps> = ({ details, flip }) => {
       <p>{details}</p>
       <div style={{ display: "flex", justifyContent: 'flex-end' }}>
         <div className="card-back-btn" onClick={flip}>
-          <img 
-            src="https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8f9581eb4ad5b75eaf599_Vector.svg" 
-            loading="lazy" 
-            alt="Back arrow" 
-            className="card-arrow-img" 
+          <img
+            src="https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8f9581eb4ad5b75eaf599_Vector.svg"
+            loading="lazy"
+            alt="Back arrow"
+            className="card-arrow-img"
           />
         </div>
       </div>
@@ -108,13 +107,13 @@ const ImageArea: React.FC<ImageAreaProps> = ({ title, subtitle, clipArt, backGro
       <img className="card-image" src={clipArt} alt="Blog post" />
       <h1 className="title">{title}</h1>
       <h2 className="subtitle">{subtitle}</h2>
-      <div style={{ justifyContent: 'flex-end', display: 'flex' }}>
+      <div style={{ justifyContent: 'flex-end', display: 'flex',height:'100px' }}>
         <div className="card-flip-btn" onClick={flip}>
-          <img 
-            src="https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8f9581eb4ad5b75eaf599_Vector.svg" 
-            loading="lazy" 
-            alt="Flip arrow" 
-            className="card-arrow-img" 
+          <img
+            src="https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8f9581eb4ad5b75eaf599_Vector.svg"
+            loading="lazy"
+            alt="Flip arrow"
+            className="card-arrow-img"
           />
         </div>
       </div>
