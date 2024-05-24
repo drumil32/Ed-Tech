@@ -33,10 +33,8 @@ const BookLiveClassForm: React.FC = () => {
     setFormSubmitted(true);
   };
 
-  const [timeSlot,setTimeSlot] = useState<Number>(0);
+  const [timeSlot,setTimeSlot] = useState<Number>(-1);
   
- 
-
   return (
     <section className="hero-section">
         <div className="signUpform" style={{borderRadius:"15px",backgroundColor:"#fcf2ef",margin:"50px",
