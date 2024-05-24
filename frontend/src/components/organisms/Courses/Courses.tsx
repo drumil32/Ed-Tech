@@ -2,93 +2,90 @@ import React from "react";
 import styles from "./style.module.scss";
 
 const Courses: React.FC = () => {
-
   return (
     <>
       <section className={styles.courcesContainer} id="courses">
-        <h5 className={styles.sectionTitle} style={{
-          fontSize: '16px',
-          fontWeight: 700
-        }}>Course Overview</h5>
-        {/* // color: var(--Orange-600, #e04f16),
-        // text-align: center, */}
-        <p className={styles.sction_sub_title} style={{
-          color: '#e04f16',
-          fontSize: '32px',
-          fontWeight: '700',
-          lineHeight: '130%',
-        }}><span>Classroom</span><span> Full-Stack Web Development Program</span></p>
+        <h5
+          className={styles.sectionTitle}
+          style={{
+            fontSize: "16px",
+            fontWeight: 700,
+          }}
+        >
+          Course Overview
+        </h5>
+        <p
+          className={styles.sction_sub_title}
+        >
+          <span>Classroom </span>
+          Full-Stack Web Development Program
+        </p>
         <div className={styles.description}>
           <p className={styles.infinite_scroll_text}>
-            A tailored offline program, designed to empower you for a successful career in tech.
+            A tailored offline program, designed to empower you for a successful
+            career in tech.
           </p>
         </div>
-      </section >
-      <div className={styles.ag_format_container}>
+        <div className={styles.ag_format_container}>
+          <div className={styles.ag_courses_box}>
+            <div className={styles.ag_courses_item}>
+              <div className={styles.ag_courses_item_link}>
+                <div className={styles.ag_courses_item_bg}></div>
 
-        <div className={styles.ag_courses_box}>
-          <div className={styles.ag_courses_item}>
-            <a href="#" className={styles.ag_courses_item_link}>
-              <div className={styles.ag_courses_item_bg}></div>
+                <div className={styles.ag_courses_item_title}>CURRICULUM</div>
+                <div className={styles.ag_courses_item_date_box}>
+                  <span className={styles.ag_courses_item_date}>
+                    Logical reasining and DSA.
+                  </span>
+                </div>
+                <div className={styles.ag_courses_item_date_box}>
+                  <span className={styles.ag_courses_item_date}>
+                    Frontend development with react.js
+                  </span>
+                </div>
+                <div className={styles.ag_courses_item_date_box}>
+                  <span className={styles.ag_courses_item_date}>
+                    Backend development with node.js
+                  </span>
+                </div>
+                <div className={styles.ag_courses_item_date_box}>
+                  <span className={styles.ag_courses_item_date}>
+                    4 real-world projects
+                  </span>
+                </div>
+              </div>
+            </div>
 
-              <div className={styles.ag_courses_item_title}>
-                CURRICULUM
+            <div className={styles.ag_courses_item}>
+              <div className={styles.ag_courses_item_link}>
+                <div className={styles.ag_courses_item_bg}></div>
+
+                <div className={styles.ag_courses_item_title}>PLACEMENT</div>
+                <div className={styles.ag_courses_item_date_box}>
+                  <span className={styles.ag_courses_item_date}>
+                    2-month internship
+                  </span>
+                </div>
+                <div className={styles.ag_courses_item_date_box}>
+                  <span className={styles.ag_courses_item_date}>
+                    Job guarantee on course completion
+                  </span>
+                </div>
+                <div className={styles.ag_courses_item_date_box}>
+                  <span className={styles.ag_courses_item_date}>
+                    At least 4 mock interviews
+                  </span>
+                </div>
+                <div className={styles.ag_courses_item_date_box}>
+                  <span className={styles.ag_courses_item_date}>
+                    1:1 in-person placement support
+                  </span>
+                </div>
               </div>
-              <div className={styles.ag_courses_item_date_box}>
-                <span className={styles.ag_courses_item_date}>
-                  Logical reasining and DSA.
-                </span>
-              </div>
-              <div className={styles.ag_courses_item_date_box}>
-                <span className={styles.ag_courses_item_date}>
-                  Frontend development with react.js
-                </span>
-              </div>
-              <div className={styles.ag_courses_item_date_box}>
-                <span className={styles.ag_courses_item_date}>
-                  Backend development with node.js
-                </span>
-              </div>
-              <div className={styles.ag_courses_item_date_box}>
-                <span className={styles.ag_courses_item_date}>
-                  4 real-world projects
-                </span>
-              </div>
-            </a>
+            </div>
           </div>
-
-          <div className={styles.ag_courses_item}>
-            <a href="#" className={styles.ag_courses_item_link}>
-              <div className={styles.ag_courses_item_bg}></div>
-
-              <div className={styles.ag_courses_item_title}>
-                PLACEMENT
-              </div>
-              <div className={styles.ag_courses_item_date_box}>
-                <span className={styles.ag_courses_item_date}>
-                  2-month internship
-                </span>
-              </div>
-              <div className={styles.ag_courses_item_date_box}>
-                <span className={styles.ag_courses_item_date}>
-                  Job guarantee on course completion
-                </span>
-              </div>
-              <div className={styles.ag_courses_item_date_box}>
-                <span className={styles.ag_courses_item_date}>
-                  At least 4 mock interviews
-                </span>
-              </div>
-              <div className={styles.ag_courses_item_date_box}>
-                <span className={styles.ag_courses_item_date}>
-                  1:1 in-person placement support
-                </span>
-              </div>
-            </a>
-          </div>
-
         </div>
-      </div>
+      </section>
       <section className={styles.courseHighlights}>
         <div className={styles.flexcontainer}>
           <div className={styles.flexitem}>
@@ -99,7 +96,6 @@ const Courses: React.FC = () => {
             <div className="highLightBox">
               <h2 className={styles.title}>Offline weekend classes</h2>
               <h4 className={styles.subTitle}>Format </h4>
-
             </div>
           </div>
           <div className={styles.flexitem}>

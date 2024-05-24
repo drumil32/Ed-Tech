@@ -4,6 +4,8 @@ $text-margin: 10px;
 
 .page-container {
   margin-bottom: 50px;
+  width: 100%;
+  max-width: 330px;
 }
 
 .card-container {
@@ -11,7 +13,8 @@ $text-margin: 10px;
   margin: 0;
   padding: 0;
   top: 20px;
-  width: 330px;
+  width: 100%;
+  max-width: 330px;
   position: relative;
   border-radius: 15px;
   transform-style: preserve-3d;
