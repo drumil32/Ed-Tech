@@ -4,6 +4,7 @@ import Hero from '../../components/organisms/Hero/Hero';
 import Courses from '../../components/organisms/Courses/Courses';
 import Features from '../../components/organisms/Features/Features';
 import AboutUs from '../../components/organisms/AboutUs/AboutUs';
+import BookLiveClassForm from '../../components/organisms/BookLiveClass/BookLiveClass';
 
 const Home: React.FC = () => {
   
@@ -13,6 +14,7 @@ const Home: React.FC = () => {
       <Courses />
       <Features />
       <AboutUs />
+      <BookLiveClassForm />
     </div>
   )
 }
