@@ -1,23 +1,23 @@
 [
     {
-        "title": "Our Programme",
+        "title": "Our Programe",
         "subtitle": "Specially curated for real-world learning",
         "detail": "We have gone beyond the traditional tech courses. We have included fundamental skill areas like logical reasoning, mental models, and ways of working in our curriculum.",
-        "clipArt":"https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e90055037f3b91a0d36069_Group%2014582335.svg",
+        "clipArt":"https://infikeytechnologies.com/wp-content/uploads/2023/07/img1.png",
         "backGroundColor":"#facb41"
     },
     {
         "title": "Our Center",
         "subtitle": "Dedicated centre for your all-round growth",
         "detail": "We’re building a world-class learning environment with a primary focus on effective classroom learning, building peer learning groups, and an overall effective growth environment.",
-        "clipArt":"https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8ff3bc21faa2b1fc64b73_Mask%20Groupa.svg",
-        "backGroundColor":"#ec724b"
+        "clipArt":"https://benchmark-it-solutions.web.app/coding%20Background%20Removed.png",
+        "backGroundColor":"#00c9b6"
     },
     {
         "title": "Our Team",
         "subtitle": "Best team to support you all the way",
         "detail": "We're building a team to guide you every step of the way. With dedicated mentorship, doubt-clearing sessions, and timely feedback, we're fostering a supportive environment for your growth.",
-        "clipArt":"https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8ff91e00682f42508f821_Group%2014582557.svg",
-        "backGroundColor":"#00c9b6"
+        "clipArt":"https://benchmark-it-solutions.web.app/infra%20Background%20Removed.png",
+        "backGroundColor":"#ec724b"
     }
 ]

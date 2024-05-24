@@ -8,39 +8,11 @@ import "slick-carousel/slick/slick-theme.css";
 import "./style.scss";
 
 const FeaturesCarausal: React.FC = () => {
-  // const settings = {
-  //   dots: false,
-  //   infinite: true,
-  //   speed: 0,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  //   autoplay: false,
-  //   autoplaySpeed: 0,
-  //   cssEase: "linear",
-  //   responsive: [
-  //     {
-  //       breakpoint: 850,
-  //       settings: {
-  //         slidesToShow: 2,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 550,
-  //       settings: {
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1,
-  //       },
-  //     },
-  //   ],
-  // };
   return (
     <div className="features">
-      {/* <Slider {...settings}> */}
-        {WhyChooseUsListData.map((whyChooseUs: WhyChooseUs) => (
-          <FeaturesCard {...whyChooseUs} key={nanoid()} />
-        ))}
-      {/* </Slider> */}
+      {WhyChooseUsListData.map((whyChooseUs: WhyChooseUs) => (
+        <FeaturesCard {...whyChooseUs} key={nanoid()} />
+      ))}
     </div>
   );
 };
