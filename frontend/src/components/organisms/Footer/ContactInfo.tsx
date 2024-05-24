@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
 import {nanoid} from "nanoid";
-import footerLogo from '../../../assets/images/footerLogo.svg';
+// import footerLogo from '../../../assets/images/footerLogo.svg';
 
 const ContactInfo: React.FC = () => {
 
