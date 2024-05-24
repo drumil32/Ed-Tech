@@ -82,8 +82,14 @@
         width: 20px;
       }
 
-      .timeSlot:hover{
+      .noPreference:hover{
         background-color: #FFD500;
+        border: none;
+      }
+
+      .schedule:hover{
+        background-color: #3a10e5;
+        color: white;
         border: none;
       }
 

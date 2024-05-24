@@ -64,16 +64,16 @@ const BookLiveClassForm: React.FC = () => {
                 onChange={(e) => setInputNumber(e.target.value)}
               />
               <div style={{display:"flex",flexDirection:"row",textAlign:"center",justifyContent:"center",color:"black"}}>
-                <div className="timeSlot" onClick={()=>{setTimeSlot(0);}} style={0 == timeSlot ? {backgroundColor:"#FFD500",color:"black",border:"none"} : {}}>
+                <div className="timeSlot noPreference" onClick={()=>{setTimeSlot(0);}} style={0 == timeSlot ? {backgroundColor:"#FFD500",color:"black",border:"none"} : {}}>
                   <p>No Preference</p>
                 </div>
                 <div className="sizeBox"></div>
-                <div className="timeSlot" onClick={()=>{setTimeSlot(1);}}  style={1 == timeSlot ? {backgroundColor:"#FFD500",color:"black",border:"none"} : {}}>
+                <div className="timeSlot schedule" onClick={()=>{setTimeSlot(1);}}  style={1 == timeSlot ? {backgroundColor:"#3a10e5",color:"white",border:"none"} : {}}>
                   <p>15 Jun</p>
                   <p>11:00 AM</p>
                 </div>
                 <div className="sizeBox"></div>
-                <div className="timeSlot" onClick={()=>{setTimeSlot(2);}}  style={2 == timeSlot ? {backgroundColor:"#FFD500",color:"black",border:"none"} : {}}>
+                <div className="timeSlot schedule" onClick={()=>{setTimeSlot(2);}}  style={2 == timeSlot ? {backgroundColor:"#3a10e5",color:"white",border:"none"} : {}}>
                   <p>22 Jun</p>
                   <p>4:00 PM</p>
                 </div>

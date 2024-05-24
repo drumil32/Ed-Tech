@@ -35,6 +35,7 @@ const ContactUs: React.FC = () => {
           <div className={styles.heading}>
                <div className={styles.headingTitle}>
                     <h1>Contact Us</h1>
+                    <h4>Home / <span>Contact Us</span></h4>
                </div>
           </div>
         <div className={styles.contacts}>
