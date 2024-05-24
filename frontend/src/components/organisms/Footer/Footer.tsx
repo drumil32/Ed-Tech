@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
 import PagesName from "./PagesName";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ContactInfo from "./ContactInfo";
 
 const Footer: React.FC = () => {
@@ -14,13 +14,18 @@ const Footer: React.FC = () => {
             <PagesName />
             <div className="another-navigation">
               <ul>
-                <li >FAQs</li>
-                <li >Terms of Use</li>
-                <li >Privacy Policy</li>
+                <li>
+                  <Link style={{ color: "white" }} to="/faqs" >FAQs</Link>
+                </li>
+                <li>
+                  <Link style={{ color: "white" }} to="/faqs" >Terms of Use</Link>
+                </li>
+                <li>
+                  <Link style={{ color: "white" }} to="/faqs" >Privacy Policy</Link>
+                </li>
               </ul>
             </div>
             {/* <div className="social-media">
-              <Link to="/faqs" >FAQs</Link>
               <Link to="/" >Terms of Use</Link>
               <Link to="/" >Privacy Policy</Link>
                <a
