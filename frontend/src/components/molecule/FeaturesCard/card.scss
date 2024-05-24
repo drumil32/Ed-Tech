@@ -3,8 +3,8 @@ $main-font: 'Yanone Kaffeesatz',
 $new-white: rgb(248, 246, 234);
 $text-margin: 10px;
 
-.page-container{
-  margin-bottom: 50px;
+.page-container {
+    margin-bottom: 50px;
 }
 
 .card-container {
@@ -60,13 +60,24 @@ $text-margin: 10px;
         padding: 20px;
         font-size: 20px;
         /* back tile styles go here! */
+        .card-back-btn {
+            border-radius: 100%;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            cursor: pointer;
+            background-color: #facb41;
+        }
     }
 
     .image-container {
         position: relative;
         border-radius: 10px;
         margin-bottom: 50px;
-        .subtitle{
+
+        .subtitle {
             font-size: 20px;
             position: absolute;
             // margin-bottom: 10px;
@@ -77,6 +88,7 @@ $text-margin: 10px;
             left: 0;
             color: $new-white;
         }
+
         .card-image {
             margin-top: 50px;
             width: 330px;
@@ -93,6 +105,19 @@ $text-margin: 10px;
             left: 0;
             color: $new-white;
         }
+
+        .card-flip-btn {
+            cursor: pointer;
+            background-color: #fff;
+            border-radius: 100%;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            display: flex;
+        }
+
+
     }
 
     .main-area {
