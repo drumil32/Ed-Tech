@@ -1,11 +1,14 @@
 @import "src/styles/_mixins";
 
 .contacts {
-  min-height: 90vh;
+  // min-height: 90vh;
   display: flex;
   max-width: 1580px;
+  flex-direction: row;
+  align-items: flex-start;
   flex-wrap: wrap;
   padding: 3rem;
+  padding-top: 0rem;
   width: 100%;
   @include md-max {
     flex-direction: column;
@@ -20,7 +23,9 @@
 .right_section {
   width: 40%;
   min-width: 450px;
+
   padding: 2rem 1rem;
+  padding-top: 0rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -122,6 +127,7 @@
 .left_section {
   flex: 1;
   padding: 5rem;
+  padding-top: 0rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -141,5 +147,37 @@
   }
   @include xsm-max {
     padding: 2rem 0.8rem;
+  }
+}
+
+
+.heading {
+  display: flex;
+  max-width: 1580px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 2rem;
+  width: 100%;
+  margin-bottom: 3rem;
+  background-color: whitesmoke;
+  @include md-max {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+  @include sm-max {
+    padding: 1.5rem;
+  }
+}
+
+.headingTitle {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  h1{
+    font-size: 3rem;
   }
 }

@@ -29,6 +29,14 @@ const ContactUs: React.FC = () => {
         setFormSubmitted(true);
       };
     return (
+      
+        <div>
+         
+          <div className={styles.heading}>
+               <div className={styles.headingTitle}>
+                    <h1>Contact Us</h1>
+               </div>
+          </div>
         <div className={styles.contacts}>
             <div className={styles.right_section}>
                 <h2>We’d Love To Collaborate!</h2>
@@ -75,6 +83,7 @@ const ContactUs: React.FC = () => {
           <p className="success-message">Thank you for submitting the form!</p>
         )}
             </div>
+        </div>
         </div>
     )
 }

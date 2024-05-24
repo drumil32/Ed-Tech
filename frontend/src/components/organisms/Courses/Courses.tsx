@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./style.module.scss";
 
 const Courses: React.FC = () => {
+  
   return (
     <>
       <section className={styles.courcesContainer} id="courses">

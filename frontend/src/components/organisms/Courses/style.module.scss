@@ -12,6 +12,7 @@
   flex-wrap: wrap;
   position: relative;
   background-color: #10162F;
+  padding-bottom: 0;
 
   &::before {
     content: "";
@@ -28,7 +29,7 @@
   }
 
   .sectionTitle {
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
     letter-spacing: 0.1rem;
@@ -41,12 +42,12 @@
   }
 
   .sction_sub_title {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     font-weight: 700;
     // color: rgba(128, 128, 128, 0.61);
     color: silver;
     z-index: 5;
-
+    margin-bottom: 0.5rem;
     span {
       font-weight: 700;
       background: linear-gradient(90deg, hsla(13, 93%, 67%, 1) 0%, hsla(21, 91%, 73%, 1) 100%);
@@ -61,11 +62,12 @@
     display: flex;
     margin-bottom: 2rem; 
     z-index: 5;
+    // font-size: 1.8rem;
     word-spacing: 3px;
     color: silver;
     .infinite_scroll_text {
-      display: inline-block;
-      font-size: 1rem;
+      display: inline;
+      font-size: 1.2rem;
       font-weight: bold;
     }
   }
@@ -89,7 +91,7 @@
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 50px 0;
+  padding-bottom:50px ;
   background-color: #10162F;
 
 }
@@ -238,8 +240,8 @@
   // color:white;
   padding-left: 5%;
   padding-right: 5%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 
 
 
