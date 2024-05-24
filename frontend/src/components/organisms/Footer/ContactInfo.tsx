@@ -22,7 +22,8 @@ const ContactInfo: React.FC = () => {
 
   return (
     <div className="pagesContainer">
-      <img className="footer-logo" src={footerLogo} />
+      {/* <img className="footer-logo" src={footerLogo} /> */}
+      <h2 className="footer-logo"> SprintUp</h2>
       <ul>
         {
           contactInfoArray.map((item) => (
