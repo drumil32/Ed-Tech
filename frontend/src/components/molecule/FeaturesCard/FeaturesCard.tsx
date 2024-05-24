@@ -107,7 +107,7 @@ const ImageArea: React.FC<ImageAreaProps> = ({ title, subtitle, clipArt, backGro
       <img className="card-image" src={clipArt} alt="Blog post" />
       <h1 className="title">{title}</h1>
       <h2 className="subtitle">{subtitle}</h2>
-      <div style={{ justifyContent: 'flex-end', display: 'flex',height:'100px' }}>
+      <div style={{ justifyContent: 'flex-end', display: 'flex',marginLeft:'' }}>
         <div className="card-flip-btn" onClick={flip}>
           <img
             src="https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8f9581eb4ad5b75eaf599_Vector.svg"

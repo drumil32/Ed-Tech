@@ -22,7 +22,7 @@ const Header: React.FC = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
+
   useEffect(() => {
     if (scrollToCourses && location.pathname === "/") {
       const timer = setTimeout(() => {
@@ -60,7 +60,7 @@ const Header: React.FC = () => {
           <MobileNavbar />
           <h2>
             <Link to="/" onClick={scrollToTop}>
-              CodeCademy
+              SprintUp
             </Link>
           </h2>
         </div>
