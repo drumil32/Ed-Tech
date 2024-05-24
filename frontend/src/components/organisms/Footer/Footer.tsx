@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
 import PagesName from "./PagesName";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import ContactInfo from "./ContactInfo";
 
 const Footer: React.FC = () => {
