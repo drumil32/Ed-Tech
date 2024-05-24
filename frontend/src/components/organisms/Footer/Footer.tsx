@@ -12,12 +12,18 @@ const Footer: React.FC = () => {
           <ContactInfo />
           <div className="footer_rightSection">
             <PagesName />
-            <div className="social-media">
-
+            <div className="another-navigation">
+              <ul>
+                <li >FAQs</li>
+                <li >Terms of Use</li>
+                <li >Privacy Policy</li>
+              </ul>
+            </div>
+            {/* <div className="social-media">
               <Link to="/faqs" >FAQs</Link>
               <Link to="/" >Terms of Use</Link>
               <Link to="/" >Privacy Policy</Link>
-              {/* <a
+               <a
                 href="#"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -47,8 +53,8 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
               >
                 <i className="fa-brands fa-twitter"></i> <span>Twitter</span>
-              </a> */}
-            </div>
+              </a> 
+            </div> */}
           </div>
         </div>
         {/* <p className="copyright">Copyright © Fluidesigns Pvt. Ltd.</p> */}

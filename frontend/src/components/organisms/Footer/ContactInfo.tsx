@@ -33,6 +33,40 @@ const ContactInfo: React.FC = () => {
           ))
         }
       </ul>
+      <div className="social-media">
+            <a
+              href="#"
+              target="_blank
+          "
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-facebook-f"></i> 
+            </a>
+            <a
+              href="#"
+              target="_blank
+          "
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a
+              href="#"
+              target="_blank
+          "
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-instagram"></i> 
+            </a>
+            <a
+              href="#"
+              target="_blank
+          "
+              rel="noopener noreferrer"
+            >
+              <i className="fa-brands fa-twitter"></i> 
+            </a>
+          </div>
     </div>
   )
 }

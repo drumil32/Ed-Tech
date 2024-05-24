@@ -12,9 +12,6 @@ const FeaturesCard: React.FC<WhyChooseUs> = ({ title, subtitle, detail, clipArt,
         clipArt={clipArt} 
         backGroundColor={backGroundColor} 
       />
-      {/* <footer>
-        Image credit: <a href="https://78.media.tumblr.com/d98fb931adb117c70f0dbced9e947520/tumblr_pe582mbWip1tlgv32o1_1280.png">8pxl on Tumblr</a>
-      </footer> */}
     </div>
   );
 };
