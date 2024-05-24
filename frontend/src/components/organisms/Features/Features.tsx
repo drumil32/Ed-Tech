@@ -6,7 +6,7 @@ const Features: React.FC = () => {
   return (
     <section className={styles.featureSection}>
       <div className={styles.featuresContainer}>
-        <h1 className={styles.sectionTitle}>Our programme is curated to maximise real-world learning</h1>
+        <h1 className={styles.sectionTitle}>Our programe is curated to maximise real-world learning</h1>
         <FeaturesCarausal />
       </div>
     </section>
