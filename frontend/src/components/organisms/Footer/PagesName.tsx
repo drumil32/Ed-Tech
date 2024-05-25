@@ -16,7 +16,7 @@ const PagesName: React.FC = () => {
           element.scrollIntoView({ behavior: "smooth" });
         }
         setScrollToCourses(false);
-      }, 300);
+      }, 500);
 
       return () => clearTimeout(timer);
     }

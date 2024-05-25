@@ -125,7 +125,7 @@
   
     overflow: hidden;
   
-    font-weight: bold;
+    font-weight: 600;
     font-size: 30px;
     color: #000;
   
@@ -134,7 +134,7 @@
   }
   
   .ag_courses_item_date_box {
-    font-size: 20px;
+    font-size: 18px;
     color: #000;
     margin-bottom: .5rem;
     z-index: 2;
@@ -142,9 +142,9 @@
   }
   
   .ag_courses_item_date {
-    font-weight: bold;
+    font-weight: 500;
     color: #000;
-    transition: color .5s ease
+    transition: color .5s ease;
   }
 
   .ag_courses_item_date::before {
