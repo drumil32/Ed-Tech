@@ -6,6 +6,11 @@ const Features: React.FC = () => {
   return (
     <section className={styles.featureSection}>
       <div className={styles.featuresContainer}>
+      <h5
+          className={styles.sectionHeading}
+        >
+          Why to choose us
+        </h5>
         <h1 className={styles.sectionTitle}>Our programme is curated to maximise <span>real-world learning</span></h1>
         <FeaturesCarausal />
         <div style={{backgroundColor:"#FFD500",padding:"1rem 3rem",borderRadius:"10px"}}>

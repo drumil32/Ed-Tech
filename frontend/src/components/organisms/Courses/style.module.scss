@@ -11,14 +11,13 @@
   flex-wrap: wrap;
   position: relative;
   background-color: #10162F;
-  padding-bottom: 0;
 
   @include xsm-max {
     padding: 2rem 1rem;
   }
 
   .sectionTitle {
-    font-size: 1.9rem;
+    font-size: 1rem;
     font-weight: 800;
     margin-bottom: 1rem;
     letter-spacing: 0.1rem;
@@ -87,7 +86,6 @@
     justify-content: center;
     gap: 4rem;
     background-color: #10162F;
-    margin-bottom: 4rem;
   }
   
   .ag_courses_item {

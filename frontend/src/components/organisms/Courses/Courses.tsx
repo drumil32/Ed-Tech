@@ -7,10 +7,6 @@ const Courses: React.FC = () => {
       <section className={styles.courcesContainer} id="courses">
         <h5
           className={styles.sectionTitle}
-          style={{
-            fontSize: "16px",
-            fontWeight: 700,
-          }}
         >
           Course Overview
         </h5>
