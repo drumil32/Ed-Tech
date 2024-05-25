@@ -18,11 +18,11 @@ const Courses: React.FC = () => {
           className={styles.sction_sub_title}
         >
           <span>Classroom </span>
-          Full-Stack Web Development Program
+          MERN-Stack Web Development Program
         </p>
         <div className={styles.description}>
           <p className={styles.infinite_scroll_text}>
-            A tailored offline program, designed to empower you for a successful
+            A tailored offline programme, designed to empower you for a successful
             career in tech.
           </p>
         </div>

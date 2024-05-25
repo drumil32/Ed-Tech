@@ -196,6 +196,10 @@ footer {
                   opacity: 1;
                   transition: 0.3s ease-in-out;
                 }
+
+                a {
+                color: var(--secondary-text-color);
+                }
               }
             }
           

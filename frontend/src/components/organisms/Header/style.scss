@@ -8,12 +8,11 @@ header {
   width: 100%;
   background-color: var(--primary-background-color);
   position: sticky;
-  border-bottom: 1px solid transparent;
   transition: all 0.3s ease-in-out;
   top: 0;
   z-index: 10;
   &.scrolled {
-    border-bottom: 1px solid #000;
+    box-shadow: 0 2px 4px #00000042;
     background-color: #fff;
     transition: all 0.3s ease-in-out;
   }
@@ -113,7 +112,7 @@ header {
   left: 0;
   right: 0;
   padding: 1rem;
-  box-shadow: 0 4px 10px #8f8f8f;
+  box-shadow: 0 6px 10px #b9b9b9;
   overflow: hidden;
   ul {
     list-style: none;
@@ -163,7 +162,9 @@ header {
   border-radius: 50%;
   background-color: #FFD500;
   transition: all .5s linear;
+  box-shadow: 0 2px 5px 3px #ffd814;
   z-index: 9999;
+  
   svg {
     width: 30px;
     height: 30px;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./style.scss";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { AnimatePresence, motion } from "framer-motion";
 
 const MobileNavbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -49,6 +50,7 @@ const MobileNavbar: React.FC = () => {
   };
 
   return (
+    <AnimatePresence>
     <div className={`mobile-navbar ${menuOpen ? "open" : ""}`}>
       <div className="hamburgerIcon" onClick={toggleMenu}>
         {menuOpen ? (
@@ -59,15 +61,16 @@ const MobileNavbar: React.FC = () => {
       </div>
       <nav className={`mobile-nav ${menuOpen ? "open" : ""}`}>
         <ul>
-          <li>
+          <motion.li initial={{x: -100}} animate={{x: 0}}>
             <NavLink
+            
               onClick={scrollToTop}
               to="/"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               Home
             </NavLink>
-          </li>
+          </motion.li>
           <li>
             <a onClick={handleCoursesClick}>
               Courses
@@ -90,6 +93,7 @@ const MobileNavbar: React.FC = () => {
         </ul>
       </nav>
     </div>
+    </AnimatePresence>
   );
 };
 
