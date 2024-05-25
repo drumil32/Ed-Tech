@@ -37,7 +37,7 @@ app.use(morgan(process.env.ENV!));
 connectDB();
 
 // POST endpoint to handle name, phone number, type, date, and time
-app.post('/book-live-class', validateName, validatePhoneNumber, validateType, validateDate, validateTime, async (req: Request, res: Response, next: NextFunction) => {
+app.post('/book-live-class', validateName, validatePhoneNumber, validateDate, validateTime, async (req: Request, res: Response, next: NextFunction) => {
     const { name, phoneNumber, date, time } = req.body;
 
     // Create a new document using the StudentsData model
@@ -77,7 +77,9 @@ app.post('/request-a-callback', validateName, validatePhoneNumber, async (req: R
 // Middleware function to validate name
 function validateName(req: Request, res: Response, next: NextFunction) {
     const { name } = req.body;
-    if (!name.match(/^[a-zA-Z\s]*$/)) {
+    if (!name) {
+        return res.status(400).json({ error: 'Please Provide a Name' });
+    } else if (!name.match(/^[a-zA-Z\s]*$/)) {
         return res.status(400).json({ error: 'Name should only contain alphabets and spaces.' });
     }
     next();
@@ -87,18 +89,10 @@ function validateName(req: Request, res: Response, next: NextFunction) {
 function validatePhoneNumber(req: Request, res: Response, next: NextFunction) {
     const { phoneNumber } = req.body;
     // Check if the phone number matches the required pattern
-    if (!phoneNumber.match(/^(\+91)?\d{10}$/)) {
+    if (!phoneNumber) {
+        return res.status(400).json({ error: 'Please Provide a phone number' });
+    } else if (!phoneNumber.match(/^(\+91)?\d{10}$/)) {
         return res.status(400).json({ error: 'Invalid phone number format.' });
-    }
-    next();
-}
-
-// Middleware function to validate type
-function validateType(req: Request, res: Response, next: NextFunction) {
-    const { type } = req.body;
-    // Check if the type is one of the allowed values
-    if (!['Book A Live Session', 'Request A Call'].includes(type)) {
-        return res.status(400).json({ error: 'Invalid type provided.' });
     }
     next();
 }
@@ -107,7 +101,9 @@ function validateType(req: Request, res: Response, next: NextFunction) {
 function validateDate(req: Request, res: Response, next: NextFunction) {
     const { date } = req.body;
     // Check if the date matches the required pattern (DD-MM-YYYY)
-    if (!date.match(/^\d{2}-\d{2}-\d{4}$/)) {
+    if (!date) {
+        return res.status(400).json({ error: 'Please Provide a Date' });
+    } else if (!date.match(/^\d{2}-\d{2}-\d{4}$/)) {
         return res.status(400).json({ error: 'Invalid date format. Use DD-MM-YYYY.' });
     }
     next();
@@ -117,7 +113,9 @@ function validateDate(req: Request, res: Response, next: NextFunction) {
 function validateTime(req: Request, res: Response, next: NextFunction) {
     const { time } = req.body;
     // Check if the time matches the required pattern (HH:MM AM/PM)
-    if (!time.match(/^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)) {
+    if (!time) {
+        return res.status(400).json({ error: 'Please Provide a Time' });
+    } else if (!time.match(/^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)) {
         return res.status(400).json({ error: 'Invalid time format. Use HH:MM AM/PM.' });
     }
     next();
