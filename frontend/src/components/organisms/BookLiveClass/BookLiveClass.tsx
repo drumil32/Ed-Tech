@@ -44,7 +44,7 @@ const BookLiveClassForm: React.FC = () => {
             <h2>Book a Live Class</h2>
             {/* <h2>Career With Us:</h2> */}
             {/* <h2>Get the best jobs</h2> */}
-            <h3>We are planning a meet-up in your city</h3>
+            <h3>We are planning a meet-up in <span> Lucknow!</span></h3>
             <form onSubmit={handleSubmit} style={{margin:"auto"}}>
               <Input
                 label="Name"

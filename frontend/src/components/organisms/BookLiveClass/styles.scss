@@ -53,6 +53,9 @@
       font-family: "Roboto", sans-serif;
       margin-bottom: 2rem;
       margin-top: 1rem;
+      span {
+        color: #3A10E5;
+      }
       @include xsm-max {
         font-size: 1rem;
       }

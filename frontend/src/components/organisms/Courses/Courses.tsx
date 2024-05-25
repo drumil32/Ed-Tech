@@ -35,7 +35,7 @@ const Courses: React.FC = () => {
                 <div className={styles.ag_courses_item_title}>CURRICULUM</div>
                 <div className={styles.ag_courses_item_date_box}>
                   <p className={styles.ag_courses_item_date}>
-                    <span>+ </span>Logical reasining and DSA.
+                    <span>+ </span>Logical reasining and DSA
                   </p>
                 </div>
                 <div className={styles.ag_courses_item_date_box}>
