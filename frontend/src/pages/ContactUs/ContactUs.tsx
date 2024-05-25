@@ -12,7 +12,7 @@ const ContactUs: React.FC = () => {
     const contactData = [
         {
             title: "Phone",
-            value: "+91 90124 XXXXX",
+            value: "+91 8802940317",
             icon: (<FiPhoneCall />)
         },
         {
@@ -40,7 +40,7 @@ const ContactUs: React.FC = () => {
           </div>
         <div className={styles.contacts}>
             <div className={styles.right_section}>
-                <h2>We’d Love To Collaborate!</h2>
+                <h2>We would love to hear from you!</h2>
                 <p>Let us know what you’re after.</p>
                 {contactData.map((data, i) => {
                     return (

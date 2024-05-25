@@ -3,7 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
-import StudentsData from './models/studentData.js';
+import BookLiveClassData from './models/bookLiveClassData.js';
+import RequestACallData from './models/requestACallData.js';
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -35,26 +36,42 @@ app.use(morgan(process.env.ENV!));
 
 connectDB();
 
-// POST endpoint to handle name, phone number, and type
-app.post('/', validateName, validatePhoneNumber, validateType, async (req: Request, res: Response, next: NextFunction) => {
-    const { name, phoneNumber, type } = req.body;
+// POST endpoint to handle name, phone number, type, date, and time
+app.post('/book-live-class', validateName, validatePhoneNumber, validateType, validateDate, validateTime, async (req: Request, res: Response, next: NextFunction) => {
+    const { name, phoneNumber, date, time } = req.body;
 
     // Create a new document using the StudentsData model
-    const studentData = new StudentsData({
+    const bookLiveClassData = new BookLiveClassData({
         name: name.trim(),
         phoneNumber,
-        type
+        date,
+        time
     });
 
     try {
         // Save the document to the database
-        await studentData.save();
+        await bookLiveClassData.save();
     } catch (err) {
         next(err);
     }
 
     // Further logic can be added here
-    res.status(200).json({ message: 'Data received successfully.', name, phoneNumber, type });
+    res.status(200).json({ message: 'Session is booked!', data: { name, phoneNumber, date, time } });
+});
+
+app.post('/request-a-callback', validateName, validatePhoneNumber, async (req: Request, res: Response, next: NextFunction) => {
+    const { name, phoneNumber, message } = req.body;
+    const requestACallData = new RequestACallData({
+        name: name.trim(),
+        phoneNumber,
+        message
+    });
+    try {
+        await requestACallData.save();
+    } catch (err) {
+        next(err);
+    }
+    res.status(200).json({ message: 'Request is received!', data: { name, phoneNumber, message } });
 });
 
 // Middleware function to validate name
@@ -70,11 +87,12 @@ function validateName(req: Request, res: Response, next: NextFunction) {
 function validatePhoneNumber(req: Request, res: Response, next: NextFunction) {
     const { phoneNumber } = req.body;
     // Check if the phone number matches the required pattern
-    if (!phoneNumber.match(/^(\+91)?\d{10}$/) && !phoneNumber.match(/^\d{10}$/)) {
+    if (!phoneNumber.match(/^(\+91)?\d{10}$/)) {
         return res.status(400).json({ error: 'Invalid phone number format.' });
     }
     next();
 }
+
 // Middleware function to validate type
 function validateType(req: Request, res: Response, next: NextFunction) {
     const { type } = req.body;
@@ -85,6 +103,25 @@ function validateType(req: Request, res: Response, next: NextFunction) {
     next();
 }
 
+// Middleware function to validate date
+function validateDate(req: Request, res: Response, next: NextFunction) {
+    const { date } = req.body;
+    // Check if the date matches the required pattern (DD-MM-YYYY)
+    if (!date.match(/^\d{2}-\d{2}-\d{4}$/)) {
+        return res.status(400).json({ error: 'Invalid date format. Use DD-MM-YYYY.' });
+    }
+    next();
+}
+
+// Middleware function to validate time
+function validateTime(req: Request, res: Response, next: NextFunction) {
+    const { time } = req.body;
+    // Check if the time matches the required pattern (HH:MM AM/PM)
+    if (!time.match(/^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)) {
+        return res.status(400).json({ error: 'Invalid time format. Use HH:MM AM/PM.' });
+    }
+    next();
+}
 
 // Error handling middleware
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
