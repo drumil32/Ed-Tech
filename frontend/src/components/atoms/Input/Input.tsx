@@ -3,10 +3,11 @@ import "./style.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  icon?: React.ReactNode;
   customValidation?: (value: string) => string | null;
 }
 
-const Input: React.FC<InputProps> = ({ label, required, customValidation, onChange, ...props }) => {
+const Input: React.FC<InputProps> = ({ label, required, customValidation, icon, onChange, ...props }) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (customValidation) {
@@ -22,10 +23,12 @@ const Input: React.FC<InputProps> = ({ label, required, customValidation, onChan
       {label && (
         <label>
           {label}
-          {required && <span className="required">*</span>}
         </label>
       )}
+      <div className="inputBar">
+      {icon && icon }
       <input {...props} onChange={handleInputChange} required />
+      </div>
       {props.type === "checkbox" ? (
         <label className="checkbox-label">
           <span className={`checkmark ${props.checked ? "visible" : ""}`}>✔</span>

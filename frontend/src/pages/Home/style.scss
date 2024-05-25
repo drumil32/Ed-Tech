@@ -4,11 +4,11 @@
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  
+
   .whatsapp-icon {
     position: fixed;
     right: 2rem;
-    bottom: 6rem;
+    bottom: 2rem;
     width: 50px;
     height: 50px;
     display: flex;
@@ -17,7 +17,6 @@
     border-radius: 50%;
     background-color: #26c943;
     color: #fff;
-    box-shadow: 0 2px 5px 3px #45fd2c;
     transition: all 0.5s linear;
     z-index: 9999;
     svg {
@@ -26,8 +25,9 @@
     }
     @include sm-max {
       width: 30px;
-      bottom: 4.5rem;
       height: 30px;
+      right: 1rem;
+
       svg {
         width: 20px;
         height: 20px;

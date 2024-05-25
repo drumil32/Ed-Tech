@@ -15,17 +15,17 @@ const Courses: React.FC = () => {
           Course Overview
         </h5>
         <p
-          className={styles.sction_sub_title}
+          className={styles.section_sub_title}
         >
           <span>Classroom </span>
           MERN-Stack Web Development Program
         </p>
-        <div className={styles.description}>
+        {/* <div className={styles.description}>
           <p className={styles.infinite_scroll_text}>
             A tailored offline programme, designed to empower you for a successful
             career in tech.
           </p>
-        </div>
+        </div> */}
         <div className={styles.ag_format_container}>
           <div className={styles.ag_courses_box}>
             <div className={styles.ag_courses_item}>
@@ -34,24 +34,24 @@ const Courses: React.FC = () => {
 
                 <div className={styles.ag_courses_item_title}>CURRICULUM</div>
                 <div className={styles.ag_courses_item_date_box}>
-                  <span className={styles.ag_courses_item_date}>
-                    Logical reasining and DSA.
-                  </span>
+                  <p className={styles.ag_courses_item_date}>
+                    <span>+ </span>Logical reasining and DSA.
+                  </p>
                 </div>
                 <div className={styles.ag_courses_item_date_box}>
-                  <span className={styles.ag_courses_item_date}>
-                    Frontend development with react.js
-                  </span>
+                  <p className={styles.ag_courses_item_date}>
+                    <span>+ </span>Frontend with react.js
+                  </p>
                 </div>
                 <div className={styles.ag_courses_item_date_box}>
-                  <span className={styles.ag_courses_item_date}>
-                    Backend development with node.js
-                  </span>
+                  <p className={styles.ag_courses_item_date}>
+                    <span>+ </span>Backend with node.js
+                  </p>
                 </div>
                 <div className={styles.ag_courses_item_date_box}>
-                  <span className={styles.ag_courses_item_date}>
-                    4 real-world projects
-                  </span>
+                  <p className={styles.ag_courses_item_date}>
+                    <span>+ </span>4 real-world projects
+                  </p>
                 </div>
               </div>
             </div>
@@ -62,24 +62,24 @@ const Courses: React.FC = () => {
 
                 <div className={styles.ag_courses_item_title}>PLACEMENT</div>
                 <div className={styles.ag_courses_item_date_box}>
-                  <span className={styles.ag_courses_item_date}>
-                    2-month internship
-                  </span>
+                  <p className={styles.ag_courses_item_date}>
+                    <span>+ </span>2-month internship
+                  </p>
                 </div>
                 <div className={styles.ag_courses_item_date_box}>
-                  <span className={styles.ag_courses_item_date}>
-                    Job guarantee on course completion
-                  </span>
+                  <p className={styles.ag_courses_item_date}>
+                    <span>+ </span>4+ mock interviews
+                  </p>
                 </div>
                 <div className={styles.ag_courses_item_date_box}>
-                  <span className={styles.ag_courses_item_date}>
-                    At least 4 mock interviews
-                  </span>
+                  <p className={styles.ag_courses_item_date}>
+                    <span>+ </span>1:1 placement support
+                  </p>
                 </div>
                 <div className={styles.ag_courses_item_date_box}>
-                  <span className={styles.ag_courses_item_date}>
-                    1:1 in-person placement support
-                  </span>
+                  <p className={styles.ag_courses_item_date}>
+                    <span>+ </span>Job guarantee on course completion
+                  </p>
                 </div>
               </div>
             </div>

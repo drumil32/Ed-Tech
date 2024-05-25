@@ -6,7 +6,8 @@ import Carausal from "../../molecule/Carausal/Carausal";
 import image1 from "../../../assets/images/carousal/image1.svg";
 import image2 from "../../../assets/images/carousal/image2.svg";
 import image3 from "../../../assets/images/carousal/image3.svg";
-// import profileImage from "../../../assets/images/carousal/profileImage.jpeg";
+import { FaUser } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
 
 export interface ProfileData {
   image: string;
@@ -26,6 +27,7 @@ const Hero: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
   const [inputNumber, setInputNumber] = useState<number | string>("");
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [timeSlot, setTimeSlot] = useState<Number | null>(null);
 
   const carausalData: SlideData[] = [
     // {
@@ -55,7 +57,10 @@ const Hero: React.FC = () => {
     {
       title: "IN-CLASS SESSIONS BY THE BEST",
       image: image1,
-      desc: ["Live in-class sessions for optimum learning", "In-class dedicated doubt clearance"],
+      desc: [
+        "Live in-class sessions for optimum learning",
+        "In-class dedicated doubt clearance",
+      ],
     },
     {
       title: "FIND THE RIGHT JOB FOR YOU",
@@ -82,58 +87,78 @@ const Hero: React.FC = () => {
     // Here you can perform further validation before submitting the form or API call
     setFormSubmitted(true);
   };
-
-  const [timeSlot, setTimeSlot] = useState<Number>(-1);
-
   return (
     <section className="hero-section">
       <div className="hero">
         <Carausal data={carausalData} />
-        <div className="signUpform">
-          <div>
-            <h2>Build Your Tech Career With Us</h2>
-            {/* <h2>Career With Us:</h2> */}
-            {/* <h2>Get the best jobs</h2> */}
+        <div className="hero-left">
+          <div className="hero-form">
+            <div className="form-title">
+              <h2>Build Your Tech Career</h2>
+              <h2> With Us</h2>
+            </div>
+            <div className="form-subtitle">
             <h3>Best full-stack course designed by IIT & BITS alums</h3>
+            </div>
             <form onSubmit={handleSubmit}>
               <Input
-                label="Name"
+                label="Full Name"
+                icon={<FaUser />}
+                placeholder="Full Name"
                 required={true}
                 value={inputName}
                 onChange={(e) => setInputName(e.target.value)}
               />
               <Input
                 label="Mobile Number"
+                icon={<FaPhoneAlt />}
                 required={true}
                 type="tel"
                 pattern="[0-9]{10}"
-                placeholder="XXXXXXXXXX"
+                placeholder="10 digits Mobile Number"
                 value={inputNumber}
                 onChange={(e) => setInputNumber(e.target.value)}
               />
-              <div style={{ display: "flex", flexDirection: "row", textAlign: "center", justifyContent: "center", color: "black" }}>
-                <div className="sizeBox"></div>
-                <div className="timeSlot noPreference" onClick={() => { setTimeSlot(0); }} style={0 == timeSlot ? { backgroundColor: "#FFD500", color: "black", border: "none" } : {}}>
+              <div className="hero-form-slots"
+              >
+                
+                <div
+                  className={`timeSlot ${timeSlot === 0 && "active"}`}
+                  onClick={() => {
+                    setTimeSlot(timeSlot === 0 ? null : 0);
+                  }}
+                >
                   <p>No Preference</p>
                 </div>
-                <div className="sizeBox"></div>
-                <div className="timeSlot schedule" onClick={() => { setTimeSlot(1); }} style={1 == timeSlot ? { backgroundColor: "#3a10e5", color: "white", border: "none" } : {}}>
+                
+                <div
+                  className={`timeSlot ${timeSlot === 1 && "active"}`}
+                  onClick={() => {
+                    setTimeSlot(timeSlot === 1 ? null : 1);
+                  }}
+                >
                   <p>15 Jun</p>
                   <p>11:00 AM</p>
                 </div>
-                <div className="sizeBox"></div>
-                <div className="timeSlot schedule" onClick={() => { setTimeSlot(2); }} style={2 == timeSlot ? { backgroundColor: "#3a10e5", color: "white", border: "none" } : {}}>
+                
+                <div
+                  className={`timeSlot ${timeSlot === 2 && "active"}`}
+                  onClick={() => {
+                    setTimeSlot(timeSlot === 2 ? null : 2);
+                  }}
+                >
                   <p>22 Jun</p>
                   <p>4:00 PM</p>
                 </div>
+
               </div>
-              <Button text="Book a Live Class" style={{ width: "100%" }} />
+              <Button text="Book a Live Class" style={{ width: "100%", marginTop: "0.8rem" }} />
+              {formSubmitted && (
+                <p className="success-message">
+                  Thank you for submitting the form!
+                </p>
+              )}
             </form>
-            {formSubmitted && (
-              <p className="success-message">
-                Thank you for submitting the form!
-              </p>
-            )}
           </div>
         </div>
       </div>

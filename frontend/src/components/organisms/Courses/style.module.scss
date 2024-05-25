@@ -2,7 +2,7 @@
 
 .courcesContainer {
   width: 100%;
-  padding: 3rem;
+  padding: 4rem 3rem;
   background-color: var(--primary-background-color);
   display: flex;
   flex-direction: column;
@@ -30,11 +30,11 @@
     -webkit-background-clip: text;
   }
 
-  .sction_sub_title {
+  .section_sub_title {
     // color: rgba(128, 128, 128, 0.61);
     color: silver;
     z-index: 5;
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
     font-size: 2rem;
     font-weight: 700;
     line-height: 130%;
@@ -43,9 +43,7 @@
 
     span {
       font-weight: 700;
-      background: linear-gradient(90deg, hsla(13, 93%, 67%, 1) 0%, hsla(21, 91%, 73%, 1) 100%);
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
+      color: #FFD500;
     }
   }
 
@@ -87,9 +85,9 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 3rem;
+    gap: 4rem;
     background-color: #10162F;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
   
   .ag_courses_item {
@@ -101,9 +99,9 @@
   
   .ag_courses_item_link {
     display: block;
-    padding: 30px 20px;
+    padding: 1.2rem 1.5rem;
     background-color: #FFF;
-    min-height: 350px;
+    min-height: 310px;
     overflow: hidden;
     position: relative;
   }
@@ -122,9 +120,7 @@
   .ag_courses_item_title {
     min-height: 3rem;
     margin: 0 0 25px;
-  
     overflow: hidden;
-  
     font-weight: 600;
     font-size: 30px;
     color: #000;
@@ -136,25 +132,26 @@
   .ag_courses_item_date_box {
     font-size: 18px;
     color: #000;
-    margin-bottom: .5rem;
+    margin-bottom: 1rem;
     z-index: 2;
     position: relative;
   }
   
   .ag_courses_item_date {
+    display: flex;
+    gap: .3rem;
+    align-items: flex-start;
     font-weight: 500;
     color: #000;
     transition: color .5s ease;
+    position: relative;
+    span{
+      font-size: 1.2rem;
+      color: #3ecd5e;
+      transition: color .5s ease
+    }
   }
-
-  .ag_courses_item_date::before {
-    content: "✔";
-    margin-right: .3rem;
-    font-size: 1rem;
-    color: #3ecd5e;
-    transition: color .5s ease
-  }
-  .ag_courses_item_link:hover .ag_courses_item_date::before {
+  .ag_courses_item_link:hover .ag_courses_item_date span {
     color: #fff;
   }
   

@@ -15,10 +15,10 @@
       flex-direction: column;
     }
   }
-  .signUpform {
+  .hero-left {
     flex: 1 1 50%;
     font-family: "Roboto", sans-serif;
-    padding: 5rem;
+    padding: 2rem 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,25 +35,72 @@
     @include xsm-max {
       padding: 2rem;
     }
-    h2 {
-      font-size: 2.2rem;
-      font-family: "Roboto", sans-serif;
-      font-weight: 700;
-      color: var(--primary-text-color);
-      @include xsm-max {
-        font-size: 1.5rem;
+    .hero-form {
+      padding: 1.5rem;
+      border-radius: 1rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1rem;
+      position: relative;
+      transform: translate(0);
+      transform-style: preserve-3d;
+      background-color: #fff;
+      &:before {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        transform: translate3d(10px, 8px, -1px);
+        background: conic-gradient(
+          from 90deg at 40% -25%,
+          #ffd700,
+          #f79d03,
+          #ee6907,
+          #e6390a,
+          #de0d0d,
+          #d61039,
+          #cf1261,
+          #c71585,
+          #cf1261,
+          #d61039,
+          #de0d0d,
+          #ee6907,
+          #f79d03,
+          #ffd700,
+          #ffd700,
+          #ffd700
+        );
+        filter: blur(10px);
+        border-radius: inherit;
       }
     }
-    h3 {
-      font-size: 1.3rem;
-      // letter-spacing: 0.05rem;
-      font-weight: 500;
-      color: var(--primary-text-color);
-      font-family: "Roboto", sans-serif;
-      margin-bottom: 2rem;
-      margin-top: 1rem;
-      @include xsm-max {
-        font-size: 1rem;
+    .form-title {
+      margin-bottom: 0.5rem;
+      text-align: center;
+      h2 {
+        font-size: 2.2rem;
+        font-family: "Roboto", sans-serif;
+        font-weight: 700;
+        color: var(--primary-text-color);
+        @include xsm-max {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .form-subtitle {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      h3 {
+        font-size: 1.3rem;
+        // letter-spacing: 0.05rem;
+        font-weight: 500;
+        color: var(--primary-text-color);
+        font-family: "Roboto", sans-serif;
+        @include xsm-max {
+          font-size: 1rem;
+        }
       }
     }
 
@@ -67,32 +114,45 @@
       p {
         font-size: 0.85rem;
       }
+      .hero-form-slots {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        justify-content: center;
+        color: black;
+        @include xsm-max {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
 
-      .timeSlot{
-        // width:20%;
-        border:1px solid black;
-        padding:7px 35px 7px 35px;
-        box-sizing:border-box;
+      .timeSlot {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        border: 1px solid black;
+        box-sizing: border-box;
         border-radius: 5px;
-        background-color: white;
+        background-color: #fff;
       }
 
-      .sizeBox{
-        width: 20px;
-      }
-
-      .noPreference:hover{
-        background-color: #FFD500;
-        border: none;
-      }
-
-      .schedule:hover{
+      .timeSlot:hover {
         background-color: #3a10e5;
-        color: white;
+        color: #fff;
         border: none;
+        &.active {
+          background-color: #ffd500;
+          border: none;
+          color: #000;
+        }
       }
 
-      
+      .active {
+        background-color: #ffd500;
+        border: none;
+      }
     }
   }
 }
