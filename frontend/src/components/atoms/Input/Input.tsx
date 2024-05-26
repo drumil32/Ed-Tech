@@ -1,23 +1,16 @@
-import React, { InputHTMLAttributes, useState } from "react";
+import React, { InputHTMLAttributes } from "react";
 import "./style.scss";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   icon?: React.ReactNode;
-  customValidation?: (value: string) => string | null;
+  errorMessage?: string | null;
 }
 
-const Input: React.FC<InputProps> = ({ label, required, customValidation, icon, onChange, ...props }) => {
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+const Input: React.FC<InputProps> = ({ label, required, errorMessage, icon, onChange, ...props }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (customValidation) {
-      const error = customValidation(event.target.value);
-      if (error) setErrorMessage(error);
-      else setErrorMessage(null);
-    }
     if (onChange) onChange(event);
   };
-
   return (
     <div className={`app-input-container ${props.type || ""}`}>
       {label && (
@@ -27,7 +20,7 @@ const Input: React.FC<InputProps> = ({ label, required, customValidation, icon, 
       )}
       <div className="inputBar">
       {icon && icon }
-      <input {...props} onChange={handleInputChange} required />
+      <input {...props} onChange={handleInputChange} className={errorMessage ?  "error" : ""} />
       </div>
       {props.type === "checkbox" ? (
         <label className="checkbox-label">

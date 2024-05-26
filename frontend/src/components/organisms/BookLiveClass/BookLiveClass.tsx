@@ -25,20 +25,49 @@ export interface SlideData {
 
 const BookLiveClassForm: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
-  const [inputNumber, setInputNumber] = useState<number | string>("");
+  const [inputNumber, setInputNumber] = useState<string>("");
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [timeSlot, setTimeSlot] = useState<Number | null>(0);
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [nameError, setNameError] = useState<string | null>(null);
+  const [numberError, setNumberError] = useState<string | null>(null);
 
+  const validateName = (value: string): string | null => {
+    const namePattern = /^[A-Za-z\s]+$/;
+    if (value.trim().length < 3) {
+      return "Name must be at least 3 characters long.";
+    }
+    if (!namePattern.test(value)) {
+      return "Name can only contain alphabets and spaces.";
+    }
+    return null;
+  };
+  const validatePhoneNumber = (value: string): string | null => {
+    const phoneNumberPattern = /^[0-9]{10}$/;
+    if (!phoneNumberPattern.test(value)) {
+      return "Please enter a valid 10-digit mobile number.";
+    }
+    return null;
+  };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const nameError = validateName(inputName);
+    const numberError = validatePhoneNumber(inputNumber);
+    setNameError(nameError);
+    setNumberError(numberError);
+
+    if (nameError || numberError) {
+      return;
+    }
+
     setLoading(true);
     const date =
       timeSlot === 0
-        ? "25-05-2024"
-        : timeSlot === 1
         ? "15-06-2023"
-        : "22-06-2023";
+        : timeSlot === 1
+          ? "15-06-2023"
+          : "22-06-2023";
     const time =
       timeSlot === 0 ? "09:30" : timeSlot === 1 ? "11:00 AM" : "04:00 PM";
 
@@ -50,7 +79,6 @@ const BookLiveClassForm: React.FC = () => {
     };
 
     try {
-      // USE ENV VARIABLE here with name BACKEND_URL
       const response = await axios.post(
         "http://localhost:3000/book-live-class",
         data
@@ -60,6 +88,7 @@ const BookLiveClassForm: React.FC = () => {
       setLoading(false);
     } catch (error) {
       console.error("There was an error making the request:", error);
+      setLoading(false);
     }
   };
 
@@ -86,20 +115,19 @@ const BookLiveClassForm: React.FC = () => {
               label="Full Name"
               icon={<FaUser />}
               placeholder="Full Name"
-              required={true}
               value={inputName}
-              readOnly={isLoading || formSubmitted}
+              disabled={isLoading || formSubmitted}
+              errorMessage={nameError}
               onChange={(e) => setInputName(e.target.value)}
             />
             <Input
               label="Mobile Number"
               icon={<FaPhoneAlt />}
-              required={true}
               type="tel"
-              pattern="[0-9]{10}"
               placeholder="10 digits Mobile Number"
               value={inputNumber}
-              readOnly={isLoading || formSubmitted}
+              disabled={isLoading || formSubmitted}
+              errorMessage={numberError}
               onChange={(e) => setInputNumber(e.target.value)}
             />
             <div className="form-slots">

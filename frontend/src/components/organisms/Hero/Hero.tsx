@@ -9,7 +9,7 @@ import image3 from "../../../assets/images/carousal/image3.svg";
 import { FaUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import axios from "axios";
-import Lottie from 'react-lottie-player'
+import Lottie from "react-lottie-player";
 import loaderData from "../../../assets/Lottie/loader.json";
 
 export interface ProfileData {
@@ -28,10 +28,12 @@ export interface SlideData {
 
 const Hero: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
-  const [inputNumber, setInputNumber] = useState<number | string>("");
+  const [inputNumber, setInputNumber] = useState<string>("");
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [timeSlot, setTimeSlot] = useState<Number | null>(0);
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [nameError, setNameError] = useState<string | null>(null);
+  const [numberError, setNumberError] = useState<string | null>(null);
 
   const carausalData: SlideData[] = [
     // {
@@ -83,8 +85,35 @@ const Hero: React.FC = () => {
       ],
     },
   ];
+  const validateName = (value: string): string | null => {
+    const namePattern = /^[A-Za-z\s]+$/;
+    if (value.trim().length < 3) {
+      return "Name must be at least 3 characters long.";
+    }
+    if (!namePattern.test(value)) {
+      return "Name can only contain alphabets and spaces.";
+    }
+    return null;
+  };
+  const validatePhoneNumber = (value: string): string | null => {
+    const phoneNumberPattern = /^[0-9]{10}$/;
+    if (!phoneNumberPattern.test(value)) {
+      return "Please enter a valid 10-digit mobile number.";
+    }
+    return null;
+  };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const nameError = validateName(inputName);
+    const numberError = validatePhoneNumber(inputNumber);
+    setNameError(nameError);
+    setNumberError(numberError);
+
+    if (nameError || numberError) {
+      return;
+    }
+
     setLoading(true);
     const date =
       timeSlot === 0
@@ -103,7 +132,6 @@ const Hero: React.FC = () => {
     };
 
     try {
-      // USE ENV VARIABLE here with name BACKEND_URL
       const response = await axios.post(
         "http://localhost:3000/book-live-class",
         data
@@ -113,6 +141,7 @@ const Hero: React.FC = () => {
       setLoading(false);
     } catch (error) {
       console.error("There was an error making the request:", error);
+      setLoading(false);
     }
   };
 
@@ -130,31 +159,32 @@ const Hero: React.FC = () => {
               <h3>Best full-stack course designed by IIT & BITS alums</h3>
             </div>
             <form onSubmit={handleSubmit}>
-              <Input
+            <Input
                 label="Full Name"
                 icon={<FaUser />}
                 placeholder="Full Name"
-                required={true}
                 value={inputName}
-                readOnly={isLoading || formSubmitted}
+                disabled={isLoading || formSubmitted}
+                errorMessage={nameError}
                 onChange={(e) => setInputName(e.target.value)}
               />
               <Input
                 label="Mobile Number"
                 icon={<FaPhoneAlt />}
-                required={true}
                 type="tel"
-                pattern="[0-9]{10}"
                 placeholder="10 digits Mobile Number"
                 value={inputNumber}
-                readOnly={isLoading || formSubmitted}
+                disabled={isLoading || formSubmitted}
+                errorMessage={numberError}
                 onChange={(e) => setInputNumber(e.target.value)}
               />
               <div className="hero-form-slots">
                 <div
                   className={`timeSlot ${timeSlot === 0 && "active"}`}
                   onClick={() => {
-                    isLoading || !formSubmitted && setTimeSlot(timeSlot === 0 ? null : 0);
+                    isLoading ||
+                      (!formSubmitted &&
+                        setTimeSlot(timeSlot === 0 ? null : 0));
                   }}
                 >
                   <p>No Preference</p>
@@ -163,7 +193,9 @@ const Hero: React.FC = () => {
                 <div
                   className={`timeSlot ${timeSlot === 1 && "active"}`}
                   onClick={() => {
-                    isLoading || !formSubmitted && setTimeSlot(timeSlot === 1 ? null : 1);
+                    isLoading ||
+                      (!formSubmitted &&
+                        setTimeSlot(timeSlot === 1 ? null : 1));
                   }}
                 >
                   <p>15 June</p>
@@ -173,7 +205,9 @@ const Hero: React.FC = () => {
                 <div
                   className={`timeSlot ${timeSlot === 2 && "active"}`}
                   onClick={() => {
-                    isLoading || !formSubmitted && setTimeSlot(timeSlot === 2 ? null : 2);
+                    isLoading ||
+                      (!formSubmitted &&
+                        setTimeSlot(timeSlot === 2 ? null : 2));
                   }}
                 >
                   <p>22 June</p>
@@ -181,7 +215,7 @@ const Hero: React.FC = () => {
                 </div>
               </div>
               {isLoading ? (
-                <div className="form-loader" >
+                <div className="form-loader">
                   <Lottie
                     loop
                     animationData={loaderData}

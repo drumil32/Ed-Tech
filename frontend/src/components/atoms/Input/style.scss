@@ -45,6 +45,9 @@
   input:disabled {
     background: #c3c8cd;;
   }
+  .error {
+    border: 1px solid red;
+  }
 
   .error-message {
     color: red;
