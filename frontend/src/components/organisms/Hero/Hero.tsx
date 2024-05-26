@@ -8,6 +8,7 @@ import image2 from "../../../assets/images/carousal/image2.svg";
 import image3 from "../../../assets/images/carousal/image3.svg";
 import { FaUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
+import axios from 'axios';
 
 export interface ProfileData {
   image: string;
@@ -79,14 +80,26 @@ const Hero: React.FC = () => {
       ],
     },
   ];
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // console.log(inputName, inputNumber);
 
-    // Here you can perform further validation before submitting the form or API call
-    setFormSubmitted(true);
+    const data = {
+      name: inputName,
+      phoneNumber: inputNumber,
+      date: "25-05-2024",
+      time: "09:38 PM"
+    };
+
+    try {
+      // USE ENV VARIABLE here with name BACKEND_URL
+      const response = await axios.post('http://localhost:3000/book-live-class', data);
+      console.log('Response:', response.data);
+      setFormSubmitted(true);
+    } catch (error) {
+      console.error('There was an error making the request:', error);
+    }
   };
+  
   return (
     <section className="hero-section">
       <div className="hero">
@@ -98,7 +111,7 @@ const Hero: React.FC = () => {
               <h2> With Us</h2>
             </div>
             <div className="form-subtitle">
-            <h3>Best full-stack course designed by IIT & BITS alums</h3>
+              <h3>Best full-stack course designed by IIT & BITS alums</h3>
             </div>
             <form onSubmit={handleSubmit}>
               <Input
@@ -121,7 +134,7 @@ const Hero: React.FC = () => {
               />
               <div className="hero-form-slots"
               >
-                
+
                 <div
                   className={`timeSlot ${timeSlot === 0 && "active"}`}
                   onClick={() => {
@@ -130,7 +143,7 @@ const Hero: React.FC = () => {
                 >
                   <p>No Preference</p>
                 </div>
-                
+
                 <div
                   className={`timeSlot ${timeSlot === 1 && "active"}`}
                   onClick={() => {
@@ -140,7 +153,7 @@ const Hero: React.FC = () => {
                   <p>15 Jun</p>
                   <p>11:00 AM</p>
                 </div>
-                
+
                 <div
                   className={`timeSlot ${timeSlot === 2 && "active"}`}
                   onClick={() => {

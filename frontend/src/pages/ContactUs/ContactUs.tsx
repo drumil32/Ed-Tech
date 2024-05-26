@@ -7,6 +7,7 @@ import Button from "../../components/atoms/Button/Button";
 import { FaUser } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import Textarea from "../../components/atoms/TextArea/TextArea";
+import axios from "axios";
 
 const ContactUs: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
@@ -25,12 +26,23 @@ const ContactUs: React.FC = () => {
       icon: <MdOutlineEmail />,
     },
   ];
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(inputName, inputNumber);
 
-    // Here you can perform further validation before submitting the form or API call
-    setFormSubmitted(true);
+    const data = {
+      name: inputName,
+      phoneNumber: inputNumber
+    };
+
+    try {
+      // USE ENV VARIABLE here with name BACKEND_URL
+      const response = await axios.post('http://localhost:3000/request-a-callback', data);
+      console.log('Response:', response.data);
+      setFormSubmitted(true);
+    } catch (error) {
+      console.error('There was an error making the request:', error);
+    }
   };
   return (
     <div>

@@ -40,15 +40,21 @@ connectDB();
 app.post('/book-live-class', validateName, validatePhoneNumber, validateDate, validateTime, async (req: Request, res: Response, next: NextFunction) => {
     const { name, phoneNumber, date, time } = req.body;
 
-    // Create a new document using the StudentsData model
-    const bookLiveClassData = new BookLiveClassData({
-        name: name.trim(),
-        phoneNumber,
-        date,
-        time
-    });
 
     try {
+        const existingDocument = await BookLiveClassData.findOne({ name: name.trim(), phoneNumber, date, time });
+
+        if (existingDocument) {
+            return res.status(409).json({ message: 'You already booked live class for this slot.' });
+        }
+
+        // Create a new document using the StudentsData model
+        const bookLiveClassData = new BookLiveClassData({
+            name: name.trim(),
+            phoneNumber,
+            date,
+            time
+        });
         // Save the document to the database
         await bookLiveClassData.save();
     } catch (err) {
