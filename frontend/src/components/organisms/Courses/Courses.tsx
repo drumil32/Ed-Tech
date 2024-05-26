@@ -5,14 +5,8 @@ const Courses: React.FC = () => {
   return (
     <>
       <section className={styles.courcesContainer} id="courses">
-        <h5
-          className={styles.sectionTitle}
-        >
-          Course Overview
-        </h5>
-        <p
-          className={styles.section_sub_title}
-        >
+        <h5 className={styles.sectionTitle}>Course Overview</h5>
+        <p className={styles.section_sub_title}>
           <span>Classroom </span>
           MERN-Stack Web Development Program
         </p>
@@ -82,51 +76,28 @@ const Courses: React.FC = () => {
           </div>
         </div>
       </section>
-      <section className={styles.courseHighlights}>
-        <div className={styles.flexcontainer}>
-          <div className={styles.flexitem}>
-            <h2 className={styles.title}>8 Months</h2>
-            <h4 className={styles.subTitle}>Duration</h4>
-          </div>
-          <div className={styles.flexitem}>
-            <div className="highLightBox">
-              <h2 className={styles.title}>Offline weekend classes</h2>
-              <h4 className={styles.subTitle}>Format </h4>
+      <section className={styles.courseHighlights__container}>
+        <div className={styles.courseHighlights}>
+          <h1 className={styles.courseHighlights__tagLine}>
+            Build Your Tech Career With Us
+          </h1>
+          <div className={styles.courseHighlights__points}>
+            <div className={styles.courseHighlights__point}>
+              <h2 className={styles.title}>8 Months</h2>
+              <h4 className={styles.subTitle}>Duration</h4>
             </div>
-          </div>
-          <div className={styles.flexitem}>
-            <div className="highLightBox">
-              <h2 className={styles.title}>15+ Companies</h2>
-              <h4 className={styles.subTitle}>Partners </h4>
-            </div>
-          </div>
-          <div className={styles.flexitem}>
-            <div className="highLightBox">
-              <h2 className={styles.title}>100% Job assistance</h2>
-              <h4 className={styles.subTitle}>Outcome </h4>
+
+            <div className={styles.courseHighlights__point}>
+                <h2 className={styles.title}>15+ Companies</h2>
+                <h4 className={styles.subTitle}>Partners </h4>
+              </div>
+            <div className={styles.courseHighlights__point}>
+                <h2 className={styles.title}>100% assistance</h2>
+                <h4 className={styles.subTitle}>Placement</h4>
             </div>
           </div>
         </div>
       </section>
-
-      {/* <section className={styles.courseHighlights}> */}
-      {/* <h5 className={styles.sectionTitle}>Course Overview</h5>
-      <h5>Course Overview</h5>
-      <div className={styles.banner}>
-      <h1>Join in on Something Big</h1>
-      <div className={styles.styles}>
-        <p>5 Cr+</p>
-        <p>190+</p>
-        <p>300 Cr+</p>
-      </div>
-      <div className={styles.details}>
-        <p>Learners</p>
-        <p>Countries</p>
-        <p>Code submits</p>
-      </div>
-    </div> */}
-
-      {/* </section> */}
     </>
   );
 };

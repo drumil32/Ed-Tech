@@ -8,7 +8,9 @@ import image2 from "../../../assets/images/carousal/image2.svg";
 import image3 from "../../../assets/images/carousal/image3.svg";
 import { FaUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
-import axios from 'axios';
+import axios from "axios";
+import Lottie from 'react-lottie-player'
+import loaderData from "../../../assets/Lottie/loader.json";
 
 export interface ProfileData {
   image: string;
@@ -28,7 +30,8 @@ const Hero: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
   const [inputNumber, setInputNumber] = useState<number | string>("");
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
-  const [timeSlot, setTimeSlot] = useState<Number | null>(null);
+  const [timeSlot, setTimeSlot] = useState<Number | null>(0);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   const carausalData: SlideData[] = [
     // {
@@ -82,24 +85,37 @@ const Hero: React.FC = () => {
   ];
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true);
+    const date =
+      timeSlot === 0
+        ? "25-05-2024"
+        : timeSlot === 1
+        ? "15-06-2023"
+        : "22-06-2023";
+    const time =
+      timeSlot === 0 ? "09:30" : timeSlot === 1 ? "11:00 AM" : "04:00 PM";
 
     const data = {
       name: inputName,
       phoneNumber: inputNumber,
-      date: "25-05-2024",
-      time: "09:38 PM"
+      date: date,
+      time: time,
     };
 
     try {
       // USE ENV VARIABLE here with name BACKEND_URL
-      const response = await axios.post('http://localhost:3000/book-live-class', data);
-      console.log('Response:', response.data);
+      const response = await axios.post(
+        "http://localhost:3000/book-live-class",
+        data
+      );
+      console.log("Response:", response.data);
       setFormSubmitted(true);
+      setLoading(false);
     } catch (error) {
-      console.error('There was an error making the request:', error);
+      console.error("There was an error making the request:", error);
     }
   };
-  
+
   return (
     <section className="hero-section">
       <div className="hero">
@@ -120,6 +136,7 @@ const Hero: React.FC = () => {
                 placeholder="Full Name"
                 required={true}
                 value={inputName}
+                readOnly={isLoading || formSubmitted}
                 onChange={(e) => setInputName(e.target.value)}
               />
               <Input
@@ -130,15 +147,14 @@ const Hero: React.FC = () => {
                 pattern="[0-9]{10}"
                 placeholder="10 digits Mobile Number"
                 value={inputNumber}
+                readOnly={isLoading || formSubmitted}
                 onChange={(e) => setInputNumber(e.target.value)}
               />
-              <div className="hero-form-slots"
-              >
-
+              <div className="hero-form-slots">
                 <div
                   className={`timeSlot ${timeSlot === 0 && "active"}`}
                   onClick={() => {
-                    setTimeSlot(timeSlot === 0 ? null : 0);
+                    isLoading || !formSubmitted && setTimeSlot(timeSlot === 0 ? null : 0);
                   }}
                 >
                   <p>No Preference</p>
@@ -147,25 +163,39 @@ const Hero: React.FC = () => {
                 <div
                   className={`timeSlot ${timeSlot === 1 && "active"}`}
                   onClick={() => {
-                    setTimeSlot(timeSlot === 1 ? null : 1);
+                    isLoading || !formSubmitted && setTimeSlot(timeSlot === 1 ? null : 1);
                   }}
                 >
-                  <p>15 Jun</p>
+                  <p>15 June</p>
                   <p>11:00 AM</p>
                 </div>
 
                 <div
                   className={`timeSlot ${timeSlot === 2 && "active"}`}
                   onClick={() => {
-                    setTimeSlot(timeSlot === 2 ? null : 2);
+                    isLoading || !formSubmitted && setTimeSlot(timeSlot === 2 ? null : 2);
                   }}
                 >
-                  <p>22 Jun</p>
+                  <p>22 June</p>
                   <p>4:00 PM</p>
                 </div>
-
               </div>
-              <Button text="Book a Live Class" style={{ width: "100%", marginTop: "0.8rem" }} />
+              {isLoading ? (
+                <div className="form-loader" >
+                  <Lottie
+                    loop
+                    animationData={loaderData}
+                    play
+                    style={{ width: 40, height: 40 }}
+                  />
+                </div>
+              ) : (
+                <Button
+                  text="Book a Live Class"
+                  style={{ width: "100%", marginTop: "0.8rem" }}
+                  disabled={formSubmitted}
+                />
+              )}
               {formSubmitted && (
                 <p className="success-message">
                   Thank you for submitting the form!

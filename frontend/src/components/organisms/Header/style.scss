@@ -10,7 +10,7 @@ header {
   position: sticky;
   transition: all 0.3s ease-in-out;
   top: 0;
-  z-index: 10;
+  z-index: 999;
   &.scrolled {
     box-shadow: 0 2px 4px #00000042;
     background-color: #fff;

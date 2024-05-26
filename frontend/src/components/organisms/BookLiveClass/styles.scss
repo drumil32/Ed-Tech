@@ -1,5 +1,5 @@
 @import "src/styles/_mixins";
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 .hero-section {
   width: 100%;
@@ -54,7 +54,7 @@
       margin-bottom: 2rem;
       margin-top: 1rem;
       span {
-        color: #3A10E5;
+        color: #3a10e5;
       }
       @include xsm-max {
         font-size: 1rem;
@@ -71,30 +71,78 @@
       p {
         font-size: 0.85rem;
       }
-      
-      .sizeBox{
-        width: 5px;
+      .timeSlot {
+        // width:20%;
+        cursor: pointer;
+        border: 1px solid black;
+        box-sizing: border-box;
+        border-radius: 5px;
+        width: 33%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
-
+      .form-slots {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        justify-content: center;
+        color: black;
+        @include xsm-max {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .timeSlot {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          border: 1px solid #c3c8cd;
+          box-sizing: border-box;
+          border-radius: 5px;
+          padding: 7px 15px 7px 15px;
+          background-color: #fff;
+          cursor: pointer;
+          border-radius: 5px;
+        }
+      
+        .timeSlot:hover {
+          background-color: #3a10e5;
+          color: #fff;
+          font-weight: 700;
+          border: 1px solid transparent;
+          &.active {
+            background-color: #ffd500;
+            color: #000;
+          }
+        }
+      
+        .active {
+          background-color: #ffd500;
+          border: 1px solid transparent;
+          font-weight: 700;
+        }
+      }
+      .form-loader {
+        height: 40px;
+        width: 100%;
+        padding: 0.25rem 1rem;
+        background-color: #765cfa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: none;
+        outline: none;
+        border-radius: 0.2rem;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+      }
     }
   }
 }
-
-.timeSlot{
-  // width:20%;
-  cursor: pointer;
-  border:1px solid black;
-  padding:7px 15px 7px 15px;
-  box-sizing:border-box;
-  border-radius: 5px;
-  width: 33%;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-
-
-}
-
 

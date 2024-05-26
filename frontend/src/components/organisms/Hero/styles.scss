@@ -56,21 +56,21 @@
         background: conic-gradient(
           from 135deg at 40% 25%,
           #157ac7,
-      #1261cf,
-      #61d6cf,
-      #157ac7,
-      #1261cf,
-      #61d6cf,
-      #157ac7,
-      #1261cf,
-      #ffd700,
-      #f7e203,
-      #e6d707,
-      #ffd700,
-      #f7e203,
-      #e6d707,
-      #ffd700,
-      #157ac7
+          #1261cf,
+          #61d6cf,
+          #157ac7,
+          #1261cf,
+          #61d6cf,
+          #157ac7,
+          #1261cf,
+          #ffd700,
+          #f7e203,
+          #e6d707,
+          #ffd700,
+          #f7e203,
+          #e6d707,
+          #ffd700,
+          #157ac7
         );
         filter: blur(10px);
         border-radius: inherit;
@@ -124,35 +124,54 @@
         @include xsm-max {
           grid-template-columns: repeat(2, 1fr);
         }
-      }
+        .timeSlot {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          border: 1px solid #c3c8cd;
+          box-sizing: border-box;
+          border-radius: 5px;
+          padding: 7px 15px 7px 15px;
+          background-color: #fff;
+          cursor: pointer;
+          border-radius: 5px;
+        }
 
-      .timeSlot {
+        .timeSlot:hover {
+          background-color: #3a10e5;
+          color: #fff;
+          font-weight: 700;
+          border: 1px solid transparent;
+          &.active {
+            background-color: #ffd500;
+            color: #000;
+          }
+        }
+
+        .active {
+          background-color: #ffd500;
+          border: 1px solid transparent;
+          font-weight: 700;
+        }
+      }
+      .form-loader {
+        height: 40px;
         width: 100%;
+        padding: 0.25rem 1rem;
+        background-color: #765cfa;
         display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
-        border: 1px solid #c3c8cd;
-        box-sizing: border-box;
-        border-radius: 5px;
-        background-color: #fff;
-      }
-
-      .timeSlot:hover {
-        background-color: #3a10e5;
-        color: #fff;
-        font-weight: 700;
-        border: 1px solid transparent;
-        &.active {
-          background-color: #ffd500;
-          color: #000;
-        }
-      }
-
-      .active {
-        background-color: #ffd500;
-        border: 1px solid transparent;
-        font-weight: 700;
+        color: #ffffff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border: none;
+        outline: none;
+        border-radius: 0.2rem;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
       }
     }
   }
