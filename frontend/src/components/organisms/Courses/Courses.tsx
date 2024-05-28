@@ -7,7 +7,7 @@ const Courses: React.FC = () => {
       <section className={styles.courcesContainer} id="courses">
         <h5 className={styles.sectionTitle}>Course Overview</h5>
         <p className={styles.section_sub_title}>
-          <span>Classroom </span>
+          <span>In-Classroom </span>
           MERN-Stack Web Development Program
         </p>
         {/* <div className={styles.description}>
