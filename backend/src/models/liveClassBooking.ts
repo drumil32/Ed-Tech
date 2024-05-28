@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 import { IBookLiveClassData } from '../types.js';
 
 // Define the schema for the model
-const bookLiveClassSchema: Schema = new Schema({
+const liveClassBookingSchema: Schema = new Schema({
     name: {
         type: String,
         required: true,
@@ -46,6 +46,6 @@ const bookLiveClassSchema: Schema = new Schema({
 });
 
 // Create the model using the schema
-const BookLiveClassData = mongoose.model<IBookLiveClassData>('BookLiveClassData', bookLiveClassSchema);
+const liveClassBookingModel = mongoose.model<IBookLiveClassData>('liveClassBooking', liveClassBookingSchema);
 
-export default BookLiveClassData;
+export default liveClassBookingModel;

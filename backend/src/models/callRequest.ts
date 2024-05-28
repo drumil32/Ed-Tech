@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 import { IBookLiveClassData } from '../types.js';
 
 // Define the schema for the model
-const requestACallSchema: Schema = new Schema({
+const callRequestSchema: Schema = new Schema({
     name: {
         type: String,
         required: true,
@@ -29,6 +29,6 @@ const requestACallSchema: Schema = new Schema({
 });
 
 // Create the model using the schema
-const RequestACallData = mongoose.model<IBookLiveClassData>('requestACallData', requestACallSchema);
+const callRequestModel = mongoose.model<IBookLiveClassData>('callRequest', callRequestSchema);
 
-export default RequestACallData;
+export default callRequestModel;

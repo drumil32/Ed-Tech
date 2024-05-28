@@ -3,8 +3,9 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
-import BookLiveClassData from './models/bookLiveClassData.js';
-import RequestACallData from './models/requestACallData.js';
+
+import callRequestModel from './models/callRequest.js';
+import liveClassBookingModel from './models/liveClassBooking.js';
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -42,14 +43,14 @@ app.post('/book-live-class', validateName, validatePhoneNumber, validateDate, va
 
 
     try {
-        const existingDocument = await BookLiveClassData.findOne({ name: name.trim(), phoneNumber, date, time });
+        const existingDocument = await liveClassBookingModel.findOne({ name: name.trim(), phoneNumber, date, time });
 
         if (existingDocument) {
             return res.status(409).json({ message: 'You already booked live class for this slot.' });
         }
 
         // Create a new document using the StudentsData model
-        const bookLiveClassData = new BookLiveClassData({
+        const bookLiveClassData = new liveClassBookingModel({
             name: name.trim(),
             phoneNumber,
             date,
@@ -67,7 +68,7 @@ app.post('/book-live-class', validateName, validatePhoneNumber, validateDate, va
 
 app.post('/request-a-callback', validateName, validatePhoneNumber, async (req: Request, res: Response, next: NextFunction) => {
     const { name, phoneNumber, message } = req.body;
-    const requestACallData = new RequestACallData({
+    const requestACallData = new callRequestModel({
         name: name.trim(),
         phoneNumber,
         message
