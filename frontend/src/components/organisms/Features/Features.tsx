@@ -9,7 +9,7 @@ const Features: React.FC = () => {
       <h5
           className={styles.sectionHeading}
         >
-          Why to choose us
+          Why choose us
         </h5>
         <h1 className={styles.sectionTitle}>Our programme is curated to maximise <span>real-world learning</span></h1>
         <FeaturesCarausal />
