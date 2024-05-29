@@ -2,10 +2,8 @@ import React from "react";
 import styles from "./AboutUs.module.scss";
 import instructorListData from "../../../data/teamInfo.json";
 import { Instructor } from "../../../types/types";
-// import { FaLinkedin } from "react-icons/fa6";
 import linkedInIcon from "../../../assets/images/linkedIn.svg";
 import instagramIcon from "../../../assets/images/instagram.svg";
-import { AiFillInstagram } from "react-icons/ai";
 
 const AboutUs: React.FC = () => {
   return (
