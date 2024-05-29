@@ -2,7 +2,7 @@
 
 .courcesContainer {
   width: 100%;
-  padding: 4rem 3rem;
+  padding: 6rem 3rem;
   background-color: var(--primary-background-color);
   display: flex;
   flex-direction: column;
@@ -161,7 +161,7 @@
   .ag_courses_item_bg {
     height: 128px;
     width: 128px;
-    background-color: #f9b234;
+    background-color: #ffd500;
 
     z-index: 1;
     position: absolute;
@@ -173,7 +173,7 @@
   }
 
   .ag_courses_item:nth-child(2n) .ag_courses_item_bg {
-    background-color: #3ecd5e;
+    background-color: #ffd500;
   }
 
   .ag_courses_item:nth-child(3n) .ag_courses_item_bg {
