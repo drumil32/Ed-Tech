@@ -44,7 +44,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
   };
 
   return (
-    <div className={`card-container${flipped ? " flipped" : ""}`}>
+    <div className={`card-container${flipped ? " flipped" : ""}`} onClick={flip}>
       <Front
         title={title}
         subtitle={subtitle}
