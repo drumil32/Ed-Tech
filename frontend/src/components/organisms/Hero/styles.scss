@@ -36,7 +36,7 @@
       padding: 2rem;
     }
     .hero-form {
-      padding: 1.5rem;
+      padding: 2.5rem;
       border-radius: 1rem;
       position: relative;
       display: flex;
@@ -53,25 +53,26 @@
         position: absolute;
         inset: -5px;
         transform: translate3d(10px, 8px, -1px);
-        background: conic-gradient(
-          from 135deg at 40% 25%,
-          #157ac7,
-          #1261cf,
-          #61d6cf,
-          #157ac7,
-          #1261cf,
-          #61d6cf,
-          #157ac7,
-          #1261cf,
-          #ffd700,
-          #f7e203,
-          #e6d707,
-          #ffd700,
-          #f7e203,
-          #e6d707,
-          #ffd700,
-          #157ac7
-        );
+        background: gray;
+        // conic-gradient(
+        //   from 135deg at 40% 25%,
+        //   #157ac7,
+        //   #1261cf,
+        //   #61d6cf,
+        //   #157ac7,
+        //   #1261cf,
+        //   #61d6cf,
+        //   #157ac7,
+        //   #1261cf,
+        //   #ffd700,
+        //   #f7e203,
+        //   #e6d707,
+        //   #ffd700,
+        //   #f7e203,
+        //   #e6d707,
+        //   #ffd700,
+        //   #157ac7
+        // );
         filter: blur(10px);
         border-radius: inherit;
       }

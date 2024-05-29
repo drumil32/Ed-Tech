@@ -2,7 +2,9 @@ import React from "react";
 import styles from "./AboutUs.module.scss";
 import instructorListData from "../../../data/teamInfo.json";
 import { Instructor } from "../../../types/types";
-import { FaLinkedin } from "react-icons/fa6";
+// import { FaLinkedin } from "react-icons/fa6";
+import linkedInIcon from "../../../assets/images/linkedIn.svg";
+import instagramIcon from "../../../assets/images/instagram.svg";
 import { AiFillInstagram } from "react-icons/ai";
 
 const AboutUs: React.FC = () => {
@@ -25,10 +27,12 @@ const AboutUs: React.FC = () => {
               <p className={styles.profile__college}>{personInfo.college}</p>
               <div className={styles.socialMedia}>
                 <a href={personInfo.linkedin || "#"} target="_blank">
-                  <FaLinkedin />
+                  {/* <FaLinkedin /> */}
+                  <img src={linkedInIcon} width={'30px'} height={'30px'} alt="LinkedIn" />
                 </a>
                 <a href={personInfo.instagram || "#"} target="_blank">
-                  <AiFillInstagram />
+                  {/* <AiFillInstagram /> */}
+                  <img src={instagramIcon} width={'30px'} height={'30px'} alt="Instagram" />
                 </a>
               </div>
             </div>
