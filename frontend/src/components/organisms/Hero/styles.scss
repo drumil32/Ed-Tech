@@ -44,37 +44,11 @@
       justify-content: center;
       align-items: center;
       border-radius: 1rem;
-      position: relative;
-      transform: translate(0);
-      transform-style: preserve-3d;
       background-color: #fff;
-      &:before {
-        content: "";
-        position: absolute;
-        inset: -5px;
-        transform: translate3d(10px, 8px, -1px);
-        background: gray;
-        // conic-gradient(
-        //   from 135deg at 40% 25%,
-        //   #157ac7,
-        //   #1261cf,
-        //   #61d6cf,
-        //   #157ac7,
-        //   #1261cf,
-        //   #61d6cf,
-        //   #157ac7,
-        //   #1261cf,
-        //   #ffd700,
-        //   #f7e203,
-        //   #e6d707,
-        //   #ffd700,
-        //   #f7e203,
-        //   #e6d707,
-        //   #ffd700,
-        //   #157ac7
-        // );
-        filter: blur(10px);
-        border-radius: inherit;
+      box-shadow: 4px 2px 5px 5px #9c9c9cc5, 2px 2px 3px 2px #c4c4c4c7 inset;
+      @include md-max {
+      max-width: 550px;
+      width: 100%;
       }
     }
     .form-title {
@@ -117,16 +91,15 @@
       }
       .hero-form-slots {
         width: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        display: flex;
         gap: 1rem;
-        justify-content: center;
+        justify-content: flex-start;
         color: black;
-        @include xsm-max {
-          grid-template-columns: repeat(2, 1fr);
-        }
+        overflow-x: auto; // Enable horizontal scrolling
+        
         .timeSlot {
-          width: 100%;
+          width: 30%; // Each slot will have a fixed width of one-third of the container
+          flex: none; // Prevent flex-grow/shrink
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -135,31 +108,36 @@
           border: 1px solid #c3c8cd;
           box-sizing: border-box;
           border-radius: 5px;
-          padding: 7px 15px 7px 15px;
+          padding: 7px 15px;
           background-color: #fff;
           cursor: pointer;
-          border-radius: 5px;
-        }
-
-        .timeSlot:hover {
-          // background-color: #3a10e5;
-          background-color: #D3D3D3;
-          color: #000;
-          // color: #fff;
-          font-weight: 700;
-          border: 1px solid transparent;
-          &.active {
-            background-color: #ffd500;
-            color: #000;
+          @include xsm-max {
+            width: 50%;
           }
         }
-
+        
+        .timeSlot:hover {
+          background-color: #D3D3D3;
+          color: #000;
+          font-weight: 700;
+          border: 1px solid transparent;
+        }
+      
         .active {
           background-color: #ffd500;
           border: 1px solid transparent;
           font-weight: 700;
         }
+      
+        // Hide scrollbar for Webkit browsers (Safari, Chrome)
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      
+        // Hide scrollbar for Firefox
+        scrollbar-width: none;
       }
+
       .form-loader {
         height: 40px;
         width: 100%;
