@@ -3,9 +3,9 @@ import "./styles.scss";
 import Input from "../../atoms/Input/Input";
 import Button from "../../atoms/Button/Button";
 import Carausal from "../../molecule/Carausal/Carausal";
-import image1 from "../../../assets/images/carousal/image1.svg";
-import image2 from "../../../assets/images/carousal/image2.svg";
-import image3 from "../../../assets/images/carousal/image3.svg";
+import image1 from "../../../assets/images/carousal/In-Class Sessions by the Best.svg";
+import image2 from "../../../assets/images/carousal/Find The Right Job For You.svg";
+import image3 from "../../../assets/images/carousal/Most Interactive Course.svg";
 import { FaUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import axios from "axios";
@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
     //   type: "profile",
     // },
     {
-      title: "IN-CLASS SESSIONS BY THE BEST",
+      title: "IN-CLASS SESSIONS</br>BY THE BEST",
       image: image1,
       desc: [
         "Live in-class sessions for optimum learning",
@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
       ],
     },
     {
-      title: "FIND THE RIGHT JOB FOR YOU",
+      title: "FIND THE RIGHT JOB</br>FOR YOU",
       image: image2,
       desc: [
         "At least 4 mock interviews by mentors",
@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
       ],
     },
     {
-      title: "MOST INTERACTIVE COURSE",
+      title: "MOST INTERACTIVE</br>COURSE",
       image: image3,
       desc: [
         "Work on 4 projects based on real-life applications",
