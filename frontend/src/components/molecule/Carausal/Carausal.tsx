@@ -5,6 +5,17 @@ import "./style.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import DOMPurify from "dompurify";
+import parse from "html-react-parser";
+
+export function SafeHtmlComponent(htmlContent: string, FORBID_TAGS: string[] = []) {
+  // Sanitize the HTML content, allowing only specific tags
+  const cleanHtml = DOMPurify.sanitize(htmlContent, {
+    ALLOWED_TAGS: ["strong", "i", "br", "pre", "code", "span"],
+    FORBID_TAGS: ["script", ...FORBID_TAGS],
+  });
+  return parse(cleanHtml);
+}
 
 export interface CarausalProps {
   data: SlideData[];
@@ -45,11 +56,12 @@ const Carausal: React.FC<CarausalProps> = ({ data }) => {
               </div>
             );
           } else {
+            const sanitizedHtml = SafeHtmlComponent(slide.title as string);
             return (
               <div key={nanoid()} className={"carausalSlide"}>
                 <img className="background" src={slide.image} alt="slide image" />
                 <div className={"slideDescription"}>
-                  <h2>{slide.title}</h2>
+                  <h2>{sanitizedHtml}</h2>
                   <ul className={"desc_list"}>
                     {slide?.desc?.map((text) => {
                       return (
