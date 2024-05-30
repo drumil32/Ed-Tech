@@ -66,8 +66,8 @@ const BookLiveClassForm: React.FC = () => {
       timeSlot === 0
         ? "15-06-2023"
         : timeSlot === 1
-          ? "15-06-2023"
-          : "22-06-2023";
+        ? "15-06-2023"
+        : "22-06-2023";
     const time =
       timeSlot === 0 ? "09:30" : timeSlot === 1 ? "11:00 AM" : "04:00 PM";
 
@@ -93,19 +93,9 @@ const BookLiveClassForm: React.FC = () => {
   };
 
   return (
-    <section className="hero-section">
-      <div
-        className="signUpform"
-        style={{
-          borderRadius: "15px",
-          backgroundColor: "#fcf2ef",
-          margin: "50px",
-          boxShadow: "0px 8px 24px rgba(149, 157, 165, 0.2)",
-          maxWidth: "1000px",
-          width: "100%",
-        }}
-      >
-        <div style={{ textAlign: "center" }}>
+    <section className="book-a-classd-section">
+      <div className="signUpform">
+        <div className="formContainer">
           <h2>Book a Live Class</h2>
           <h3>
             We are planning a meet-up in <span> Lucknow!</span>

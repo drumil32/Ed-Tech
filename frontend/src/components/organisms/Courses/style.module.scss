@@ -1,16 +1,21 @@
 @import "src/styles/_mixins";
-
+.courcesSection {
+  width: 100%;
+  background-color: #10162f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .courcesContainer {
   width: 100%;
+  max-width: 1680px;
   padding: 6rem 3rem;
-  background-color: var(--primary-background-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   position: relative;
-  background-color: #10162f;
 
   @include xsm-max {
     padding: 2rem 1rem;
@@ -81,7 +86,7 @@
 
 .ag_format_container {
   width: 100%;
-  max-width: 1580px;
+  max-width: 1680px;
   .ag_courses_box {
     display: flex;
     align-items: center;
@@ -205,12 +210,13 @@
     padding: 3rem;
   }
   @include xsm-max {
-    padding: 1rem;
+    padding: 2rem 1rem;
   }
 
   .courseHighlights {
     display: flex;
     width: 100%;
+    max-width: 1680px;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
@@ -236,7 +242,11 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 3rem;
-      @include xsm-max {
+      @include sm-max {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 1rem;
       }
     }
