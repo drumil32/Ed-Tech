@@ -11,7 +11,7 @@ const Features: React.FC = () => {
         >
           Why choose us?
         </h5>
-        <h1 className={styles.sectionTitle}>Our Program maximises <br /><span>real-world learning</span></h1>
+        <h1 className={styles.sectionTitle}>Our Program maximises <br /><span>Real-world learning</span></h1>
         <FeaturesCarausal />
         <div style={{backgroundColor:"#FFD500",padding:"1rem 3rem",borderRadius:"10px"}}>
           <h3>Know More</h3>
