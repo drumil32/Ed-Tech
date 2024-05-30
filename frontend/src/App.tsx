@@ -35,14 +35,4 @@ function App() {
   );
 }
 
-// const App = () => {
-//   return (
-//     <AboutUs/>
-//   );
-// }
-
-
-
-
-
 export default App;

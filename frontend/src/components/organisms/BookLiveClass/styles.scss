@@ -98,8 +98,10 @@
         }
       
         .timeSlot:hover {
-          background-color: #3a10e5;
-          color: #fff;
+          // background-color: #3a10e5;
+          background-color: #D3D3D3;
+          // color: #fff;
+          color: #000;
           font-weight: 700;
           border: 1px solid transparent;
           &.active {
