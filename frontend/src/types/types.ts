@@ -5,14 +5,21 @@ export interface Course {
   catagory: string;
 }
 
-export interface WhyChooseUs {
+
+export interface WhyChooseUsCardDetails {
   title: string;
   subtitle: string;
   detail: string;
   clipArt: string;
   backGroundColor: string;
+  id:string;
 }
 
+export interface WhyChooseUs {
+  cardDetails: WhyChooseUsCardDetails;
+  flipedCard: string;
+  setFlipedCard: React.Dispatch<React.SetStateAction<string>>;
+}
 export interface Faqs {
   question: string;
   answer: string;

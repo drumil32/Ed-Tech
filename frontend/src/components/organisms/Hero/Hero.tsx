@@ -119,8 +119,8 @@ const Hero: React.FC = () => {
       timeSlot === 0
         ? "25-05-2024"
         : timeSlot === 1
-        ? "15-06-2023"
-        : "22-06-2023";
+          ? "15-06-2023"
+          : "22-06-2023";
     const time =
       timeSlot === 0 ? "09:30" : timeSlot === 1 ? "11:00 AM" : "04:00 PM";
 
@@ -156,10 +156,11 @@ const Hero: React.FC = () => {
               <h2> With Us</h2>
             </div>
             <div className="form-subtitle">
-              <h3>Best full-stack course designed by IIT & BITS alums</h3>
+              <h3>Best full-stack course designed</h3>
+              <h3> by IIT & BITS alums</h3>
             </div>
             <form onSubmit={handleSubmit}>
-            <Input
+              <Input
                 label="Full Name"
                 icon={<FaUser />}
                 placeholder="Full Name"

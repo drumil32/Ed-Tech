@@ -16,7 +16,10 @@ footer {
     width: 100%;
     max-width: 1580px;
     align-items: center;
-    padding: 3rem 8rem;
+    padding: 3rem 12rem;
+    @include md-max {
+      padding: 3rem 10rem;
+    }
     @include sm-max {
       padding: 2rem 3rem;
     }
@@ -93,6 +96,7 @@ footer {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          margin-bottom: 1rem;
         }
         .footer-logo {
           // width: 10rem;
@@ -143,7 +147,7 @@ footer {
         display: flex;
         width: 100%;
         justify-content: space-between;
-        max-width: 280px;
+        max-width: 350px;
 
         .another-navigation {
           // display: flex;
@@ -205,8 +209,11 @@ footer {
             }
           }
         }
-
+        @include md-max {
+          max-width: 250px;
+        }
         @include sm-max {
+          max-width: 100%;
           flex-direction: column;
           gap: 1.2rem;
         }
