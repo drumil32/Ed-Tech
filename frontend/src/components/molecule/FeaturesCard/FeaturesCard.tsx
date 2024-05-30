@@ -1,50 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import "./card.scss";
 import { WhyChooseUs } from "../../../types/types";
 
-const FeaturesCard: React.FC<WhyChooseUs> = ({
-  title,
-  subtitle,
-  detail,
-  clipArt,
-  backGroundColor,
-}) => {
+const FeaturesCard: React.FC<WhyChooseUs> = (
+  { cardDetails, flipedCard, setFlipedCard }
+) => {
   return (
     <div className="page-container">
       <BlogCard
-        title={title}
-        subtitle={subtitle}
-        details={detail}
-        clipArt={clipArt}
-        backGroundColor={backGroundColor}
+        flipedCard={flipedCard}
+        setFlipedCard={setFlipedCard}
+        cardDetails={cardDetails}
       />
     </div>
   );
 };
 
-interface BlogCardProps {
-  title: string;
-  subtitle: string;
-  details: string;
-  clipArt: string;
-  backGroundColor: string;
-}
-
-const BlogCard: React.FC<BlogCardProps> = ({
-  title,
-  subtitle,
-  details,
-  clipArt,
-  backGroundColor,
+const BlogCard: React.FC<WhyChooseUs> = ({
+  cardDetails: { title, subtitle, detail, clipArt, backGroundColor, id }, flipedCard, setFlipedCard
 }) => {
-  const [flipped, setFlipped] = useState(false);
 
   const flip = () => {
-    setFlipped(!flipped);
+    setFlipedCard(prevState => prevState == id ? '' : id);
   };
 
   return (
-    <div className={`card-container${flipped ? " flipped" : ""}`} onClick={flip}>
+    <div className={`card-container${flipedCard == id ? " flipped" : ""}`} onClick={flip}>
       <Front
         title={title}
         subtitle={subtitle}
@@ -52,7 +33,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
         backGroundColor={backGroundColor}
         flip={flip}
       />
-      <Back details={details} flip={flip} />
+      <Back detail={detail} flip={flip} />
     </div>
   );
 };
@@ -85,14 +66,14 @@ const Front: React.FC<FrontProps> = ({
 };
 
 interface BackProps {
-  details: string;
+  detail: string;
   flip: () => void;
 }
 
-const Back: React.FC<BackProps> = ({ details, flip }) => {
+const Back: React.FC<BackProps> = ({ detail, flip }) => {
   return (
     <div className="back">
-      <p>{details}</p>
+      <p>{detail}</p>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <div className="card-back-btn" onClick={flip}>
           <img
