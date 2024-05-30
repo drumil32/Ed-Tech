@@ -1,6 +1,9 @@
 import React from "react";
 import "./card.scss";
 import { WhyChooseUs } from "../../../types/types";
+import programArt from "../../../assets/images/why_choose_us/Our Program.svg";
+import centerArt from "../../../assets/images/why_choose_us/Our Center.svg";
+import teamArt from "../../../assets/images/why_choose_us/Our Team.svg";
 
 const FeaturesCard: React.FC<WhyChooseUs> = (
   { cardDetails, flipedCard, setFlipedCard }
@@ -29,7 +32,7 @@ const BlogCard: React.FC<WhyChooseUs> = ({
       <Front
         title={title}
         subtitle={subtitle}
-        clipArt={clipArt}
+        clipArt={clipArt == "program" ? programArt : clipArt == "center" ? centerArt : teamArt}
         backGroundColor={backGroundColor}
         flip={flip}
       />
