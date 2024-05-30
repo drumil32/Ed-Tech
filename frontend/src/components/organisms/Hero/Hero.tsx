@@ -149,11 +149,10 @@ const Hero: React.FC = () => {
     <section className="hero-section">
       <div className="hero">
         <Carausal data={carausalData} />
-        <div className="hero-left">
+        <div className="hero-right">
           <div className="hero-form">
             <div className="form-title">
-              <h2>Build Your Tech Career</h2>
-              <h2> With Us</h2>
+              <h2>Build Your Tech Career With Us</h2>
             </div>
             <div className="form-subtitle">
               <h3>Best full-stack course designed</h3>

@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
+      const isScrolled = window.scrollY > 40;
       setScrolled(isScrolled);
     };
 
@@ -93,6 +93,9 @@ const Header: React.FC = () => {
               </li>
             </ul>
           </nav>
+        </div>
+        <div className="header-highlight">
+          <p>Lucknow's top offline MERN-stack program. Hurry, limited seats open! Talk to us</p>
         </div>
       </header>
       <a href="#" className={scrolled ? "back-to-top visible": "back-to-top"}><MdOutlineKeyboardDoubleArrowUp /></a>

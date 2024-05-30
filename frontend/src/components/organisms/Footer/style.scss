@@ -14,14 +14,14 @@ footer {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    max-width: 1580px;
+    max-width: 1680px;
     align-items: center;
     padding: 3rem 12rem;
     @include md-max {
       padding: 3rem 10rem;
     }
     @include sm-max {
-      padding: 2rem 3rem;
+      padding: 2rem 1rem;
     }
 
     .information {

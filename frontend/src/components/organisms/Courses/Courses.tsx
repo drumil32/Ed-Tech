@@ -4,18 +4,13 @@ import styles from "./style.module.scss";
 const Courses: React.FC = () => {
   return (
     <>
-      <section className={styles.courcesContainer} id="courses">
+      <section className={styles.courcesSection} id="courses">
+        <div className={styles.courcesContainer} >
         <h5 className={styles.sectionTitle}>Course Overview</h5>
         <p className={styles.section_sub_title}>
           <span>In-Classroom </span>
           MERN-Stack Web Development Program
         </p>
-        {/* <div className={styles.description}>
-          <p className={styles.infinite_scroll_text}>
-            A tailored offline program, designed to empower you for a successful
-            career in tech.
-          </p>
-        </div> */}
         <div className={styles.ag_format_container}>
           <div className={styles.ag_courses_box}>
             <div className={styles.ag_courses_item}>
@@ -74,6 +69,7 @@ const Courses: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
       <section className={styles.courseHighlights__container}>
