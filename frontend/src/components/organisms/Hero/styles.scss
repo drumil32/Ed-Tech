@@ -10,7 +10,7 @@
   .hero {
     display: flex;
     width: 100%;
-    max-width: 1680px;
+    max-width: 1880px;
     @include md-max {
       flex-direction: column;
     }
