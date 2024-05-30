@@ -127,6 +127,12 @@
             border: 1px solid transparent;
             font-weight: 700;
           }
+          @include sm-max {
+            background-color: #fff;
+            color: #000;
+            font-weight: 400;
+            border: 1px solid #c3c8cd;
+          }
         }
 
         // Hide scrollbar for Webkit browsers (Safari, Chrome)
