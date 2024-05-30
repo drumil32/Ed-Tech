@@ -94,10 +94,10 @@ const Header: React.FC = () => {
             </ul>
           </nav>
         </div>
-        <div className="header-highlight">
+      </header>
+      <div className="header-highlight">
           <p>Lucknow's top offline MERN-stack program. Hurry, limited seats open! Talk to us</p>
         </div>
-      </header>
       <a href="#" className={scrolled ? "back-to-top visible": "back-to-top"}><MdOutlineKeyboardDoubleArrowUp /></a>
     </>
   );
