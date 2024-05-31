@@ -9,7 +9,7 @@ const AboutUs: React.FC = () => {
   return (
     <section className={styles.aboutSection}>
       <div className={styles.aboutUs}>
-        <h1 className={styles.sectionTitle}>The Team</h1>
+        <h1 className={styles.sectionTitle}>Our Team</h1>
         <p className={styles.sectionDesc}>Fueled with passion for learning</p>
         <hr />
         <div className={styles.profileContainer}>

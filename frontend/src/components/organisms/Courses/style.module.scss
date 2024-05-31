@@ -18,7 +18,7 @@
   position: relative;
 
   @include xsm-max {
-    padding: 2rem 1rem;
+    padding: 4rem 1rem;
   }
 
   .sectionTitle {
@@ -226,7 +226,7 @@
       justify-content: center;
     }
     @include xsm-max {
-      gap: 2rem;
+      gap: 3rem;
     }
 
     &__tagLine {
@@ -247,7 +247,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 1rem;
+        gap: 2rem;
       }
     }
     &__point {

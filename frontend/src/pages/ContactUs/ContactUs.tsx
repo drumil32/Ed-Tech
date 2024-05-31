@@ -46,14 +46,14 @@ const ContactUs: React.FC = () => {
   };
   return (
     <div>
-      <div className={styles.heading}>
+      {/* <div className={styles.heading}>
         <div className={styles.headingTitle}>
           <h1>Contact Us</h1>
           <h4>
             Home / <span>Contact Us</span>
           </h4>
         </div>
-      </div>
+      </div> */}
       <div className={styles.contacts}>
         <div className={styles.left_section}>
           <h2>We would love to hear from you!</h2>

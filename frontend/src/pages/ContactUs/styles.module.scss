@@ -8,7 +8,7 @@
   align-items: flex-start;
   flex-wrap: wrap;
   padding: 3rem;
-  padding-top: 0rem;
+  padding-top: 3rem;
   width: 100%;
   @include md-max {
     flex-direction: column;
@@ -172,6 +172,7 @@
   }
   @include sm-max {
     padding: 1rem;
+    margin-bottom: 0;
   }
 }
 
