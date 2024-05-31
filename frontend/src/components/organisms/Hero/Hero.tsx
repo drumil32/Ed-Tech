@@ -72,16 +72,16 @@ const Hero: React.FC = () => {
       title: "FIND THE RIGHT JOB</br>FOR YOU",
       image: image2,
       desc: [
-        "At least 4 mock interviews by mentors",
         "Guaranteed jobs on course completion",
+        "At least 4 mock interviews",
       ],
     },
     {
       title: "MOST INTERACTIVE</br>COURSE",
       image: image3,
       desc: [
-        "Work on 4 projects based on real-life applications",
-        "Guaranteed 2-month thorough internship",
+        "Work on 4 real-world projects",
+        "Guaranteed 2-month internship",
       ],
     },
   ];

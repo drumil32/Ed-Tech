@@ -1,12 +1,15 @@
 @import "src/styles/_mixins";
 .carausalSlide {
   width: 100%;
-  min-height: 500px;
+  min-height: 530px;
   position: relative;
   display: inline-flex !important;
   justify-content: flex-end;
   align-items: flex-end;
   flex-direction: column;
+  @include xsm-max {
+    min-height: 550px;
+  }
 }
 
 .slideDescription {
@@ -61,8 +64,11 @@
       }
     }
     img.background {
-      width: auto;
+      width:auto;
       height: 350px;
+      @include xsm-max {
+        height: 355px;
+      }
     }
     .slideDescription .desc_list {
       margin-top: 1.5rem;

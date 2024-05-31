@@ -96,7 +96,7 @@ const Header: React.FC = () => {
         </div>
       </header>
       <div className="header-highlight">
-          <p>Lucknow's top offline MERN-stack program. Hurry, limited seats open! Talk to us</p>
+          <p>Lucknow's top offline MERN-stack program. Hurry, limited seats open!</p>
         </div>
       <a href="#" className={scrolled ? "back-to-top visible": "back-to-top"}><MdOutlineKeyboardDoubleArrowUp /></a>
     </>

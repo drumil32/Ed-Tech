@@ -30,7 +30,7 @@
       padding: 3rem;
     }
     @include xsm-max {
-      padding: 2rem;
+      padding: 3rem 2rem;
     }
     .hero-form {
       padding: 2.5rem;
@@ -44,7 +44,10 @@
       max-width: 580px;
       width: 100%;
       background-color: #fff;
-      box-shadow: 4px 2px 5px 5px #9c9c9cc5, 2px 2px 3px 2px #c4c4c4c7 inset;
+      box-shadow: 4px 2px 5px 5px #9c9c9cc5;
+      @include xsm-max {
+        padding: 2rem;
+      }
     }
     .form-title {
       margin-bottom: 0.5rem;
@@ -93,7 +96,7 @@
         overflow-x: auto;
 
         .timeSlot {
-          width: 30%;
+          width: 31%;
           flex: none;
           display: flex;
           flex-direction: column;

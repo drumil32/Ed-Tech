@@ -9,7 +9,7 @@
 .courcesContainer {
   width: 100%;
   max-width: 1880px;
-  padding: 6rem 3rem;
+  padding: 5rem 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -44,11 +44,14 @@
     color: silver;
     z-index: 5;
     margin-bottom: 2.5rem;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 700;
     line-height: 130%;
     width: 100%;
     text-align: center;
+    @include sm-max {
+      font-size: 2rem;
+    }
 
     span {
       font-weight: 700;
@@ -100,7 +103,7 @@
     width: 100%;
     max-width: 300px;
     overflow: hidden;
-    border-radius: 28px;
+    // border-radius: 1rem;
   }
 
   .ag_courses_item_link {
@@ -210,7 +213,7 @@
     padding: 3rem;
   }
   @include xsm-max {
-    padding: 2rem 1rem;
+    padding: 4rem 1rem;
   }
 
   .courseHighlights {
@@ -232,7 +235,6 @@
     &__tagLine {
       font-size: 2.5rem;
       font-weight: 800;
-      letter-spacing: 3px;
       text-align: center;
       width: 100%;
       max-width: 350px;
@@ -247,7 +249,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2rem;
+        gap: 4rem;
       }
     }
     &__point {
@@ -256,7 +258,7 @@
       justify-content: center;
       align-items: center;
       .title {
-        font-size: 1.8rem;
+        font-size: 2rem;
         font-weight: 800;
       }
       .subTitle {

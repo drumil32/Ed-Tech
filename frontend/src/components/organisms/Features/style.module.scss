@@ -8,7 +8,7 @@
   background-color: #10162f;
   .featuresContainer {
     width: 100%;
-    padding: 4rem 3rem;
+    padding: 5rem 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,7 +19,7 @@
     max-width: 1880px;
   
     @include xsm-max {
-      padding: 2rem 1rem;
+      padding: 4rem 1rem;
     }
 
     .sectionHeading {

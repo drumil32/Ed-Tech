@@ -57,7 +57,7 @@ const ContactUs: React.FC = () => {
       <div className={styles.contacts}>
         <div className={styles.left_section}>
           <h2>We would love to hear from you!</h2>
-          <p>Let us know what you’re after.</p>
+          {/* <p>Let us know what you’re after.</p> */}
           {contactData.map((data, i) => {
             return (
               <div key={i} className={styles.contactDetalsBox}>
@@ -71,6 +71,7 @@ const ContactUs: React.FC = () => {
           })}
         </div>
         <div className={styles.right_section}>
+          <p>Let us know what you’re after.</p>
           <form onSubmit={handleSubmit}>
             <Input
               label="Full Name"
