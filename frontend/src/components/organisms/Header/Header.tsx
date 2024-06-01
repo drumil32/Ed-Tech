@@ -4,7 +4,7 @@ import MobileNavbar from "./MobileNavbar";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
-import logo from "../../../assets/images/logo.svg";
+// import logo from "../../../assets/images/logo.svg";
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
