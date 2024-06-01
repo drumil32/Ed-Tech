@@ -8,8 +8,11 @@ import teamArt from "../../../assets/images/why_choose_us/Our Team.svg";
 const FeaturesCard: React.FC<WhyChooseUs> = (
   { cardDetails, flipedCard, setFlipedCard }
 ) => {
+  const flip = () => {
+    setFlipedCard(prevState => prevState == cardDetails.id ? '' : cardDetails.id);
+  };
   return (
-    <div className="page-container">
+    <div className="page-container" onClick={flip}>
       <BlogCard
         flipedCard={flipedCard}
         setFlipedCard={setFlipedCard}
@@ -20,29 +23,25 @@ const FeaturesCard: React.FC<WhyChooseUs> = (
 };
 
 const BlogCard: React.FC<WhyChooseUs> = ({
-  cardDetails: { title, subtitle, detail, clipArt, backGroundColor, id }, flipedCard, setFlipedCard
+  cardDetails: { title, subtitle, detail, clipArt, backGroundColor, id }, flipedCard
 }) => {
 
-  const flip = () => {
-    setFlipedCard(prevState => prevState == id ? '' : id);
-  };
-
   return (
-    <div className={`card-container${flipedCard == id ? " flipped" : ""}`} onClick={flip}>
+    <div className={`card-container${flipedCard == id ? " flipped" : ""}`} >
       <Front
         title={title}
         subtitle={subtitle}
         clipArt={clipArt == "program" ? programArt : clipArt == "center" ? centerArt : teamArt}
         backGroundColor={backGroundColor}
-        flip={flip}
+
       />
-      <Back detail={detail} flip={flip} />
+      <Back detail={detail} />
     </div>
   );
 };
 
 interface FrontProps {
-  flip: () => void;
+  // flip: () => void;
   title: string;
   subtitle: string;
   clipArt: string;
@@ -54,7 +53,7 @@ const Front: React.FC<FrontProps> = ({
   subtitle,
   clipArt,
   backGroundColor,
-  flip,
+  // flip,
 }) => {
   return (
     <div className="front" style={{ background: backGroundColor }}>
@@ -62,7 +61,7 @@ const Front: React.FC<FrontProps> = ({
         title={title}
         subtitle={subtitle}
         clipArt={clipArt}
-        flip={flip}
+      // flip={flip}
       />
     </div>
   );
@@ -70,15 +69,15 @@ const Front: React.FC<FrontProps> = ({
 
 interface BackProps {
   detail: string;
-  flip: () => void;
+  // flip: () => void;
 }
 
-const Back: React.FC<BackProps> = ({ detail, flip }) => {
+const Back: React.FC<BackProps> = ({ detail }) => {
   return (
     <div className="back">
       <p>{detail}</p>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <div className="card-back-btn" onClick={flip}>
+        <div className="card-back-btn" >
           <img
             src="https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8f9581eb4ad5b75eaf599_Vector.svg"
             loading="lazy"
@@ -92,7 +91,7 @@ const Back: React.FC<BackProps> = ({ detail, flip }) => {
 };
 
 interface ImageAreaProps {
-  flip: () => void;
+  // flip: () => void;
   title: string;
   subtitle: string;
   clipArt: string;
@@ -102,7 +101,7 @@ const ImageArea: React.FC<ImageAreaProps> = ({
   title,
   subtitle,
   clipArt,
-  flip,
+  // flip,
 }) => {
   return (
     <div className="image-container">
@@ -114,7 +113,7 @@ const ImageArea: React.FC<ImageAreaProps> = ({
       <div
         style={{ justifyContent: "flex-end", display: "flex", marginLeft: "" }}
       >
-        <div className="card-flip-btn" onClick={flip}>
+        <div className="card-flip-btn">
           <img
             src="https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8f9581eb4ad5b75eaf599_Vector.svg"
             loading="lazy"
