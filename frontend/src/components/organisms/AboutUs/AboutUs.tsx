@@ -4,6 +4,9 @@ import instructorListData from "../../../data/teamInfo.json";
 import { Instructor } from "../../../types/types";
 import linkedInIcon from "../../../assets/images/linkedIn.svg";
 import instagramIcon from "../../../assets/images/instagram.svg";
+import vaibhav from "../../../assets/images/team/vaibhav_gupta_with_bg.png";
+import naman from "../../../assets/images/team/naman_gupta.png";
+import harihar from "../../../assets/images/team/naman_gupta.png";
 
 const AboutUs: React.FC = () => {
   return (
@@ -16,7 +19,8 @@ const AboutUs: React.FC = () => {
           {instructorListData.map((personInfo: Instructor) => (
             <div className={styles.profile}>
               <div className={styles.profile__imageContainer}>
-                <img src={personInfo.profilePicture} alt="Profile Picture" />
+                {/* <img src={personInfo.profilePicture} alt="Profile Picture" /> */}
+                <img src={personInfo.name=='VAIBHAV GUPTA'?vaibhav:personInfo.name=='NAMAN GUPTA'?naman:harihar} alt="" />
               </div>
               <h2 className={styles.profile__name}>{personInfo.name}</h2>
               <p className={styles.profile__designation}>

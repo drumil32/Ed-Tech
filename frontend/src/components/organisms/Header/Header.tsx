@@ -4,6 +4,7 @@ import MobileNavbar from "./MobileNavbar";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
+import logo from "../../../assets/images/logo.svg";
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -62,7 +63,8 @@ const Header: React.FC = () => {
             <MobileNavbar />
             <h2>
               <Link to="/" onClick={scrollToTop}>
-                SprintUp
+                Sprint Up
+                {/* <img src={logo} height={50} alt="" /> */}
               </Link>
             </h2>
           </div>
