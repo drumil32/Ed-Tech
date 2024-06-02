@@ -4,9 +4,9 @@ import instructorListData from "../../../data/teamInfo.json";
 import { Instructor } from "../../../types/types";
 import linkedInIcon from "../../../assets/images/linkedIn.svg";
 import instagramIcon from "../../../assets/images/instagram.svg";
-import vaibhav from "../../../assets/images/team/vaibhav_gupta_with_bg.png";
+import vaibhav from "../../../assets/images/team/vaibhav_gupta.png";
 import naman from "../../../assets/images/team/naman_gupta.png";
-import harihar from "../../../assets/images/team/naman_gupta.png";
+import harihar from "../../../assets/images/team/harihar_menon.png";
 
 const AboutUs: React.FC = () => {
   return (

@@ -33,6 +33,13 @@ header {
       justify-content: center;
       align-items: center;
       gap: 1rem;
+      img{
+        height: 60px;
+        @include md-max {
+          height: 40px;
+        }
+      }
+      
       h2 {
         a {
           font-size: 1.5rem;

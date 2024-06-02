@@ -72,7 +72,7 @@ const Header: React.FC = () => {
                 // justify-content: space-between;
                 // color: black;
               }}>
-                <img src={logo} height={60} alt="" />
+                <img src={logo} alt="" />
                 <h2>
                   SprintUp
                 </h2>
