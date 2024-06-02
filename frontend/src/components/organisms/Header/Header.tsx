@@ -63,19 +63,9 @@ const Header: React.FC = () => {
         <div className="header">
           <div className={"header_logo"}>
             <MobileNavbar />
-            <Link to="/" onClick={scrollToTop}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  color: "black",
-                  gap: ".5rem",
-                }}
-              >
+            <Link to="/" onClick={scrollToTop} className="logo">
                 <img src={logo} alt="" />
                 <h2>SprintUp</h2>
-              </div>
             </Link>
           </div>
           <nav className={"header_navigation"}>
