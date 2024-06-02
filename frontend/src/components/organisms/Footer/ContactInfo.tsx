@@ -2,6 +2,7 @@ import React from "react";
 import "./style.scss";
 import { nanoid } from "nanoid";
 // import footerLogo from '../../../assets/images/footerLogo.svg';
+import logo from "../../../assets/images/logo.svg";
 
 const ContactInfo: React.FC = () => {
 
@@ -23,7 +24,10 @@ const ContactInfo: React.FC = () => {
   return (
     <div className="pagesContainer">
       {/* <img className="footer-logo" src={footerLogo} /> */}
-      <h2 className="footer-logo"> SprintUp</h2>
+      <div className="footer-logo">
+        <img src={logo} alt="" />
+        <h2 > SprintUp</h2>
+      </div>
       <ul>
         {
           contactInfoArray.map((item) => (
