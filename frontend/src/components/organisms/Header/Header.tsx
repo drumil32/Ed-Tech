@@ -5,12 +5,14 @@ import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
 import logo from "../../../assets/images/logo.svg";
+import { useMedia } from "react-use";
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [scrollToCourses, setScrollToCourses] = useState<boolean>(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const isMobile = useMedia("(max-width: 575px)");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,23 +61,20 @@ const Header: React.FC = () => {
     <>
       <header className={scrolled ? "scrolled" : ""}>
         <div className="header">
-          <div className={"header_logo"} >
+          <div className={"header_logo"}>
             <MobileNavbar />
             <Link to="/" onClick={scrollToTop}>
-              <div style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                color: "black",
-                // border: "2px solid black"
-                //   align- items: center;
-                // justify-content: space-between;
-                // color: black;
-              }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  color: "black",
+                  gap: ".5rem",
+                }}
+              >
                 <img src={logo} alt="" />
-                <h2>
-                  SprintUp
-                </h2>
+                <h2>SprintUp</h2>
               </div>
             </Link>
           </div>
@@ -107,11 +106,23 @@ const Header: React.FC = () => {
             </ul>
           </nav>
         </div>
-      </header >
+      </header>
       <div className="header-highlight">
-        <p>Lucknow's top offline MERN-stack program. Hurry, limited seats open!</p>
+        {isMobile ? (
+          <>
+            <p>Lucknow's top offline MERN-stack program.</p>
+            <p>Hurry, limited seats only!</p>
+          </>
+        ) : (
+          <p>
+            `Lucknow's top offline MERN-stack program. Hurry, limited seats
+            only!`
+          </p>
+        )}
       </div>
-      <a href="#" className={scrolled ? "back-to-top visible" : "back-to-top"}><MdOutlineKeyboardDoubleArrowUp /></a>
+      <a href="#" className={scrolled ? "back-to-top visible" : "back-to-top"}>
+        <MdOutlineKeyboardDoubleArrowUp />
+      </a>
     </>
   );
 };

@@ -96,7 +96,7 @@ const ContactUs: React.FC = () => {
               value={messageText}
               onChange={(e) => setMessageText(e.target.value)}
               rows={5}
-              placeholder="Optional"
+              placeholder="Optional Message"
             />
             <Button text="Submit" style={{ width: "100%" }} />
             {formSubmitted && (
