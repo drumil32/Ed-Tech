@@ -3,7 +3,8 @@ import "./card.scss";
 import { WhyChooseUs } from "../../../types/types";
 import programArt from "../../../assets/images/why_choose_us/Our Program.svg";
 import centerArt from "../../../assets/images/why_choose_us/Our Center.svg";
-import teamArt from "../../../assets/images/why_choose_us/Our Team.svg";
+import teamArt from "../../../assets/images/why_choose_us/Our Team - 2.svg";
+import logo from "../../../assets/images/logo.svg";
 
 const FeaturesCard: React.FC<WhyChooseUs> = (
   { cardDetails, flipedCard, setFlipedCard }
@@ -77,6 +78,9 @@ const Back: React.FC<BackProps> = ({ detail }) => {
     <div className="back">
       <p>{detail}</p>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div className="card-back-logo">
+          <img src={logo} width={50} height={50} alt="" />
+        </div>
         <div className="card-back-btn" >
           <img
             src="https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8f9581eb4ad5b75eaf599_Vector.svg"

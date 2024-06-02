@@ -80,8 +80,8 @@ const Hero: React.FC = () => {
       title: "MOST INTERACTIVE</br>COURSE",
       image: image3,
       desc: [
-        "Work on 4 real-world projects",
         "Guaranteed 2-month internship",
+        "Work on 4 real-world projects",
       ],
     },
   ];

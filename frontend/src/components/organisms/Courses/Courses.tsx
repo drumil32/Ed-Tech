@@ -75,7 +75,8 @@ const Courses: React.FC = () => {
       <section className={styles.courseHighlights__container}>
         <div className={styles.courseHighlights}>
           <h1 className={styles.courseHighlights__tagLine}>
-            Build Your Tech Career With Us
+            {/* Build Your Tech Career With Us */}
+            We'll Find The Right Job For You
           </h1>
           <div className={styles.courseHighlights__points}>
             <div className={styles.courseHighlights__point}>

@@ -4,7 +4,7 @@ import MobileNavbar from "./MobileNavbar";
 import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
-// import logo from "../../../assets/images/logo.svg";
+import logo from "../../../assets/images/logo.svg";
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -59,14 +59,25 @@ const Header: React.FC = () => {
     <>
       <header className={scrolled ? "scrolled" : ""}>
         <div className="header">
-          <div className={"header_logo"}>
+          <div className={"header_logo"} >
             <MobileNavbar />
-            <h2>
-              <Link to="/" onClick={scrollToTop}>
-                Sprint Up
-                {/* <img src={logo} height={50} alt="" /> */}
-              </Link>
-            </h2>
+            <Link to="/" onClick={scrollToTop}>
+              <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                color: "black",
+                // border: "2px solid black"
+                //   align- items: center;
+                // justify-content: space-between;
+                // color: black;
+              }}>
+                <img src={logo} height={60} alt="" />
+                <h2>
+                  SprintUp
+                </h2>
+              </div>
+            </Link>
           </div>
           <nav className={"header_navigation"}>
             <ul>
@@ -96,11 +107,11 @@ const Header: React.FC = () => {
             </ul>
           </nav>
         </div>
-      </header>
+      </header >
       <div className="header-highlight">
-          <p>Lucknow's top offline MERN-stack program. Hurry, limited seats open!</p>
-        </div>
-      <a href="#" className={scrolled ? "back-to-top visible": "back-to-top"}><MdOutlineKeyboardDoubleArrowUp /></a>
+        <p>Lucknow's top offline MERN-stack program. Hurry, limited seats open!</p>
+      </div>
+      <a href="#" className={scrolled ? "back-to-top visible" : "back-to-top"}><MdOutlineKeyboardDoubleArrowUp /></a>
     </>
   );
 };
