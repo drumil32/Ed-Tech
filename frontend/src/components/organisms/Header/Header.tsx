@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 import MobileNavbar from "./MobileNavbar";
-import { NavLink, Link, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
 import logo from "../../../assets/images/logo.svg";
@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [scrollToCourses, setScrollToCourses] = useState<boolean>(false);
   const location = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,17 +39,17 @@ const Header: React.FC = () => {
     }
   }, [location, scrollToCourses]);
 
-  const handleCoursesClick = () => {
-    if (location.pathname === "/") {
-      const element = document.getElementById("courses");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      setScrollToCourses(true);
-      navigate("/");
-    }
-  };
+  // const handleCoursesClick = () => {
+  //   if (location.pathname === "/") {
+  //     const element = document.getElementById("courses");
+  //     if (element) {
+  //       element.scrollIntoView({ behavior: "smooth" });
+  //     }
+  //   } else {
+  //     setScrollToCourses(true);
+  //     navigate("/");
+  //   }
+  // };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -91,7 +91,10 @@ const Header: React.FC = () => {
                 </NavLink>
               </li>
               <li>
-                <a onClick={handleCoursesClick}>Courses</a>
+                {/* <a onClick={handleCoursesClick}>Courses</a> */}
+                <NavLink to="/course-details" className={({ isActive }) => (isActive ? "active" : "")}>
+                  Courses
+                </NavLink>
               </li>
               <li>
                 <HashLink to="#">Our Values</HashLink>
