@@ -1,0 +1,77 @@
+[
+    {
+        "title":"empty"
+    },
+    {
+        "heading": "Module 1",
+        "title": "Tech Fundamentals and Logical Reasoning",
+        "topics": [
+            "Learn Useful Adobe and Google Tools",
+            "Understand AI Tools and make them help you",
+            "Master Logical Reasoning and First Principles"
+        ]
+    },
+    {
+        "heading": "Module 2",
+        "title": "Intro to Programming and Data Structures",
+        "topics": [
+            "Learn a programming language",
+            "Ace Basic Data Structures",
+            "Learn Recursion and Backtracking"
+        ]
+    },
+    {
+        "heading": "Module 3",
+        "title": "Advanced Data Structures and Algorithms",
+        "topics": [
+            "Explore trees, graphs, and dynamic programming",
+            "Delve into Searching and Sorting Algorithms",
+            "Apply the concepts in a project"
+        ]
+    },
+    {
+        "heading": "Module 4",
+        "title": "Web Development Essentials and Kickstarting",
+        "topics": [
+            "Learn key Web Dev Concepts",
+            "Master HTML, CSS, and Javascript",
+            "Apply the knowledge in a small project"
+        ]
+    },
+    {
+        "heading": "Module 5",
+        "title": "Frontend Dev with React",
+        "topics": [
+            "Become proficient in React",
+            "Make your personalized Portfolio"
+        ]
+    },
+    {
+        "heading": "Module 6",
+        "title": "Redux and Backend Dev",
+        "topics": [
+            "Learn and integrate React Packages",
+            "Dive into databases",
+            "Know the basics of Internet and API Architecture"
+        ]
+    },
+    {
+        "heading": "Module 7",
+        "title": "Backend Integration + Final Project",
+        "topics": [
+            "Understand Critical Backend concepts",
+            "Work on your First Website"
+        ]
+    },
+    {
+        "heading": "Final Step",
+        "title": "Job Readiness Prep + Internship/Placement",
+        "topics": [
+            "MOST IMPORTANT: Resume Building",
+            "Interview Prep + Mock Interviews"
+        ]
+    },
+    {
+        "title":"empty"
+    }
+]

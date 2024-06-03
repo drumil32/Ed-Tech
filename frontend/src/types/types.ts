@@ -12,7 +12,7 @@ export interface WhyChooseUsCardDetails {
   detail: string;
   clipArt: string;
   backGroundColor: string;
-  id:string;
+  id: string;
 }
 
 export interface WhyChooseUs {
@@ -32,4 +32,10 @@ export interface Instructor {
   instagram: string;
   linkedin: string;
   profilePicture: string;
+}
+
+export interface CourseDetails {
+  heading: string;
+  title: string;
+  topics: string[];
 }
