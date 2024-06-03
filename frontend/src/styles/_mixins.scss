@@ -46,7 +46,7 @@
 }
 
 @mixin md-max {
-  @media (max-width: #{$lg - 1px}) {
+  @media (max-width: #{$lg}) {
     @content;
   }
 }

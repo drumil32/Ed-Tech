@@ -108,8 +108,8 @@ const Header: React.FC = () => {
           </>
         ) : (
           <p>
-            `Lucknow's top offline MERN-stack program. Hurry, limited seats
-            only!`
+            Lucknow's top offline MERN-stack program. Hurry, limited seats
+            only!
           </p>
         )}
       </div>

@@ -3,7 +3,7 @@ import styles from "./CourseDetails.module.scss";
 import courseModulesDetails from "../../data/courseModluesDetails.json";
 import { nanoid } from "nanoid";
 import classNames from "classnames";
-import module6 from "../../assets/images/courses/Module 6.png";
+import module2 from "../../assets/images/courses/Module 2.svg";
 
 const CourseDetails: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -43,6 +43,7 @@ const CourseDetails: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      
       <div className={styles.headingsContainer}>
         {courseModulesDetails.map((module, index) => (
           <div
@@ -58,16 +59,17 @@ const CourseDetails: React.FC = () => {
         ))}
       </div>
       <div className={styles.cardContainer}>
-        <div className={styles.card} style={{ backgroundColor: "#7E8EF1" }}>
+        <div className={styles.card} style={{ background: "linear-gradient(320deg, #619cfa 0%, #eaf5fa 100%)" }}>
           {activeIndex !== null &&
           activeIndex > 0 &&
           activeIndex < courseModulesDetails.length - 1 ? (
             <>
+            <img src={module2} alt="courses" />
               <h2>{courseModulesDetails[activeIndex].heading}</h2>
               {courseModulesDetails[activeIndex].topics?.map((topic) => (
                 <p key={nanoid()}>+ {topic}</p>
               ))}
-              <img src={module6} alt="courses" />
+              
             </>
           ) : null}
         </div>
