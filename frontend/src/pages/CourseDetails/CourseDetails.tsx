@@ -5,28 +5,27 @@ import { nanoid } from "nanoid";
 import classNames from "classnames";
 
 const CourseDetails: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const headingRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const helper = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = headingRefs.current.indexOf(
-              entry.target as HTMLDivElement
-            );
-            setActiveIndex(index);
-            console.log(courseMoudluesDetails[index]);
-          }
-        });
-      },
-      {
-        threshold: 0.5,
-        rootMargin: "-250px 0px -250px 0px",
-      }
-    );
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const headingRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const helper = useRef<HTMLDivElement | null>(null);
+    const { innerHeight: height } = window;
+    const newHeight = (height / 2)-70;
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const index = headingRefs.current.indexOf(entry.target as HTMLDivElement);
+                        setActiveIndex(index);
+                        console.log(courseMoudluesDetails[index]);
+                    }
+                });
+            },
+            {
+                threshold: 0.5,
+                rootMargin: `-${newHeight}px 0px -${newHeight}px 0px`
+            }
+        );
 
     headingRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
