@@ -88,7 +88,8 @@ const CourseDetails: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const headingRefs = useRef<(HTMLDivElement | null)[]>([]);
     const helper = useRef<HTMLDivElement | null>(null);
-
+    const { innerHeight: height } = window;
+    const newHeight = (height / 2)-70;
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -102,7 +103,7 @@ const CourseDetails: React.FC = () => {
             },
             {
                 threshold: 0.5,
-                rootMargin: "-300px 0px -300px 0px"
+                rootMargin: `-${newHeight}px 0px -${newHeight}px 0px`
             }
         );
 
@@ -140,11 +141,36 @@ const CourseDetails: React.FC = () => {
                     height: "100px",
                     width: "400px",
                     position: "fixed",
-                    bottom: "250px",
+                    bottom: `${newHeight}px`,
                     left: "200px"
                 }}
                 ref={helper}
             >
+                <h2>bottom</h2>
+                {(activeIndex && activeIndex > 0 && activeIndex < 9) ?
+                    <>
+                        {courseMoudluesDetails[activeIndex].heading}
+                        {
+                            courseMoudluesDetails[activeIndex].topics?.map((topic) =>
+                                <p key={nanoid()}>+ {topic}</p>
+                            )
+                        }
+                    </> :
+                    <></>
+                }
+            </div>
+            <div
+                style={{
+                    border: "1px solid black",
+                    height: "100px",
+                    width: "400px",
+                    position: "fixed",
+                    top: `${newHeight}px`,
+                    left: "200px"
+                }}
+                ref={helper}
+            >
+                <h2>top</h2>
                 {(activeIndex && activeIndex > 0 && activeIndex < 9) ?
                     <>
                         {courseMoudluesDetails[activeIndex].heading}
