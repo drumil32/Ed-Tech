@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    position: relative;
+    width: 100%;
+}
+
+.headingsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem 4rem;
+    .heading {
+        margin: 20px 0;
+        font-size: 2rem;
+        transition: font-weight 0.3s;
+    }
+    
+    .heading.active {
+        font-weight: bold;
+    }
+}
