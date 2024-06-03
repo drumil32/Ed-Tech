@@ -1,31 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./CourseDetails.module.scss";
-import courseMoudluesDetails from "../../data/courseMoudluesDetails.json";
+import courseModulesDetails from "../../data/courseModluesDetails.json";
 import { nanoid } from "nanoid";
 import classNames from "classnames";
+import module6 from '../../assets/images/courses/Module 6.png';
 
 const CourseDetails: React.FC = () => {
-    const [activeIndex, setActiveIndex] = useState<number | null>(null);
-    const headingRefs = useRef<(HTMLDivElement | null)[]>([]);
-    const helper = useRef<HTMLDivElement | null>(null);
-    const { innerHeight: height } = window;
-    const newHeight = (height / 2)-70;
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const index = headingRefs.current.indexOf(entry.target as HTMLDivElement);
-                        setActiveIndex(index);
-                        console.log(courseMoudluesDetails[index]);
-                    }
-                });
-            },
-            {
-                threshold: 0.5,
-                rootMargin: `-${newHeight}px 0px -${newHeight}px 0px`
-            }
-        );
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const headingRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const { innerHeight: height } = window;
+  const newHeight = height / 2 - 70;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = headingRefs.current.indexOf(
+              entry.target as HTMLDivElement
+            );
+            setActiveIndex(index);
+            console.log(courseModulesDetails[index]);
+          }
+        });
+      },
+      {
+        threshold: 0.1, // Adjusted threshold to a lower value
+        rootMargin: `-${newHeight}px 0px -${newHeight}px 0px`,
+      }
+    );
 
     headingRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
@@ -36,50 +39,38 @@ const CourseDetails: React.FC = () => {
         if (ref) observer.unobserve(ref);
       });
     };
-  }, []);
+  }, [newHeight]);
 
   return (
-    <>
-      <div className={styles.container}>
-        <div className={styles.headingsContainer}>
-          {courseMoudluesDetails.map((module, index) => (
-            <div
-              key={index}
-              ref={(el) => (headingRefs.current[index] = el)}
-              className={classNames(
-                styles.heading,
-                index === activeIndex && styles.active
-              )}
-            >
-              {module.title}
-            </div>
-          ))}
-        </div>
-        <div
-          style={{
-            border: "1px solid black",
-            height: "100px",
-            width: "400px",
-            position: "sticky",
-            bottom: "50%",
-            transform: "translateY(-50%)",
-            left: "100%",
-          }}
-          ref={helper}
-        >
-          {activeIndex && activeIndex > 0 && activeIndex < 9 ? (
-            <>
-              {courseMoudluesDetails[activeIndex].heading}
-              {courseMoudluesDetails[activeIndex].topics?.map((topic) => (
-                <p key={nanoid()}>+ {topic}</p>
-              ))}
-            </>
-          ) : (
-            <></>
-          )}
-        </div>
+    <div className={styles.container}>
+      <div className={styles.headingsContainer}>
+        {courseModulesDetails.map((module, index) => (
+          <div
+            key={index}
+            ref={(el) => (headingRefs.current[index] = el)}
+            className={classNames(
+              styles.heading,
+              index === activeIndex && styles.active
+            )}
+          >
+            {module.title}
+          </div>
+        ))}
       </div>
-    </>
+      <div className={styles.cardContainer}>
+        {activeIndex !== null &&
+        activeIndex >= 0 &&
+        activeIndex < courseModulesDetails.length ? (
+          <div className={styles.card} style={{backgroundColor: "#7E8EF1"}}>
+            <h2>{courseModulesDetails[activeIndex].heading}</h2>
+            {courseModulesDetails[activeIndex].topics?.map((topic) => (
+              <p key={nanoid()}>+ {topic}</p>
+            ))}
+            <img src={module6} alt="courses" />
+          </div>
+        ) : null}
+      </div>
+    </div>
   );
 };
 
