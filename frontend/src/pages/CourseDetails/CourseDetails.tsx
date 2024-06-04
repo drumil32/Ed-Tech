@@ -65,8 +65,8 @@ const CourseDetails: React.FC = () => {
           </div>
           <div className={styles.cardContainer}>
             {activeIndex !== null &&
-            activeIndex > 0 &&
-            activeIndex < courseModulesDetails.length - 1 ? (
+            activeIndex >= 0 &&
+            activeIndex <= courseModulesDetails.length - 1 ? (
               <div
                 className={styles.card}
                 style={{
@@ -75,10 +75,10 @@ const CourseDetails: React.FC = () => {
                     "linear-gradient(320deg, #c078ff 0%, #ffffff 85%)",
                 }}
               >
-                <img
+                {courseModulesDetails[activeIndex].src && <img
                   src={courseModulesDetails[activeIndex].src}
                   alt="courses"
-                />
+                />}
                 <h2>{courseModulesDetails[activeIndex].heading}</h2>
                 {courseModulesDetails[activeIndex].topics?.map((topic) => (
                   <p key={nanoid()}>

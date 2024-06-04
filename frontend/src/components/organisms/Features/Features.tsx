@@ -4,7 +4,7 @@ import FeaturesCarausal from "../../molecule/FeaturesCarausal/FeaturesCarausal";
 import { useMedia } from "react-use";
 
 const Features: React.FC = () => {
-  const isTablet = useMedia("(max-width: 1024px)");
+  const isTablet = useMedia("(max-width: 1145px)");
   return (
     <section className={styles.featureSection}>
       <div className={styles.featuresContainer}>
