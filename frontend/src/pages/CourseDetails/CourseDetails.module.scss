@@ -1,3 +1,63 @@
+@import "/src/styles/_mixins";
+.courseInfoSection {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.courseContainer {
+  width: 100%;
+  max-width: 1880px;
+  padding: 2rem .5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+
+  @include xsm-max {
+    padding: 4rem 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    z-index: 5;
+    letter-spacing: 5px;
+    background: linear-gradient(
+      180deg,
+      rgb(24, 117, 184) 0%,
+      rgb(92, 34, 187) 100%,
+      rgb(117, 18, 187) 100%
+    );
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+  }
+
+  .section_sub_title {
+    // color: rgba(128, 128, 128, 0.61);
+    color: rgb(88, 88, 88);
+    z-index: 5;
+    margin-bottom: 2.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 130%;
+    width: 100%;
+    text-align: center;
+    @include sm-max {
+      font-size: 2rem;
+    }
+
+    span {
+      font-weight: 700;
+      color: #ffd500;
+    }
+  }
+}
 .container {
     display: flex;
     padding: 1rem 4rem;

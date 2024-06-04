@@ -41,38 +41,57 @@ const CourseDetails: React.FC = () => {
   }, [newHeight]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.headingsContainer}>
-        {courseModulesDetails.map((module, index) => (
-          <div
-            key={index}
-            ref={(el) => (headingRefs.current[index] = el)}
-            className={classNames(
-              styles.heading,
-              index === activeIndex && styles.active
-            )}
-          >
-            {module.title}
-          </div>
-        ))}
-      </div>
-      <div className={styles.cardContainer}>
-        {activeIndex !== null && activeIndex > 0 && activeIndex < courseModulesDetails.length - 1 ? (
-          <div
-            className={styles.card}
-            style={{
-              background: courseModulesDetails[activeIndex].background || "linear-gradient(320deg, #c078ff 0%, #ffffff 85%)",
-            }}
-          >
-            <img src={courseModulesDetails[activeIndex].src} alt="courses" />
-            <h2>{courseModulesDetails[activeIndex].heading}</h2>
-            {courseModulesDetails[activeIndex].topics?.map((topic) => (
-              <p key={nanoid()}><span>+</span>{topic}</p>
+    <section className={styles.courseInfoSection}>
+      <div className={styles.courseContainer}>
+        <h5 className={styles.sectionTitle}>Course Overview</h5>
+        <p className={styles.section_sub_title}>
+          <span>In-Classroom </span>
+          MERN-Stack Web Development Program
+        </p>
+        <div className={styles.container}>
+          <div className={styles.headingsContainer}>
+            {courseModulesDetails.map((module, index) => (
+              <div
+                key={index}
+                ref={(el) => (headingRefs.current[index] = el)}
+                className={classNames(
+                  styles.heading,
+                  index === activeIndex && styles.active
+                )}
+              >
+                {module.title}
+              </div>
             ))}
           </div>
-        ) : null}
+          <div className={styles.cardContainer}>
+            {activeIndex !== null &&
+            activeIndex > 0 &&
+            activeIndex < courseModulesDetails.length - 1 ? (
+              <div
+                className={styles.card}
+                style={{
+                  background:
+                    courseModulesDetails[activeIndex].background ||
+                    "linear-gradient(320deg, #c078ff 0%, #ffffff 85%)",
+                }}
+              >
+                <img
+                  src={courseModulesDetails[activeIndex].src}
+                  alt="courses"
+                />
+                <h2>{courseModulesDetails[activeIndex].heading}</h2>
+                {courseModulesDetails[activeIndex].topics?.map((topic) => (
+                  <p key={nanoid()}>
+                    <span>+</span>
+                    {topic}
+                  </p>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
