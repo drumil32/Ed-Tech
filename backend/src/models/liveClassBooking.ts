@@ -25,7 +25,7 @@ const liveClassBookingSchema: Schema = new Schema({
     },
     date: {
         type: String,
-        required: true,
+        // required: true,
         validate: {
             validator: function(v: string) {
                 return /\d{2}-\d{2}-\d{4}/.test(v); // Ensure date format is day-month-year
@@ -35,7 +35,7 @@ const liveClassBookingSchema: Schema = new Schema({
     },
     time: {
         type: String,
-        required: true,
+        // required: true,
         validate: {
             validator: function(v: string) {
                 return /^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/.test(v); // Ensure time format is HH:MM AM/PM
