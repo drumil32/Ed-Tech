@@ -1,8 +1,5 @@
 [
     {
-        "title":""
-    },
-    {
         "heading": "Module 1",
         "title": "Tech Fundamentals and Logical Reasoning",
         "topics": [
@@ -10,7 +7,7 @@
             "Understand AI Tools and make them help you",
             "Master Logical Reasoning and First Principles"
         ],
-        "background": "linear-gradient(320deg, #ff7878 0%, #FFFFFF 85%)",
+        "background": "linear-gradient(320deg, #ff7878 0%, #FFE3E3 85%)",
         "src": "/assests/courseDetailsImages/Module 1.svg"
     },
     {
@@ -21,7 +18,7 @@
             "Ace Basic Data Structures",
             "Learn Recursion and Backtracking"
         ],
-        "background": "linear-gradient(320deg, #ffde82 0%, #FFFFFF 85%)",
+        "background": "linear-gradient(320deg, #ffde82 0%, #FFFAEA 85%)",
         "src": "/assests/courseDetailsImages/Module 2.svg"
     },
     {
@@ -32,7 +29,7 @@
             "Delve into Searching and Sorting Algorithms",
             "Apply the concepts in a project"
         ],
-        "background": "linear-gradient(320deg, #ffea82  0%, #FFFFFF 85%)",
+        "background": "linear-gradient(320deg, #ffea82  0%, #FFFCEF 85%)",
         "src": "/assests/courseDetailsImages/Module 3.svg"
     },
     {
@@ -43,7 +40,7 @@
             "Master HTML, CSS, and Javascript",
             "Apply the knowledge in a small project"
         ],
-        "background": "linear-gradient(320deg, #e5ff82 0%, #FFFFFF 85%)",
+        "background": "linear-gradient(320deg, #e5ff82 0%, #FAFFE8 85%)",
         "src": "/assests/courseDetailsImages/Module 4.svg"
     },
     {
@@ -53,7 +50,7 @@
             "Become proficient in React",
             "Make your personalized Portfolio"
         ],
-        "background": "linear-gradient(320deg, #a6ff8f 0%, #FFFFFF 85%)",
+        "background": "linear-gradient(320deg, #a6ff8f 0%, #F1FFEE 85%)",
         "src": "/assests/courseDetailsImages/Module 5.svg"
     },
     {
@@ -64,7 +61,7 @@
             "Dive into databases",
             "Know the basics of Internet and API Architecture"
         ],
-        "background": "linear-gradient(320deg, #7bffd1 0%, #FFFFFF 85%)",
+        "background": "linear-gradient(320deg, #7bffd1 0%, #E4FFF5 85%)",
         "src": "/assests/courseDetailsImages/Module 6.svg"
     },
     {
@@ -74,7 +71,7 @@
             "Understand Critical Backend concepts",
             "Work on your First Website"
         ],
-        "background": "linear-gradient(320deg, #78e8ff 0%, #FFFFFF 85%)",
+        "background": "linear-gradient(320deg, #78e8ff 0%, #EDFCFF 85%)",
         "src": "/assests/courseDetailsImages/Module 7.svg"
     },
     {
@@ -84,7 +81,7 @@
             "MOST IMPORTANT: Resume Building",
             "Interview Prep + Mock Interviews"
         ],
-        "background": "linear-gradient(320deg, #7884ff 0%, #FFFFFF 85%)",
+        "background": "linear-gradient(320deg, #7884ff 0%, #DBDEFF 85%)",
         "src": "/assests/courseDetailsImages/Module 8.svg"
     },
     {

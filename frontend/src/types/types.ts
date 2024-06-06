@@ -39,3 +39,8 @@ export interface CourseDetails {
   title: string;
   topics: string[];
 }
+
+export interface OurValuesCardDetails {
+  title: string;
+  description: string;
+}
