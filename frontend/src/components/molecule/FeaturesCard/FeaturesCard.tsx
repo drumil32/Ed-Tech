@@ -5,6 +5,7 @@ import programArt from "../../../assets/images/why_choose_us/Our Program.svg";
 import centerArt from "../../../assets/images/why_choose_us/Our Center.svg";
 import teamArt from "../../../assets/images/why_choose_us/Our Team - 2.svg";
 import logo from "../../../assets/images/logo.svg";
+import { SafeHtmlComponent } from "../Carausal/Carausal";
 
 const FeaturesCard: React.FC<WhyChooseUs> = (
   { cardDetails, flipedCard, setFlipedCard }
@@ -107,12 +108,13 @@ const ImageArea: React.FC<ImageAreaProps> = ({
   clipArt,
   // flip,
 }) => {
+  const sanitizedHtml = SafeHtmlComponent(subtitle as string);
   return (
     <div className="image-container">
       <img className="card-image" src={clipArt} alt="Blog post" />
       <div className="front-content">
         <h1 className="title">{title}</h1>
-        <h2 className="subtitle">{subtitle}</h2>
+        <h2 className="subtitle">{sanitizedHtml}</h2>
       </div>
       <div
         style={{ justifyContent: "flex-end", display: "flex", marginLeft: "" }}

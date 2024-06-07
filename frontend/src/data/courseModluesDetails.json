@@ -7,7 +7,7 @@
             "Understand AI Tools and make them help you",
             "Master Logical Reasoning and First Principles"
         ],
-        "background": "linear-gradient(320deg, #ff7878 0%, #FFE3E3 85%)",
+        "background": "linear-gradient(320deg, #AB8FFE  0%, #ECE6FE 85%)",
         "src": "/assests/courseDetailsImages/Module 1.svg"
     },
     {
@@ -18,7 +18,7 @@
             "Ace Basic Data Structures",
             "Learn Recursion and Backtracking"
         ],
-        "background": "linear-gradient(320deg, #ffde82 0%, #FFFAEA 85%)",
+        "background": "linear-gradient(320deg, #B2E0FF 0%, #F2FAFF 85%)",
         "src": "/assests/courseDetailsImages/Module 2.svg"
     },
     {
