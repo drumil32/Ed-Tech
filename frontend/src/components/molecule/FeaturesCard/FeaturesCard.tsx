@@ -1,10 +1,7 @@
 import React from "react";
 import "./card.scss";
 import { WhyChooseUs } from "../../../types/types";
-import programArt from "../../../assets/images/why_choose_us/Our Program.svg";
-import centerArt from "../../../assets/images/why_choose_us/Our Center.svg";
-import teamArt from "../../../assets/images/why_choose_us/Our Team - 2.svg";
-import logo from "../../../assets/images/logo.svg";
+import logo from "/assests/logo.svg";
 import { SafeHtmlComponent } from "../Carausal/Carausal";
 
 const FeaturesCard: React.FC<WhyChooseUs> = (
@@ -33,7 +30,7 @@ const BlogCard: React.FC<WhyChooseUs> = ({
       <Front
         title={title}
         subtitle={subtitle}
-        clipArt={clipArt == "program" ? programArt : clipArt == "center" ? centerArt : teamArt}
+        clipArt={clipArt}
         backGroundColor={backGroundColor}
 
       />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const PagesName: React.FC = () => {
   const [scrollToCourses, setScrollToCourses] = useState<boolean>(false);
