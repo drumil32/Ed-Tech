@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./style.scss";
 import MobileNavbar from "./MobileNavbar";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
 import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
 import logo from "../../../assets/images/logo.svg";
 import { useMedia } from "react-use";
@@ -11,7 +10,6 @@ const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [scrollToCourses, setScrollToCourses] = useState<boolean>(false);
   const location = useLocation();
-  // const navigate = useNavigate();
   const isMobile = useMedia("(max-width: 575px)");
 
   useEffect(() => {
@@ -86,7 +84,13 @@ const Header: React.FC = () => {
                 </NavLink>
               </li>
               <li>
-                <HashLink to="#">Our Values</HashLink>
+              <NavLink
+                  to="/values"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                  onClick={scrollToTop}
+                >
+                  Our Values
+                </NavLink>
               </li>
               <li>
                 <NavLink

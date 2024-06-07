@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
 import { NavLink, useLocation } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
 import { AnimatePresence, motion } from "framer-motion";
 
 const MobileNavbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [scrollToCourses, setScrollToCourses] = useState<boolean>(false);
   const location = useLocation();
-  // const navigate = useNavigate();
 
   useEffect(() => {
     if (scrollToCourses && location.pathname === "/") {
@@ -80,9 +78,13 @@ const MobileNavbar: React.FC = () => {
               </NavLink>
             </li>
             <li>
-              <HashLink onClick={closeMenu} to="#">
+              <NavLink
+                onClick={scrollToTop}
+                to="/values"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
                 Our Values
-              </HashLink>
+              </NavLink>
             </li>
             <li>
               <NavLink
