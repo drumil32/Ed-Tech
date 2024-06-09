@@ -151,7 +151,7 @@
         height: 40px;
         width: 100%;
         padding: 0.25rem 1rem;
-        background-color: #765cfa;
+        background-color: #c1b5ff;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -163,6 +163,11 @@
         border-radius: 0.2rem;
         transition: all 0.2s ease-in-out;
         cursor: pointer;
+
+        img {
+          width: 60px;
+          height: 60px;
+        }
       }
     }
   }
