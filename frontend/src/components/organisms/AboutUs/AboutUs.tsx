@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./AboutUs.module.scss";
 import instructorListData from "../../../data/teamInfo.json";
 import { Instructor } from "../../../types/types";
-import linkedInIcon from "../../../assets/images/linkedIn.svg";
-import instagramIcon from "../../../assets/images/instagram.svg";
+import linkedInIcon from "/assests/icons/linkedIn.svg";
+import instagramIcon from "/assests/icons/instagram.svg";
 const AboutUs: React.FC = () => {
   return (
     <section className={styles.aboutSection}>

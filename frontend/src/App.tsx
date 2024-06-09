@@ -5,6 +5,7 @@ import CourseDetails from "./pages/CourseDetails/CourseDetails";
 import FAQs from "./pages/FAQs/FAQs";
 import Home from "./pages/Home/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import OurValues from "./pages/OurValues/OurValues";
 // import AboutUs from "./components/organisms/AboutUs/AboutUs";
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
         {
           path: "/course-details",
           element: <CourseDetails/>
+        },
+        {
+          path: "/values",
+          element: <OurValues/>
         }
       ],
     },

@@ -43,4 +43,5 @@ export interface CourseDetails {
 export interface OurValuesCardDetails {
   title: string;
   description: string;
+  image?: string;
 }

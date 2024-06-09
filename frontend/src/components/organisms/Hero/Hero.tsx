@@ -3,14 +3,12 @@ import "./styles.scss";
 import Input from "../../atoms/Input/Input";
 import Button from "../../atoms/Button/Button";
 import Carausal from "../../molecule/Carausal/Carausal";
-import image1 from "../../../assets/images/carousal/In-Class Sessions by the Best.svg";
-import image2 from "../../../assets/images/carousal/Find The Right Job For You.svg";
-import image3 from "../../../assets/images/carousal/Most Interactive Course.svg";
 import { FaUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import axios from "axios";
 import Lottie from "react-lottie-player";
 import loaderData from "../../../assets/Lottie/loader.json";
+import carausalData from "../../../data/carausalData.json";
 
 export interface ProfileData {
   image: string;
@@ -35,56 +33,6 @@ const Hero: React.FC = () => {
   const [nameError, setNameError] = useState<string | null>(null);
   const [numberError, setNumberError] = useState<string | null>(null);
 
-  const carausalData: SlideData[] = [
-    // {
-    //   title: "OUR LEARNERS GET RESULTS",
-    //   profiles: [
-    //     {
-    //       image: profileImage,
-    //       desc: "Intern to Full-Stack Software Developer at IBM",
-    //       name: "Aniket Artani",
-    //       location: "IBM, Banglore",
-    //     },
-    //     {
-    //       image: profileImage,
-    //       desc: "Intern to Full-Stack Software Developer at IBM",
-    //       name: "Aniket Artani",
-    //       location: "IBM, Banglore",
-    //     },
-    //     {
-    //       image: profileImage,
-    //       desc: "Intern to Full-Stack Software Developer at IBM",
-    //       name: "Aniket Artani",
-    //       location: "IBM, Banglore",
-    //     },
-    //   ],
-    //   type: "profile",
-    // },
-    {
-      title: "IN-CLASS SESSIONS</br>BY THE BEST",
-      image: image1,
-      desc: [
-        "Live in-class sessions for optimum learning",
-        "In-class dedicated doubt clearance",
-      ],
-    },
-    {
-      title: "FIND THE RIGHT JOB</br>FOR YOU",
-      image: image2,
-      desc: [
-        "Guaranteed jobs on course completion",
-        "At least 4 mock interviews",
-      ],
-    },
-    {
-      title: "MOST INTERACTIVE</br>COURSE",
-      image: image3,
-      desc: [
-        "Guaranteed 2-month internship",
-        "Work on 4 real-world projects",
-      ],
-    },
-  ];
   const validateName = (value: string): string | null => {
     const namePattern = /^[A-Za-z\s]+$/;
     if (value.trim().length < 3) {

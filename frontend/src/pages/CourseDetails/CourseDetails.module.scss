@@ -42,8 +42,8 @@
     // color: rgba(128, 128, 128, 0.61);
     color: rgb(88, 88, 88);
     z-index: 5;
-    margin-bottom: 3rem;
-    font-size: 2rem;
+    margin-bottom: 3.5rem;
+    font-size: 3rem;
     font-weight: 700;
     line-height: 130%;
     width: 100%;
@@ -60,9 +60,10 @@
 }
 .container {
     display: flex;
-    padding: 1rem 4rem;
+    padding: 0 4rem;
     position: relative;
     width: 100%;
+    margin-bottom: 10rem;
   }
   
   .headingsContainer {
@@ -71,6 +72,7 @@
     flex-direction: column;
     justify-content: center;
     min-height: 100vh;
+    max-width: 650px;
     padding: 1rem 4rem;
     gap: 2.5rem;
   
@@ -96,10 +98,11 @@
   
   .card {
     position: sticky;
-    top: 60%;
-    left: 50%;
-    transform: translate(10%, -35%);
-    padding: 1rem 1.5rem;
+    // top: 60%;
+    // left: 50%;
+    // transform: translate(10%, -35%);
+    top: 150px;
+    padding: 1.5rem 2rem;
     background-color: white;
     width: 100%;
     max-width: 400px;
@@ -107,8 +110,20 @@
     max-height: 400px;
     display: flex;
     flex-direction: column;
-    border-radius: .6rem;
+      color: #363636;
+      border-radius: .6rem;
     box-shadow: 2px 2px 5px 2px #cacaca;
+    // @include md-max {
+    //   position: fixed;
+    //   top: auto;
+    //   bottom: 0;
+    //   left: 0;
+    //   transform: translate(0, 0);
+    //   margin: 1rem;
+    //   max-width: calc(100% - 2rem);
+    //   min-height: auto;
+    //   max-height: 300px;
+    // }
     h2 {
       font-size: 1.6rem;
       margin-bottom: 1rem;

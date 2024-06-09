@@ -63,7 +63,6 @@ const CourseDetails: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className={styles.cardContainer}>
             {activeIndex !== null &&
             activeIndex >= 0 &&
             activeIndex <= courseModulesDetails.length - 1 ? (
@@ -90,7 +89,6 @@ const CourseDetails: React.FC = () => {
             ) : null}
           </div>
         </div>
-      </div>
     </section>
   );
 };

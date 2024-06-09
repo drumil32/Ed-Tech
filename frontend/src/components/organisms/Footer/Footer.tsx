@@ -25,44 +25,8 @@ const Footer: React.FC = () => {
                 </li>
               </ul>
             </div>
-            {/* <div className="social-media">
-              <Link to="/" >Terms of Use</Link>
-              <Link to="/" >Privacy Policy</Link>
-               <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa-brands fa-facebook-f"></i>{" "}
-                <span>Facebook</span>
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa-brands fa-linkedin-in"></i>{" "}
-                <span>LinkedIn</span>
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa-brands fa-instagram"></i>{" "}
-                <span>Instagram</span>
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fa-brands fa-twitter"></i> <span>Twitter</span>
-              </a> 
-            </div> */}
           </div>
         </div>
-        {/* <p className="copyright">Copyright © Fluidesigns Pvt. Ltd.</p> */}
       </div>
     </footer>
   );
