@@ -8,7 +8,7 @@
 .courseContainer {
   width: 100%;
   max-width: 1880px;
-  padding: 2rem .5rem;
+  padding: 2rem 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,87 +59,73 @@
   }
 }
 .container {
+  display: flex;
+  padding: 0 4rem;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10rem;
+}
+
+.headingsContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 650px;
+  padding: 1rem 4rem;
+  gap: 2.5rem;
+
+  .heading {
+    margin: 20px 0;
+    font-size: 2.3rem;
+    padding: 1rem;
+    transition: font-weight 0.3s;
+    opacity: 0.2;
+  }
+
+  .heading.active {
+    opacity: 1;
+    font-weight: bold;
+  }
+}
+
+.infoCardContainer {
+  position: sticky;
+  top: 150px;
+  min-width: 400px;
+  height: max-content;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  padding: 1.5rem 2rem;
+  background-color: white;
+  width: 100%;
+  max-width: 400px;
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
+  color: #363636;
+  border-radius: 0.6rem;
+  box-shadow: 2px 2px 5px 2px #cacaca;
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+  p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
     display: flex;
-    padding: 0 4rem;
-    position: relative;
-    width: 100%;
-    margin-bottom: 10rem;
+    gap: 0.5rem;
   }
-  
-  .headingsContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-    max-width: 650px;
-    padding: 1rem 4rem;
-    gap: 2.5rem;
-  
-    .heading {
-      margin: 20px 0;
-      font-size: 2.3rem;
-      padding: 1rem;
-      transition: font-weight 0.3s;
-      opacity: .2;
-    }
-  
-    .heading.active {
-      opacity: 1;
-      font-weight: bold;
-    }
+  img {
+    width: 100px;
+    height: 120px;
+    align-self: flex-end;
   }
-  
-  .cardContainer {
-    position: relative;
-    max-width: 600px;
-    width: 100%;
-  }
-  
-  .card {
-    position: sticky;
-    // top: 60%;
-    // left: 50%;
-    // transform: translate(10%, -35%);
-    top: 150px;
-    padding: 1.5rem 2rem;
-    background-color: white;
-    width: 100%;
-    max-width: 400px;
-    min-height: 400px;
-    max-height: 400px;
-    display: flex;
-    flex-direction: column;
-      color: #363636;
-      border-radius: .6rem;
-    box-shadow: 2px 2px 5px 2px #cacaca;
-    // @include md-max {
-    //   position: fixed;
-    //   top: auto;
-    //   bottom: 0;
-    //   left: 0;
-    //   transform: translate(0, 0);
-    //   margin: 1rem;
-    //   max-width: calc(100% - 2rem);
-    //   min-height: auto;
-    //   max-height: 300px;
-    // }
-    h2 {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      margin-top: 2rem;
-    }
-    p {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 1.2rem;
-      display: flex;
-      gap: .5rem;
-    }
-    img {
-      width: 100px;
-      height: 120px;
-      align-self: flex-end;
-    }
-  }
-  
+}

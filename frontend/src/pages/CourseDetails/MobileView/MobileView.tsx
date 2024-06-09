@@ -1,0 +1,69 @@
+import React from "react";
+import "./MobileView.scss";
+import courseModulesDetails from "../../../data/courseModluesDetails.json";
+import CourseInfoCard from "../CourseInfoCard/CourseInfoCard";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  EffectCreative
+} from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import 'swiper/css/effect-creative';
+
+const MobileView: React.FC = () => {
+  return (
+    <div className={"courseInfoCarausal"}>
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, EffectCreative]}
+        grabCursor={true}
+        effect={'creative'}
+        creativeEffect={{
+          prev: {
+            shadow: true,
+            origin: 'left center',
+            translate: ['-5%', 0, -200],
+            rotate: [0, 100, 0],
+          },
+          next: {
+            origin: 'right center',
+            translate: ['5%', 0, -200],
+            rotate: [0, -100, 0],
+          },
+        }}
+        loop={true}
+        spaceBetween={50}
+        slidesPerView={1}
+        navigation
+        pagination={{ clickable: true }}
+        // onSwiper={(swiper) => console.log(swiper)}
+        // onSlideChange={() => console.log("slide change")}
+      >
+        {courseModulesDetails.map((module) => {
+          return (
+            <SwiperSlide>
+              <h2 className="slideTitle">{module.title}</h2>
+              <div className={"infoMobileCard"}>
+                <CourseInfoCard
+                  background={module?.background}
+                  src={module?.src}
+                  heading={module?.heading}
+                  topics={module?.topics}
+                />
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </div>
+  );
+};
+
+export default MobileView;
