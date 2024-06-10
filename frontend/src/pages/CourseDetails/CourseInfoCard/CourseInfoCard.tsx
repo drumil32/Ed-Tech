@@ -29,12 +29,15 @@ const CourseInfoCard: React.FC<CourseInfoCardProps> = ({
       }}
     >
       {index === 8 ? (
+          <>
           <Lottie
             animationData={awardData}
             loop
             play
             style={{ width: 250, height: 250 }}
           />
+          <h3 className={styles.greets}>Congratulation 🎉</h3>
+          </>
       ) : (
         <>
           {src && <img src={src} alt="courses" />}
