@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import courseModulesDetails from "../../../data/courseModluesDetails.json";
 import classNames from "classnames";
 import CourseInfoCard from "../CourseInfoCard/CourseInfoCard";
+import { SafeHtmlComponent } from "../../../components/molecule/Carausal/Carausal";
 
 const ScrollComponent: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -42,18 +43,21 @@ const ScrollComponent: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.headingsContainer}>
-        {courseModulesDetails.map((module, index) => (
-          <div
-            key={index}
-            ref={(el) => (headingRefs.current[index] = el)}
-            className={classNames(
-              styles.heading,
-              index === activeIndex && styles.active
-            )}
-          >
-            {module.title}
-          </div>
-        ))}
+        {courseModulesDetails.map((module, index) => {
+          const sanitizedHtml = SafeHtmlComponent(module.title as string);
+          return (
+            <div
+              key={index}
+              ref={(el) => (headingRefs.current[index] = el)}
+              className={classNames(
+                styles.heading,
+                index === activeIndex && styles.active
+              )}
+            >
+              {sanitizedHtml}
+            </div>
+          );
+        })}
       </div>
       <div className={styles.infoCardContainer}>
         {activeIndex !== null &&
@@ -64,6 +68,7 @@ const ScrollComponent: React.FC = () => {
             src={courseModulesDetails[activeIndex]?.src}
             heading={courseModulesDetails[activeIndex].heading}
             topics={courseModulesDetails[activeIndex].topics}
+            index={activeIndex}
           />
         ) : null}
       </div>

@@ -4,11 +4,15 @@ import { WhyChooseUs } from "../../../types/types";
 import logo from "/assests/logo.svg";
 import { SafeHtmlComponent } from "../Carausal/Carausal";
 
-const FeaturesCard: React.FC<WhyChooseUs> = (
-  { cardDetails, flipedCard, setFlipedCard }
-) => {
+const FeaturesCard: React.FC<WhyChooseUs> = ({
+  cardDetails,
+  flipedCard,
+  setFlipedCard,
+}) => {
   const flip = () => {
-    setFlipedCard(prevState => prevState == cardDetails.id ? '' : cardDetails.id);
+    setFlipedCard((prevState) =>
+      prevState == cardDetails.id ? "" : cardDetails.id
+    );
   };
   return (
     <div className="page-container" onClick={flip}>
@@ -22,17 +26,16 @@ const FeaturesCard: React.FC<WhyChooseUs> = (
 };
 
 const BlogCard: React.FC<WhyChooseUs> = ({
-  cardDetails: { title, subtitle, detail, clipArt, backGroundColor, id }, flipedCard
+  cardDetails: { title, subtitle, detail, clipArt, backGroundColor, id },
+  flipedCard,
 }) => {
-
   return (
-    <div className={`card-container${flipedCard == id ? " flipped" : ""}`} >
+    <div className={`card-container${flipedCard == id ? " flipped" : ""}`}>
       <Front
         title={title}
         subtitle={subtitle}
         clipArt={clipArt}
         backGroundColor={backGroundColor}
-
       />
       <Back detail={detail} />
     </div>
@@ -60,7 +63,7 @@ const Front: React.FC<FrontProps> = ({
         title={title}
         subtitle={subtitle}
         clipArt={clipArt}
-      // flip={flip}
+        // flip={flip}
       />
     </div>
   );
@@ -74,12 +77,12 @@ interface BackProps {
 const Back: React.FC<BackProps> = ({ detail }) => {
   return (
     <div className="back">
+      <div className="card-back-logo">
+        <img src={logo} width={50} height={50} alt="" />
+      </div>
       <p>{detail}</p>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <div className="card-back-logo">
-          <img src={logo} width={50} height={50} alt="" />
-        </div>
-        <div className="card-back-btn" >
+        <div className="card-back-btn">
           <img
             src="https://assets-global.website-files.com/63e7894221f7cc20e07be64b/63e8f9581eb4ad5b75eaf599_Vector.svg"
             loading="lazy"

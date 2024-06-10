@@ -17,6 +17,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import 'swiper/css/effect-creative';
+import { SafeHtmlComponent } from "../../../components/molecule/Carausal/Carausal";
 
 const MobileView: React.FC = () => {
   return (
@@ -38,7 +39,7 @@ const MobileView: React.FC = () => {
             rotate: [0, -100, 0],
           },
         }}
-        loop={true}
+        // loop={true}
         spaceBetween={50}
         slidesPerView={1}
         navigation
@@ -46,16 +47,18 @@ const MobileView: React.FC = () => {
         // onSwiper={(swiper) => console.log(swiper)}
         // onSlideChange={() => console.log("slide change")}
       >
-        {courseModulesDetails.map((module) => {
+        {courseModulesDetails.map((module, index) => {
+          const sanitizedHtml = SafeHtmlComponent(module.title as string);
           return (
             <SwiperSlide>
-              <h2 className="slideTitle">{module.title}</h2>
+              <h2 className="slideTitle">{sanitizedHtml}</h2>
               <div className={"infoMobileCard"}>
                 <CourseInfoCard
                   background={module?.background}
                   src={module?.src}
                   heading={module?.heading}
                   topics={module?.topics}
+                  index={index}
                 />
               </div>
             </SwiperSlide>
