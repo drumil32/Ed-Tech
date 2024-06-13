@@ -59,11 +59,11 @@ app.post('/book-live-class', validateName, validatePhoneNumber, validateDate, va
         // Save the document to the database
         await bookLiveClassData.save();
     } catch (err) {
-        next(err);
+        return next(err);
     }
 
     // Further logic can be added here
-    res.status(200).json({ message: 'Session is booked!', data: { name, phoneNumber, date, time } });
+    return res.status(200).json({ message: 'Session is booked!', data: { name, phoneNumber, date, time } });
 });
 
 app.post('/request-a-callback', validateName, validatePhoneNumber, async (req: Request, res: Response, next: NextFunction) => {
