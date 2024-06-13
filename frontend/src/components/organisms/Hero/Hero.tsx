@@ -6,8 +6,8 @@ import Carausal from "../../molecule/Carausal/Carausal";
 import { FaUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 import axios from "axios";
-import Lottie from "react-lottie-player";
-import loaderData from "../../../assets/Lottie/loader.json";
+// import Lottie from "react-lottie-player";
+// import loaderData from "/assets/Lottie/loader.json";
 import carausalData from "../../../data/carausalData.json";
 
 export interface ProfileData {
@@ -164,12 +164,13 @@ const Hero: React.FC = () => {
               </div>
               {isLoading ? (
                 <div className="form-loader">
-                  <Lottie
+                  {/* <Lottie
                     loop
                     animationData={loaderData}
                     play
                     style={{ width: 40, height: 40 }}
-                  />
+                  /> */}
+                  <img src="/assests/loader_compressed.gif" alt="loader" />
                 </div>
               ) : (
                 <Button

@@ -1,7 +1,7 @@
 [
     {
         "heading": "Module 1",
-        "title": "Tech Fundamentals and Logical Reasoning",
+        "title": "Tech Fundamentals and </br> Logical Reasoning",
         "topics": [
             "Master Logical Reasoning and First Principles",
             "Learn useful Google & Adobe Tools",
@@ -12,7 +12,7 @@
     },
     {
         "heading": "Module 2",
-        "title": "Intro to Programming and Data Structures",
+        "title": "Intro to Programming and </br> Data Structures",
         "topics": [
             "Learn a programming language like Java/C++",
             "Ace basics of Data Structures",
@@ -23,7 +23,7 @@
     },
     {
         "heading": "Module 3",
-        "title": "Advanced Data Structures and Algorithms",
+        "title": "Advanced Data Structures </br> and Algorithms",
         "topics": [
             "Explore Trees, Graphs, & Dynamic Programming",
             "Delve into Searching and Sorting Algorithms",
@@ -34,7 +34,7 @@
     },
     {
         "heading": "Module 4",
-        "title": "Web Development Essentials and Kickstarting",
+        "title": "Web Development Essentials </br> and Kickstarting",
         "topics": [
             "Learn in-depth Website Development concepts",
             "Master HTML, CSS, and Javascript",
@@ -45,7 +45,7 @@
     },
     {
         "heading": "Module 5",
-        "title": "Frontend Dev with React",
+        "title": "Frontend Development </br> with React",
         "topics": [
             "Become proficient in React with Express.js",
             "Learn concepts like React Router & state management",
@@ -56,7 +56,7 @@
     },
     {
         "heading": "Module 6",
-        "title": "Redux and Backend Dev",
+        "title": "Backend Development </br> and Redux",
         "topics": [
             "Learn and integrate React packages like Redux Saga",
             "Know the basics of Internet and API Architecture",
@@ -67,7 +67,7 @@
     },
     {
         "heading": "Module 7",
-        "title": "Backend Integration + Final Project",
+        "title": "Backend Integration and </br> Final Project",
         "topics": [
             "Deep-dive into DB indexing, deployment & cyber-security",
             "Learn concepts like caching & authentication",
@@ -78,7 +78,7 @@
     },
     {
         "heading": "Final Step",
-        "title": "Job Readiness Prep + Internship/Placement",
+        "title": "Job Readiness and </br> Internship Preparation",
         "topics": [
             "MOST IMPORTANT - 1:1 mentorship  for job preparation",
             "In-depth resume building  & multiple mock interviews",
@@ -88,6 +88,6 @@
         "src": "/assests/courseDetailsImages/Module 8.svg"
     },
     {
-        "title": "The Final Step: Placement "
+        "title": "The Final Step: </br>  Placements"
     }
 ]
