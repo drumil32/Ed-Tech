@@ -27,6 +27,62 @@ footer {
       padding: 4rem 1rem;
     }
 
+    .credits {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      padding: 2rem 1rem;
+      background-color: #1e1e1e;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+      h2 {
+        font-size: 1.8rem;
+        text-align: center;
+        max-width: 550px;
+      }
+      .developerImageContainer {
+        width: max-content;
+        position: relative;
+
+        .developer {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          overflow: hidden;
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: all .2s ease-in-out;
+
+            &:hover {
+              border: 2px solid #fff;
+            }
+          }
+        }
+        .mayank {
+          position: relative;
+          right: 1rem;
+          z-index: 2;
+        }
+        .drumil {
+          position: absolute;
+          top: 0;
+          right: -1.2rem;
+          z-index: 1;
+          transition: all .2s ease-in-out;
+
+          &:hover {
+            z-index: 3;
+          }
+        }
+      }
+    }
+
     .information {
       display: flex;
       width: 100%;
@@ -115,16 +171,14 @@ footer {
           // letter-spacing: 2px;
           cursor: pointer;
 
-          
-
-        img {
-          height: 60px;
-          border-radius: 100%;
-          margin-right: 10px;
-          @include md-max {
-            height: 40px;
+          img {
+            height: 60px;
+            border-radius: 100%;
+            margin-right: 10px;
+            @include md-max {
+              height: 40px;
+            }
           }
-        }
 
           @include sm-max {
             // width: 15rem;
