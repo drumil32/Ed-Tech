@@ -97,7 +97,7 @@
   height: max-content;
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .card {
@@ -137,5 +137,9 @@
   .greets{
     font-size: 1.6rem;
     color: #535353;
+    img {
+      width: 30px;
+      height: 30px;
+    }
   }
 }

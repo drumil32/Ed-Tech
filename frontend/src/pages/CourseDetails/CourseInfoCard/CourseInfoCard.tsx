@@ -34,9 +34,9 @@ const CourseInfoCard: React.FC<CourseInfoCardProps> = ({
             animationData={awardData}
             loop
             play
-            style={{ width: 250, height: 250 }}
+            style={{ width: 280, height: 280 }}
           />
-          <h3 className={styles.greets}>Congratulation 🎉</h3>
+          <h3 className={styles.greets}>Congratulations <img src="/assests/icons/party-popper.svg" alt="party bomb" /></h3>
           </>
       ) : (
         <>
