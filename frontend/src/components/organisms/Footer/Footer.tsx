@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="developer mayank"
             >
-              <img src="/assests/developer/mayank.jpg" alt="mayank" />
+              <img src="/assets/developer/mayank.jpg" alt="mayank" />
             </a>
             <a
               href="https://www.linkedin.com/in/drumil-akhenia/"
@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="developer drumil"
             >
-              <img src="/assests/developer/drumil.jpg" alt="drumil" />
+              <img src="/assets/developer/drumil.jpg" alt="drumil" />
             </a>
           </div>
         </div>

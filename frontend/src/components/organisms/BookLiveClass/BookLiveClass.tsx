@@ -161,7 +161,7 @@ const BookLiveClassForm: React.FC = () => {
                   play
                   style={{ width: 40, height: 40 }}
                 /> */}
-                <img src="/assests/loader_compressed.gif" alt="loader" />
+                <img src="/assets/loader_compressed.gif" alt="loader" />
               </div>
             ) : (
               <Button

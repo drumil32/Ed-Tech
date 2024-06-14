@@ -1,7 +1,7 @@
 import React from "react";
 import "./card.scss";
 import { WhyChooseUs } from "../../../types/types";
-import logo from "/assests/logo.svg";
+import logo from "/assets/logo.svg";
 import { SafeHtmlComponent } from "../Carausal/Carausal";
 
 const FeaturesCard: React.FC<WhyChooseUs> = ({

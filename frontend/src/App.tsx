@@ -47,7 +47,7 @@ function App() {
   return (
     <div className="App">
       {initialLoader ? (
-        <img className="initialLoader" src="/assests/loader_compressed.gif" alt="loader" />
+        <img className="initialLoader" src="/assets/loader_compressed.gif" alt="loader" />
       ) : (
         <RouterProvider router={router} />
       )}

@@ -5,7 +5,7 @@
         "college": "IIT Delhi",
         "instagram": "",
         "linkedin": "https://www.linkedin.com/in/vaibhavgupta387/",
-        "profilePicture":"/assests/ourTeam/vaibhav_gupta.png"
+        "profilePicture":"/assets/ourTeam/vaibhav_gupta.png"
     },
     {
         "name": "NAMAN GUPTA",
@@ -13,7 +13,7 @@
         "college": "BITS Pilani",
         "instagram": "",
         "linkedin": "https://www.linkedin.com/in/naman-gupta-247548143/",
-        "profilePicture":"/assests/ourTeam/naman_gupta.png"
+        "profilePicture":"/assets/ourTeam/naman_gupta.png"
     },
     {
         "name":"HARIHAR MENON",
@@ -21,6 +21,6 @@
         "college":"BITS Goa",
         "instagram":"",
         "linkedin":"https://www.linkedin.com/in/harihar-menon/",
-        "profilePicture":"/assests/ourTeam/harihar_menon.png"
+        "profilePicture":"/assets/ourTeam/harihar_menon.png"
     }
 ]

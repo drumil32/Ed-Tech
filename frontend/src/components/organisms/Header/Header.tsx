@@ -3,7 +3,7 @@ import "./style.scss";
 import MobileNavbar from "./MobileNavbar";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
-import logo from "/assests/logo.svg";
+import logo from "/assets/logo.svg";
 import { useMedia } from "react-use";
 
 const Header: React.FC = () => {

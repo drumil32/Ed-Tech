@@ -8,7 +8,7 @@
             "Learn & Leverage AI Tools in coding"
         ],
         "background": "linear-gradient(320deg, #AB8FFE  0%, #ECE6FE 85%)",
-        "src": "/assests/courseDetailsImages/Module 1.svg"
+        "src": "/assets/courseDetailsImages/Module 1.svg"
     },
     {
         "heading": "Module 2",
@@ -19,7 +19,7 @@
             "Learn  Recursion and Backtracking"
         ],
         "background": "linear-gradient(320deg, #B2E0FF 0%, #F2FAFF 85%)",
-        "src": "/assests/courseDetailsImages/Module 2.svg"
+        "src": "/assets/courseDetailsImages/Module 2.svg"
     },
     {
         "heading": "Module 3",
@@ -30,7 +30,7 @@
             "Apply the concepts in a project"
         ],
         "background": "linear-gradient(320deg, #ffea82  0%, #FFFCEF 85%)",
-        "src": "/assests/courseDetailsImages/Module 3.svg"
+        "src": "/assets/courseDetailsImages/Module 3.svg"
     },
     {
         "heading": "Module 4",
@@ -41,7 +41,7 @@
             "Apply the knowledge in a small project"
         ],
         "background": "linear-gradient(320deg, #e5ff82 0%, #FAFFE8 85%)",
-        "src": "/assests/courseDetailsImages/Module 4.svg"
+        "src": "/assets/courseDetailsImages/Module 4.svg"
     },
     {
         "heading": "Module 5",
@@ -52,7 +52,7 @@
             "Make your personalized portfolio"
         ],
         "background": "linear-gradient(320deg, #a6ff8f 0%, #F1FFEE 85%)",
-        "src": "/assests/courseDetailsImages/Module 5.svg"
+        "src": "/assets/courseDetailsImages/Module 5.svg"
     },
     {
         "heading": "Module 6",
@@ -63,7 +63,7 @@
             "Dive into  SQL and NoSQL databases"
         ],
         "background": "linear-gradient(320deg, #7bffd1 0%, #E4FFF5 85%)",
-        "src": "/assests/courseDetailsImages/Module 6.svg"
+        "src": "/assets/courseDetailsImages/Module 6.svg"
     },
     {
         "heading": "Module 7",
@@ -74,7 +74,7 @@
             "Build and deploy  your First Website"
         ],
         "background": "linear-gradient(320deg, #78e8ff 0%, #EDFCFF 85%)",
-        "src": "/assests/courseDetailsImages/Module 7.svg"
+        "src": "/assets/courseDetailsImages/Module 7.svg"
     },
     {
         "heading": "Final Step",
@@ -85,7 +85,7 @@
             "Gain industry exposure with an  internship"
         ],
         "background": "linear-gradient(320deg, #7884ff 0%, #DBDEFF 85%)",
-        "src": "/assests/courseDetailsImages/Module 8.svg"
+        "src": "/assets/courseDetailsImages/Module 8.svg"
     },
     {
         "title": "The Final Step: </br>  Placements"
