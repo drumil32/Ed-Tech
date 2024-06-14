@@ -65,12 +65,12 @@ const Hero: React.FC = () => {
     setLoading(true);
     const date =
       timeSlot === 0
-        ? "25-05-2024"
+        ? null
         : timeSlot === 1
           ? "15-06-2023"
           : "22-06-2023";
     const time =
-      timeSlot === 0 ? "09:30" : timeSlot === 1 ? "11:00 AM" : "04:00 PM";
+      timeSlot === 0 ? null : timeSlot === 1 ? "11:00 AM" : "04:00 PM";
 
     const data = {
       name: inputName,

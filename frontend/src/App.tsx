@@ -6,9 +6,15 @@ import FAQs from "./pages/FAQs/FAQs";
 import Home from "./pages/Home/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import OurValues from "./pages/OurValues/OurValues";
+import { useEffect, useState } from "react";
 // import AboutUs from "./components/organisms/AboutUs/AboutUs";
 
 function App() {
+  const [initialLoader, setInitialLoader] = useState(true);
+  useEffect(() => {
+    setTimeout(() => setInitialLoader(false), 3_000);
+  }, []);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -28,19 +34,21 @@ function App() {
         },
         {
           path: "/course-details",
-          element: <CourseDetails/>
+          element: <CourseDetails />
         },
         {
           path: "/values",
-          element: <OurValues/>
+          element: <OurValues />
         }
       ],
     },
   ]);
+
   return (
-    <div className="App">
-      <RouterProvider router={router} />
-    </div>
+    initialLoader ? <img src="/assests/loader_compressed.gif" alt="loader" /> :
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
   );
 }
 
