@@ -8,6 +8,7 @@ import axios from "axios";
 import demoSessionSchedule from "../../../data/demoSessionSchedule.json";
 import { toast } from 'react-toastify';
 import { useFormContext } from "../../../context/formContext";
+import restEndPoints from "../../../data/restEndPoints.json";
 
 export interface ProfileData {
   image: string;
@@ -84,7 +85,7 @@ const BookLiveClassForm: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/book-live-class",
+        `${import.meta.env.VITE_FRONTEND_BASE_URL}/${restEndPoints.bookALiveClass}`,
         data
       );
       console.log("Response:", response.data);

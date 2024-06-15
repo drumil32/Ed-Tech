@@ -10,6 +10,7 @@ import Textarea from "../../components/atoms/TextArea/TextArea";
 import axios from "axios";
 import contactDetails from "../.../../../data/contactDetails.json";
 import { toast } from "react-toastify";
+import restEndPoints from "../../data/restEndPoints.json";
 
 const ContactUs: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
@@ -82,7 +83,7 @@ const ContactUs: React.FC = () => {
 
     try {
       // USE ENV VARIABLE here with name BACKEND_URL
-      const response = await axios.post('http://localhost:3000/request-a-callback', data);
+      const response = await axios.post(`${import.meta.env.VITE_FRONTEND_BASE_URL}/${restEndPoints.requestACallback}`, data);
       console.log('Response:', response.data);
       setFormSubmitted(true);
       toast.success("We will connect you soon!");
