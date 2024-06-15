@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 import { nanoid } from "nanoid";
 // import footerLogo from '../../../assets/images/footerLogo.svg';
-import logo from "/assests/logo.svg";
+import logo from "/assets/logo.svg";
 import contactDetails from "../../../data/contactDetails.json"
 
 const ContactInfo: React.FC = () => {

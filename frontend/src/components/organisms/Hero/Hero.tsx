@@ -10,6 +10,7 @@ import axios from "axios";
 // import loaderData from "/assets/Lottie/loader.json";
 import carausalData from "../../../data/carausalData.json";
 import demoSessionSchedule from "../../../data/demoSessionSchedule.json";
+import { toast } from "react-toastify";
 
 export interface ProfileData {
   image: string;
@@ -41,6 +42,9 @@ const Hero: React.FC = () => {
     }
     if (!namePattern.test(value)) {
       return "Name can only contain alphabets and spaces.";
+    }
+    if( value.trim().length>50 ){
+      return "Name can not have more than 50 characters.";
     }
     return null;
   };
@@ -74,8 +78,8 @@ const Hero: React.FC = () => {
       timeSlot === 0 ? null : timeSlot === 1 ? demoSessionSchedule[0].time : demoSessionSchedule[1].time;
 
     const data = {
-      name: inputName,
-      phoneNumber: inputNumber,
+      name: inputName.trim(),
+      phoneNumber: inputNumber.trim(),
       date: date,
       time: time,
     };
@@ -87,8 +91,10 @@ const Hero: React.FC = () => {
       );
       console.log("Response:", response.data);
       setFormSubmitted(true);
+      toast.success("You have successfully booked class.");
     } catch (error) {
       console.error("There was an error making the request:", error);
+      toast.error("Some went wrong. please try again later.");
     }
     finally {
       setLoading(false);
@@ -176,7 +182,7 @@ const Hero: React.FC = () => {
                 </div>
               ) : (
                 <Button
-                  text="Book a Live Class for Free"
+                  text={formSubmitted ? "You have Booked Class!": "Book a Live Class for Free"}
                   style={{ width: "100%", marginTop: "0.8rem" }}
                   disabled={formSubmitted}
                 />

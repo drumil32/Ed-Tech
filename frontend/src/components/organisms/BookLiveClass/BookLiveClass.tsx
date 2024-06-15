@@ -5,6 +5,8 @@ import Button from "../../atoms/Button/Button";
 import { FaUser } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import axios from "axios";
+import demoSessionSchedule from "../../../data/demoSessionSchedule.json";
+import { toast } from 'react-toastify';
 // import Lottie from "react-lottie-player";
 // import loaderData from "/assets/Lottie/loader.json";
 // import profileImage from "../../../assets/images/carousal/profileImage.jpeg";
@@ -40,6 +42,9 @@ const BookLiveClassForm: React.FC = () => {
     if (!namePattern.test(value)) {
       return "Name can only contain alphabets and spaces.";
     }
+    if (value.trim().length > 50) {
+      return "Name can not have more than 50 characters.";
+    }
     return null;
   };
   const validatePhoneNumber = (value: string): string | null => {
@@ -62,18 +67,20 @@ const BookLiveClassForm: React.FC = () => {
     }
 
     setLoading(true);
+
     const date =
       timeSlot === 0
-        ? "15-06-2023"
+        ? null
         : timeSlot === 1
-        ? "15-06-2023"
-        : "22-06-2023";
+          ? demoSessionSchedule[0]["date-be"]
+          : demoSessionSchedule[1]["date-be"];
+
     const time =
-      timeSlot === 0 ? "09:30" : timeSlot === 1 ? "11:00 AM" : "04:00 PM";
+      timeSlot === 0 ? null : timeSlot === 1 ? demoSessionSchedule[0].time : demoSessionSchedule[1].time;
 
     const data = {
-      name: inputName,
-      phoneNumber: inputNumber,
+      name: inputName.trim(),
+      phoneNumber: inputNumber.trim(),
       date: date,
       time: time,
     };
@@ -85,9 +92,10 @@ const BookLiveClassForm: React.FC = () => {
       );
       console.log("Response:", response.data);
       setFormSubmitted(true);
-      setLoading(false);
+      toast.success("You have successfully booked class.");
     } catch (error) {
-      console.error("There was an error making the request:", error);
+      toast.error("Some went wrong. please try again later.");
+    } finally {
       setLoading(false);
     }
   };
@@ -98,7 +106,7 @@ const BookLiveClassForm: React.FC = () => {
         <div className="formContainer">
           <h2>Book a Live Class</h2>
           <h3>
-            We are planning a meet-up in <span> Lucknow!</span>
+            We are planning a meet-up in <span> Lucknow! 💯</span>
           </h3>
           <form onSubmit={handleSubmit} style={{ margin: "auto" }}>
             <Input
@@ -138,8 +146,8 @@ const BookLiveClassForm: React.FC = () => {
                     (!formSubmitted && setTimeSlot(timeSlot === 1 ? null : 1));
                 }}
               >
-                <p>15 June</p>
-                <p>11:00 AM</p>
+                <p>{demoSessionSchedule[0]["date-fe"]}</p>
+                <p>{demoSessionSchedule[0].time}</p>
               </div>
 
               <div
@@ -149,8 +157,8 @@ const BookLiveClassForm: React.FC = () => {
                     (!formSubmitted && setTimeSlot(timeSlot === 2 ? null : 2));
                 }}
               >
-                <p>22 June</p>
-                <p>4:00 PM</p>
+                <p>{demoSessionSchedule[1]["date-fe"]}</p>
+                <p>{demoSessionSchedule[1].time}</p>
               </div>
             </div>
             {isLoading ? (
@@ -165,7 +173,7 @@ const BookLiveClassForm: React.FC = () => {
               </div>
             ) : (
               <Button
-                text="Book a Live Class"
+                text={formSubmitted ? "You have Booked Class!" : "Book a Live Class for Free"}
                 style={{ width: "100%", marginTop: "0.8rem" }}
                 disabled={formSubmitted}
               />

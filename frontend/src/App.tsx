@@ -7,6 +7,8 @@ import Home from "./pages/Home/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import OurValues from "./pages/OurValues/OurValues";
 import { useEffect, useState } from "react";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import AboutUs from "./components/organisms/AboutUs/AboutUs";
 
 function App() {
@@ -51,6 +53,8 @@ function App() {
       ) : (
         <RouterProvider router={router} />
       )}
+      <ToastContainer />
+
     </div>
   );
 }

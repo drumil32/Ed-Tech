@@ -9,12 +9,17 @@ import { FaPhoneAlt } from "react-icons/fa";
 import Textarea from "../../components/atoms/TextArea/TextArea";
 import axios from "axios";
 import contactDetails from "../.../../../data/contactDetails.json";
+import { toast } from "react-toastify";
 
 const ContactUs: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
-  const [inputNumber, setInputNumber] = useState<number | string>("");
+  const [inputNumber, setInputNumber] = useState<string>("");
   const [messageText, setMessageText] = useState<string>("");
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [nameError, setNameError] = useState<string | null>(null);
+  const [numberError, setNumberError] = useState<string | null>(null);
+  const [messageTextError, setMessageTextError] = useState<string | null>(null);
+
   const contactData = [
     {
       title: "Phone",
@@ -27,8 +32,45 @@ const ContactUs: React.FC = () => {
       icon: <MdOutlineEmail />,
     },
   ];
+  const validateName = (value: string): string | null => {
+    const namePattern = /^[A-Za-z\s]+$/;
+    if (value.trim().length < 3) {
+      return "Name must be at least 3 characters long.";
+    }
+    if (!namePattern.test(value)) {
+      return "Name can only contain alphabets and spaces.";
+    }
+    if (value.trim().length > 50) {
+      return "Name can not have more than 50 characters.";
+    }
+    return null;
+  };
+  const validatePhoneNumber = (value: string): string | null => {
+    const phoneNumberPattern = /^[0-9]{10}$/;
+    if (!phoneNumberPattern.test(value)) {
+      return "Please enter a valid 10-digit mobile number.";
+    }
+    return null;
+  };
+  const validateMessage = (value: string): string | null => {
+    if (value.trim().length > 200) {
+      return "Please enter a valid message.";
+    }
+    return null;
+  }
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const nameError = validateName(inputName);
+    const numberError = validatePhoneNumber(inputNumber);
+    const messageTextError = validateMessage(messageText);
+    setNameError(nameError);
+    setNumberError(numberError);
+    setMessageTextError(messageTextError);
+
+    if (nameError || numberError || messageTextError) {
+      return;
+    }
 
     const data = {
       name: inputName,
@@ -40,8 +82,9 @@ const ContactUs: React.FC = () => {
       const response = await axios.post('http://localhost:3000/request-a-callback', data);
       console.log('Response:', response.data);
       setFormSubmitted(true);
+      toast.success("We will connect you soon!");
     } catch (error) {
-      console.error('There was an error making the request:', error);
+      toast.error("Some went wrong. please try again later.");
     }
   };
   return (
@@ -79,6 +122,7 @@ const ContactUs: React.FC = () => {
               placeholder="Enter your name"
               required={true}
               value={inputName}
+              errorMessage={nameError}
               onChange={(e) => setInputName(e.target.value)}
             />
             <Input
@@ -89,6 +133,7 @@ const ContactUs: React.FC = () => {
               pattern="[0-9]{10}"
               placeholder="10 digits Mobile Number"
               value={inputNumber}
+              errorMessage={numberError}
               onChange={(e) => setInputNumber(e.target.value)}
             />
             <Textarea
