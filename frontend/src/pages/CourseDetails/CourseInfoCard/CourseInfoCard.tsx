@@ -36,7 +36,7 @@ const CourseInfoCard: React.FC<CourseInfoCardProps> = ({
             play
             style={{ width: 280, height: 280 }}
           />
-          <h3 className={styles.greets}>Congratulations <img src="/assests/icons/party-popper.svg" alt="party bomb" /></h3>
+          <h3 className={styles.greets}>Congratulations <img src="/assets/icons/party-popper.svg" alt="party bomb" /></h3>
           </>
       ) : (
         <>

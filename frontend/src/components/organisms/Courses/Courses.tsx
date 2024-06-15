@@ -9,7 +9,7 @@ const Courses: React.FC = () => {
         <h5 className={styles.sectionTitle}>Course Overview</h5>
         <p className={styles.section_sub_title}>
           <span>In-Classroom </span>
-          MERN-Stack Web Development Program
+          MERN Full-Stack Web Development Course
         </p>
         <div className={styles.ag_format_container}>
           <div className={styles.ag_courses_box}>
@@ -20,17 +20,17 @@ const Courses: React.FC = () => {
                 <div className={styles.ag_courses_item_title}>CURRICULUM</div>
                 <div className={styles.ag_courses_item_date_box}>
                   <p className={styles.ag_courses_item_date}>
-                    <span>+ </span>Logical reasining and DSA
+                    <span>+ </span>Logical reasoning and DSA
                   </p>
                 </div>
                 <div className={styles.ag_courses_item_date_box}>
                   <p className={styles.ag_courses_item_date}>
-                    <span>+ </span>Frontend with react.js
+                    <span>+ </span>Frontend with React.js
                   </p>
                 </div>
                 <div className={styles.ag_courses_item_date_box}>
                   <p className={styles.ag_courses_item_date}>
-                    <span>+ </span>Backend with node.js
+                    <span>+ </span>Backend with Node.js
                   </p>
                 </div>
                 <div className={styles.ag_courses_item_date_box}>

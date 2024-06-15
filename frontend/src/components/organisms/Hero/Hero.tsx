@@ -87,9 +87,10 @@ const Hero: React.FC = () => {
       );
       console.log("Response:", response.data);
       setFormSubmitted(true);
-      setLoading(false);
     } catch (error) {
       console.error("There was an error making the request:", error);
+    }
+    finally {
       setLoading(false);
     }
   };
@@ -171,11 +172,11 @@ const Hero: React.FC = () => {
                     play
                     style={{ width: 40, height: 40 }}
                   /> */}
-                  <img src="/assests/loader_compressed.gif" alt="loader" />
+                  <img src="/assets/loader_compressed.gif" alt="loader" />
                 </div>
               ) : (
                 <Button
-                  text="Book a Live Class"
+                  text="Book a Live Class for Free"
                   style={{ width: "100%", marginTop: "0.8rem" }}
                   disabled={formSubmitted}
                 />

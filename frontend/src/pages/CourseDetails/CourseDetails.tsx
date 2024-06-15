@@ -12,7 +12,7 @@ const CourseDetails: React.FC = () => {
         <h5 className={styles.sectionTitle}>Course Overview</h5>
         <p className={styles.section_sub_title}>
           <span>In-Classroom </span>
-          MERN-Stack Web Development Program
+           Full-Stack Web Development Program
         </p>
         {isSmallScreen ? <MobileView /> : <ScrollComponent />}
       </div>

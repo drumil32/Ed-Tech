@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 function App() {
   const [initialLoader, setInitialLoader] = useState(true);
   useEffect(() => {
-    setTimeout(() => setInitialLoader(false), 3_000);
+    setTimeout(() => setInitialLoader(false), 2000);
   }, []);
 
   const router = createBrowserRouter([
@@ -34,21 +34,24 @@ function App() {
         },
         {
           path: "/course-details",
-          element: <CourseDetails />
+          element: <CourseDetails />,
         },
         {
           path: "/values",
-          element: <OurValues />
-        }
+          element: <OurValues />,
+        },
       ],
     },
   ]);
 
   return (
-    initialLoader ? <img src="/assests/loader_compressed.gif" alt="loader" /> :
-      <div className="App">
+    <div className="App">
+      {initialLoader ? (
+        <img className="initialLoader" src="/assets/loader_compressed.gif" alt="loader" />
+      ) : (
         <RouterProvider router={router} />
-      </div>
+      )}
+    </div>
   );
 }
 
