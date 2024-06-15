@@ -37,10 +37,10 @@ const BookLiveClassForm: React.FC = () => {
       return "Name must be at least 3 characters long.";
     }
     if (!namePattern.test(value)) {
-      return "Name can only contain alphabets and spaces.";
+      return "Name should only contain alphabets and spaces.";
     }
     if (value.trim().length > 50) {
-      return "Name can not have more than 50 characters.";
+      return "Name should not have more than 50 characters.";
     }
     return null;
   };

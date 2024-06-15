@@ -26,11 +26,13 @@ const ContactUs: React.FC = () => {
       title: "Phone",
       value: contactDetails.phone,
       icon: <FiPhoneCall />,
+      link: `tel:${contactDetails.phone}`
     },
     {
       title: "Email",
       value: contactDetails.email,
       icon: <MdOutlineEmail />,
+      link: `mailto:${contactDetails.email}`
     },
   ];
   const validateName = (value: string): string | null => {
@@ -99,13 +101,15 @@ const ContactUs: React.FC = () => {
           {/* <p>Let us know what you’re after.</p> */}
           {contactData.map((data, i) => {
             return (
-              <div key={i} className={styles.contactDetalsBox}>
-                <div className={styles.icon}>{data.icon}</div>
-                <div className={styles.contactDetals}>
-                  <h3>{data.title}</h3>
-                  <p>{data.value}</p>
+              <a href={data.link}>
+                <div key={i} className={styles.contactDetalsBox}>
+                  <div className={styles.icon}>{data.icon}</div>
+                  <div className={styles.contactDetals}>
+                    <h3>{data.title}</h3>
+                    <p>{data.value}</p>
+                  </div>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>
@@ -147,7 +151,7 @@ const ContactUs: React.FC = () => {
             ) : (
               <Button
                 text={formSubmitted ? "Thank You" : "Submit"}
-                style={{ width: "100%"}}
+                style={{ width: "100%" }}
                 disabled={formSubmitted}
               />
             )}

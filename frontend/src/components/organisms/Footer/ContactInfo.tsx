@@ -10,15 +10,18 @@ const ContactInfo: React.FC = () => {
   interface ContactInfo {
     icon: JSX.Element;
     title: string;
+    link: string;
   }
   const contactInfoArray: ContactInfo[] = [
     {
       icon: <i className="fa-solid fa-phone-volume"></i>,
-      title: `${contactDetails.phone}`
+      title: `${contactDetails.phone}`,
+      link: `tel:${contactDetails.phone}`
     },
     {
       icon: <i className="fa-regular fa-envelope"></i>,
-      title: `${contactDetails.email}`
+      title: `${contactDetails.email}`,
+      link: `mailto:${contactDetails.email}`
     }
   ];
 
@@ -32,10 +35,12 @@ const ContactInfo: React.FC = () => {
       <ul>
         {
           contactInfoArray.map((item) => (
-            <li key={nanoid()}>
-              <span>{item.icon}</span>
-              <span>{item.title}</span>
-            </li>
+            <a href={item.link}>
+              <li key={nanoid()}>
+                <span>{item.icon}</span>
+                <span>{item.title}</span>
+              </li>
+            </a>
           ))
         }
       </ul>
