@@ -9,6 +9,7 @@ import axios from "axios";
 // import Lottie from "react-lottie-player";
 // import loaderData from "/assets/Lottie/loader.json";
 import carausalData from "../../../data/carausalData.json";
+import demoSessionSchedule from "../../../data/demoSessionSchedule.json";
 
 export interface ProfileData {
   image: string;
@@ -67,10 +68,10 @@ const Hero: React.FC = () => {
       timeSlot === 0
         ? null
         : timeSlot === 1
-          ? "15-06-2023"
-          : "22-06-2023";
+          ? demoSessionSchedule[0]["date-be"]
+          : demoSessionSchedule[1]["date-be"];
     const time =
-      timeSlot === 0 ? null : timeSlot === 1 ? "11:00 AM" : "04:00 PM";
+      timeSlot === 0 ? null : timeSlot === 1 ? demoSessionSchedule[0].time : demoSessionSchedule[1].time;
 
     const data = {
       name: inputName,
@@ -146,8 +147,8 @@ const Hero: React.FC = () => {
                         setTimeSlot(timeSlot === 1 ? null : 1));
                   }}
                 >
-                  <p>15 June</p>
-                  <p>11:00 AM</p>
+                  <p>{demoSessionSchedule[0]["date-fe"]}</p>
+                  <p>{demoSessionSchedule[0].time}</p>
                 </div>
 
                 <div
@@ -158,8 +159,8 @@ const Hero: React.FC = () => {
                         setTimeSlot(timeSlot === 2 ? null : 2));
                   }}
                 >
-                  <p>22 June</p>
-                  <p>4:00 PM</p>
+                  <p>{demoSessionSchedule[1]["date-fe"]}</p>
+                  <p>{demoSessionSchedule[1].time}</p>
                 </div>
               </div>
               {isLoading ? (

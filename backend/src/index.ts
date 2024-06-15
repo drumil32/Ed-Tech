@@ -41,7 +41,6 @@ connectDB();
 app.post('/book-live-class', validateName, validatePhoneNumber, validateDate, validateTime, async (req: Request, res: Response, next: NextFunction) => {
     const { name, phoneNumber, date, time } = req.body;
 
-
     try {
         const existingDocument = await liveClassBookingModel.findOne({ name: name.trim(), phoneNumber, date, time });
 
@@ -108,8 +107,8 @@ function validatePhoneNumber(req: Request, res: Response, next: NextFunction) {
 function validateDate(req: Request, res: Response, next: NextFunction) {
     const { date } = req.body;
     // Check if the date matches the required pattern (DD-MM-YYYY)
-        // date is null then we will say it as no preference
-    if ( date && !date.match(/^\d{2}-\d{2}-\d{4}$/)) {
+    // date is null then we will say it as no preference
+    if (date && !date.match(/^\d{2}-\d{2}-\d{4}$/)) {
         return res.status(400).json({ error: 'Invalid date format. Use DD-MM-YYYY.' });
     }
     next();
@@ -119,8 +118,8 @@ function validateDate(req: Request, res: Response, next: NextFunction) {
 function validateTime(req: Request, res: Response, next: NextFunction) {
     const { time } = req.body;
     // Check if the time matches the required pattern (HH:MM AM/PM)
-        // time is null then we will say it as no preference
-    if ( time && !time.match(/^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)) {
+    // time is null then we will say it as no preference
+    if (time && !time.match(/^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)) {
         return res.status(400).json({ error: 'Invalid time format. Use HH:MM AM/PM.' });
     }
     next();
@@ -128,7 +127,7 @@ function validateTime(req: Request, res: Response, next: NextFunction) {
 
 // Error handling middleware
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    res.status(400).send(err.message);
+    res.status(400).json({ error: err.message });
 });
 
 // Start the server
