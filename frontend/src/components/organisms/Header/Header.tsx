@@ -107,13 +107,13 @@ const Header: React.FC = () => {
       <div className="header-highlight">
         {isMobile ? (
           <>
-            <p>Lucknow's top offline MERN-stack program.</p>
-            <p>Hurry, limited seats only!</p>
+            <p>Lucknow's top offline MERN full-stack program.</p>
+            <p>Hurry, limited seats only! ⏰</p>
           </>
         ) : (
           <p>
-            Lucknow's top offline MERN-stack program. Hurry, limited seats
-            only!
+            Lucknow's top offline MERN full-stack program. Hurry, limited seats
+            only! ⏰
           </p>
         )}
       </div>

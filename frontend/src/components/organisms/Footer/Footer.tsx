@@ -9,23 +9,25 @@ const Footer: React.FC = () => {
     <footer>
       <div className="footer">
         <div className="credits">
-          <h2>Built by students of the same program</h2>
+          <h2>This platform is built by students of <br/> the same program!</h2>
           <div className="developerImageContainer">
             <a
-              href="https://www.linkedin.com/in/mayank-gupta-752328173/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="developer mayank"
-            >
-              <img src="/assets/developer/mayank.jpg" alt="mayank" />
-            </a>
-            <a
+            title="Drumil Akhenia"
               href="https://www.linkedin.com/in/drumil-akhenia/"
               target="_blank"
               rel="noopener noreferrer"
               className="developer drumil"
             >
               <img src="/assets/developer/drumil.jpg" alt="drumil" />
+            </a>
+            <a
+            title="Mayank Gupta"
+              href="https://www.linkedin.com/in/mayank-gupta-752328173/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="developer mayank"
+            >
+              <img src="/assets/developer/mayank.jpg" alt="mayank" />
             </a>
           </div>
         </div>
@@ -41,12 +43,12 @@ const Footer: React.FC = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link style={{ color: "white" }} to="/faqs">
+                  <Link style={{ color: "white" }} to="#">
                     Terms of Use
                   </Link>
                 </li>
                 <li>
-                  <Link style={{ color: "white" }} to="/faqs">
+                  <Link style={{ color: "white" }} to="#">
                     Privacy Policy
                   </Link>
                 </li>

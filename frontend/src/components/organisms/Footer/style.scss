@@ -48,33 +48,35 @@ footer {
         position: relative;
 
         .developer {
-          width: 50px;
-          height: 50px;
+          width: 70px;
+          height: 70px;
           border-radius: 50%;
           overflow: hidden;
           img {
-            width: 50px;
-            height: 50px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             border: 2px solid transparent;
-            transition: all .2s ease-in-out;
+            transition: all 0.2s ease-in-out;
 
             &:hover {
-              border: 2px solid #fff;
+              transition: all 0.2s ease-in-out;
+              border: 2px solid #ffd500;
+              transform: scale(1.05);
             }
           }
         }
-        .mayank {
+        .drumil {
           position: relative;
-          right: 1rem;
+          right: 1.8rem;
           z-index: 2;
         }
-        .drumil {
+        .mayank {
           position: absolute;
           top: 0;
-          right: -1.2rem;
+          right: -1.5rem;
           z-index: 1;
-          transition: all .2s ease-in-out;
+          transition: all 0.2s ease-in-out;
 
           &:hover {
             z-index: 3;
@@ -229,6 +231,7 @@ footer {
         width: 100%;
         justify-content: space-between;
         max-width: 350px;
+        margin-top: 1.1rem;
 
         .another-navigation {
           // display: flex;

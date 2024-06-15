@@ -67,8 +67,8 @@ const Hero: React.FC = () => {
       timeSlot === 0
         ? null
         : timeSlot === 1
-          ? "15-06-2023"
-          : "22-06-2023";
+          ? "14-07-2023"
+          : "21-07-2023";
     const time =
       timeSlot === 0 ? null : timeSlot === 1 ? "11:00 AM" : "04:00 PM";
 
@@ -86,9 +86,10 @@ const Hero: React.FC = () => {
       );
       console.log("Response:", response.data);
       setFormSubmitted(true);
-      setLoading(false);
     } catch (error) {
       console.error("There was an error making the request:", error);
+    }
+    finally {
       setLoading(false);
     }
   };
@@ -146,7 +147,7 @@ const Hero: React.FC = () => {
                         setTimeSlot(timeSlot === 1 ? null : 1));
                   }}
                 >
-                  <p>15 June</p>
+                  <p>14 July</p>
                   <p>11:00 AM</p>
                 </div>
 
@@ -158,7 +159,7 @@ const Hero: React.FC = () => {
                         setTimeSlot(timeSlot === 2 ? null : 2));
                   }}
                 >
-                  <p>22 June</p>
+                  <p>21 July</p>
                   <p>4:00 PM</p>
                 </div>
               </div>
@@ -174,7 +175,7 @@ const Hero: React.FC = () => {
                 </div>
               ) : (
                 <Button
-                  text="Book a Live Class"
+                  text="Book a Live Class for Free"
                   style={{ width: "100%", marginTop: "0.8rem" }}
                   disabled={formSubmitted}
                 />

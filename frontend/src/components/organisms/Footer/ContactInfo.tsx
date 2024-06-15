@@ -17,7 +17,7 @@ const ContactInfo: React.FC = () => {
     },
     {
       icon: <i className="fa-regular fa-envelope"></i>,
-      title: "abc@edTech.com"
+      title: "support.sprintup@gmail.com"
     }
   ];
 
@@ -40,7 +40,7 @@ const ContactInfo: React.FC = () => {
       </ul>
       <div className="social-media">
         <a
-          href="#"
+          href="https://www.facebook.com/share/kgr9tTZ6vee82WJF/?mibextid=qi2Omg"
           target="_blank
           "
           rel="noopener noreferrer"
@@ -48,7 +48,7 @@ const ContactInfo: React.FC = () => {
           <i className="fa-brands fa-facebook-f"></i>
         </a>
         <a
-          href="#"
+          href="https://www.instagram.com/sprintup.medialabs/"
           target="_blank
           "
           rel="noopener noreferrer"
@@ -56,7 +56,7 @@ const ContactInfo: React.FC = () => {
           <i className="fa-brands fa-instagram"></i>
         </a>
         <a
-          href="#"
+          href="https://www.linkedin.com/in/sprintup-medialabs-a44379311"
           target="_blank
           "
           rel="noopener noreferrer"

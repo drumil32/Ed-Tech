@@ -22,7 +22,7 @@ const ContactUs: React.FC = () => {
     },
     {
       title: "Email",
-      value: "enquiry@cadecademy.in",
+      value: "support.sprintup@gmail.com",
       icon: <MdOutlineEmail />,
     },
   ];
