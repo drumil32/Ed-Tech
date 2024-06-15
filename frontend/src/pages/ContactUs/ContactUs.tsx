@@ -16,6 +16,7 @@ const ContactUs: React.FC = () => {
   const [inputNumber, setInputNumber] = useState<string>("");
   const [messageText, setMessageText] = useState<string>("");
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(false);
   const [nameError, setNameError] = useState<string | null>(null);
   const [numberError, setNumberError] = useState<string | null>(null);
   const [messageTextError, setMessageTextError] = useState<string | null>(null);
@@ -71,7 +72,7 @@ const ContactUs: React.FC = () => {
     if (nameError || numberError || messageTextError) {
       return;
     }
-
+    setLoading(true);
     const data = {
       name: inputName,
       phoneNumber: inputNumber
@@ -86,17 +87,12 @@ const ContactUs: React.FC = () => {
     } catch (error) {
       toast.error("Some went wrong. please try again later.");
     }
+    finally {
+      setLoading(false);
+    }
   };
   return (
     <div>
-      {/* <div className={styles.heading}>
-        <div className={styles.headingTitle}>
-          <h1>Contact Us</h1>
-          <h4>
-            Home / <span>Contact Us</span>
-          </h4>
-        </div>
-      </div> */}
       <div className={styles.contacts}>
         <div className={styles.left_section}>
           <h2>We would love to hear from you!</h2>
@@ -120,7 +116,7 @@ const ContactUs: React.FC = () => {
               label="Full Name"
               icon={<FaUser />}
               placeholder="Enter your name"
-              required={true}
+              disabled={isLoading || formSubmitted}
               value={inputName}
               errorMessage={nameError}
               onChange={(e) => setInputName(e.target.value)}
@@ -128,11 +124,10 @@ const ContactUs: React.FC = () => {
             <Input
               label="Mobile Number"
               icon={<FaPhoneAlt />}
-              required={true}
               type="tel"
-              pattern="[0-9]{10}"
               placeholder="10 digits Mobile Number"
               value={inputNumber}
+              disabled={isLoading || formSubmitted}
               errorMessage={numberError}
               onChange={(e) => setInputNumber(e.target.value)}
             />
@@ -141,11 +136,20 @@ const ContactUs: React.FC = () => {
               value={messageText}
               onChange={(e) => setMessageText(e.target.value)}
               rows={5}
-              placeholder="Optional Message"
+              disabled={isLoading || formSubmitted}
+              placeholder="Optional Message (max 200 characters)"
+              errorMessage={messageTextError}
             />
-            <Button text="Submit" style={{ width: "100%" }} />
-            {formSubmitted && (
-              <p className="success-message">You'll hear from us shortly</p>
+            {isLoading ? (
+              <div className={styles.form_loader}>
+                <img src="/assets/loader_compressed.gif" alt="loader" />
+              </div>
+            ) : (
+              <Button
+                text={formSubmitted ? "Thank You" : "Submit"}
+                style={{ width: "100%"}}
+                disabled={formSubmitted}
+              />
             )}
           </form>
         </div>
