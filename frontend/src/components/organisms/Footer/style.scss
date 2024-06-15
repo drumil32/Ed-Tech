@@ -201,8 +201,9 @@ footer {
             gap: 1rem;
           }
 
-          li {
+          li, a{
             display: flex;
+            color: var(--secondary-text-color);
             gap: 0.625rem;
             list-style: none;
             font-size: 1rem;
