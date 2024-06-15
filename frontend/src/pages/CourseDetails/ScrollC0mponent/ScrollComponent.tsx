@@ -8,25 +8,37 @@ import { SafeHtmlComponent } from "../../../components/molecule/Carausal/Carausa
 const ScrollComponent: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const headingRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const { innerHeight: height } = window;
-  const newHeight = height / 2 - 70;
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+
+  const calculateNewHeight = (height: number) => {
+    const subtractionValue = height > 965 ? 50 : 40;
+    return height / 2 - subtractionValue;
+  };
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportHeight(window.innerHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = headingRefs.current.indexOf(
-              entry.target as HTMLDivElement
-            );
+            const index = headingRefs.current.indexOf(entry.target as HTMLDivElement);
             setActiveIndex(index);
-            console.log(courseModulesDetails[index]);
           }
         });
       },
       {
         threshold: 0.05,
-        rootMargin: `-${newHeight}px 0px -${newHeight}px 0px`,
+        rootMargin: `-${calculateNewHeight(viewportHeight)}px 0px -${calculateNewHeight(viewportHeight)}px 0px`,
       }
     );
 
@@ -39,7 +51,8 @@ const ScrollComponent: React.FC = () => {
         if (ref) observer.unobserve(ref);
       });
     };
-  }, [newHeight]);
+  }, [viewportHeight]);
+
   return (
     <div className={styles.container}>
       <div className={styles.headingsContainer}>
