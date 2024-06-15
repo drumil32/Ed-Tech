@@ -55,7 +55,7 @@ const ContactUs: React.FC = () => {
   };
   const validateMessage = (value: string): string | null => {
     if (value.trim().length > 200) {
-      return "Please enter a valid message.";
+      return "Message can not have more than 200 characters.";
     }
     return null;
   }
