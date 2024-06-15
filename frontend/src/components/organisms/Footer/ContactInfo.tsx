@@ -3,6 +3,7 @@ import "./style.scss";
 import { nanoid } from "nanoid";
 // import footerLogo from '../../../assets/images/footerLogo.svg';
 import logo from "/assests/logo.svg";
+import contactDetails from "../../../data/contactDetails.json"
 
 const ContactInfo: React.FC = () => {
 
@@ -13,11 +14,11 @@ const ContactInfo: React.FC = () => {
   const contactInfoArray: ContactInfo[] = [
     {
       icon: <i className="fa-solid fa-phone-volume"></i>,
-      title: "+91 8802940317"
+      title: `${contactDetails.phone}`
     },
     {
       icon: <i className="fa-regular fa-envelope"></i>,
-      title: "abc@edTech.com"
+      title: `${contactDetails.email}`
     }
   ];
 
@@ -40,7 +41,7 @@ const ContactInfo: React.FC = () => {
       </ul>
       <div className="social-media">
         <a
-          href="#"
+          href={contactDetails.facebook}
           target="_blank
           "
           rel="noopener noreferrer"
@@ -48,7 +49,7 @@ const ContactInfo: React.FC = () => {
           <i className="fa-brands fa-facebook-f"></i>
         </a>
         <a
-          href="#"
+          href={contactDetails.instagram}
           target="_blank
           "
           rel="noopener noreferrer"
@@ -56,7 +57,7 @@ const ContactInfo: React.FC = () => {
           <i className="fa-brands fa-instagram"></i>
         </a>
         <a
-          href="#"
+          href={contactDetails.linkedin}
           target="_blank
           "
           rel="noopener noreferrer"

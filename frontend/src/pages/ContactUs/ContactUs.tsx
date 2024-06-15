@@ -8,6 +8,7 @@ import { FaUser } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import Textarea from "../../components/atoms/TextArea/TextArea";
 import axios from "axios";
+import contactDetails from "../.../../../data/contactDetails.json";
 
 const ContactUs: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
@@ -17,18 +18,17 @@ const ContactUs: React.FC = () => {
   const contactData = [
     {
       title: "Phone",
-      value: "+91 8802940317",
+      value: contactDetails.phone,
       icon: <FiPhoneCall />,
     },
     {
       title: "Email",
-      value: "enquiry@cadecademy.in",
+      value: contactDetails.email,
       icon: <MdOutlineEmail />,
     },
   ];
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(inputName, inputNumber);
 
     const data = {
       name: inputName,
