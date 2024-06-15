@@ -3,10 +3,9 @@ import "./style.scss";
 import { nanoid } from "nanoid";
 // import footerLogo from '../../../assets/images/footerLogo.svg';
 import logo from "/assets/logo.svg";
-import contactDetails from "../../../data/contactDetails.json"
+import contactDetails from "../../../data/contactDetails.json";
 
 const ContactInfo: React.FC = () => {
-
   interface ContactInfo {
     icon: JSX.Element;
     title: string;
@@ -16,13 +15,13 @@ const ContactInfo: React.FC = () => {
     {
       icon: <i className="fa-solid fa-phone-volume"></i>,
       title: `${contactDetails.phone}`,
-      link: `tel:${contactDetails.phone}`
+      link: `tel:${contactDetails.phone}`,
     },
     {
       icon: <i className="fa-regular fa-envelope"></i>,
       title: `${contactDetails.email}`,
-      link: `mailto:${contactDetails.email}`
-    }
+      link: `mailto:${contactDetails.email}`,
+    },
   ];
 
   return (
@@ -30,19 +29,17 @@ const ContactInfo: React.FC = () => {
       {/* <img className="footer-logo" src={footerLogo} /> */}
       <div className="footer-logo">
         <img src={logo} alt="" />
-        <h2 > SprintUp</h2>
+        <h2> SprintUp</h2>
       </div>
       <ul>
-        {
-          contactInfoArray.map((item) => (
-            <a href={item.link}>
-              <li key={nanoid()}>
-                <span>{item.icon}</span>
-                <span>{item.title}</span>
-              </li>
-            </a>
-          ))
-        }
+        {contactInfoArray.map((item, idx) => (
+          <a key={nanoid()} href={item.link}>
+            <li key={nanoid()}>
+              <span>{item.icon}</span>
+              <span>{item.title}</span>
+            </li>
+          </a>
+        ))}
       </ul>
       <div className="social-media">
         <a
@@ -79,7 +76,7 @@ const ContactInfo: React.FC = () => {
             </a> */}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ContactInfo;
