@@ -9,7 +9,6 @@ import OurValues from "./pages/OurValues/OurValues";
 import { useEffect, useState } from "react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import AboutUs from "./components/organisms/AboutUs/AboutUs";
 
 function App() {
   const [initialLoader, setInitialLoader] = useState(true);
@@ -53,8 +52,17 @@ function App() {
       ) : (
         <RouterProvider router={router} />
       )}
-      <ToastContainer />
-
+      <ToastContainer 
+      position="bottom-center"
+      autoClose={2500}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      />
     </div>
   );
 }

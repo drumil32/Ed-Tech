@@ -11,6 +11,7 @@ import axios from "axios";
 import carausalData from "../../../data/carausalData.json";
 import demoSessionSchedule from "../../../data/demoSessionSchedule.json";
 import { toast } from "react-toastify";
+import { useFormContext } from "../../../context/formContext";
 
 export interface ProfileData {
   image: string;
@@ -29,11 +30,10 @@ export interface SlideData {
 const Hero: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
   const [inputNumber, setInputNumber] = useState<string>("");
-  const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [timeSlot, setTimeSlot] = useState<Number | null>(0);
-  const [isLoading, setLoading] = useState<boolean>(false);
   const [nameError, setNameError] = useState<string | null>(null);
   const [numberError, setNumberError] = useState<string | null>(null);
+  const { isLoading, setLoading, formSubmitted, setFormSubmitted } = useFormContext();
 
   const validateName = (value: string): string | null => {
     const namePattern = /^[A-Za-z\s]+$/;
@@ -140,7 +140,7 @@ const Hero: React.FC = () => {
                   onClick={() => {
                     isLoading ||
                       (!formSubmitted &&
-                        setTimeSlot(timeSlot === 0 ? null : 0));
+                        setTimeSlot(0));
                   }}
                 >
                   <p>No Preference</p>
@@ -151,7 +151,7 @@ const Hero: React.FC = () => {
                   onClick={() => {
                     isLoading ||
                       (!formSubmitted &&
-                        setTimeSlot(timeSlot === 1 ? null : 1));
+                        setTimeSlot(timeSlot === 1 ? 0 : 1));
                   }}
                 >
                   <p>{demoSessionSchedule[0]["date-fe"]}</p>
@@ -163,7 +163,7 @@ const Hero: React.FC = () => {
                   onClick={() => {
                     isLoading ||
                       (!formSubmitted &&
-                        setTimeSlot(timeSlot === 2 ? null : 2));
+                        setTimeSlot(timeSlot === 2 ? 0 : 2));
                   }}
                 >
                   <p>{demoSessionSchedule[1]["date-fe"]}</p>
@@ -186,11 +186,6 @@ const Hero: React.FC = () => {
                   style={{ width: "100%", marginTop: "0.8rem" }}
                   disabled={formSubmitted}
                 />
-              )}
-              {formSubmitted && (
-                <p className="success-message">
-                  Thank you for submitting the form!
-                </p>
               )}
             </form>
           </div>

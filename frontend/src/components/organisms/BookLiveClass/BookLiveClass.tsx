@@ -7,9 +7,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import axios from "axios";
 import demoSessionSchedule from "../../../data/demoSessionSchedule.json";
 import { toast } from 'react-toastify';
-// import Lottie from "react-lottie-player";
-// import loaderData from "/assets/Lottie/loader.json";
-// import profileImage from "../../../assets/images/carousal/profileImage.jpeg";
+import { useFormContext } from "../../../context/formContext";
 
 export interface ProfileData {
   image: string;
@@ -28,11 +26,10 @@ export interface SlideData {
 const BookLiveClassForm: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
   const [inputNumber, setInputNumber] = useState<string>("");
-  const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [timeSlot, setTimeSlot] = useState<Number | null>(0);
-  const [isLoading, setLoading] = useState<boolean>(false);
   const [nameError, setNameError] = useState<string | null>(null);
   const [numberError, setNumberError] = useState<string | null>(null);
+  const { isLoading, setLoading, formSubmitted, setFormSubmitted } = useFormContext();
 
   const validateName = (value: string): string | null => {
     const namePattern = /^[A-Za-z\s]+$/;
@@ -133,7 +130,7 @@ const BookLiveClassForm: React.FC = () => {
                 className={`timeSlot ${timeSlot === 0 && "active"}`}
                 onClick={() => {
                   isLoading ||
-                    (!formSubmitted && setTimeSlot(timeSlot === 0 ? null : 0));
+                    (!formSubmitted && setTimeSlot(0));
                 }}
               >
                 <p>No Preference</p>
@@ -143,7 +140,7 @@ const BookLiveClassForm: React.FC = () => {
                 className={`timeSlot ${timeSlot === 1 && "active"}`}
                 onClick={() => {
                   isLoading ||
-                    (!formSubmitted && setTimeSlot(timeSlot === 1 ? null : 1));
+                    (!formSubmitted && setTimeSlot(timeSlot === 1 ? 0 : 1));
                 }}
               >
                 <p>{demoSessionSchedule[0]["date-fe"]}</p>
@@ -154,7 +151,7 @@ const BookLiveClassForm: React.FC = () => {
                 className={`timeSlot ${timeSlot === 2 && "active"}`}
                 onClick={() => {
                   isLoading ||
-                    (!formSubmitted && setTimeSlot(timeSlot === 2 ? null : 2));
+                    (!formSubmitted && setTimeSlot(timeSlot === 2 ? 0 : 2));
                 }}
               >
                 <p>{demoSessionSchedule[1]["date-fe"]}</p>
@@ -177,11 +174,6 @@ const BookLiveClassForm: React.FC = () => {
                 style={{ width: "100%", marginTop: "0.8rem" }}
                 disabled={formSubmitted}
               />
-            )}
-            {formSubmitted && (
-              <p className="success-message">
-                Thank you for submitting the form!
-              </p>
             )}
           </form>
         </div>
