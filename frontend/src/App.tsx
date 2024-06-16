@@ -52,16 +52,16 @@ function App() {
       ) : (
         <RouterProvider router={router} />
       )}
-      <ToastContainer 
-      position="bottom-center"
-      autoClose={2500}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="light"
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2500}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
       />
     </div>
   );

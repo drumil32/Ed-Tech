@@ -87,15 +87,15 @@ const Hero: React.FC = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_FRONTEND_BASE_URL}/${restEndPoints.bookALiveClass}`,
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.bookALiveClass}`,
         data
       );
       console.log("Response:", response.data);
       setFormSubmitted(true);
-      toast.success("You have successfully booked class.");
+      toast.success("Class successfully booked.");
     } catch (error) {
       console.error("There was an error making the request:", error);
-      toast.error("Some went wrong. please try again later.");
+      toast.error("Something went wrong. Please try again.");
     }
     finally {
       setLoading(false);

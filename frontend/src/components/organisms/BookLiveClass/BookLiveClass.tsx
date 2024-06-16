@@ -85,14 +85,14 @@ const BookLiveClassForm: React.FC = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_FRONTEND_BASE_URL}/${restEndPoints.bookALiveClass}`,
+        `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.bookALiveClass}`,
         data
       );
       console.log("Response:", response.data);
       setFormSubmitted(true);
-      toast.success("You have successfully booked class.");
+      toast.success("Class successfully booked.");
     } catch (error) {
-      toast.error("Some went wrong. please try again later.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -104,7 +104,7 @@ const BookLiveClassForm: React.FC = () => {
         <div className="formContainer">
           <h2>Book a Live Class</h2>
           <h3>
-            We are planning a meet-up in <span> Lucknow! 💯</span>
+            We are planning a meet-up in <span> Lucknow!</span>
           </h3>
           <form onSubmit={handleSubmit} style={{ margin: "auto" }}>
             <Input
