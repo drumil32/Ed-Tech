@@ -23,7 +23,7 @@ const ScrollComponent: React.FC = () => {
   //   refsArray.map((ref, index) => {
   //     if (ref) {
   //       console.log(`Ref ${index}:`, ref);
-  //       console.log(ref.getBoundingClientRect()); 
+  //       console.log(ref.getBoundingClientRect());
   //     }
   //     return ref;
   //   });
@@ -71,14 +71,20 @@ const ScrollComponent: React.FC = () => {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              const index = headingRefs.current.indexOf(entry.target as HTMLDivElement);
+              const index = headingRefs.current.indexOf(
+                entry.target as HTMLDivElement
+              );
               setActiveIndex(index);
             }
           });
         },
         {
           threshold: 0.05,
-          rootMargin: `-${refsArray[0]?.getBoundingClientRect().top}px 0px -${window.innerHeight - (refsArray[0]?.getBoundingClientRect().top + (refsArray[0]?.getBoundingClientRect().height - 20))}px 0px`,
+          rootMargin: `-${refsArray[0]?.getBoundingClientRect().top}px 0px -${
+            window.innerHeight -
+            (refsArray[0]?.getBoundingClientRect().top +
+              (refsArray[0]?.getBoundingClientRect().height - 20))
+          }px 0px`,
         }
       );
 
@@ -116,8 +122,8 @@ const ScrollComponent: React.FC = () => {
       </div>
       <div className={styles.infoCardContainer}>
         {activeIndex !== null &&
-          activeIndex >= 0 &&
-          activeIndex <= courseModulesDetails.length - 1 ? (
+        activeIndex >= 0 &&
+        activeIndex <= courseModulesDetails.length - 1 ? (
           <CourseInfoCard
             background={courseModulesDetails[activeIndex].background}
             src={courseModulesDetails[activeIndex]?.src}
