@@ -108,7 +108,7 @@ const ScrollComponent: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.container} style={{ border: "5px solid black;" }}>
+    <div className={styles.container}>
       <div className={styles.headingsContainer}>
         {courseModulesDetails.map((module, index) => {
           const sanitizedHtml = SafeHtmlComponent(module.title as string);

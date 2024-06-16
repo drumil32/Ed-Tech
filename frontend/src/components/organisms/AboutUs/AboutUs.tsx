@@ -4,6 +4,7 @@ import instructorListData from "../../../data/teamInfo.json";
 import { Instructor } from "../../../types/types";
 import linkedInIcon from "/assets/icons/linkedIn.svg";
 import instagramIcon from "/assets/icons/instagram.svg";
+import { nanoid } from "nanoid";
 const AboutUs: React.FC = () => {
   return (
     <section className={styles.aboutSection}>
@@ -13,7 +14,7 @@ const AboutUs: React.FC = () => {
         <hr />
         <div className={styles.profileContainer}>
           {instructorListData.map((personInfo: Instructor) => (
-            <div className={styles.profile}>
+            <div className={styles.profile} key={nanoid()}>
               <div className={styles.profile__imageContainer}>
                 {/* <img src={personInfo.profilePicture} alt="Profile Picture" /> */}
                 <img src={personInfo.profilePicture} alt="" />
