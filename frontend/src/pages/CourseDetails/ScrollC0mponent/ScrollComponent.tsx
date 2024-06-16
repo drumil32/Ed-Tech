@@ -44,9 +44,28 @@ const ScrollComponent: React.FC = () => {
   //   };
   // }, []);
 
+  const handleScroll = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    if (scrollTop + windowHeight >= documentHeight) {
+      setActiveIndex(8);
+    } else {
+      if (activeIndex == 8) {
+        setActiveIndex(7);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [activeIndex]);
+
   useEffect(() => {
     const refsArray = headingRefs.current;
-    console.log(refsArray[0]);
     if (refsArray[0]) {
       const observer = new IntersectionObserver(
         (entries) => {
@@ -79,7 +98,6 @@ const ScrollComponent: React.FC = () => {
         });
       };
     } else {
-      console.log(refsArray[0]);
     }
   }, []);
 
