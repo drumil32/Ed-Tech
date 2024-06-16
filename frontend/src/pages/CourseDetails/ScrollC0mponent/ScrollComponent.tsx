@@ -8,53 +8,77 @@ import { SafeHtmlComponent } from "../../../components/molecule/Carausal/Carausa
 const ScrollComponent: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const headingRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  // const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
 
-  const calculateNewHeight = (height: number) => {
-    const subtractionValue = height > 965 ? 50 : 40;
-    return height / 2 - subtractionValue;
-  };
+  // const calculateNewHeight = (height: number) => {
+  //   const subtractionValue = height > 965 ? 50 : 40;
+  //   const refsArray = headingRefs.current;
+  //   console.log(refsArray[0].getBoundingClientRect().top,refsArray[0].getBoundingClientRect().bottom);
+  //   return height / 2 - subtractionValue;
+  // };
+
+  // useEffect(() => {
+  //   // Example usage of map on headingRefs
+  //   const refsArray = headingRefs.current;
+  //   refsArray.map((ref, index) => {
+  //     if (ref) {
+  //       console.log(`Ref ${index}:`, ref);
+  //       console.log(ref.getBoundingClientRect()); 
+  //     }
+  //     return ref;
+  //   });
+  //   // console.log(window.innerHeight);
+  //   // console.log(refsArray[0].getBoundingClientRect().top,window.innerHeight-(refsArray[0].getBoundingClientRect().top+refsArray[0].getBoundingClientRect().height));
+  //   // console.log(refsArray[0].getBoundingClientRect().top,refsArray[0].getBoundingClientRect().bottom);
+  // }, []);
+
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setViewportHeight(window.innerHeight);
+  //   };
+
+  //   window.addEventListener('resize', handleResize);
+
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
+
   useEffect(() => {
-    const handleResize = () => {
-      setViewportHeight(window.innerHeight);
-    };
+    const refsArray = headingRefs.current;
+    console.log(refsArray[0])
+    if (refsArray[0]) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const index = headingRefs.current.indexOf(entry.target as HTMLDivElement);
+              setActiveIndex(index);
+            }
+          });
+        },
+        {
+          threshold: 0.05,
+          rootMargin: `-${refsArray[0]?.getBoundingClientRect().top}px 0px -${window.innerHeight - (refsArray[0]?.getBoundingClientRect().top + (refsArray[0]?.getBoundingClientRect().height - 20))}px 0px`,
+        }
+      );
 
-    window.addEventListener('resize', handleResize);
+      headingRefs.current.forEach((ref) => {
+        if (ref) observer.observe(ref);
+      });
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+      return () => {
+        headingRefs.current.forEach((ref) => {
+          if (ref) observer.unobserve(ref);
+        });
+      };
+    } else {
+      console.log(refsArray[0])
+    }
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = headingRefs.current.indexOf(entry.target as HTMLDivElement);
-            setActiveIndex(index);
-          }
-        });
-      },
-      {
-        threshold: 0.05,
-        rootMargin: `-${calculateNewHeight(viewportHeight)}px 0px -${calculateNewHeight(viewportHeight)}px 0px`,
-      }
-    );
-
-    headingRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
-
-    return () => {
-      headingRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref);
-      });
-    };
-  }, [viewportHeight]);
-
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ border: "5px solid black;" }}>
       <div className={styles.headingsContainer}>
         {courseModulesDetails.map((module, index) => {
           const sanitizedHtml = SafeHtmlComponent(module.title as string);
@@ -74,8 +98,8 @@ const ScrollComponent: React.FC = () => {
       </div>
       <div className={styles.infoCardContainer}>
         {activeIndex !== null &&
-        activeIndex >= 0 &&
-        activeIndex <= courseModulesDetails.length - 1 ? (
+          activeIndex >= 0 &&
+          activeIndex <= courseModulesDetails.length - 1 ? (
           <CourseInfoCard
             background={courseModulesDetails[activeIndex].background}
             src={courseModulesDetails[activeIndex]?.src}

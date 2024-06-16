@@ -32,7 +32,7 @@ const ContactInfo: React.FC = () => {
         <h2> SprintUp</h2>
       </div>
       <ul>
-        {contactInfoArray.map((item, idx) => (
+        {contactInfoArray.map((item) => (
           <a key={nanoid()} href={item.link}>
             <li key={nanoid()}>
               <span>{item.icon}</span>
