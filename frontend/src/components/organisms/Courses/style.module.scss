@@ -90,6 +90,7 @@
 .ag_format_container {
   width: 100%;
   max-width: 1880px;
+  margin-bottom: 4rem;
   .ag_courses_box {
     display: flex;
     align-items: center;
@@ -265,5 +266,16 @@
         font-size: 1rem;
       }
     }
+  }
+}
+.exploreButton {
+  background-color: #FFD500;
+  padding: 1rem 3rem;
+  border-radius: 10px;
+  transition: all .2s ease-in-out;
+
+  &:hover {
+  transition: all .2s ease-in-out;
+  background-color: #FFC107;
   }
 }
