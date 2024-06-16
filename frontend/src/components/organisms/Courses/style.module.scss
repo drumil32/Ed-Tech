@@ -205,14 +205,11 @@
 .courseHighlights__container {
   width: 100%;
   min-height: 250px;
-  padding: 3rem 3rem 3rem 10rem;
+  padding: 3rem;
   background-color: #3a10e5;
   display: flex;
   justify-content: center;
   align-items: center;
-  @include md-max {
-    padding: 3rem;
-  }
   @include xsm-max {
     padding: 4rem 1rem;
   }
@@ -220,7 +217,7 @@
   .courseHighlights {
     display: flex;
     width: 100%;
-    max-width: 1880px;
+    max-width: 1440px;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
@@ -269,13 +266,13 @@
   }
 }
 .exploreButton {
-  background-color: #FFD500;
+  background-color: #ffd500;
   padding: 1rem 3rem;
   border-radius: 10px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
-  transition: all .2s ease-in-out;
-  background-color: #FFC107;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffc107;
   }
 }
