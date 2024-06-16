@@ -51,9 +51,9 @@ const ScrollComponent: React.FC = () => {
     if (scrollTop + windowHeight >= documentHeight) {
       setActiveIndex(8);
     } else {
-      if (activeIndex == 8) {
-        setActiveIndex(7);
-      }
+      // if (activeIndex == 8) {
+      //   setActiveIndex(7);
+      // }
     }
   };
 
