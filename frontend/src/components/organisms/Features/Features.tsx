@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./style.module.scss";
 import FeaturesCarausal from "../../molecule/FeaturesCarausal/FeaturesCarausal";
 import { useMedia } from "react-use";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Features: React.FC = () => {
   const isTablet = useMedia("(max-width: 1145px)");
@@ -23,13 +23,13 @@ const Features: React.FC = () => {
         </h1>
 
         <FeaturesCarausal />
-        <Link to="/course-details" style={{color: "#000"}}>
-        <div
-        className={styles.exploreButton}
-        >
-          <h3>Know More</h3>
-        </div>
-        </Link>
+        <NavLink to="/course-details" style={{ color: "#000" }}>
+          <div
+            className={styles.exploreButton}
+          >
+            <h3>Know More</h3>
+          </div>
+        </NavLink>
       </div>
     </section>
   );

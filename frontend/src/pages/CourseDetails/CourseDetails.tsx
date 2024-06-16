@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CourseDetails.module.scss";
-import ScrollComponent from "./ScrollC0mponent/ScrollComponent";
+import ScrollComponent from "./ScrollComponent/ScrollComponent";
 import MobileView from "./MobileView/MobileView";
 import { useMedia } from "react-use";
 

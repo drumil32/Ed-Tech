@@ -65,40 +65,46 @@ const ScrollComponent: React.FC = () => {
   }, [activeIndex]);
 
   useEffect(() => {
-    const refsArray = headingRefs.current;
-    if (refsArray[0]) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const index = headingRefs.current.indexOf(
-                entry.target as HTMLDivElement
-              );
-              setActiveIndex(index);
-            }
-          });
-        },
-        {
-          threshold: 0.05,
-          rootMargin: `-${refsArray[0]?.getBoundingClientRect().top}px 0px -${
-            window.innerHeight -
-            (refsArray[0]?.getBoundingClientRect().top +
-              (refsArray[0]?.getBoundingClientRect().height - 20))
-          }px 0px`,
-        }
-      );
+    setTimeout(() => {
+      const refsArray = headingRefs.current;
 
-      headingRefs.current.forEach((ref) => {
-        if (ref) observer.observe(ref);
-      });
+      if (refsArray[0]) {
 
-      return () => {
+        console.log(refsArray[0]?.getBoundingClientRect().top);
+        console.log(`-${refsArray[0]?.getBoundingClientRect().top}px 0px -${window.innerHeight -
+          (refsArray[0]?.getBoundingClientRect().top + refsArray[0]?.getBoundingClientRect().height - 20)
+          }px 0px`);
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const index = headingRefs.current.indexOf(
+                  entry.target as HTMLDivElement
+                );
+                setActiveIndex(index);
+              }
+            });
+          },
+          {
+            threshold: 0.05,
+            rootMargin: `-${refsArray[0]?.getBoundingClientRect().top}px 0px -${window.innerHeight -
+              (refsArray[0]?.getBoundingClientRect().top + refsArray[0]?.getBoundingClientRect().height - 20)
+              }px 0px`,
+          }
+        );
+
         headingRefs.current.forEach((ref) => {
-          if (ref) observer.unobserve(ref);
+          if (ref) observer.observe(ref);
         });
-      };
-    } else {
-    }
+
+        return () => {
+          headingRefs.current.forEach((ref) => {
+            if (ref) observer.unobserve(ref);
+          });
+        };
+      } else {
+      }
+    }, 500);
   }, []);
 
   return (
@@ -122,8 +128,8 @@ const ScrollComponent: React.FC = () => {
       </div>
       <div className={styles.infoCardContainer}>
         {activeIndex !== null &&
-        activeIndex >= 0 &&
-        activeIndex <= courseModulesDetails.length - 1 ? (
+          activeIndex >= 0 &&
+          activeIndex <= courseModulesDetails.length - 1 ? (
           <CourseInfoCard
             background={courseModulesDetails[activeIndex].background}
             src={courseModulesDetails[activeIndex]?.src}

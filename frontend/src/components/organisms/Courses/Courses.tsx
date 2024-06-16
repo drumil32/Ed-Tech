@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./style.module.scss";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Courses: React.FC = () => {
   return (
@@ -71,11 +71,11 @@ const Courses: React.FC = () => {
               </div>
             </div>
           </div>
-          <Link to="/course-details" style={{ color: "#000" }}>
+          <NavLink to="/course-details" style={{ color: "#000" }}>
             <div className={styles.exploreButton}>
               <h3>Know More</h3>
             </div>
-          </Link>
+          </NavLink>
         </div>
       </section>
       <section className={styles.courseHighlights__container}>
