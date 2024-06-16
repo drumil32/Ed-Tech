@@ -18,6 +18,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import 'swiper/css/effect-creative';
 import { SafeHtmlComponent } from "../../../components/molecule/Carausal/Carausal";
+import { nanoid } from "nanoid";
 
 const MobileView: React.FC = () => {
   return (
@@ -50,7 +51,7 @@ const MobileView: React.FC = () => {
         {courseModulesDetails.map((module, index) => {
           const sanitizedHtml = SafeHtmlComponent(module.title as string);
           return (
-            <SwiperSlide>
+            <SwiperSlide key={nanoid()}>
               <h2 className="slideTitle">{sanitizedHtml}</h2>
               <div className={"infoMobileCard"}>
                 <CourseInfoCard
