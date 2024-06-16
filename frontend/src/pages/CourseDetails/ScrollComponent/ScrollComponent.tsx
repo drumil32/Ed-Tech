@@ -80,10 +80,14 @@ const ScrollComponent: React.FC = () => {
         },
         {
           threshold: 0.05,
+          // rootMargin: `-${refsArray[0]?.getBoundingClientRect().top}px 0px -${
+          //   window.innerHeight -
+          //   (refsArray[0]?.getBoundingClientRect().top +
+          //     (refsArray[0]?.getBoundingClientRect().height - 20))
+          // }px 0px`,
           rootMargin: `-${refsArray[0]?.getBoundingClientRect().top}px 0px -${
             window.innerHeight -
-            (refsArray[0]?.getBoundingClientRect().top +
-              (refsArray[0]?.getBoundingClientRect().height - 20))
+            (refsArray[0]?.getBoundingClientRect().top + refsArray[0]?.getBoundingClientRect().height - 20)
           }px 0px`,
         }
       );
