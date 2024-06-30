@@ -1,20 +1,18 @@
 import React, { useEffect } from "react";
-import Header from "../organisms/Header/Header";
 import { Outlet, useLocation } from "react-router-dom";
-import Footer from "../organisms/Footer/Footer";
+import LoginHeader from "../organisms/Header/LoginHeader/LoginHeader";
 
-const HomeLayout: React.FC = () => {
+const LoginLayout: React.FC = () => {
   const location  = useLocation().pathname
   useEffect(() => {
     window.scroll(0, 0);
   }, [location]);
   return (
     <>
-      <Header />
+      <LoginHeader />
       <Outlet />
-      <Footer />
     </>
   );
 };
 
-export default HomeLayout;
+export default LoginLayout;
