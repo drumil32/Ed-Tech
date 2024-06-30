@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
     if (!namePattern.test(value)) {
       return "Name should only contain alphabets and spaces.";
     }
-    if( value.trim().length>50 ){
+    if (value.trim().length > 50) {
       return "Name should not have more than 50 characters.";
     }
     return null;
@@ -84,20 +84,23 @@ const Hero: React.FC = () => {
       date: date,
       time: time,
     };
+    console.log(data);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.bookALiveClass}`,
         data
       );
-      console.log("Response:", response.data);
       setFormSubmitted(true);
       toast.success("Class successfully booked.");
-    } catch (error) {
-      console.error("There was an error making the request:", error);
-      toast.error("Something went wrong. Please try again.");
-    }
-    finally {
+    } catch (error: any) {
+      console.log(error);
+      if (409 == error.response.status) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } finally {
       setLoading(false);
     }
   };
@@ -183,7 +186,7 @@ const Hero: React.FC = () => {
                 </div>
               ) : (
                 <Button
-                  text={formSubmitted ? "You have Booked Class!": "Book a Live Class for Free"}
+                  text={formSubmitted ? "You have Booked Class!" : "Book a Live Class for Free"}
                   style={{ width: "100%", marginTop: "0.8rem" }}
                   disabled={formSubmitted}
                 />
