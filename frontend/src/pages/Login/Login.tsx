@@ -22,14 +22,14 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const nameError = validateName(inputName);
-    console.log(nameError);
-    let numberError = null;
-    setNameError(nameError);
+    const numberError = validatePhoneNumber(inputNumber);
+    setNumberError(numberError);
 
-    if ('/signup' === pathName) {
-      numberError = validatePhoneNumber(inputNumber);
-      setNumberError(numberError);
+    let nameError = null;
+
+    if ("/signup" === pathName) {
+      nameError = validateName(inputName);
+      setNameError(nameError);
       return;
     }
 
@@ -46,22 +46,20 @@ const Login = () => {
     setLoading(true);
 
     try {
-      if ('/signup' === pathName) {
-
+      if ("/signup" === pathName) {
         const data = {
           phoneNumber: inputNumber,
-          name: inputName.trim()
-        }
+          name: inputName.trim(),
+        };
         response = await axios.post(
           `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.signup}`,
           data
         );
         toast.success(response.data.message);
       } else {
-
         const data = {
-          phoneNumber: inputNumber
-        }
+          phoneNumber: inputNumber,
+        };
 
         response = await axios.post(
           `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.login}`,
@@ -73,7 +71,7 @@ const Login = () => {
       console.log(err);
       if (404 == err.response.status) {
         toast.info(err.response.data.message);
-        navigate('/signup');
+        navigate("/signup");
       }
     } finally {
       if (response) {
@@ -136,7 +134,10 @@ const Login = () => {
               errorMessage={numberError}
               onChange={(e) => setInputNumber(e.target.value)}
             />
-            <ReCAPTCHA sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} onChange={onChangecaptcha} />
+            <ReCAPTCHA
+              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+              onChange={onChangecaptcha}
+            />
             {isLoading ? (
               <div className="form-loader">
                 <img src="/assets/loader_compressed.gif" alt="loader" />
