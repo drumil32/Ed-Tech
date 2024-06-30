@@ -4,6 +4,8 @@ import styles from "./Login.module.scss";
 import Input from "../../components/atoms/Input/Input";
 import { useLocation } from "react-router-dom";
 import { FaUser } from "react-icons/fa6";
+import ReCAPTCHA from "react-google-recaptcha";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [inputNumber, setInputNumber] = useState<string>("");
@@ -11,10 +13,24 @@ const Login = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [numberError, setNumberError] = useState<string | null>(null);
   const [nameError, setNameError] = useState<string | null>(null);
+  const [captchaVerified, setCaptchaVerified] = useState<boolean>(false);
   const pathName = useLocation().pathname;
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!captchaVerified) {
+      toast.error("Please verify that you are not a robot.");
+      return;
+    }
     console.log("submit");
+  };
+
+  const onChangecaptcha = (value: string | null) => {
+    if (value) {
+      setCaptchaVerified(true);
+    } else {
+      setCaptchaVerified(false);
+    }
   };
   return (
     <div className={styles.loginPage}>
@@ -46,8 +62,8 @@ const Login = () => {
                 placeholder="Full Name"
                 value={inputName}
                 disabled={isLoading}
-                errorMessage={nameError}
                 onChange={(e) => setInputName(e.target.value)}
+                errorMessage={nameError}
               />
             ) : null}
             <Input
@@ -60,15 +76,13 @@ const Login = () => {
               errorMessage={numberError}
               onChange={(e) => setInputNumber(e.target.value)}
             />
+            <ReCAPTCHA sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY} onChange={onChangecaptcha} />
             {isLoading ? (
               <div className="form-loader">
                 <img src="/assets/loader_compressed.gif" alt="loader" />
               </div>
             ) : (
-              <Button
-                text="Continue"
-                style={{ width: "100%" }}
-              />
+              <Button text="Continue" style={{ width: "100%" }} />
             )}
           </form>
           <p className={styles.disclaimer}>
