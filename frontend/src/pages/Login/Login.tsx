@@ -2,10 +2,13 @@ import { useState } from "react";
 import Button from "../../components/atoms/Button/Button";
 import styles from "./Login.module.scss";
 import Input from "../../components/atoms/Input/Input";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa6";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "react-toastify";
+import { validateName, validatePhoneNumber } from "../../utils/validations";
+import axios from "axios";
+import restEndPoints from "../../data/restEndPoints.json";
 
 const Login = () => {
   const [inputNumber, setInputNumber] = useState<string>("");
@@ -15,13 +18,70 @@ const Login = () => {
   const [nameError, setNameError] = useState<string | null>(null);
   const [captchaVerified, setCaptchaVerified] = useState<boolean>(false);
   const pathName = useLocation().pathname;
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const nameError = validateName(inputName);
+    console.log(nameError);
+    let numberError = null;
+    setNameError(nameError);
+
+    if ('/signup' === pathName) {
+      numberError = validatePhoneNumber(inputNumber);
+      setNumberError(numberError);
+      return;
+    }
+
+    if (nameError || numberError) {
+      return;
+    }
+
     if (!captchaVerified) {
       toast.error("Please verify that you are not a robot.");
       return;
     }
+
+    let response = null;
+    setLoading(true);
+
+    try {
+      if ('/signup' === pathName) {
+
+        const data = {
+          phoneNumber: inputNumber,
+          name: inputName.trim()
+        }
+        response = await axios.post(
+          `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.signup}`,
+          data
+        );
+        toast.success(response.data.message);
+      } else {
+
+        const data = {
+          phoneNumber: inputNumber
+        }
+
+        response = await axios.post(
+          `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.login}`,
+          data
+        );
+        toast.success(response.data.message);
+      }
+    } catch (err: any) {
+      console.log(err);
+      if (404 == err.response.status) {
+        toast.info(err.response.data.message);
+        navigate('/signup');
+      }
+    } finally {
+      if (response) {
+        console.log(response);
+      }
+      setLoading(false);
+    }
+
     console.log("submit");
   };
 

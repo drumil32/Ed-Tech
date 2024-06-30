@@ -91,8 +91,12 @@ const BookLiveClassForm: React.FC = () => {
       console.log("Response:", response.data);
       setFormSubmitted(true);
       toast.success("Class successfully booked.");
-    } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+    } catch (error: any) {
+      if (409 == error.response.status) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
     } finally {
       setLoading(false);
     }

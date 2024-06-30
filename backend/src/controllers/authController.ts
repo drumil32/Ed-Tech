@@ -24,10 +24,11 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
             { upsert: true, new: true }
         );
 
-        return res.status(200).json({ 
+        return res.status(200).json({
             phoneNumber: existingStudent?.phoneNumber,
             name: existingStudent?.name,
-            token
+            token,
+            message: !existingStudent ? 'Signup successfully' : 'Login successfully'
         });
     } catch (err) {
         return next(err);
@@ -53,7 +54,8 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
             res.status(200).json({
                 phoneNumber: student.phoneNumber,
                 name: student.name,
-                token
+                token,
+                message: 'Login successfully'
             });
         } else {
             res.status(404).json({ message: "You don't have an account. Please Signup." });
