@@ -54,18 +54,6 @@ header {
           cursor: pointer;
         }
       }
-      & .hamburgerIcon {
-        cursor: pointer;
-        font-size: 1.4rem;
-        display: none;
-
-        @include md-max {
-          display: flex;
-        }
-        @include xsm-max {
-          font-size: 1rem;
-        }
-      }
     }
     &_navigation {
       flex: 1;
@@ -162,6 +150,19 @@ header {
 
 .mobile-navbar {
   display: none;
+
+  .hamburgerIcon {
+    cursor: pointer;
+    font-size: 1.4rem;
+    display: none;
+
+    @include md-max {
+      display: flex;
+    }
+    @include xsm-max {
+      font-size: 1rem;
+    }
+  }
 }
 
 .mobile-navbar.open .mobile-nav {

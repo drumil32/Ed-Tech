@@ -21,14 +21,20 @@ const LoginHeader: React.FC = () => {
           </div>
           <div className={styles.loginHeader_btns}>
             {pathName === "/signup" ? (
-              <Link to="/login" className={styles.loginHeader_btn}>
-                Login
-              </Link>
+              <>
+                <span>Already a member?</span>
+                <Link to="/login" className={styles.loginHeader_btn}>
+                  Log In
+                </Link>
+              </>
             ) : null}
             {pathName === "/login" ? (
-              <Link to="/signup" className={styles.loginHeader_btn}>
-                Signup
-              </Link>
+              <>
+                <span>Don’t have an account yet?</span>
+                <Link to="/signup" className={styles.loginHeader_btn}>
+                  Sign Up
+                </Link>
+              </>
             ) : null}
           </div>
         </div>
