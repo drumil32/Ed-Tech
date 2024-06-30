@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { IBookLiveClassData } from '../types.js';
+import { ICallRequestModel } from '../types.js';
 
 // Define the schema for the model
 const callRequestSchema: Schema = new Schema({
@@ -58,6 +58,6 @@ callRequestSchema.pre('save', function(next) {
 });
 
 // Create the model using the schema
-const callRequestModel = mongoose.model<IBookLiveClassData>('callRequest', callRequestSchema);
+const callRequestModel = mongoose.model<ICallRequestModel>('callRequest', callRequestSchema);
 
 export default callRequestModel;

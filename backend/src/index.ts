@@ -2,10 +2,14 @@ import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
-import connectDB from './config/db.js';
+import jwt from 'jsonwebtoken';
 
+import connectDB from './config/db.js';
 import callRequestModel from './models/callRequest.js';
 import liveClassBookingModel from './models/liveClassBooking.js';
+import studentModel from './models/student.js';
+import jwtTokenModel from './models/jwtToken.js';
+import { validateDate, validateName, validatePhoneNumber, validateTime } from './middlewares.js';
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -13,10 +17,14 @@ dotenv.config(); // Load environment variables from .env file
 const requiredEnvVariables = [
     'PORT',
     'ENV',
-    'MONGO_URL'
+    'MONGO_URL',
+    'FRONTEND_BASE_URL',
+    'JWT_SECRET',
+    'JWT_EXPIRATION_TIME'
 ];
 
 const missingEnvVariables = requiredEnvVariables.filter(variable => !process.env[variable]);
+
 if (missingEnvVariables.length > 0) {
     throw new Error(`Required environment variables are missing: ${missingEnvVariables.join(', ')}`);
 }
@@ -74,59 +82,74 @@ app.post('/request-a-callback', validateName, validatePhoneNumber, async (req: R
     try {
         await requestACallData.save();
     } catch (err) {
-        next(err);
+        return next(err);
     }
     res.status(200).json({ message: 'Request is received!', data: { name, phoneNumber, message } });
 });
 
-// Middleware function to validate name
-function validateName(req: Request, res: Response, next: NextFunction) {
-    const { name } = req.body;
-    if (!name) {
-        return res.status(400).json({ error: 'Please Provide a Name' });
-    } else if (!name.match(/^[a-zA-Z\s]*$/)) {
-        return res.status(400).json({ error: 'Name should only contain alphabets and spaces.' });
-    }
-    next();
-}
+app.post('/sign-up', validateName, validatePhoneNumber, async (req: Request, res: Response, next: NextFunction) => {
+    const { phoneNumber, name } = req.body;
+    try {
+        const existingStudent = await studentModel.findOne({ phoneNumber });
 
-// Middleware function to validate phone number
-function validatePhoneNumber(req: Request, res: Response, next: NextFunction) {
+        if (!existingStudent) {
+            // Create a new student
+            const newStudent = new studentModel({ phoneNumber, name });
+            await newStudent.save();
+        }
+        // generate and send JWT token
+        const token = jwt.sign({ phoneNumber: existingStudent.phoneNumber }, process.env.JWT_SECRET, { expiresIn: `${process.env.JWT_EXPIRATION_TIME}` });
+
+        // Store the JWT token in the database
+        await jwtTokenModel.findOneAndUpdate(
+            { phoneNumber: existingStudent.phoneNumber },
+            { token },
+            { upsert: true, new: true }
+        );
+
+        return res.status(200).json({ 
+            phoneNumber: existingStudent.phoneNumber,
+            name: existingStudent.name,
+            token
+        });
+    } catch (err) {
+        return next(err);
+    }
+});
+
+app.post('/login', validatePhoneNumber, async (req: Request, res: Response, next: NextFunction) => {
     const { phoneNumber } = req.body;
-    // Check if the phone number matches the required pattern
-    if (!phoneNumber) {
-        return res.status(400).json({ error: 'Please Provide a phone number' });
-    } else if (!phoneNumber.match(/^(\+91)?\d{10}$/)) {
-        return res.status(400).json({ error: 'Invalid phone number format.' });
-    }
-    next();
-}
+    try {
+        const student = await studentModel.findOne({ phoneNumber });
 
-// Middleware function to validate date
-function validateDate(req: Request, res: Response, next: NextFunction) {
-    const { date } = req.body;
-    // Check if the date matches the required pattern (DD-MM-YYYY)
-    // date is null then we will say it as no preference
-    if (date && !date.match(/^\d{2}-\d{2}-\d{4}$/)) {
-        return res.status(400).json({ error: 'Invalid date format. Use DD-MM-YYYY.' });
-    }
-    next();
-}
+        if (student) {
+            // Generate JWT token
+            const token = jwt.sign({ phoneNumber: student.phoneNumber }, process.env.JWT_SECRET, { expiresIn: `${process.env.JWT_EXPIRATION_TIME}` });
 
-// Middleware function to validate time
-function validateTime(req: Request, res: Response, next: NextFunction) {
-    const { time } = req.body;
-    // Check if the time matches the required pattern (HH:MM AM/PM)
-    // time is null then we will say it as no preference
-    if (time && !time.match(/^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/)) {
-        return res.status(400).json({ error: 'Invalid time format. Use HH:MM AM/PM.' });
+            // Store the JWT token in the database
+            await jwtTokenModel.findOneAndUpdate(
+                { phoneNumber: student.phoneNumber },
+                { token },
+                { upsert: true, new: true }
+            );
+
+            res.status(200).json({
+                phoneNumber: student.phoneNumber,
+                name: student.name,
+                token
+            });
+        } else {
+            res.status(404).json({ message: "You don't have an account. Please Signup." });
+        }
+    } catch (err) {
+        return next(err);
     }
-    next();
-}
+});
 
 // Error handling middleware
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    res.status(400).json({ error: err.message });
+    console.error(err.stack);
+    res.status(500).send('Server is down. Please try again later.');
 });
 
 // Start the server
