@@ -136,7 +136,7 @@ const Login = () => {
               onChange={onChangecaptcha}
             />
             {isLoading ? (
-              <div className="form-loader">
+              <div className={styles.formLoader}>
                 <img src="/assets/loader_compressed.gif" alt="loader" />
               </div>
             ) : (
