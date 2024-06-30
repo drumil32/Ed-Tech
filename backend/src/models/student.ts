@@ -1,8 +1,8 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { IBookLiveClassBookingModel } from '../types.js';
+import { IStudentModel } from '../types.js';
 
 // Define the schema for the model
-const liveClassBookingSchema: Schema = new Schema({
+const studentSchema: Schema = new Schema({
     name: {
         type: String,
         required: true,
@@ -16,32 +16,12 @@ const liveClassBookingSchema: Schema = new Schema({
     phoneNumber: {
         type: String,
         required: true,
+        unique: true,
         validate: {
             validator: function (v: string) {
                 return /^(\+91)?\d{10}$/.test(v); // Ensure phone number format
             },
             message: props => `${props.value} is not a valid phone number format!`
-        }
-    },
-    date: {
-        type: String,
-        // required: true,
-        validate: {
-            validator: function (v: string) {
-
-                return !v || /\d{2}-\d{2}-\d{4}/.test(v); // Ensure date format is day-month-year
-            },
-            message: props => `${props.value} is not a valid date format!`
-        }
-    },
-    time: {
-        type: String,
-        // required: true,
-        validate: {
-            validator: function (v: string) {
-                return !v || /^(0[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/.test(v); // Ensure time format is HH:MM AM/PM
-            },
-            message: props => `${props.value} is not a valid time format!`
         }
     },
     creationDate: {
@@ -65,7 +45,7 @@ const getCurrentISTTime = () => {
 };
 
 // Pre-save hook to set the date and time in IST format
-liveClassBookingSchema.pre('save', function(next) {
+studentSchema.pre('save', function (next) {
     if (!this.creationDate) { // Only set the date if it's not already set
         this.creationDate = getCurrentISTDate();
     }
@@ -76,6 +56,6 @@ liveClassBookingSchema.pre('save', function(next) {
 });
 
 // Create the model using the schema
-const liveClassBookingModel = mongoose.model<IBookLiveClassBookingModel>('liveClassBooking', liveClassBookingSchema);
+const studentModel = mongoose.model<IStudentModel>('studentData', studentSchema);
 
-export default liveClassBookingModel;
+export default studentModel;
