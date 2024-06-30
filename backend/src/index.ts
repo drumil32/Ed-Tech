@@ -74,10 +74,20 @@ app.post('/request-a-callback', validateName, validatePhoneNumber, async (req: R
     try {
         await requestACallData.save();
     } catch (err) {
-        next(err);
+        return next(err);
     }
     res.status(200).json({ message: 'Request is received!', data: { name, phoneNumber, message } });
 });
+
+app.post('/sign-up', validatePhoneNumber, async (req: Request, res: Response, next: NextFunction) => {
+    const { phoneNumber } = req.body;
+    try {
+
+    } catch (err) {
+        return next(err);
+    }
+    res.status(200).json({ message: 'Sign Up Successfully!' });
+})
 
 // Middleware function to validate name
 function validateName(req: Request, res: Response, next: NextFunction) {
