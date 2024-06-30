@@ -21,7 +21,6 @@ export const liveClassBooking = async (req: Request, res: Response, next: NextFu
         // Save the document to the database
         await bookLiveClassData.save();
     } catch (err) {
-        console.log('we are here')
         return next(err);
     }
 

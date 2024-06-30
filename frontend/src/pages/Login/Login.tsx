@@ -30,7 +30,6 @@ const Login = () => {
     if ("/signup" === pathName) {
       nameError = validateName(inputName);
       setNameError(nameError);
-      return;
     }
 
     if (nameError || numberError) {
@@ -41,7 +40,6 @@ const Login = () => {
       toast.error("Please verify that you are not a robot.");
       return;
     }
-
     let response = null;
     setLoading(true);
 
@@ -68,19 +66,18 @@ const Login = () => {
         toast.success(response.data.message);
       }
     } catch (err: any) {
-      console.log(err);
       if (404 == err.response.status) {
         toast.info(err.response.data.message);
         navigate("/signup");
       }
     } finally {
       if (response) {
-        console.log(response);
       }
+      setInputName('');
+      setInputNumber('');
       setLoading(false);
     }
 
-    console.log("submit");
   };
 
   const onChangecaptcha = (value: string | null) => {

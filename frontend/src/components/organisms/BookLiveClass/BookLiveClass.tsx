@@ -70,7 +70,6 @@ const BookLiveClassForm: React.FC = () => {
         `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.bookALiveClass}`,
         data
       );
-      console.log("Response:", response.data);
       setFormSubmitted(true);
       toast.success("Class successfully booked.");
     } catch (error: any) {

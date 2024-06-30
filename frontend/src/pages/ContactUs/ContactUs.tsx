@@ -65,8 +65,7 @@ const ContactUs: React.FC = () => {
 
     try {
       // USE ENV VARIABLE here with name BACKEND_URL
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.requestACall}`, data);
-      console.log('Response:', response.data);
+      await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.requestACall}`, data);
       setFormSubmitted(true);
       toast.success("We will connect you soon!");
     } catch (error) {

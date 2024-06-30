@@ -65,7 +65,6 @@ const Hero: React.FC = () => {
       date: date,
       time: time,
     };
-    console.log(data);
 
     try {
       await axios.post(
@@ -75,7 +74,6 @@ const Hero: React.FC = () => {
       setFormSubmitted(true);
       toast.success("Class successfully booked.");
     } catch (error: any) {
-      console.log(error);
       if (409 == error.response.status) {
         toast.error(error.response.data.message);
       } else {
