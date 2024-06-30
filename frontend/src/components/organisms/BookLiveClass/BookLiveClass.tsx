@@ -66,7 +66,7 @@ const BookLiveClassForm: React.FC = () => {
     };
 
     try {
-      const response = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.bookALiveClass}`,
         data
       );
