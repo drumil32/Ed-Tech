@@ -27,6 +27,7 @@ header {
     }
     @include xsm-max {
       padding: 0.5rem 1rem;
+      justify-content: space-between;
     }
     &_logo {
       display: flex;
@@ -35,9 +36,6 @@ header {
       gap: 1rem;
       @include xsm-max {
         font-size: 0.75rem;
-        display: grid;
-        grid-template-columns: 50px 1fr;
-        width: 100%;
       }
       .logo {
         display: flex;
@@ -54,11 +52,6 @@ header {
           font-size: 1.5rem;
           color: var(--primary-text-color);
           cursor: pointer;
-        }
-        @include xsm-max {
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
         }
       }
       & .hamburgerIcon {
@@ -79,7 +72,6 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-right: 6rem;
       ul {
         display: flex;
         align-items: center;
@@ -104,6 +96,57 @@ header {
       }
       @include md-max {
         display: none;
+      }
+    }
+    &_btns {
+      display: flex;
+      justify-content: center;
+      margin-left: auto;
+      align-items: center;
+      gap: 1rem;
+      @include xsm-max {
+        margin-left: 0;
+      }
+    }
+    &_btn {
+      padding: 0.6rem 1rem;
+      height: inherit;
+      color: #10162f;
+      font-weight: 600;
+      border-radius: 0.25rem;
+      transition: all 0.3s ease-in-out;
+      &.login {
+        background-color: transparent;
+        &:hover {
+          color: #3a10e5;
+          background-color: #e7e7e7da;
+        }
+        &.mobile {
+          background-color: #3a10e5;
+          color: #fff;
+
+          &:hover {
+            background-color: #5533ff;
+            color: #fff;
+          }
+        }
+        @include xsm-max {
+          background-color: #3a10e5;
+          color: #fff;
+
+          &:hover {
+            background-color: #5533ff;
+            color: #fff;
+          }
+        }
+      }
+      &.signup {
+        background-color: #3a10e5;
+        color: #fff;
+
+        &:hover {
+          background-color: #5533ff;
+        }
       }
     }
   }
@@ -138,8 +181,7 @@ header {
   overflow: hidden;
   ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    margin-bottom: 1rem;
   }
   li {
     a {
@@ -168,7 +210,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
     z-index: 5;
   }
 }

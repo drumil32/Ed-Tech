@@ -39,18 +39,6 @@ const Header: React.FC = () => {
     }
   }, [location, scrollToCourses]);
 
-  // const handleCoursesClick = () => {
-  //   if (location.pathname === "/") {
-  //     const element = document.getElementById("courses");
-  //     if (element) {
-  //       element.scrollIntoView({ behavior: "smooth" });
-  //     }
-  //   } else {
-  //     setScrollToCourses(true);
-  //     navigate("/");
-  //   }
-  // };
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -59,11 +47,12 @@ const Header: React.FC = () => {
     <>
       <header className={scrolled ? "scrolled" : ""}>
         <div className="header">
+          {isMobile ? <MobileNavbar /> : null}
           <div className={"header_logo"}>
-            <MobileNavbar />
+            {!isMobile ? <MobileNavbar /> : null}
             <Link to="/" onClick={scrollToTop} className="logo">
-                <img src={logo} alt="" />
-                <h2>SprintUp</h2>
+              <img src={logo} alt="" />
+              <h2>SprintUp</h2>
             </Link>
           </div>
           <nav className={"header_navigation"}>
@@ -79,12 +68,15 @@ const Header: React.FC = () => {
               </li>
               <li>
                 {/* <a onClick={handleCoursesClick}>Courses</a> */}
-                <NavLink to="/course-details" className={({ isActive }) => (isActive ? "active" : "")}>
+                <NavLink
+                  to="/course-details"
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
                   Courses
                 </NavLink>
               </li>
               <li>
-              <NavLink
+                <NavLink
                   to="/values"
                   className={({ isActive }) => (isActive ? "active" : "")}
                   onClick={scrollToTop}
@@ -102,6 +94,16 @@ const Header: React.FC = () => {
               </li>
             </ul>
           </nav>
+          <div className="header_btns">
+            <Link to="/login" className="header_btn login">
+              Log In
+            </Link>
+            {!isMobile ? (
+              <Link to="/signup" className="header_btn signup">
+                Sign Up
+              </Link>
+            ) : null}
+          </div>
         </div>
       </header>
       <div className="header-highlight">

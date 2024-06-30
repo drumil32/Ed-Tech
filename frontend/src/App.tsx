@@ -9,6 +9,8 @@ import OurValues from "./pages/OurValues/OurValues";
 import { useEffect, useState } from "react";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoginLayout from "./components/Layouts/LoginLayout";
+import Login from "./pages/Login/Login";
 
 function App() {
   const [initialLoader, setInitialLoader] = useState(true);
@@ -41,6 +43,20 @@ function App() {
           path: "/values",
           element: <OurValues />,
         },
+      ],
+    },
+    {
+      path: "/",
+      element: <LoginLayout />,
+      children: [
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/signup",
+          element: <Login />,
+        }
       ],
     },
   ]);
