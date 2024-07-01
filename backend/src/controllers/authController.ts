@@ -6,29 +6,34 @@ import studentModel from '../models/studentModel.js';
 export const signUp = async (req: Request, res: Response, next: NextFunction) => {
     const { phoneNumber, name } = req.body;
     try {
-        const existingStudent = await studentModel.findOne({ phoneNumber });
+        let isThisNewStudent = true;
+        let student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
 
-        if (!existingStudent) {
+        if (!student) {
             // Create a new student
-            const newStudent = new studentModel({ phoneNumber, name });
-            await newStudent.save();
+            student = new studentModel({ phoneNumber, name });
+            await student.save();
+            student = student.toObject();
+            delete student._id;
+            delete student.__v;
+        } else {
+            isThisNewStudent = false;
         }
 
         // Generate and send JWT token
-        const token = jwt.sign({ phoneNumber: existingStudent?.phoneNumber }, process.env.JWT_SECRET!, { expiresIn: `${process.env.JWT_EXPIRATION_TIME}` });
+        const token = jwt.sign({ phoneNumber: student.phoneNumber }, process.env.JWT_SECRET!, { expiresIn: `${process.env.JWT_EXPIRATION_TIME}` });
 
         // Store the JWT token in the database
         await jwtTokenModel.findOneAndUpdate(
-            { phoneNumber: existingStudent?.phoneNumber },
+            { phoneNumber: student.phoneNumber },
             { token },
             { upsert: true, new: true }
         );
 
         return res.status(200).json({
-            phoneNumber: existingStudent?.phoneNumber,
-            name: existingStudent?.name,
+            student,
             token,
-            message: !existingStudent ? 'Signup successfully' : 'Login successfully'
+            message: isThisNewStudent ? 'Signup successfully' : 'Login successfully'
         });
     } catch (err) {
         return next(err);
@@ -38,7 +43,7 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
 export const login = async (req: Request, res: Response, next: NextFunction) => {
     const { phoneNumber } = req.body;
     try {
-        const student = await studentModel.findOne({ phoneNumber });
+        const student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
 
         if (student) {
             // Generate JWT token
@@ -52,8 +57,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
             );
 
             res.status(200).json({
-                phoneNumber: student.phoneNumber,
-                name: student.name,
+                student,
                 token,
                 message: 'Login successfully'
             });

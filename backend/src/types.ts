@@ -17,11 +17,18 @@ export interface ICallRequestModel extends Document {
     creationTime?: string; // optional field
 }
 
+// Define the interface for the enrolled field
+interface IEnrolled {
+    progress: number; // Progress is required and should be a number between 0 and 100
+}
+
+// Define the interface for the student model
 export interface IStudentModel extends Document {
     name: string;
     phoneNumber: string;
-    creationDate?: string; // optional field
-    creationTime?: string; // optional field
+    creationDate: string;
+    creationTime: string;
+    enrolled?: IEnrolled | null; // Enrolled can be an object following the IEnrolled interface or null
 }
 
 export interface IJwtTokenModel extends Document {

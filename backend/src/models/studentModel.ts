@@ -1,5 +1,21 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { IStudentModel } from '../types.js';
+
+// Define the schema for the enrolled field
+const enrolledSchema: Schema = new Schema({
+    progress: {
+        type: Number,
+        required: true, // progress is required
+        min: 0,
+        max: 100,
+        validate: {
+            validator: function (v: number) {
+                return v >= 0 && v <= 100; // Ensure progress is between 0 and 100
+            },
+            message: props => `${props.value} should be between 0 and 100.`
+        }
+    }
+}, { _id: false }); // Disable _id for the nested schema
 
 // Define the schema for the model
 const studentSchema: Schema = new Schema({
@@ -23,6 +39,11 @@ const studentSchema: Schema = new Schema({
             },
             message: props => `${props.value} is not a valid phone number format!`
         }
+    },
+    enrolled: {
+        type: enrolledSchema,
+        required: false, // Allow enrolled to be null
+        default: null
     },
     creationDate: {
         type: String
