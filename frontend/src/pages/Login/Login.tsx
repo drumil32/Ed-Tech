@@ -125,7 +125,7 @@ const Login = () => {
               label="Mobile Number"
               preText="+91"
               type="tel"
-              placeholder="10 digits Mobile Number"
+              placeholder="Enter your 10-digit number"
               value={inputNumber}
               disabled={isLoading}
               errorMessage={numberError}
