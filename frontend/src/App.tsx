@@ -7,10 +7,13 @@ import Home from "./pages/Home/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import OurValues from "./pages/OurValues/OurValues";
 import { useEffect, useState } from "react";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import LoginLayout from "./components/Layouts/LoginLayout";
 import Login from "./pages/Login/Login";
+import DashboardLayout from "./components/Layouts/DashboardLayout";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import CourseSyllabus from "./pages/CourseSyllabus/CourseSyllabus";
 
 function App() {
   const [initialLoader, setInitialLoader] = useState(true);
@@ -56,7 +59,21 @@ function App() {
         {
           path: "/signup",
           element: <Login />,
-        }
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: <DashboardLayout />,
+      children: [
+        {
+          path: "/dashboard",
+          element: <Dashboard />,
+        },
+        {
+          path: "/course-syllabus",
+          element: <CourseSyllabus />,
+        },
       ],
     },
   ]);
@@ -64,7 +81,11 @@ function App() {
   return (
     <div className="App">
       {initialLoader ? (
-        <img className="initialLoader" src="/assets/loader_compressed.gif" alt="loader" />
+        <img
+          className="initialLoader"
+          src="/assets/loader_compressed.gif"
+          alt="loader"
+        />
       ) : (
         <RouterProvider router={router} />
       )}
