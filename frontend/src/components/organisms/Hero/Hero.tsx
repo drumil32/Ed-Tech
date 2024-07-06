@@ -5,15 +5,13 @@ import Button from "../../atoms/Button/Button";
 import Carausal from "../../molecule/Carausal/Carausal";
 import { FaUser } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
-import axios from "axios";
-// import Lottie from "react-lottie-player";
-// import loaderData from "/assets/Lottie/loader.json";
 import carausalData from "../../../data/carausalData.json";
 import demoSessionSchedule from "../../../data/demoSessionSchedule.json";
 import { toast } from "react-toastify";
 import { useFormContext } from "../../../context/formContext";
 import restEndPoints from "../../../data/restEndPoints.json";
 import { validateName, validatePhoneNumber } from "../../../utils/validations";
+import axiosInstance from "../../../utils/axiosInstance";
 
 export interface ProfileData {
   image: string;
@@ -67,10 +65,7 @@ const Hero: React.FC = () => {
     };
 
     try {
-      await axios.post(
-        `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.bookALiveClass}`,
-        data
-      );
+      await axiosInstance.post(`/${restEndPoints.bookALiveClass}`,data);
       setFormSubmitted(true);
       toast.success("Class successfully booked.");
     } catch (error: any) {

@@ -2,5 +2,6 @@
     "bookALiveClass": "book-live-class",
     "requestACall": "request-a-call",
     "login":"auth/login",
-    "signup": "auth/sign-up"
+    "signup": "auth/sign-up",
+    "auth":"auth"
 }

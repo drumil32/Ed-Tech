@@ -7,8 +7,8 @@ import { FaUser } from "react-icons/fa6";
 import ReCAPTCHA from "react-google-recaptcha";
 import { toast } from "react-toastify";
 import { validateName, validatePhoneNumber } from "../../utils/validations";
-import axios from "axios";
 import restEndPoints from "../../data/restEndPoints.json";
+import axiosInstance from "../../utils/axiosInstance";
 
 const Login = () => {
   const [inputNumber, setInputNumber] = useState<string>("");
@@ -49,20 +49,17 @@ const Login = () => {
           phoneNumber: inputNumber,
           name: inputName.trim(),
         };
-        response = await axios.post(
-          `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.signup}`,
+        response = await axiosInstance.post(`/${restEndPoints.signup}`,
           data
         );
+        localStorage.setItem('token', response.data.token);
         toast.success(response.data.message);
       } else {
         const data = {
           phoneNumber: inputNumber,
         };
-
-        response = await axios.post(
-          `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.login}`,
-          data
-        );
+        response = await axiosInstance.post(`/${restEndPoints.login}`, data);
+        localStorage.setItem('token', response.data.token);
         toast.success(response.data.message);
       }
     } catch (err: any) {

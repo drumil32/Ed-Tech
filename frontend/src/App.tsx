@@ -14,8 +14,19 @@ import Login from "./pages/Login/Login";
 import DashboardLayout from "./components/Layouts/DashboardLayout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CourseSyllabus from "./pages/CourseSyllabus/CourseSyllabus";
+import axiosInstance from "./utils/axiosInstance";
+import restEndPoints from "./data/restEndPoints.json";;
 
 function App() {
+
+  useEffect(() => {
+    const auth = async () => {
+      const response = await axiosInstance.get(`/${restEndPoints.auth}`);
+      console.log(response);
+    }
+    auth();
+  }, []);
+
   const [initialLoader, setInitialLoader] = useState(true);
   useEffect(() => {
     setTimeout(() => setInitialLoader(false), 2000);

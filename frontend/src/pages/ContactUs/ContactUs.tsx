@@ -7,11 +7,11 @@ import Button from "../../components/atoms/Button/Button";
 import { FaUser } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import Textarea from "../../components/atoms/TextArea/TextArea";
-import axios from "axios";
 import contactDetails from "../.../../../data/contactDetails.json";
 import { toast } from "react-toastify";
 import restEndPoints from "../../data/restEndPoints.json";
 import { validateName, validatePhoneNumber } from "../../utils/validations";
+import axiosInstance from "../../utils/axiosInstance";
 
 const ContactUs: React.FC = () => {
   const [inputName, setInputName] = useState<string>("");
@@ -64,8 +64,7 @@ const ContactUs: React.FC = () => {
     };
 
     try {
-      // USE ENV VARIABLE here with name BACKEND_URL
-      await axios.post(`${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.requestACall}`, data);
+      await axiosInstance.post(`/${restEndPoints.requestACall}`, data);
       setFormSubmitted(true);
       toast.success("We will connect you soon!");
     } catch (error) {

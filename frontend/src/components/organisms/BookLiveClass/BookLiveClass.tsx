@@ -4,12 +4,12 @@ import Input from "../../atoms/Input/Input";
 import Button from "../../atoms/Button/Button";
 import { FaUser } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
-import axios from "axios";
 import demoSessionSchedule from "../../../data/demoSessionSchedule.json";
 import { toast } from 'react-toastify';
 import { useFormContext } from "../../../context/formContext";
 import restEndPoints from "../../../data/restEndPoints.json";
 import { validateName, validatePhoneNumber } from "../../../utils/validations";
+import axiosInstance from "../../../utils/axiosInstance";
 
 export interface ProfileData {
   image: string;
@@ -33,7 +33,7 @@ const BookLiveClassForm: React.FC = () => {
   const [numberError, setNumberError] = useState<string | null>(null);
   const { isLoading, setLoading, formSubmitted, setFormSubmitted } = useFormContext();
 
-  
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -66,10 +66,7 @@ const BookLiveClassForm: React.FC = () => {
     };
 
     try {
-      await axios.post(
-        `${import.meta.env.VITE_BACKEND_BASE_URL}/${restEndPoints.bookALiveClass}`,
-        data
-      );
+      await axiosInstance.post(`/${restEndPoints.bookALiveClass}`, data);
       setFormSubmitted(true);
       toast.success("Class successfully booked.");
     } catch (error: any) {
