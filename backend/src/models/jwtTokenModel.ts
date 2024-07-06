@@ -8,8 +8,12 @@ const jwtTokenSchema: Schema = new Schema({
         unique: true
     },
     token: {
-        type: String,
-        required: true
+        type: [String],
+        required: true,
+        validate: {
+            validator: (val: string[]) => val.length <= 3,
+            message: '{PATH} exceeds the limit of 3'
+        }
     }
 });
 

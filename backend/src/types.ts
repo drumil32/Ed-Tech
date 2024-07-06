@@ -33,5 +33,5 @@ export interface IStudentModel extends Document {
 
 export interface IJwtTokenModel extends Document {
     phoneNumber: string;
-    token: string;
+    token: string[];
 }
