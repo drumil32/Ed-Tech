@@ -11,14 +11,15 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
     try {
         // Verify token
         const decoded = jwt.verify(tokenString, process.env.JWT_SECRET) as { [key: string]: any };
-        const user = await jwtTokenModel.findOne({ phoneNumber: decoded.phoneNumber });
-        if (!user) {
+        const userTokens = await jwtTokenModel.findOne({ phoneNumber: decoded.phoneNumber });
+        if (!userTokens) {
             return res.status(401).json({ error: 'User not found' });
         }
-        if (!user.token.includes(tokenString)) {
+        if (!userTokens.token.includes(tokenString)) {
             return res.status(401).json({ error: 'Token is not valid' });
         }
-        req.body.phoneNumber = decoded.phoneNumber;
+        req.phoneNumber = decoded.phoneNumber;
+        req.token = tokenString;
         // If token is valid, proceed to next middleware or route handler
         next();
     } catch (error) {

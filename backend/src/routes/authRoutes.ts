@@ -1,6 +1,6 @@
 // src/routes/authRoutes.ts
 import express from 'express';
-import { signUp, login, auth } from '../controllers/authController.js';
+import { signUp, login, auth, logout } from '../controllers/authController.js';
 import { validateName, validatePhoneNumber } from '../middleware/validationMiddleware.js';
 import { authMiddleware } from '../middleware/authMiddleware.js';
 
@@ -21,5 +21,10 @@ router.get('/',
     authMiddleware,
     auth
 );
+
+router.get('/logout',
+    authMiddleware,
+    logout
+)
 
 export default router;

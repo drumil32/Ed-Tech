@@ -8,6 +8,6 @@
       "skipLibCheck": true
     },
     "include": [
-      "src/**/*",
+      "src/**/*", "src/index.ts", "custom.d.ts",
     ]
   }

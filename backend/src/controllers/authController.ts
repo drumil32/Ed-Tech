@@ -107,12 +107,29 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 };
 
 export const auth = async (req: Request, res: Response, next: NextFunction) => {
-    const { phoneNumber } = req.body;
+    const { phoneNumber } = req;
     try {
         const student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
         return res.status(200).json({
             student
         });
+    } catch (err) {
+        return next(err);
+    }
+};
+
+export const logout = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const phoneNumber = req.phoneNumber;
+        const token = req.token;
+
+        const userTokens = await jwtTokenModel.findOne({ phoneNumber });
+
+        userTokens.token = userTokens.token.filter(t => t !== token);
+        await userTokens.save();
+
+        res.status(200).json({ message: 'Logout successful' });
+
     } catch (err) {
         return next(err);
     }
