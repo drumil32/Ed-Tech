@@ -4,8 +4,17 @@ import { GoTasklist } from "react-icons/go";
 import { RiGitRepositoryLine } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import Button from "../../atoms/Button/Button";
+import upgradeNowSection from "../../../data/upgradeNowSection.json";
+import quotesData from "../../../data/quotes.json";
+import { getRandomIndex } from "../../../utils/utility";
 
 const Sidebar = () => {
+  const user = {
+    enrolled: false,
+  };
+
+  const randomIndex = getRandomIndex(quotesData);
+
   return (
     <div className={styles.sidebar}>
       <ul className={styles.navigations}>
@@ -38,14 +47,21 @@ const Sidebar = () => {
           </NavLink>
         </li>
       </ul>
-      <div className={styles.upgradeBox}>
-        <h3>Upgrade your plan</h3>
-        <p>
-          Go deeper and learn job-ready skills. Practice with real-world
-          projects, take assessments, and earn certificates.
-        </p>
-        <Button text="Upgrade plan" className={styles.upgradeButton} />
-      </div>
+      {user.enrolled ? (
+        <div className={styles.quoteContainer}>
+          <h3>Quote of the Day</h3>
+          <p>{quotesData[randomIndex]}</p>
+        </div>
+      ) : (
+        <div className={styles.upgradeBox}>
+          <h3>{upgradeNowSection.title}</h3>
+          <p>{upgradeNowSection.Subtitle}</p>
+          <Button
+            text={upgradeNowSection.CTA}
+            className={styles.upgradeButton}
+          />
+        </div>
+      )}
     </div>
   );
 };
