@@ -106,19 +106,6 @@ const Header: React.FC = () => {
           </div>
         </div>
       </header>
-      <div className="header-highlight">
-        {isMobile ? (
-          <>
-            <p>Lucknow's top offline MERN full-stack program.</p>
-            <p>Hurry, limited seats only! ⏰</p>
-          </>
-        ) : (
-          <p>
-            Lucknow's top offline MERN full-stack program. Hurry, limited seats
-            only! ⏰
-          </p>
-        )}
-      </div>
       <a href="#" className={scrolled ? "back-to-top visible" : "back-to-top"}>
         <MdOutlineKeyboardDoubleArrowUp />
       </a>

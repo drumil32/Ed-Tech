@@ -7,8 +7,9 @@ import Button from "../../atoms/Button/Button";
 import upgradeNowSection from "../../../data/upgradeNowSection.json";
 import quotesData from "../../../data/quotes.json";
 import { getRandomIndex } from "../../../utils/utility";
+import React from "react";
 
-const Sidebar = () => {
+const Sidebar: React.FC = () => {
   const user = {
     enrolled: false,
   };
