@@ -40,6 +40,11 @@ const studentSchema: Schema = new Schema({
             message: props => `${props.value} is not a valid phone number format!`
         }
     },
+    avatar: {
+        type: Number,
+        required: false,
+        default: 1
+    },
     enrolled: {
         type: enrolledSchema,
         required: false, // Allow enrolled to be null

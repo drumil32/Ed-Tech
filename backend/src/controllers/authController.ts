@@ -2,16 +2,18 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import jwtTokenModel from '../models/jwtTokenModel.js';
 import studentModel from '../models/studentModel.js';
+import { getRandomNumber } from '../utils/randomNumberGenerator.js';
 
 export const signUp = async (req: Request, res: Response, next: NextFunction) => {
     const { phoneNumber, name } = req.body;
     try {
         let isThisNewStudent = true;
         let student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
+        let avatar = getRandomNumber(1, 5);
 
         if (!student) {
             // Create a new student
-            student = new studentModel({ phoneNumber, name });
+            student = new studentModel({ phoneNumber, name, avatar });
             await student.save();
             student = student.toObject();
             delete student._id;
