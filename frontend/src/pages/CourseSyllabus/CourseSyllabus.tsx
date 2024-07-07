@@ -1,6 +1,7 @@
+import React from "react";
 
 
-const CourseSyllabus = () => {
+const CourseSyllabus: React.FC = () => {
   return (
     <div>
       CourseSyllabus

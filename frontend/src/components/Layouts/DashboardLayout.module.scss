@@ -29,6 +29,7 @@
     .content {
       flex: 1;
       padding: 1rem;
+      width: 100%;
 
       @include md-max {
         padding: 1rem 0;

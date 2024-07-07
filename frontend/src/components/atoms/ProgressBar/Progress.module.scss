@@ -1,0 +1,40 @@
+@import "/src/styles/_mixins";
+
+@keyframes moveGradient {
+  from {
+    background-position: 0 0px;
+  }
+  to {
+    background-position: 3000px 0px;
+  }
+}
+
+.progressBar {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #cecece;
+
+  height: 40px;
+
+  .progress {
+    position: absolute;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 23px, #ffffffef 23px, #ffffffef 46px);
+    background-color: #ffd500;
+    animation: moveGradient 100s linear infinite;
+  }
+
+  span {
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+  }
+}
