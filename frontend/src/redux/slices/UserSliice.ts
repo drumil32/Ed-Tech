@@ -5,6 +5,7 @@ interface UserState {
   telNumber: number | null;
   name: string;
   progress: number;
+  image: number | null;
 }
 
 const initialState: UserState = {
@@ -12,6 +13,7 @@ const initialState: UserState = {
   telNumber: null,
   name: "",
   progress: 0,
+  image: null
 };
 
 const userSlice = createSlice({
@@ -30,9 +32,12 @@ const userSlice = createSlice({
     setUserProgress(state, action: PayloadAction<number>) {
       state.progress = action.payload;
     },
+    setUserImage(state, action: PayloadAction<number | null>) {
+      state.image = action.payload;
+    },
   },
 });
 
-export const { setUserEnrolled, setUserName, setUserNumber, setUserProgress } =
+export const { setUserEnrolled, setUserName, setUserNumber, setUserProgress, setUserImage } =
   userSlice.actions;
 export default userSlice.reducer;
