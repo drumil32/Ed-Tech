@@ -2,7 +2,7 @@
 
 .upgradeBox {
     border: 1px solid #000;
-    padding: 0.8rem 1rem;
+    padding: 1.5rem 1rem;
     border-radius: 0.5rem;
     color: #1f2b37;
     width: 100%;
@@ -19,12 +19,13 @@
       height: unset;
       padding: 0.4rem 1rem;
       font-weight: 500;
+      background-color: #000;
     }
   }
 
   .quoteContainer {
     border: 1px solid #000;
-    padding: 0.8rem 1rem;
+    padding: 1.5rem 1rem;
     border-radius: 0.5rem;
     color: #1f2b37;
     min-height: 150px;

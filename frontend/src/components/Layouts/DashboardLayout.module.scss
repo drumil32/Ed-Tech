@@ -30,6 +30,8 @@
       flex: 1;
       padding: 1rem;
       width: 100%;
+      padding-left: 2rem;
+      padding-right: 0;
 
       @include md-max {
         padding: 1rem 0;

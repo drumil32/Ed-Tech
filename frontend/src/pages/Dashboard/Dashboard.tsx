@@ -12,7 +12,7 @@ import { IoCloseCircle } from "react-icons/io5";
 const Dashboard: React.FC = () => {
   const user = {
     enrolled: false,
-    progress: 30,
+    progress: 40,
   };
   const [talkToUsModalOpen, setTalkToUsModalOpen] = useState<boolean>(false);
   return (
@@ -71,15 +71,16 @@ const Dashboard: React.FC = () => {
           <div className={styles.learningContent}>
             <h3>Job Path</h3>
             <p> In-Classroom MERN Full-Stack Web Development Course</p>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, fuga!</p>
           </div>
           <div className={styles.learningCtaContainer}>
             <Link to="/course-syllabus">View Syllabus</Link>
             <Link to="/course-syllabus">
               {user.enrolled
                 ? user.progress === 0
-                  ? "Start Now"
-                  : "Resume"
-                : "Start Course"}
+                  ? "Start Now >>"
+                  : "Resume >>"
+                : "Start Course >>"}
             </Link>
           </div>
         </div>
@@ -94,17 +95,8 @@ const Dashboard: React.FC = () => {
               <h2>Not sure where to start?</h2>
               <p>Connect with us to take a short career counselling session.</p>
               <Button
-                text="Talk to us!"
+                text="Request a Callback!"
                 onClick={() => setTalkToUsModalOpen(true)}
-                className={styles.availableCoursesCardCta}
-              />
-            </div>
-            <div className={styles.availableCoursesCard}>
-              <img src="/assets/dashboard/card1.svg" alt="" />
-              <h2>Not sure where to start?</h2>
-              <p>Connect with us to take a short career counselling session.</p>
-              <Button
-                text="Talk to us!"
                 className={styles.availableCoursesCardCta}
               />
             </div>
