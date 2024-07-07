@@ -1,18 +1,32 @@
 import styles from "./Dashboard.module.scss";
 import marketingBannerDetails from "../../data/marketingBannerDetails.json";
-import React from "react";
+import React, { useState } from "react";
 import Progress from "../../components/atoms/ProgressBar/Progress";
 import { Link } from "react-router-dom";
 import Button from "../../components/atoms/Button/Button";
 import TalkToUs from "../../components/molecule/TalkToUs/TalkToUs";
+import SidebarTriggerButton from "../../components/atoms/SidebarTriggerButton/SidebarTriggerButton";
+import { Modal } from "../../components/atoms/Modal/Modal";
+import { IoCloseCircle } from "react-icons/io5";
 
 const Dashboard: React.FC = () => {
   const user = {
     enrolled: false,
     progress: 30,
   };
+  const [talkToUsModalOpen, setTalkToUsModalOpen] = useState<boolean>(false);
   return (
     <div className={styles.dashboard}>
+      {talkToUsModalOpen && (
+        <Modal className={styles.talkToUsModal}>
+          <div>
+            <div onClick={() => setTalkToUsModalOpen(false)} className={styles.closeBtn}>
+              <IoCloseCircle />
+            </div>
+          </div>
+        </Modal>
+      )}
+      <SidebarTriggerButton />
       <div
         className={styles.marketingBanner}
         style={{
@@ -81,6 +95,7 @@ const Dashboard: React.FC = () => {
               <p>Connect with us to take a short career counselling session.</p>
               <Button
                 text="Talk to us!"
+                onClick={() => setTalkToUsModalOpen(true)}
                 className={styles.availableCoursesCardCta}
               />
             </div>

@@ -16,11 +16,13 @@
     gap: 1rem;
     flex-wrap: wrap-reverse;
     margin-bottom: 2rem;
+    @include sm-max {
+      flex-direction: column-reverse;
+    }
 
     .content {
       color: #fff;
       max-width: 600px;
-      min-width: 350px;
       flex: 1;
 
       h2 {
@@ -173,6 +175,23 @@
     .talkToUsContainer {
       width: 100%;
       max-width: 450px;
+    }
+  }
+}
+
+.talkToUsModal:global(.DialogContent) {
+  width: 100%;
+  max-width: 450px;
+  min-height: 450px;
+
+  .closeBtn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    cursor: pointer;
+
+    svg {
+      font-size: 1.5rem;
     }
   }
 }
