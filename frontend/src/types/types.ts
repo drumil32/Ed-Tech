@@ -45,3 +45,11 @@ export interface OurValuesCardDetails {
   description: string;
   image?: string;
 }
+
+export interface UserDetails {
+  enrolled: boolean;
+  telNumber: number | null;
+  name: string;
+  progress: number;
+  image: number | null;
+}
