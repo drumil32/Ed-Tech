@@ -4,6 +4,7 @@ import React from "react";
 import Progress from "../../components/atoms/ProgressBar/Progress";
 import { Link } from "react-router-dom";
 import Button from "../../components/atoms/Button/Button";
+import TalkToUs from "../../components/molecule/TalkToUs/TalkToUs";
 
 const Dashboard: React.FC = () => {
   const user = {
@@ -77,22 +78,30 @@ const Dashboard: React.FC = () => {
             <div className={styles.availableCoursesCard}>
               <img src="/assets/dashboard/card1.svg" alt="" />
               <h2>Not sure where to start?</h2>
-              <p>
-                Connect with us to take a short career counselling session.
-              </p>
-              <Button text="Talk to us!" className={styles.availableCoursesCardCta} />
+              <p>Connect with us to take a short career counselling session.</p>
+              <Button
+                text="Talk to us!"
+                className={styles.availableCoursesCardCta}
+              />
             </div>
             <div className={styles.availableCoursesCard}>
               <img src="/assets/dashboard/card1.svg" alt="" />
               <h2>Not sure where to start?</h2>
-              <p>
-                Connect with us to take a short career counselling session.
-              </p>
-              <Button text="Talk to us!" className={styles.availableCoursesCardCta} />
+              <p>Connect with us to take a short career counselling session.</p>
+              <Button
+                text="Talk to us!"
+                className={styles.availableCoursesCardCta}
+              />
             </div>
           </div>
         </div>
       ) : null}
+
+      <div className={styles.talkToUsSection}>
+        <div className={styles.talkToUsContainer}>
+          <TalkToUs enrolled={user.enrolled} />
+        </div>
+      </div>
     </div>
   );
 };

@@ -54,41 +54,4 @@
       }
     }
   }
-
-  .upgradeBox {
-    border: 1px solid #000;
-    padding: 0.8rem 1rem;
-    border-radius: 0.5rem;
-    color: #1f2b37;
-
-    h3 {
-      margin-bottom: 0.5rem;
-    }
-    p {
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-    }
-    .upgradeButton {
-      width: 100%;
-      height: unset;
-      padding: 0.4rem 1rem;
-      font-weight: 500;
-    }
-  }
-
-  .quoteContainer {
-    border: 1px solid #000;
-    padding: 0.8rem 1rem;
-    border-radius: 0.5rem;
-    color: #1f2b37;
-    min-height: 150px;
-
-    h3 {
-      margin-bottom: 0.5rem;
-    }
-    p {
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-    }
-  }
 }

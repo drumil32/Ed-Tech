@@ -8,18 +8,19 @@
   .marketingBanner {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 1.5rem;
     background-color: #10162f;
     border-radius: 0.7rem;
     gap: 1rem;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     margin-bottom: 2rem;
 
     .content {
       color: #fff;
       max-width: 600px;
+      min-width: 350px;
       flex: 1;
 
       h2 {
@@ -34,7 +35,6 @@
 
     .bannerImage {
       min-width: 200px;
-      // border: 1px solid #fff;
       padding: 2rem 1rem;
       display: flex;
       justify-content: center;
@@ -157,6 +157,22 @@
           margin-top: auto;
         }
       }
+    }
+  }
+
+  .talkToUsSection {
+    width: 100%;
+    margin-bottom: 2rem;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    @include md-max {
+      display: flex;
+    }
+
+    .talkToUsContainer {
+      width: 100%;
+      max-width: 450px;
     }
   }
 }
