@@ -4,13 +4,13 @@ import studentModel from '../models/studentModel.js';
 import { getRandomNumber } from '../utils/randomNumberGenerator.js';
 import createHttpError from 'http-errors';
 import expressAsyncHandler from 'express-async-handler';
-import { manageUserTokens, tokenGenerator } from '../utils/token.js';
+import { manageUserTokens } from '../utils/token.js';
 
 export const signUp = expressAsyncHandler(async (req: Request, res: Response) => {
     const { phoneNumber, name } = req.body;
 
     let isThisNewStudent = true;
-    let student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
+    let student = await studentModel.findOne({ phoneNumber });
 
     if (!student) {
         let avatar = getRandomNumber(1, 5);
@@ -34,7 +34,7 @@ export const signUp = expressAsyncHandler(async (req: Request, res: Response) =>
 
 });
 
-export const login = expressAsyncHandler(async (req: Request, res: Response) => {
+export const signIn = expressAsyncHandler(async (req: Request, res: Response) => {
     const { phoneNumber } = req.body;
 
     const student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');

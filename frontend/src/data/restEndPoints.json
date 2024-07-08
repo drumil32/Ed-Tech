@@ -1,7 +1,7 @@
 {
     "bookALiveClass": "book-live-class",
     "requestACall": "request-a-call",
-    "login":"auth/login",
+    "login":"auth/sign-in",
     "signup": "auth/sign-up",
     "auth":"auth"
 }

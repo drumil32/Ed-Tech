@@ -19,7 +19,7 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
     try {
         // Verify token
         decoded = await verifyJwtToken(tokenString);
-    }catch(error){
+    } catch (error) {
         if (error instanceof jwt.TokenExpiredError) {
             const decoded = decodeJwtToken(tokenString);
             await deleteExpiredToken(decoded.phoneNumber);
