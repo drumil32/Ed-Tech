@@ -8,7 +8,7 @@ import TalkToUs from "../../molecule/TalkToUs/TalkToUs";
 
 const Sidebar: React.FC = () => {
   const user = {
-    enrolled: false,
+    enrolled: true,
   };
 
   return (
