@@ -2,17 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserDetails } from "../../types/types";
 
 interface UserState {
-  user: UserDetails;
+  user: UserDetails | null;
 }
 
 const initialState: UserState = {
-  user: {
-    enrolled: false,
-    phoneNumber: null,
-    name: "",
-    progress: 0,
-    avatar: null,
-  },
+  user: null,
 };
 
 const userSlice = createSlice({

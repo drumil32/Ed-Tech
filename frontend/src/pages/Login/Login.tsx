@@ -9,8 +9,8 @@ import { toast } from "react-toastify";
 import { validateName, validatePhoneNumber } from "../../utils/validations";
 import restEndPoints from "../../data/restEndPoints.json";
 import axiosInstance from "../../utils/axiosInstance";
-// import { useDispatch, useSelector } from "react-redux";
-// import { RootState } from "../../redux/store";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../../redux/slices/UserSliice";
 
 const Login = () => {
   const [inputNumber, setInputNumber] = useState<string>("");
@@ -21,9 +21,7 @@ const Login = () => {
   const [captchaVerified, setCaptchaVerified] = useState<boolean>(false);
   const pathName = useLocation().pathname;
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
-  // const { user } = useSelector((store: RootState) => store.user);
-  // console.log(user);
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,27 +53,41 @@ const Login = () => {
           name: inputName.trim(),
         };
         response = await axiosInstance.post(`/${restEndPoints.signup}`, data);
-        localStorage.setItem("token", response.data.token);
       } else {
         const data = {
           phoneNumber: inputNumber,
         };
         response = await axiosInstance.post(`/${restEndPoints.login}`, data);
-        localStorage.setItem("token", response.data.token);
       }
+      const studentDetails = response.data.student;
+      setInputName("");
+      setInputNumber("");
+      dispatch(
+        setUserDetails({
+          enrolled: studentDetails.enrolled ? true : false,
+          phoneNumber: studentDetails.phoneNumber,
+          name: studentDetails.name,
+          progress: studentDetails.enrolled
+            ? studentDetails.enrolled.progress
+            : 0,
+          avatar: studentDetails.avatar,
+        })
+      );
+      localStorage.setItem("token", response.data.token);
       toast.success(response.data.message);
       navigate("/dashboard");
-
     } catch (err: any) {
+      console.log(err);
       if (404 == err.response.status) {
-        toast.info(err.response.data.message);
+        toast.info(err.response.data.error);
         navigate("/signup");
+      }
+      else {
+        toast.error(err.response.data.error);
       }
     } finally {
       if (response) {
       }
-      setInputName("");
-      setInputNumber("");
       setLoading(false);
     }
   };

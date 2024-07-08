@@ -33,7 +33,8 @@ const Hero: React.FC = () => {
   const [timeSlot, setTimeSlot] = useState<Number | null>(0);
   const [nameError, setNameError] = useState<string | null>(null);
   const [numberError, setNumberError] = useState<string | null>(null);
-  const { isLoading, setLoading, formSubmitted, setFormSubmitted } = useFormContext();
+  const { isLoading, setLoading, formSubmitted, setFormSubmitted } =
+    useFormContext();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,10 +53,14 @@ const Hero: React.FC = () => {
       timeSlot === 0
         ? null
         : timeSlot === 1
-          ? demoSessionSchedule[0]["date-be"]
-          : demoSessionSchedule[1]["date-be"];
+        ? demoSessionSchedule[0]["date-be"]
+        : demoSessionSchedule[1]["date-be"];
     const time =
-      timeSlot === 0 ? null : timeSlot === 1 ? demoSessionSchedule[0].time : demoSessionSchedule[1].time;
+      timeSlot === 0
+        ? null
+        : timeSlot === 1
+        ? demoSessionSchedule[0].time
+        : demoSessionSchedule[1].time;
 
     const data = {
       name: inputName.trim(),
@@ -65,15 +70,11 @@ const Hero: React.FC = () => {
     };
 
     try {
-      await axiosInstance.post(`/${restEndPoints.bookALiveClass}`,data);
+      const response = await axiosInstance.post(`/${restEndPoints.bookALiveClass}`, data);
       setFormSubmitted(true);
-      toast.success("Class successfully booked.");
+      toast.success(response.data.message);
     } catch (error: any) {
-      if (409 == error.response.status) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("Something went wrong. Please try again.");
-      }
+      toast.error(error.response.data.error);
     } finally {
       setLoading(false);
     }
@@ -116,9 +117,7 @@ const Hero: React.FC = () => {
                 <div
                   className={`timeSlot ${timeSlot === 0 && "active"}`}
                   onClick={() => {
-                    isLoading ||
-                      (!formSubmitted &&
-                        setTimeSlot(0));
+                    isLoading || (!formSubmitted && setTimeSlot(0));
                   }}
                 >
                   <p>No Preference</p>
@@ -128,8 +127,7 @@ const Hero: React.FC = () => {
                   className={`timeSlot ${timeSlot === 1 && "active"}`}
                   onClick={() => {
                     isLoading ||
-                      (!formSubmitted &&
-                        setTimeSlot(timeSlot === 1 ? 0 : 1));
+                      (!formSubmitted && setTimeSlot(timeSlot === 1 ? 0 : 1));
                   }}
                 >
                   <p>{demoSessionSchedule[0]["date-fe"]}</p>
@@ -140,8 +138,7 @@ const Hero: React.FC = () => {
                   className={`timeSlot ${timeSlot === 2 && "active"}`}
                   onClick={() => {
                     isLoading ||
-                      (!formSubmitted &&
-                        setTimeSlot(timeSlot === 2 ? 0 : 2));
+                      (!formSubmitted && setTimeSlot(timeSlot === 2 ? 0 : 2));
                   }}
                 >
                   <p>{demoSessionSchedule[1]["date-fe"]}</p>
@@ -160,7 +157,11 @@ const Hero: React.FC = () => {
                 </div>
               ) : (
                 <Button
-                  text={formSubmitted ? "You have Booked Class!" : "Book a Live Class for Free"}
+                  text={
+                    formSubmitted
+                      ? "You have Booked Class!"
+                      : "Book a Live Class for Free"
+                  }
                   style={{ width: "100%", marginTop: "0.8rem" }}
                   disabled={formSubmitted}
                 />
