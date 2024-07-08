@@ -9,9 +9,10 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
     try {
         let isThisNewStudent = true;
         let student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
-        let avatar = getRandomNumber(1, 5);
+        
 
         if (!student) {
+            let avatar = getRandomNumber(1, 5);
             // Create a new student
             student = new studentModel({ phoneNumber, name, avatar });
             await student.save();

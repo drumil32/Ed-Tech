@@ -8,10 +8,10 @@ interface UserState {
 const initialState: UserState = {
   user: {
     enrolled: false,
-    telNumber: null,
+    phoneNumber: null,
     name: "",
     progress: 0,
-    image: null,
+    avatar: null,
   },
 };
 

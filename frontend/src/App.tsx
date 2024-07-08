@@ -15,14 +15,28 @@ import DashboardLayout from "./components/Layouts/DashboardLayout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CourseSyllabus from "./pages/CourseSyllabus/CourseSyllabus";
 import axiosInstance from "./utils/axiosInstance";
-import restEndPoints from "./data/restEndPoints.json";;
+import restEndPoints from "./data/restEndPoints.json"; import { useDispatch } from "react-redux";
+import { setUserDetails } from "./redux/slices/UserSliice";
+;
 
 function App() {
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const auth = async () => {
-      const response = await axiosInstance.get(`/${restEndPoints.auth}`);
-      console.log(response);
+      try {
+        const response = await axiosInstance.get(`/${restEndPoints.auth}`);
+        const studentDetails = response.data.student;
+        dispatch(setUserDetails({
+          enrolled: studentDetails.enrolled ? true : false,
+          phoneNumber: studentDetails.phoneNumber,
+          name: studentDetails.name,
+          progress: studentDetails.enrolled ? studentDetails.enrolled.progress : 0,
+          avatar: studentDetails.avatar
+        }))
+      } catch (error) {
+        console.log(error);
+      }
     }
     auth();
   }, []);
