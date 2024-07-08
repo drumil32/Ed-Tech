@@ -15,30 +15,34 @@ import DashboardLayout from "./components/Layouts/DashboardLayout";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CourseSyllabus from "./pages/CourseSyllabus/CourseSyllabus";
 import axiosInstance from "./utils/axiosInstance";
-import restEndPoints from "./data/restEndPoints.json"; import { useDispatch } from "react-redux";
+import restEndPoints from "./data/restEndPoints.json";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserDetails } from "./redux/slices/UserSliice";
-;
-
+import { RootState } from "./redux/store";
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user.user);
 
   useEffect(() => {
     const auth = async () => {
       try {
         const response = await axiosInstance.get(`/${restEndPoints.auth}`);
-        console.log(response)
         const studentDetails = response.data.student;
-        dispatch(setUserDetails({
-          enrolled: studentDetails.enrolled ? true : false,
-          phoneNumber: studentDetails.phoneNumber,
-          name: studentDetails.name,
-          progress: studentDetails.enrolled ? studentDetails.enrolled.progress : 0,
-          avatar: studentDetails.avatar
-        }))
+        dispatch(
+          setUserDetails({
+            enrolled: studentDetails.enrolled ? true : false,
+            phoneNumber: studentDetails.phoneNumber,
+            name: studentDetails.name,
+            progress: studentDetails.enrolled
+              ? studentDetails.enrolled.progress
+              : 0,
+            avatar: studentDetails.avatar,
+          })
+        );
       } catch (error) {
         console.log(error);
       }
-    }
+    };
     auth();
   }, []);
 
@@ -103,6 +107,8 @@ function App() {
       ],
     },
   ]);
+
+  // console.log(user);
 
   return (
     <div className="App">

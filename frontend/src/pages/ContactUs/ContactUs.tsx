@@ -64,11 +64,11 @@ const ContactUs: React.FC = () => {
     };
 
     try {
-      await axiosInstance.post(`/${restEndPoints.requestACall}`, data);
+      const response = await axiosInstance.post(`/${restEndPoints.requestACall}`, data);
       setFormSubmitted(true);
-      toast.success("We will connect you soon!");
-    } catch (error) {
-      toast.error("Some went wrong. please try again later.");
+      toast.success(response.data.message);
+    } catch (error: any) {
+      toast.error(error.response.data.error);
     }
     finally {
       setLoading(false);

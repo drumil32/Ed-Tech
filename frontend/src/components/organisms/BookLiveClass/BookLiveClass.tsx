@@ -66,15 +66,11 @@ const BookLiveClassForm: React.FC = () => {
     };
 
     try {
-      await axiosInstance.post(`/${restEndPoints.bookALiveClass}`, data);
+      const response = await axiosInstance.post(`/${restEndPoints.bookALiveClass}`, data);
       setFormSubmitted(true);
-      toast.success("Class successfully booked.");
+      toast.success(response.data.message);
     } catch (error: any) {
-      if (409 == error.response.status) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("Something went wrong. Please try again.");
-      }
+      toast.error(error.response.data.error);
     } finally {
       setLoading(false);
     }
