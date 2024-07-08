@@ -1,21 +1,21 @@
 import { NextFunction, Response, Request } from "express";
 import studentModel from "../models/studentModel.js";
+import createHttpError from "http-errors";
+import expressAsyncHandler from "express-async-handler";
 
-export const enrollStudent = async (req: Request, res: Response, next: NextFunction) => {
+export const enrollStudent = expressAsyncHandler(async (req: Request, res: Response) => {
     const { phoneNumber } = req.body;
-    try {
-        const student = await studentModel.findOneAndUpdate(
-            { phoneNumber },
-            { $set: { enrolled: { progress: 0 } } },
-            { new: true, runValidators: true }
-        ).select('-_id -__v');
 
-        if (!student) {
-            return res.status(404).json({ message: "Student with the provided mobile number does not exist." });
-        }
+    const student = await studentModel.findOneAndUpdate(
+        { phoneNumber },
+        { $set: { enrolled: { progress: 0 } } },
+        { new: true, runValidators: true }
+    ).select('-_id -__v');
 
-        res.status(200).json({ message: "Student enrolled successfully.", student });
-    } catch (err) {
-        return next(err);
+    if (!student) {
+        throw createHttpError(404, 'Student with the provided mobile number does not exist.');
     }
-}
+
+    res.status(200).json({ message: "Student enrolled successfully.", student });
+
+});

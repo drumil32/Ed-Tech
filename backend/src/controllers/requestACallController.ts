@@ -1,7 +1,8 @@
 import { NextFunction, Response, Request } from "express";
 import callRequestModel from "../models/callRequestModel.js";
+import expressAsyncHandler from "express-async-handler";
 
-export const requestACall = async (req: Request, res: Response, next: NextFunction) => {
+export const requestACall = expressAsyncHandler(async (req: Request, res: Response) => {
     const { name, phoneNumber, message } = req.body;
 
     const requestACallData = new callRequestModel({
@@ -10,11 +11,7 @@ export const requestACall = async (req: Request, res: Response, next: NextFuncti
         message
     });
 
-    try {
-        await requestACallData.save();
-    } catch (err) {
-        return next(err);
-    }
+    await requestACallData.save();
 
     res.status(200).json({ message: 'Request is received!', data: { name, phoneNumber, message } });
-};
+});

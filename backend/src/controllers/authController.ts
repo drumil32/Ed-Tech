@@ -3,137 +3,93 @@ import jwt from 'jsonwebtoken';
 import jwtTokenModel from '../models/jwtTokenModel.js';
 import studentModel from '../models/studentModel.js';
 import { getRandomNumber } from '../utils/randomNumberGenerator.js';
+import createHttpError from 'http-errors';
+import expressAsyncHandler from 'express-async-handler';
+import { manageUserTokens, tokenGenerator } from '../utils/token.js';
 
-export const signUp = async (req: Request, res: Response, next: NextFunction) => {
+export const signUp = expressAsyncHandler(async (req: Request, res: Response) => {
     const { phoneNumber, name } = req.body;
-    try {
-        let isThisNewStudent = true;
-        let student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
-        
 
-        if (!student) {
-            let avatar = getRandomNumber(1, 5);
-            // Create a new student
-            student = new studentModel({ phoneNumber, name, avatar });
-            await student.save();
-            student = student.toObject();
-            delete student._id;
-            delete student.__v;
-        } else {
-            isThisNewStudent = false;
-        }
+    let isThisNewStudent = true;
+    let student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
 
-        // Generate and send JWT token
-        const token = jwt.sign({ phoneNumber: student.phoneNumber }, process.env.JWT_SECRET!, { expiresIn: `${process.env.JWT_EXPIRATION_TIME}` });
 
-        if (isThisNewStudent) {
-            const userTokens = new jwtTokenModel({
-                phoneNumber: student.phoneNumber,
-                token: [token]
-            });
-            await userTokens.save();
-        } else {
-            let userTokens = await jwtTokenModel.findOne({ phoneNumber: student.phoneNumber });
-            if (userTokens) {
-                // If user already exists, check the token array length
-                if (userTokens.token.length == 3) {
-                    // Return error if the token array length exceeds the limit
-                    return res.status(403).json({ message: 'Login limit exceeded. Please log out from other devices.' });
-                }
-                // Generate JWT token
-                const token = jwt.sign({ phoneNumber: student.phoneNumber }, process.env.JWT_SECRET!, { expiresIn: `${process.env.JWT_EXPIRATION_TIME}` });
-                // Add the new token to the array
-                userTokens.token.push(token);
-                await userTokens.save();
-            } else {
-                // Generate JWT token
-                const token = jwt.sign({ phoneNumber: student.phoneNumber }, process.env.JWT_SECRET!, { expiresIn: `${process.env.JWT_EXPIRATION_TIME}` });
+    if (!student) {
+        let avatar = getRandomNumber(1, 5);
+        // Create a new student
+        student = new studentModel({ phoneNumber, name, avatar });
+        await student.save();
+        student = student.toObject();
+        delete student._id;
+        delete student.__v;
+    } else {
+        isThisNewStudent = false;
+    }
 
-                // If user does not exist, create a new entry with the token array
-                userTokens = new jwtTokenModel({
-                    phoneNumber: student.phoneNumber,
-                    token: [token]
-                });
-                await userTokens.save();
-            }
-        }
+    let token = null;
 
-        return res.status(200).json({
+    if (isThisNewStudent) {
+        token = tokenGenerator({ phoneNumber: student.phoneNumber });
+        const userTokens = new jwtTokenModel({
+            phoneNumber: student.phoneNumber,
+            token: [token]
+        });
+        await userTokens.save();
+    } else {
+        token = await manageUserTokens(student.phoneNumber);
+    }
+
+    res.status(200).json({
+        student,
+        token,
+        message: isThisNewStudent ? 'Signup Successfully.' : 'Login Successfully.'
+    });
+
+});
+
+export const login = expressAsyncHandler(async (req: Request, res: Response) => {
+    const { phoneNumber } = req.body;
+
+    const student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
+
+    if (student) {
+        const token = await manageUserTokens(student.phoneNumber);
+        res.status(200).json({
             student,
             token,
-            message: isThisNewStudent ? 'Signup successfully' : 'Login successfully'
+            message: 'Login Successfully.'
         });
-    } catch (err) {
-        return next(err);
+    } else {
+        throw createHttpError(404, "You don't have an account. Please Signup.");
     }
-};
+});
 
-export const login = async (req: Request, res: Response, next: NextFunction) => {
-    const { phoneNumber } = req.body;
-    try {
-        const student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
-
-        if (student) {
-            let userTokens = await jwtTokenModel.findOne({ phoneNumber: student.phoneNumber });
-
-            // Generate JWT token
-            const token = jwt.sign({ phoneNumber: student.phoneNumber }, process.env.JWT_SECRET!, { expiresIn: `${process.env.JWT_EXPIRATION_TIME}` });
-
-            if (userTokens) {
-                // If user already exists, check the token array length
-                if (userTokens.token.length == 3) {
-                    // Return error if the token array length exceeds the limit
-                    return res.status(403).json({ message: 'Login limit exceeded. Please log out from other devices.' });
-                }
-                // Add the new token to the array
-                userTokens.token.push(token);
-                await userTokens.save();
-            } else {
-                // If user does not exist, create a new entry with the token array
-                userTokens = new jwtTokenModel({
-                    phoneNumber: student.phoneNumber,
-                    token: [token]
-                });
-                await userTokens.save();
-            }
-            res.status(200).json({
-                student,
-                token,
-                message: 'Login successfully'
-            });
-        } else {
-            return res.status(404).json({ message: "You don't have an account. Please Signup." });
-        }
-    } catch (err) {
-        return next(err);
-    }
-};
-
-export const auth = async (req: Request, res: Response, next: NextFunction) => {
+export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
     const { phoneNumber } = req;
-    try {
-        const student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
-        return res.status(200).json({
-            student
-        });
-    } catch (err) {
-        return next(err);
+    console.log('inside auth')
+
+    const student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
+
+    if (!student) {
+        throw createHttpError(404, "You don't have an account."); // though chance of this happening is very less.
     }
-};
 
-export const logout = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const phoneNumber = req.phoneNumber;
-        const token = req.token;
+    res.status(200).json({
+        student
+    });
 
-        const userTokens = await jwtTokenModel.findOne({ phoneNumber });
+});
 
-        userTokens.token = userTokens.token.filter(t => t !== token);
-        await userTokens.save();
+export const logout = expressAsyncHandler(async (req: Request, res: Response) => {
 
-        res.status(200).json({ message: 'Logout successful' });
+    const phoneNumber = req.phoneNumber;
+    const token = req.token;
 
-    } catch (err) {
-        return next(err);
-    }
-};
+    const userTokens = await jwtTokenModel.findOne({ phoneNumber });
+
+    userTokens.token = userTokens.token.filter(t => t !== token);
+    await userTokens.save();
+
+    res.status(200).json({ message: 'Logout Successfully.' });
+
+});
