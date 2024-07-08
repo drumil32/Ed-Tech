@@ -1,5 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import { Request, Response } from 'express';
 import jwtTokenModel from '../models/jwtTokenModel.js';
 import studentModel from '../models/studentModel.js';
 import { getRandomNumber } from '../utils/randomNumberGenerator.js';
@@ -13,32 +12,20 @@ export const signUp = expressAsyncHandler(async (req: Request, res: Response) =>
     let isThisNewStudent = true;
     let student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
 
-
     if (!student) {
         let avatar = getRandomNumber(1, 5);
         // Create a new student
         student = new studentModel({ phoneNumber, name, avatar });
         await student.save();
         student = student.toObject();
-        delete student._id;
-        delete student.__v;
     } else {
         isThisNewStudent = false;
     }
 
-    let token = null;
+    let token = await manageUserTokens(student.phoneNumber);
 
-    if (isThisNewStudent) {
-        token = tokenGenerator({ phoneNumber: student.phoneNumber });
-        const userTokens = new jwtTokenModel({
-            phoneNumber: student.phoneNumber,
-            token: [token]
-        });
-        await userTokens.save();
-    } else {
-        token = await manageUserTokens(student.phoneNumber);
-    }
-
+    delete student._id;
+    delete student.__v;
     res.status(200).json({
         student,
         token,
@@ -66,7 +53,6 @@ export const login = expressAsyncHandler(async (req: Request, res: Response) => 
 
 export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
     const { phoneNumber } = req;
-    console.log('inside auth')
 
     const student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
 

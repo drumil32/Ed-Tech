@@ -12,7 +12,10 @@ export const manageUserTokens = async (phoneNumber: string) => {
         // If user already exists, check the token array length
         if (userTokens.token.length == 3) {
             // Return error if the token array length exceeds the limit
-            throw createHttpError(403, 'Login limit exceeded. Please log out from other devices.');
+            userTokens = await deleteExpiredToken(phoneNumber);
+            if (userTokens.token.length == 3) {
+                throw createHttpError(403, 'Login limit exceeded. Please log out from other devices.');
+            }
         }
         const token = tokenGenerator({ phoneNumber });
         // Add the new token to the array
@@ -33,36 +36,25 @@ export const manageUserTokens = async (phoneNumber: string) => {
 }
 
 export const verifyJwtToken = async (token: string) => {
-    if (!token) {
-        throw createHttpError(401, 'Please Login.');
-    }
-    const tokenString = token.replace('Bearer ', '');
-    let decoded = null;
-    try {
-        decoded = jwt.verify(tokenString, process.env.JWT_SECRET) as { [key: string]: any };
-    } catch (error) {
-        if (error instanceof jwt.TokenExpiredError) {
-            const decoded = jwt.decode(tokenString);
-            const userTokens = await jwtTokenModel.findOne({ phoneNumber: decoded.phoneNumber });
-            userTokens.token = userTokens.token.filter(token => {
-                try {
-                    jwt.verify(token, process.env.JWT_SECRET) as { [key: string]: any };
-                    return true;
-                } catch (error) {
-                    return false;
-                }
-            });
-            await userTokens.save();
-        }
-        throw createHttpError(401, 'Please Login.');
-    }
+    return jwt.verify(token, process.env.JWT_SECRET) as { [key: string]: any };
+}
 
-    const userTokens = await jwtTokenModel.findOne({ phoneNumber: decoded.phoneNumber });
-    if (!userTokens) {
-        throw createHttpError(401, 'Please Login.');
-    }
-    if (!userTokens.token.includes(tokenString)) {
-        throw createHttpError(401, 'Please Login.');
-    }
-    return decoded;
+export const decodeJwtToken = (token: string) => {
+    return jwt.decode(token) as { [key: string]: any };
+}
+
+export const deleteExpiredToken = async (phoneNumber: string) => {
+
+    const userTokens = await jwtTokenModel.findOne({ phoneNumber });
+
+    userTokens.token = userTokens.token.filter(token => {
+        try {
+            jwt.verify(token, process.env.JWT_SECRET) as { [key: string]: any };
+            return true;
+        } catch (error) {
+            return false;
+        }
+    });
+    await userTokens.save();
+    return userTokens;
 }
