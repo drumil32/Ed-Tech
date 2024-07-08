@@ -48,8 +48,8 @@ export interface OurValuesCardDetails {
 
 export interface UserDetails {
   enrolled: boolean;
-  telNumber: number | null;
+  phoneNumber: number | null;
   name: string;
   progress: number;
-  image: number | null;
+  avatar: number | null;
 }
