@@ -11,7 +11,7 @@ import { IoCloseCircle } from "react-icons/io5";
 
 const Dashboard: React.FC = () => {
   const user = {
-    enrolled: false,
+    enrolled: true,
     progress: 40,
   };
   const [talkToUsModalOpen, setTalkToUsModalOpen] = useState<boolean>(false);
