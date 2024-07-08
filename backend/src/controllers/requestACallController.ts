@@ -13,5 +13,5 @@ export const requestACall = expressAsyncHandler(async (req: Request, res: Respon
 
     await requestACallData.save();
 
-    res.status(200).json({ message: 'Request is received!' });
+    res.status(200).json({ message: 'We will connect you soon!' });
 });

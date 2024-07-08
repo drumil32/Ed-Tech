@@ -24,5 +24,5 @@ export const liveClassBooking = expressAsyncHandler(async (req: Request, res: Re
     await bookLiveClassData.save();
 
     // Further logic can be added here
-    res.status(200).json({ message: 'Session is booked!' });
+    res.status(200).json({ message: 'Class successfully booked.' });
 });
