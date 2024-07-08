@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Progress.module.scss";
 
-export interface ProgreessProps {
+export interface ProgressProps {
   progress: number;
 }
 
-const Progress: React.FC<ProgreessProps> = ({ progress }) => {
+const Progress: React.FC<ProgressProps> = ({ progress }) => {
+  const [currentProgress, setCurrentProgress] = useState(0);
+
+  useEffect(() => {
+    const incrementProgress = () => {
+      setCurrentProgress((prev) => {
+        if (prev < progress) {
+          return Math.min(prev + 1, progress);
+        } else if (prev > progress) {
+          return Math.max(prev - 1, progress);
+        }
+        return prev;
+      });
+    };
+
+    const interval = setInterval(incrementProgress, 40); // Adjust the interval time as needed
+
+    return () => clearInterval(interval);
+  }, [progress]);
+
   return (
     <div className={styles.progressBar}>
       <div
         className={styles.progress}
-        style={{
-          width: `${progress}%`,
-          borderRight: progress === 0 ? "none" : "1px solid #000",
-        }}
+        style={{ "--progress": `${currentProgress}%` } as React.CSSProperties}
       ></div>
-      <span>{progress}%</span>
+      <span className={styles.progressValue}>{currentProgress}%</span>
     </div>
   );
 };

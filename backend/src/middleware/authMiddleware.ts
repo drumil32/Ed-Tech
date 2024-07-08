@@ -19,7 +19,9 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
     try {
         // Verify token
         decoded = await verifyJwtToken(tokenString);
+        
     } catch (error) {
+
         if (error instanceof jwt.TokenExpiredError) {
             const decoded = decodeJwtToken(tokenString);
             await deleteExpiredToken(decoded.phoneNumber);
@@ -28,10 +30,12 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
     }
 
     const userTokens = await jwtTokenModel.findOne({ phoneNumber: decoded.phoneNumber });
+
     if (!userTokens) {
         throw createHttpError(401, 'Please Login.');
     }
-    if (!userTokens.token.includes(token)) {
+
+    if (!userTokens.token.includes(tokenString)) {
         throw createHttpError(401, 'Please Login.');
     }
 

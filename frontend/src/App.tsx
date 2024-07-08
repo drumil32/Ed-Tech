@@ -26,6 +26,7 @@ function App() {
     const auth = async () => {
       try {
         const response = await axiosInstance.get(`/${restEndPoints.auth}`);
+        console.log(response)
         const studentDetails = response.data.student;
         dispatch(setUserDetails({
           enrolled: studentDetails.enrolled ? true : false,

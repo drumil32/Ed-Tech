@@ -1,40 +1,49 @@
 @import "/src/styles/_mixins";
 
-@keyframes moveGradient {
-  from {
-    background-position: 0 0px;
+@keyframes shine {
+  0% {
+    background-position: 0 0;
   }
-  to {
-    background-position: 3000px 0px;
+  100% {
+    background-position: 0 50px;
+  }
+}
+
+@keyframes end {
+  0%,
+  100% {
+    box-shadow: 0 0 10px 0px orange;
+  }
+  50% {
+    box-shadow: 0 0 15px 5px orange;
   }
 }
 
 .progressBar {
   width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #cecece;
+  height: 50px;
   border-bottom: 1px solid #000;
+  background-color: #eceaea;
+  position: relative;
+}
 
-  height: 40px;
+.progress {
+  --progress: 0%;
+  width: var(--progress);
+  height: 100%;
+  background: linear-gradient(#ffd500, #ff882d, gold);
+  background-repeat: repeat;
+  animation: shine 4s ease-in infinite, end 1s ease-out 1;
+  transition: width 0.4s linear;
+  box-shadow: 0 0 2px 0px orange;
+}
 
-  .progress {
-    position: absolute;
-    border-right: 1px solid #000;
-
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background-image: repeating-linear-gradient(135deg, transparent, transparent 23px, #ffffffef 23px, #ffffffef 46px);
-    background-color: #ffd500;
-    animation: moveGradient 100s linear infinite;
-  }
-
-  span {
-    font-weight: 700;
-    position: relative;
-    z-index: 2;
-  }
+.progressValue {
+  font-weight: 800;
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
 }
