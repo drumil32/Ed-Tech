@@ -1,4 +1,4 @@
-import { NextFunction, Response, Request } from "express";
+import { Response, Request } from "express";
 import liveClassBookingModel from "../models/liveClassBookingModel.js";
 import expressAsyncHandler from "express-async-handler";
 import createHttpError from "http-errors";

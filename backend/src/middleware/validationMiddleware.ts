@@ -45,3 +45,13 @@ export const validateTime = (req: Request, res: Response, next: NextFunction) =>
     }
     next();
 }
+
+export const validateMessage = (req: Request, res: Response, next: NextFunction) => {
+    const { message } = req.body;
+    if( !message ){
+        throw createHttpError(400, 'Please provide a message');
+    }else if( message.length>1000 ){
+        throw createHttpError(400, 'Message should not exceed 1000 characters');
+    }
+    next();
+}
