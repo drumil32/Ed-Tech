@@ -5,12 +5,14 @@ import { RiGitRepositoryLine } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 import React from "react";
 import TalkToUs from "../../molecule/TalkToUs/TalkToUs";
+import { RootState } from "../../../redux/store";
+import { useSelector } from "react-redux";
 
 const Sidebar: React.FC = () => {
-  const user = {
-    enrolled: true,
-  };
-
+  const { user } = useSelector((state: RootState) => state.user);
+  if (!user) {
+    return null;
+  }
   return (
     <div className={styles.sidebar}>
       <ul className={styles.navigations}>

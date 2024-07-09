@@ -19,12 +19,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   max-width: 750px;
   max-height: 85vh;
   padding: 1.5rem;
+  z-index: 500;
   @include sm-max {
     padding: 0.8rem;
     padding-top: 2rem;
