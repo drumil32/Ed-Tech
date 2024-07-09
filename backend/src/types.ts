@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, Schema } from "mongoose";
 
 export interface IBookLiveClassBookingModel extends Document {
     name: string;
@@ -34,4 +34,12 @@ export interface IStudentModel extends Document {
 export interface IJwtTokenModel extends Document {
     phoneNumber: string;
     token: string[];
+}
+
+export interface ICounsellingSessionModel extends Document {
+    student: Schema.Types.ObjectId;
+    message: string;
+    type: 'Counselling' | 'NextOpening';
+    creationDate: string;
+    creationTime: string;
 }

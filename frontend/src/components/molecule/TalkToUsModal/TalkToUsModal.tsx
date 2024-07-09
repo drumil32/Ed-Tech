@@ -11,13 +11,16 @@ import { validateMessage } from "../../../utils/validations";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import axiosInstance from "../../../utils/axiosInstance";
+import restEndPoints from "../../../data/restEndPoints.json";
 
 interface TalkToUsModalProps {
   onClose: () => void;
   message: string;
+  type: string;
 }
 
-const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ onClose, message }) => {
+const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ onClose, message, type }) => {
   const [messageText, setMessageText] = useState<string>(message);
   const [messageTextError, setMessageTextError] = useState<string | null>(null);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -38,13 +41,14 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ onClose, message }) => {
     }
     setLoading(true);
     const data = {
-      name: user.name,
-      phoneNumber: user.phoneNumber,
       message: messageText,
+      type
     };
     try {
       //TODO Api logic will be here
+      const response = await axiosInstance.post(`/${restEndPoints.counselling}`, data);
       setFormSubmitted(true);
+      toast.success(response.data.message);
     } catch (error: any) {
       toast.error(error.response.data.error);
     } finally {

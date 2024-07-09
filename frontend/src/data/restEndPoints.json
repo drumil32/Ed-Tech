@@ -4,5 +4,6 @@
     "login":"auth/sign-in",
     "signup": "auth/sign-up",
     "auth":"auth",
-    "logout": "auth/logout"
+    "logout": "auth/logout",
+    "counselling":"counselling-session"
 }

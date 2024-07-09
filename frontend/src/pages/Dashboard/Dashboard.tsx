@@ -27,6 +27,7 @@ const Dashboard: React.FC = () => {
         <TalkToUsModal
           onClose={onClose}
           message="Help me book a short career counselling session."
+          type='Counselling'
         />
       )}
       <SidebarTriggerButton />
