@@ -26,7 +26,7 @@ const TalkToUs: React.FC<TalkToUsProps> = ({ enrolled }) => {
   };
   return (
     <>
-      {talkToUsModalOpen && <TalkToUsModal onClose={onClose} message="Get complete details of the curriculum, available scholarships, and next batch start date." />}
+      {talkToUsModalOpen && <TalkToUsModal onClose={onClose} message="Get complete details of the curriculum, available scholarships, and next batch start date." type="NextOpening" />}
 
       {enrolled ? (
         <div className={styles.quoteContainer}>
