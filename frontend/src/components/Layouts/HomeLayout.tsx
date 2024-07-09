@@ -7,10 +7,12 @@ import "./HomeLayout.scss";
 
 const HomeLayout: React.FC = () => {
   const isMobile = useMedia("(max-width: 575px)");
-  const location  = useLocation().pathname
+  const location = useLocation().pathname;
+
   useEffect(() => {
     window.scroll(0, 0);
   }, [location]);
+
   return (
     <>
       <Header />

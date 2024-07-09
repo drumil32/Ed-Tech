@@ -16,12 +16,11 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import CourseSyllabus from "./pages/CourseSyllabus/CourseSyllabus";
 import axiosInstance from "./utils/axiosInstance";
 import restEndPoints from "./data/restEndPoints.json";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUserDetails } from "./redux/slices/UserSliice";
-import { RootState } from "./redux/store";
+import ProtectedRoute from "./utils/ProtectRoute";
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user.user);
 
   useEffect(() => {
     const auth = async () => {
@@ -98,7 +97,11 @@ function App() {
       children: [
         {
           path: "/dashboard",
-          element: <Dashboard />,
+          element: (
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          ),
         },
         {
           path: "/course-syllabus",
@@ -107,8 +110,6 @@ function App() {
       ],
     },
   ]);
-
-  // console.log(user);
 
   return (
     <div className="App">

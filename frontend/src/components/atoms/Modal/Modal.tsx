@@ -7,9 +7,18 @@ interface ModalProps {
   className?: string;
   style?: React.CSSProperties;
   container?: HTMLElement | null;
+  title?: string;
+  description?: string;
 }
 
-export const Modal: React.FC<ModalProps> = ({ children, className, style, container }) => {
+export const Modal: React.FC<ModalProps> = ({
+  children,
+  className,
+  style,
+  container,
+  title = "",
+  description = "",
+}) => {
   return (
     <Dialog.Root open={true}>
       <Dialog.Portal container={container || document.body}>
@@ -20,6 +29,8 @@ export const Modal: React.FC<ModalProps> = ({ children, className, style, contai
             ...style,
           }}
         >
+          <Dialog.Description>{description}</Dialog.Description>
+          <Dialog.Title>{title}</Dialog.Title>
           {children}
         </Dialog.Content>
       </Dialog.Portal>
