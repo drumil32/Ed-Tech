@@ -5,6 +5,7 @@ import quotesData from "../../../data/quotes.json";
 import upgradeNowSection from "../../../data/upgradeNowSection.json";
 import Button from "../../atoms/Button/Button";
 import { IoRefresh } from "react-icons/io5";
+import TalkToUsModal from "../TalkToUsModal/TalkToUsModal";
 
 export interface TalkToUsProps {
   enrolled: boolean;
@@ -14,12 +15,19 @@ const TalkToUs: React.FC<TalkToUsProps> = ({ enrolled }) => {
   const [randomIndex, setRandomIndex] = useState<number>(
     getRandomIndex(quotesData)
   );
+  const [talkToUsModalOpen, setTalkToUsModalOpen] = useState<boolean>(false);
+
+  const onClose = () => {
+    setTalkToUsModalOpen(false);
+  };
 
   const changeQuote = () => {
     setRandomIndex(getRandomIndex(quotesData));
   };
   return (
     <>
+      {talkToUsModalOpen && <TalkToUsModal onClose={onClose} message="Get complete details of the curriculum, available scholarships, and next batch start date." />}
+
       {enrolled ? (
         <div className={styles.quoteContainer}>
           <h3>Quote of the Day</h3>
@@ -37,6 +45,7 @@ const TalkToUs: React.FC<TalkToUsProps> = ({ enrolled }) => {
           <Button
             text={upgradeNowSection.CTA}
             className={styles.upgradeButton}
+            onClick={() => setTalkToUsModalOpen(true)}
           />
         </div>
       )}

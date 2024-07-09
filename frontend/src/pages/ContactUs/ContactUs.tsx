@@ -10,7 +10,7 @@ import Textarea from "../../components/atoms/TextArea/TextArea";
 import contactDetails from "../.../../../data/contactDetails.json";
 import { toast } from "react-toastify";
 import restEndPoints from "../../data/restEndPoints.json";
-import { validateName, validatePhoneNumber } from "../../utils/validations";
+import { validateMessage, validateName, validatePhoneNumber } from "../../utils/validations";
 import axiosInstance from "../../utils/axiosInstance";
 
 const ContactUs: React.FC = () => {
@@ -38,12 +38,6 @@ const ContactUs: React.FC = () => {
     },
   ];
 
-  const validateMessage = (value: string): string | null => {
-    if (value.trim().length > 200) {
-      return "Message can not have more than 200 characters.";
-    }
-    return null;
-  }
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 

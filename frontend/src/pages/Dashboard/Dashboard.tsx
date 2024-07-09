@@ -6,25 +6,28 @@ import { Link } from "react-router-dom";
 import Button from "../../components/atoms/Button/Button";
 import TalkToUs from "../../components/molecule/TalkToUs/TalkToUs";
 import SidebarTriggerButton from "../../components/atoms/SidebarTriggerButton/SidebarTriggerButton";
-import { Modal } from "../../components/atoms/Modal/Modal";
-import { IoCloseCircle } from "react-icons/io5";
+import classNames from "classnames";
+import TalkToUsModal from "../../components/molecule/TalkToUsModal/TalkToUsModal";
+import { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
 const Dashboard: React.FC = () => {
-  const user = {
-    enrolled: true,
-    progress: 40,
-  };
+  const {user} = useSelector((state:RootState) => state.user);
   const [talkToUsModalOpen, setTalkToUsModalOpen] = useState<boolean>(false);
+  if(!user) {
+    return null;
+  }
+  const onClose = () => {
+    setTalkToUsModalOpen(false);
+  };
+
   return (
     <div className={styles.dashboard}>
       {talkToUsModalOpen && (
-        <Modal className={styles.talkToUsModal}>
-          <div>
-            <div onClick={() => setTalkToUsModalOpen(false)} className={styles.closeBtn}>
-              <IoCloseCircle />
-            </div>
-          </div>
-        </Modal>
+        <TalkToUsModal
+          onClose={onClose}
+          message="Help me book a short career counselling session."
+        />
       )}
       <SidebarTriggerButton />
       <div
@@ -71,7 +74,10 @@ const Dashboard: React.FC = () => {
           <div className={styles.learningContent}>
             <h3>Job Path</h3>
             <p> In-Classroom MERN Full-Stack Web Development Course</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, fuga!</p>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim,
+              fuga!
+            </p>
           </div>
           <div className={styles.learningCtaContainer}>
             <Link to="/course-syllabus">View Syllabus</Link>
@@ -91,14 +97,36 @@ const Dashboard: React.FC = () => {
           <h2 className={styles.sectionTitle}>Available Courses</h2>
           <div className={styles.availableCoursesContainer}>
             <div className={styles.availableCoursesCard}>
-              <img src="/assets/dashboard/card1.svg" alt="" />
-              <h2>Not sure where to start?</h2>
-              <p>Connect with us to take a short career counselling session.</p>
+              <img
+                className={styles.cardClipArt}
+                src="/assets/dashboard/card1.svg"
+                alt=""
+              />
+              <h2 className={styles.cardHeading}>Not sure where to start?</h2>
+              <p className={styles.cardDesc}>
+                Connect with us to take a short career counselling session.
+              </p>
               <Button
                 text="Request a Callback!"
                 onClick={() => setTalkToUsModalOpen(true)}
                 className={styles.availableCoursesCardCta}
               />
+            </div>
+            <div
+              className={classNames(styles.availableCoursesCard, styles.detail)}
+            >
+              <div className={styles.cardHeader}>Job Path</div>
+              <div className={styles.content}>
+                <h2 className={styles.cardHeading}>MERN Full-Stack Course</h2>
+                <p className={styles.cardDesc}>
+                  This program offers top-quality tech education by experienced
+                  instructors from leading tech companies. We cover key concepts
+                  like MongoDB, Express.js, React, and Node.js, equipping you
+                  with the skills to excel in the competitive tech industry.
+                </p>
+                <h5 className={styles.cardPoints}>Includes live projects</h5>
+                <h5 className={styles.cardPoints}>Open to all disciplines</h5>
+              </div>
             </div>
           </div>
         </div>

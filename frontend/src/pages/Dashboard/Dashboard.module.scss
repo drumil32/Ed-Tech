@@ -11,12 +11,17 @@
     justify-content: center;
     align-items: center;
     padding: 1.5rem;
+    background-image: radial-gradient(circle at center center, #757fab, #10162f),
+      repeating-radial-gradient(
+        circle at center center,
+        #757fab,
+        #ff003d,
+        19px,
+        transparent 38px,
+        transparent 19px
+      );
+    background-blend-mode: multiply;
     background-color: #10162f;
-    opacity: 0.8;
-    background-image:  linear-gradient(135deg, #1a2240 25%, transparent 25%), linear-gradient(225deg, #1a2240 25%, transparent 25%), linear-gradient(45deg, #1a2240 25%, transparent 25%), linear-gradient(315deg, #1a2240 25%, #10162f 25%);
-    background-position:  10px 0, 10px 0, 0 0, 0 0;
-    background-size: 20px 20px;
-    background-repeat: repeat;
     border-radius: 0.7rem;
     gap: 1rem;
     flex-wrap: wrap-reverse;
@@ -149,31 +154,66 @@
         width: 100%;
         max-width: 300px;
         border: 1px solid #000;
-        min-height: 280px;
+        min-height: 332px;
         border-radius: 0.25rem;
         transition: all 0.3s ease-in-out;
         display: flex;
         flex-direction: column;
-        padding: 3rem 1rem 1rem 1rem;
+        padding: 1rem;
 
         &:hover {
           box-shadow: -0.5rem 0.5rem 0 0 rgba(0, 0, 0);
         }
 
-        img {
+        &.detail {
+          padding: 0;
+          padding-bottom: 3rem;
+          cursor: pointer;
+
+          .cardDesc {
+            margin-bottom: 2.5rem;
+          }
+
+        }
+
+        .cardClipArt {
           width: 100%;
           max-width: 120px;
           align-self: center;
           margin-bottom: 1rem;
         }
 
-        h2 {
+        .cardHeading {
           margin-bottom: 0.5rem;
         }
 
-        p {
+        .cardDesc {
           font-size: 0.9rem;
           margin-bottom: 1rem;
+        }
+
+        .cardHeader {
+          background-color: #10162F;
+          padding: 0.5rem 1rem;
+          color: #ffd500;
+          font-family: "Courier New", Courier, monospace;
+          font-weight: 600;
+          margin-bottom: 0.7rem;
+        }
+
+        .content {
+          flex: 1;
+          padding: 0 1rem;
+        }
+
+        .cardPoints {
+          font-weight: 400;
+          border-bottom: 1px dashed #000;
+          padding: 0.2rem 0;
+
+          &:first-of-type {
+            border-top: 1px dashed #000;
+          }
         }
 
         .availableCoursesCardCta {
@@ -201,23 +241,6 @@
     .talkToUsContainer {
       width: 100%;
       max-width: 450px;
-    }
-  }
-}
-
-.talkToUsModal:global(.DialogContent) {
-  width: 100%;
-  max-width: 450px;
-  min-height: 450px;
-
-  .closeBtn {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    cursor: pointer;
-
-    svg {
-      font-size: 1.5rem;
     }
   }
 }
