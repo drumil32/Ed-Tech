@@ -19,8 +19,10 @@ import restEndPoints from "./data/restEndPoints.json";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "./redux/slices/UserSliice";
 import ProtectedRoute from "./utils/ProtectRoute";
+import RestrictedRoute from "./utils/RestrictedRoute";
 function App() {
   const dispatch = useDispatch();
+  const [initialLoader, setInitialLoader] = useState(true);
 
   useEffect(() => {
     const auth = async () => {
@@ -45,7 +47,6 @@ function App() {
     auth();
   }, []);
 
-  const [initialLoader, setInitialLoader] = useState(true);
   useEffect(() => {
     setTimeout(() => setInitialLoader(false), 2000);
   }, []);
@@ -83,11 +84,19 @@ function App() {
       children: [
         {
           path: "/login",
-          element: <Login />,
+          element: (
+            <RestrictedRoute>
+              <Login />
+            </RestrictedRoute>
+          ),
         },
         {
           path: "/signup",
-          element: <Login />,
+          element: (
+            <RestrictedRoute>
+              <Login />
+            </RestrictedRoute>
+          ),
         },
       ],
     },
@@ -105,7 +114,11 @@ function App() {
         },
         {
           path: "/course-syllabus",
-          element: <CourseSyllabus />,
+          element: (
+            <ProtectedRoute>
+              <CourseSyllabus />
+            </ProtectedRoute>
+          ),
         },
       ],
     },
