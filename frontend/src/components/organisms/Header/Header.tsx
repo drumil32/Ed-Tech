@@ -54,7 +54,7 @@ const Header: React.FC = () => {
           {isMobile ? <MobileNavbar /> : null}
           <div className={"header_logo"}>
             {!isMobile ? <MobileNavbar /> : null}
-            <Link to="/" onClick={scrollToTop} className="logo">
+            <Link to="/" state={{ isForceFull: true }} onClick={scrollToTop} className="logo">
               <img src={logo} alt="" />
               <h2>SprintUp</h2>
             </Link>
@@ -115,7 +115,7 @@ const Header: React.FC = () => {
             </div>
           )}
         </div>
-      </header>
+      </header >
       <a href="#" className={scrolled ? "back-to-top visible" : "back-to-top"}>
         <MdOutlineKeyboardDoubleArrowUp />
       </a>
