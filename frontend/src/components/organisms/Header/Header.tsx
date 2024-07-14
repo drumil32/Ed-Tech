@@ -84,7 +84,7 @@ const Header: React.FC = () => {
                   className={({ isActive }) => (isActive ? "active" : "")}
                   onClick={scrollToTop}
                 >
-                  Our Values
+                  About Us
                 </NavLink>
               </li>
               <li>
@@ -115,9 +115,9 @@ const Header: React.FC = () => {
           )}
         </div>
       </header >
-      <a href="#" className={scrolled ? "back-to-top visible" : "back-to-top"}>
+      <div onClick={scrollToTop}  className={scrolled ? "back-to-top visible" : "back-to-top"}>
         <MdOutlineKeyboardDoubleArrowUp />
-      </a>
+      </div>
     </>
   );
 };

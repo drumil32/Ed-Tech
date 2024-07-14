@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
         <div className="hero-right">
           <div className="hero-form">
             <div className="form-title">
-              <h2>Build Your Tech Career With Us</h2>
+              <h2>Build Your Tech Career</h2>
             </div>
             <div className="form-subtitle">
               <h3>Best full-stack course designed</h3>

@@ -95,8 +95,8 @@ const Courses: React.FC = () => {
               <h4 className={styles.subTitle}>Partners </h4>
             </div>
             <div className={styles.courseHighlights__point}>
-              <h2 className={styles.title}>100% Assistance</h2>
-              <h4 className={styles.subTitle}>Placement</h4>
+              <h2 className={styles.title}>100% Placement</h2>
+              <h4 className={styles.subTitle}>Guarantee</h4>
             </div>
           </div>
         </div>

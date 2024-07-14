@@ -35,7 +35,7 @@ const PagesName: React.FC = () => {
           <Link to="/course-details">Courses</Link>
         </li>
         <li>
-          <Link to="/values">Our Values</Link>
+          <Link to="/values">About Us</Link>
         </li>
         <li>
           <Link to="/contact" onClick={scrollToTop}>

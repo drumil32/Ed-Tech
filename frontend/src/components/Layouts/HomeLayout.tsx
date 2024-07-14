@@ -20,12 +20,11 @@ const HomeLayout: React.FC = () => {
         {isMobile ? (
           <>
             <p>Lucknow's top offline MERN full-stack program.</p>
-            <p>Hurry, limited seats only! ⏰</p>
+            <p>Limited seats & scholarships! ⏰</p>
           </>
         ) : (
           <p>
-            Lucknow's top offline MERN full-stack program. Hurry, limited seats
-            only! ⏰
+            Lucknow's top offline MERN full-stack program. Limited seats & scholarships! ⏰
           </p>
         )}
       </div>

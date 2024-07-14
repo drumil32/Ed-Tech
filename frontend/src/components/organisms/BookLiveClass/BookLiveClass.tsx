@@ -5,7 +5,7 @@ import Button from "../../atoms/Button/Button";
 import { FaUser } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import demoSessionSchedule from "../../../data/demoSessionSchedule.json";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import { useFormContext } from "../../../context/formContext";
 import restEndPoints from "../../../data/restEndPoints.json";
 import { validateName, validatePhoneNumber } from "../../../utils/validations";
@@ -31,8 +31,8 @@ const BookLiveClassForm: React.FC = () => {
   const [timeSlot, setTimeSlot] = useState<Number | null>(0);
   const [nameError, setNameError] = useState<string | null>(null);
   const [numberError, setNumberError] = useState<string | null>(null);
-  const { isLoading, setLoading, formSubmitted, setFormSubmitted } = useFormContext();
-
+  const { isLoading, setLoading, formSubmitted, setFormSubmitted } =
+    useFormContext();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,11 +52,15 @@ const BookLiveClassForm: React.FC = () => {
       timeSlot === 0
         ? null
         : timeSlot === 1
-          ? demoSessionSchedule[0]["date-be"]
-          : demoSessionSchedule[1]["date-be"];
+        ? demoSessionSchedule[0]["date-be"]
+        : demoSessionSchedule[1]["date-be"];
 
     const time =
-      timeSlot === 0 ? null : timeSlot === 1 ? demoSessionSchedule[0].time : demoSessionSchedule[1].time;
+      timeSlot === 0
+        ? null
+        : timeSlot === 1
+        ? demoSessionSchedule[0].time
+        : demoSessionSchedule[1].time;
 
     const data = {
       name: inputName.trim(),
@@ -66,7 +70,10 @@ const BookLiveClassForm: React.FC = () => {
     };
 
     try {
-      const response = await axiosInstance.post(`/${restEndPoints.bookALiveClass}`, data);
+      const response = await axiosInstance.post(
+        `/${restEndPoints.bookALiveClass}`,
+        data
+      );
       setFormSubmitted(true);
       toast.success(response.data.message);
     } catch (error: any) {
@@ -81,9 +88,7 @@ const BookLiveClassForm: React.FC = () => {
       <div className="signUpform">
         <div className="formContainer">
           <h2>Book a Live Class</h2>
-          <h3>
-            We are planning a meet-up in <span> Lucknow!</span>
-          </h3>
+          <h3>New batches starting in August & September</h3>
           <form onSubmit={handleSubmit} style={{ margin: "auto" }}>
             <Input
               label="Full Name"
@@ -108,8 +113,7 @@ const BookLiveClassForm: React.FC = () => {
               <div
                 className={`timeSlot ${timeSlot === 0 && "active"}`}
                 onClick={() => {
-                  isLoading ||
-                    (!formSubmitted && setTimeSlot(0));
+                  isLoading || (!formSubmitted && setTimeSlot(0));
                 }}
               >
                 <p>No Preference</p>
@@ -149,7 +153,11 @@ const BookLiveClassForm: React.FC = () => {
               </div>
             ) : (
               <Button
-                text={formSubmitted ? "You have Booked Class!" : "Book a Live Class for Free"}
+                text={
+                  formSubmitted
+                    ? "You have Booked Class!"
+                    : "Book a Live Class for Free"
+                }
                 style={{ width: "100%", marginTop: "0.8rem" }}
                 disabled={formSubmitted}
               />

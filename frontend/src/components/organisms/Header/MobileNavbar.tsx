@@ -72,7 +72,7 @@ const MobileNavbar: React.FC = () => {
                 to="/values"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
-                Our Values
+                About Us
               </NavLink>
             </li>
             <li>

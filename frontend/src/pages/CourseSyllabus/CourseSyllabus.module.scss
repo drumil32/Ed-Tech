@@ -1,0 +1,24 @@
+@import "/src/styles/_mixins";
+
+.courseSyllabus {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .pageDetails {
+    width: 100%;
+    background-color: #fcf2ef;
+    padding: 2rem 1rem;
+
+    .subject {
+      color: #10162f;
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .title {
+        color: #10162f;
+    }
+  }
+}
