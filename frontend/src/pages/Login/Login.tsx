@@ -18,7 +18,7 @@ const Login = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [numberError, setNumberError] = useState<string | null>(null);
   const [nameError, setNameError] = useState<string | null>(null);
-  const [captchaVerified, setCaptchaVerified] = useState<boolean>(false);
+  const [captchaVerified, setCaptchaVerified] = useState<boolean>(true);  //TODO set it false
   const pathName = useLocation().pathname;
   const navigate = useNavigate();
   const dispatch = useDispatch();

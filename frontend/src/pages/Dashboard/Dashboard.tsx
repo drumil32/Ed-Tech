@@ -125,8 +125,10 @@ const Dashboard: React.FC = () => {
                   like MongoDB, Express.js, React, and Node.js, equipping you
                   with the skills to excel in the competitive tech industry.
                 </p>
+                <div className={styles.cardPointsContainer}>
                 <h5 className={styles.cardPoints}>Includes live projects</h5>
                 <h5 className={styles.cardPoints}>Open to all disciplines</h5>
+                </div>
               </div>
             </div>
           </div>

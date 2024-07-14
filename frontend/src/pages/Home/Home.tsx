@@ -14,12 +14,9 @@ const Home: React.FC = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const location = useLocation();
 
-  // useEffect(()=>{
   if (!location.state && user) {
-    // navigate('/dashboard');
     return <Navigate to="/dashboard" state={{ from: location }} replace />;
   }
-  // },[user])
 
   return (
     <div className="home">

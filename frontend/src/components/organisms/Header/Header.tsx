@@ -71,7 +71,6 @@ const Header: React.FC = () => {
                 </NavLink>
               </li>
               <li>
-                {/* <a onClick={handleCoursesClick}>Courses</a> */}
                 <NavLink
                   to="/course-details"
                   className={({ isActive }) => (isActive ? "active" : "")}
