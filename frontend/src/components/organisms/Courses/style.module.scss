@@ -73,7 +73,7 @@
     width: 100%;
     max-width: 300px;
     border: 1px solid #000;
-    min-height: 332px;
+    min-height: 350px;
     border-radius: 0.25rem;
     overflow: hidden;
     background-color: #fff;
@@ -94,6 +94,7 @@
     .cardDesc {
       font-size: 0.9rem;
       margin-bottom: 1rem;
+      min-height: 80px;
     }
 
     .cardHeader {
@@ -121,8 +122,13 @@
         display: flex;
         align-items: center;
         gap: 3px;
-      color: #10162F;
-      font-weight: 700;
+        color: #10162F;
+        font-weight: 700;
+        font-size: 0.9rem;
+
+        span {
+          align-self: flex-start;
+        }
       }
     }
     .cardPointsContainer {

@@ -26,7 +26,7 @@ const HomeLayout: React.FC = () => {
       <Header />
       <div className="header-highlight">
         <Swiper
-        modules={[Autoplay]}
+          modules={[Autoplay]}
           spaceBetween={50}
           slidesPerView={1}
           autoplay={{

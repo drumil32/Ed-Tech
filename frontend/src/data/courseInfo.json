@@ -1,4 +1,4 @@
-export const courseData = [
+[
   {
     "title": "Curriculum",
     "bulletPoints": [
@@ -8,12 +8,7 @@ export const courseData = [
       "4 real-world projects"
     ],
     "desc": "Our curriculum emphasizes foundational skills that will equip you for a lifetime of success and adaptability in your career.",
-    "bottomPoints": [
-      {
-        "value": "Open to all disciplines",
-        "icon": "TfiBook"
-      }
-    ]
+    "bottomPoints": ["Open to all disciplines"]
   },
   {
     "title": "Placement",
@@ -24,11 +19,6 @@ export const courseData = [
       "Job guarantee on course completion"
     ],
     "desc": "We guarantee 100% placement upon course completion. Our partnership with top tech firms will ensure we find the right job for you.",
-    "bottomPoints": [
-      {
-        "value": "15+ Partner companies & growing",
-        "icon": "TfiBook"
-      }
-    ]
+    "bottomPoints": ["15+ Partner companies & growing"]
   }
 ]
