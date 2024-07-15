@@ -10,6 +10,8 @@ import classNames from "classnames";
 import TalkToUsModal from "../../components/molecule/TalkToUsModal/TalkToUsModal";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
+import { GrProjects } from "react-icons/gr";
+import { TfiBook } from "react-icons/tfi";
 
 const Dashboard: React.FC = () => {
   const {user} = useSelector((state:RootState) => state.user);
@@ -126,8 +128,8 @@ const Dashboard: React.FC = () => {
                   with the skills to excel in the competitive tech industry.
                 </p>
                 <div className={styles.cardPointsContainer}>
-                <h5 className={styles.cardPoints}>Includes live projects</h5>
-                <h5 className={styles.cardPoints}>Open to all disciplines</h5>
+                <h5 className={styles.cardPoints}><GrProjects /> Includes live projects</h5>
+                <h5 className={styles.cardPoints}><TfiBook /> Open to all disciplines</h5>
                 </div>
               </div>
             </div>

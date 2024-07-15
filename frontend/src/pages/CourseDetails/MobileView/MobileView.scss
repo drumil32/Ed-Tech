@@ -23,10 +23,19 @@
   }
   .swiper-button-prev, .swiper-button-next {
     color: #636363;
-    display: none;
+    height: 100%;
+    top: 0;
+    width: 200px;
+    @include md-max {
+      width: 150px;
+    }
+    @include xsm-max {
+      width: 100px;
+    }
   }
   .swiper-button-prev:after, .swiper-button-next:after {
     font-size: 2rem;
+    display: none;
   }
   .swiper-horizontal {
     .swiper-pagination-bullet {

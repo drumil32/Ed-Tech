@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./style.module.scss";
 import { NavLink } from "react-router-dom";
+import { TfiBook } from "react-icons/tfi";
 
 const Courses: React.FC = () => {
   return (
@@ -12,7 +13,7 @@ const Courses: React.FC = () => {
             <span>In-Classroom </span>
             MERN Full-Stack Web Development Course
           </p>
-          <div className={styles.ag_format_container}>
+          {/* <div className={styles.ag_format_container}>
             <div className={styles.ag_courses_box}>
               <div className={styles.ag_courses_item}>
                 <div className={styles.ag_courses_item_link}>
@@ -67,6 +68,37 @@ const Courses: React.FC = () => {
                       <span>+ </span>Job guarantee on course completion
                     </p>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div> */}
+          <div className={styles.courseCardContainer}>
+            <div className={styles.availableCoursesCard}>
+              <div className={styles.cardHeader}>Job Path</div>
+              <div className={styles.content}>
+                <h2 className={styles.cardHeading}>Curriculum</h2>
+                <p className={styles.cardDesc}>
+                  Our curriculum emphasizes foundational skills that will equip
+                  you for a lifetime of success and adaptability in your career.
+                </p>
+                <div className={styles.bulletPointsBox}>
+                  <p className={styles.bulletPoint}>
+                    <span>+ </span>Logical reasoning and DSA
+                  </p>
+                  <p className={styles.bulletPoint}>
+                    <span>+ </span>Frontend with React.js
+                  </p>
+                  <p className={styles.bulletPoint}>
+                    <span>+ </span>Backend with Node.js
+                  </p>
+                  <p className={styles.bulletPoint}>
+                    <span>+ </span>4 real-world projects
+                  </p>
+                </div>
+                <div className={styles.cardPointsContainer}>
+                  <h5 className={styles.cardPoints}>
+                    <TfiBook /> Open to all disciplines
+                  </h5>
                 </div>
               </div>
             </div>
