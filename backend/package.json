@@ -23,6 +23,7 @@
     "mongoose": "^8.3.4",
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.14",
+    "redis": "^4.6.15",
     "tsx": "^4.7.2"
   },
   "devDependencies": {
