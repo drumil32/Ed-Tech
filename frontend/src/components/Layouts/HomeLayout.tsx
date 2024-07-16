@@ -38,43 +38,13 @@ const HomeLayout: React.FC = () => {
           loop={true}
         >
           <SwiperSlide>
-            {isMobile ? (
-              <>
-                <p>Lucknow's top offline MERN full-stack program.</p>
-                <p>Limited seats & scholarships! ⏰</p>
-              </>
-            ) : (
-              <p>
-                Lucknow's top offline MERN full-stack program. Limited seats &
-                scholarships! ⏰
-              </p>
-            )}
+            <p>Lucknow’s top offline MERN Full-Stack program 💻</p>
           </SwiperSlide>
           <SwiperSlide>
-            {isMobile ? (
-              <>
-                <p>Lucknow's top offline MERN full-stack program.</p>
-                <p>Limited seats & scholarships! ⏰</p>
-              </>
-            ) : (
-              <p>
-                Lucknow's top offline MERN full-stack program. Limited seats &
-                scholarships! ⏰
-              </p>
-            )}
+            <p>New batches starting in August & September 🚀</p>
           </SwiperSlide>
           <SwiperSlide>
-            {isMobile ? (
-              <>
-                <p>Lucknow's top offline MERN full-stack program.</p>
-                <p>Limited seats & scholarships! ⏰</p>
-              </>
-            ) : (
-              <p>
-                Lucknow's top offline MERN full-stack program. Limited seats &
-                scholarships! ⏰
-              </p>
-            )}
+            <p>Hurry, Limited seats & scholarships available ⏰</p>
           </SwiperSlide>
         </Swiper>
       </div>
