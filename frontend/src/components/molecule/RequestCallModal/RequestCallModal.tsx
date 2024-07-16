@@ -38,6 +38,8 @@ const RequestCallModal: React.FC<RequestCallModal> = ({ onClose }) => {
     try {
       //TODO logic will be here Request Callback API
       setFormSubmitted(true);
+      toast.success("We will contact you soon!");
+      onClose();
     } catch (error: any) {
       toast.error(error.response.data.error);
     } finally {
