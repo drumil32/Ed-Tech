@@ -14,7 +14,7 @@ const Header: React.FC = () => {
   const [scrollToCourses, setScrollToCourses] = useState<boolean>(false);
   const location = useLocation();
   const { user } = useSelector((state: RootState) => state.user);
-  const isMobile = useMedia("(max-width: 575px)");;
+  const isMobile = useMedia("(max-width: 575px)");
 
   useEffect(() => {
     const handleScroll = () => {
