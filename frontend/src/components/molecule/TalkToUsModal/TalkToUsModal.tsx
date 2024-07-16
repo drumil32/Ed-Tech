@@ -45,7 +45,6 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ onClose, message, type })
       type
     };
     try {
-      //TODO Api logic will be here
       const response = await axiosInstance.post(`/${restEndPoints.counselling}`, data);
       setFormSubmitted(true);
       toast.success(response.data.message);
