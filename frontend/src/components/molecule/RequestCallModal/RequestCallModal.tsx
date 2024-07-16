@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styles from "./RequestCallModal.module.scss";
 import { Modal } from "../../atoms/Modal/Modal";
-import { IoCloseCircle } from "react-icons/io5";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
 import Input from "../../atoms/Input/Input";
@@ -51,40 +52,42 @@ const RequestCallModal: React.FC<RequestCallModal> = ({ onClose }) => {
     <Modal className={styles.requestCallModal}>
       <div>
         <div onClick={() => onClose()} className={styles.closeBtn}>
-          <IoCloseCircle />
+          <IoMdCloseCircleOutline />
         </div>
+        <h2 className={styles.modalTitle}>Start Your Tech Career Now</h2>
+        <p className={styles.modalSubTitle}>Book a free counselling session</p>
         <form onSubmit={handleSubmit} style={{ margin: "auto" }}>
-            <Input
-              label="Full Name"
-              icon={<FaUser />}
-              placeholder="Full Name"
-              value={inputName}
-              disabled={isLoading || formSubmitted}
-              errorMessage={nameError}
-              onChange={(e) => setInputName(e.target.value)}
+          <Input
+            label="Full Name"
+            icon={<FaUser />}
+            placeholder="Full Name"
+            value={inputName}
+            disabled={isLoading || formSubmitted}
+            errorMessage={nameError}
+            onChange={(e) => setInputName(e.target.value)}
+          />
+          <Input
+            label="Mobile Number"
+            icon={<FaPhoneAlt />}
+            type="tel"
+            placeholder="10 digits Mobile Number"
+            value={inputNumber}
+            disabled={isLoading || formSubmitted}
+            errorMessage={numberError}
+            onChange={(e) => setInputNumber(e.target.value)}
+          />
+          {isLoading ? (
+            <div className="form-loader">
+              <img src="/assets/loader_compressed.gif" alt="loader" />
+            </div>
+          ) : (
+            <Button
+              text="Request a Callback"
+              style={{ width: "100%", marginTop: "0.8rem" }}
+              disabled={formSubmitted}
             />
-            <Input
-              label="Mobile Number"
-              icon={<FaPhoneAlt />}
-              type="tel"
-              placeholder="10 digits Mobile Number"
-              value={inputNumber}
-              disabled={isLoading || formSubmitted}
-              errorMessage={numberError}
-              onChange={(e) => setInputNumber(e.target.value)}
-            />
-            {isLoading ? (
-              <div className="form-loader">
-                <img src="/assets/loader_compressed.gif" alt="loader" />
-              </div>
-            ) : (
-              <Button
-                text="Request a Callback"
-                style={{ width: "100%", marginTop: "0.8rem" }}
-                disabled={formSubmitted}
-              />
-            )}
-          </form>
+          )}
+        </form>
       </div>
     </Modal>
   );

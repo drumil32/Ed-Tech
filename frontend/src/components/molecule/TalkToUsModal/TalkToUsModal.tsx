@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styles from "./TalkToUsModal.module.scss";
 import { Modal } from "../../atoms/Modal/Modal";
-import { IoCloseCircle } from "react-icons/io5";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+
 import Input from "../../atoms/Input/Input";
 import { FaUser } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
@@ -59,7 +60,7 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ onClose, message, type })
     <Modal className={styles.talkToUsModal}>
       <div>
         <div onClick={() => onClose()} className={styles.closeBtn}>
-          <IoCloseCircle />
+          <IoMdCloseCircleOutline />
         </div>
         <form onSubmit={handleSubmit}>
           <Input
