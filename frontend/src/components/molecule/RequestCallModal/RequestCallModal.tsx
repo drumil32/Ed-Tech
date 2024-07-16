@@ -37,6 +37,7 @@ const RequestCallModal: React.FC<RequestCallModal> = ({ onClose }) => {
 
     try {
       //TODO logic will be here Request Callback API
+      setFormSubmitted(true);
     } catch (error: any) {
       toast.error(error.response.data.error);
     } finally {
@@ -76,11 +77,7 @@ const RequestCallModal: React.FC<RequestCallModal> = ({ onClose }) => {
               </div>
             ) : (
               <Button
-                text={
-                  formSubmitted
-                    ? "You have Booked Class!"
-                    : "Book a Live Class for Free"
-                }
+                text="Request a Callback"
                 style={{ width: "100%", marginTop: "0.8rem" }}
                 disabled={formSubmitted}
               />
