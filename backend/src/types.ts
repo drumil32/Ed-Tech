@@ -43,3 +43,14 @@ export interface ICounsellingSessionModel extends Document {
     creationDate: string;
     creationTime: string;
 }
+
+export enum EventType {
+    PAGE_SIGNIN = 'PAGE_SIGNIN',
+    PAGE_SIGNUP = 'PAGE_SIGNUP',
+}
+
+
+export interface IEvent extends Document {
+    type: EventType;
+    count: number;
+  }
