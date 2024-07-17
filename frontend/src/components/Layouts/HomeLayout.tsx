@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "../organisms/Header/Header";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../organisms/Footer/Footer";
-import { useMedia } from "react-use";
+// import { useMedia } from "react-use";
 import "./HomeLayout.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -14,7 +14,7 @@ import "swiper/scss/autoplay";
 import { Autoplay } from "swiper/modules";
 
 const HomeLayout: React.FC = () => {
-  const isMobile = useMedia("(max-width: 575px)");
+  // const isMobile = useMedia("(max-width: 575px)");
   const location = useLocation().pathname;
 
   useEffect(() => {
