@@ -18,7 +18,9 @@ export const getData = expressAsyncHandler(async (req: Request, res: Response) =
     try {
         const data = await redisClient.hGetAll('key');
         const data1 = await redisClient.hVals('key');
-        res.status(200).json({ data, data1 });
+        const data3 = await redisClient.get("abc" + EventType.COURSE_SYLLABUS_VIEW);
+        const data4 = await redisClient.get("abc" + EventType.LOCK_BUTTON_CLICK);
+        res.status(200).json({ data, data1, data3, data4 });
     } catch (error) {
         console.error('Error fetching keys:', error);
         res.status(500).json({ message: error });
