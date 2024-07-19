@@ -46,7 +46,10 @@ export interface ICounsellingSessionModel extends Document {
 
 export enum EventType {
     COURSE_SYLLABUS_VIEW = "COURSE_SYLLABUS_VIEW",
-    LOCK_BUTTON_CLICK = "LOCK_BUTTON_CLICK",
+    LOCK_CLICK = "LOCK_BUTTON_CLICK",
+    TALK_TO_CLICK = "TALK_TO_CLICK",
+    NOT_SURE_CLICK = "NOT_SURE_CLICK",
+    REQUEST_A_CALLBACK_CLICK = "REQUEST_A_CALLBACK_CLICK",
 }
 
 
