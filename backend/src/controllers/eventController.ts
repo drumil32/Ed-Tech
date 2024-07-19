@@ -11,5 +11,16 @@ export const eventController = expressAsyncHandler(async (req: Request, res: Res
     } else if (type == EventType.LOCK_BUTTON_CLICK) {
         redisClient.incr(_id + type);
     }
-    res.status(200);
+    res.status(200).send("events is successful");
+});
+
+export const getData = expressAsyncHandler(async (req: Request, res: Response) => {
+    try {
+        const data = await redisClient.hGetAll('key');
+        const data1 = await redisClient.hVals('key');
+        res.status(200).json({ data, data1 });
+    } catch (error) {
+        console.error('Error fetching keys:', error);
+        res.status(500).json({ message: error });
+    }
 });
