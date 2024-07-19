@@ -50,27 +50,33 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
 });
 
 // needs to add authMiddleware here
-app.get('/event', expressAsyncHandler(async (req: Request, res: Response) => {
+app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, phoneNumber } = req.body;
     try {
         if (type !== EventType.FORM_HOME) { // except FROM_HOME every event is only valid if user is logged in
             await redisClient.sAdd(type, [phoneNumber]); // after adding authMiddleware will have req.phoneNumber
         } else {
-            await redisClient.sAdd(type, [phoneNumber]);
+            const data = await redisClient.sAdd(type, [phoneNumber]);
+            res.status(200).json(data); // remove this 
         }
+        res.status(200).send('ok');
     } catch (error) {
         console.log(error.message);
+        res.status(500).json({ message: error.message, error }); // should remove this as well but think once before removing it
     }
-    res.status(200).send('ok');
 }));
 
 app.get('/process-data', expressAsyncHandler(async (req: Request, res: Response) => {
     for (const eventType of Object.values(EventType)) {
-        const members = await redisClient.sMembers(eventType);
-        await new Event(eventType, members).save();
-        await redisClient.del(eventType);
+        try {
+            const members = await redisClient.sMembers(eventType);
+            await new Event(eventType, members).save();
+            await redisClient.del(eventType);
+            res.status(200).send('ok');
+        } catch (error) {
+            res.status(500).json({ message: error.message, error }); // should remove this as well but think once before removing it
+        }
     }
-    res.status(200).send('ok');
 }));
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
