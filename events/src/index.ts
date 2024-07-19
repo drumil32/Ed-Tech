@@ -33,7 +33,7 @@ connectDB().then(
     () =>
         studentModel = primaryDb.model('studentData', StudentSchema)
 );
-connectRedis();
+// connectRedis();
 
 const verifyJwtToken = async (token: string) => {
     return jwt.verify(token, process.env.JWT_SECRET) as { [key: string]: any };
@@ -78,14 +78,14 @@ app.get('/process-data', expressAsyncHandler(async (req: Request, res: Response)
     try {
         for (const eventType of Object.values(EventType)) {
             const members = await redisClient.sMembers(eventType);
-            await (new Event({ type: eventType, members: members })).save();
+            await (new Event({ type: eventType, members: members, creationDateTime: new Date().toISOString() })).save();
             await redisClient.del(eventType);
             memberArray.push(members);
         }
+        res.status(200).send('ok');
     } catch (error) {
         res.status(500).json({ message: error.message, error }); // should remove this as well but think once before removing it
     }
-    res.status(200).json(memberArray);
 }));
 
 const toUTCDateTime = (dateStr, timeStr) => {
@@ -99,13 +99,14 @@ const toUTCDateTime = (dateStr, timeStr) => {
 export const filterEvents = async (type, d1, d2, t1, t2) => {
     const startDateTime = toUTCDateTime(d1, t1);
     const endDateTime = toUTCDateTime(d2, t2);
-
+    
     // Query to find events that match the criteria
     const events = await Event.find({
         type: type,
-        creationDateTime: {
+        creationDateTime:
+        {
             $gte: startDateTime,
-            $lte: endDateTime
+            $lt: endDateTime
         }
     }).exec();
 
@@ -115,10 +116,13 @@ export const filterEvents = async (type, d1, d2, t1, t2) => {
 app.post('/show-data', expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, d1, d2, t1, t2 } = req.body;
     const data = await filterEvents(type, d1, d2, t1, t2);
-    console.log(data);
+    for (let i = 0; i < data.length; i++) {
+        for (let j = 0; j < data[i].members.length; j++) {
+            const studentData = await studentModel.findOne({ phoneNumber: data[i].members[j] });
+            data[i].members[j] = studentData;
+        }
+    }
     res.status(200).json(data);
-    const data1 = await studentModel.find({ phoneNumber: '8802940317' });
-    console.log(data1);
 }));
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

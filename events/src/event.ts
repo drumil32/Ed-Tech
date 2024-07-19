@@ -24,6 +24,7 @@ const eventSchema: Schema<IEvent> = new Schema({
 });
 
 eventSchema.pre('save', function (next) {
+    console.log("pre save")
     if (!this.creationDateTime) {
         this.creationDateTime = new Date();
     }
