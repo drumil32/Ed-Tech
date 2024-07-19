@@ -49,11 +49,12 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
     }
 });
 
+// needs to add authMiddleware here
 app.get('/event', expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, phoneNumber } = req.body;
     try {
         if (type !== EventType.FORM_HOME) { // except FROM_HOME every event is only valid if user is logged in
-            await redisClient.sAdd(type, [req.phoneNumber]);
+            await redisClient.sAdd(type, [phoneNumber]); // after adding authMiddleware will have req.phoneNumber
         } else {
             await redisClient.sAdd(type, [phoneNumber]);
         }
