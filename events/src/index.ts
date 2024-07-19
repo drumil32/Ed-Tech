@@ -4,13 +4,14 @@ import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import morgan from 'morgan';
-import connectDB from './config/db.js';
+import connectDB, { primaryDb } from './config/db.js';
 // import routes from './routes/index.js';
 import connectRedis, { redisClient } from './config/redis.js';
 import expressAsyncHandler from 'express-async-handler';
 import { EventType } from './types.js';
 import Event from './event.js';
 import createHttpError from 'http-errors';
+import mongoose from 'mongoose';
 // import errorHandler from './controllers/errorHandler';
 
 dotenv.config();
@@ -23,8 +24,15 @@ app.use(cors({
     origin: process.env.FRONTEND_BASE_URL
 }));
 app.use(morgan(process.env.ENV!));
+console.log(process.env.PRIMARY_MONGO_URL, process.env.PRIMARY_DB, process.env.MONGO_URL);
+const StudentSchema = new mongoose.Schema({
 
-connectDB();
+});
+let studentModel;
+connectDB().then(
+    () =>
+        studentModel = primaryDb.model('studentData', StudentSchema)
+);
 connectRedis();
 
 const verifyJwtToken = async (token: string) => {
@@ -59,24 +67,58 @@ app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {
             const data = await redisClient.sAdd(type, [phoneNumber]);
             res.status(200).json(data); // remove this 
         }
-        res.status(200).send('ok');
     } catch (error) {
         console.log(error.message);
-        res.status(500).json({ message: error.message, error }); // should remove this as well but think once before removing it
     }
+    res.status(200).send('ok');
 }));
 
 app.get('/process-data', expressAsyncHandler(async (req: Request, res: Response) => {
-    for (const eventType of Object.values(EventType)) {
-        try {
+    const memberArray = [];
+    try {
+        for (const eventType of Object.values(EventType)) {
             const members = await redisClient.sMembers(eventType);
-            await new Event(eventType, members).save();
+            await (new Event({ type: eventType, members: members })).save();
             await redisClient.del(eventType);
-            res.status(200).send('ok');
-        } catch (error) {
-            res.status(500).json({ message: error.message, error }); // should remove this as well but think once before removing it
+            memberArray.push(members);
         }
+    } catch (error) {
+        res.status(500).json({ message: error.message, error }); // should remove this as well but think once before removing it
     }
+    res.status(200).json(memberArray);
+}));
+
+const toUTCDateTime = (dateStr, timeStr) => {
+    const [day, month, year] = dateStr.split('/').map(Number);
+    const [hour, minute, second] = timeStr.split(':').map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day, hour - 5, minute - 30, second));
+    return date;
+};
+
+// Function to filter events based on type, date range, and time range
+export const filterEvents = async (type, d1, d2, t1, t2) => {
+    const startDateTime = toUTCDateTime(d1, t1);
+    const endDateTime = toUTCDateTime(d2, t2);
+
+    // Query to find events that match the criteria
+    const events = await Event.find({
+        type: type,
+        creationDateTime: {
+            $gte: startDateTime,
+            $lte: endDateTime
+        }
+    }).exec();
+
+    return events;
+};
+
+app.post('/show-data', expressAsyncHandler(async (req: Request, res: Response) => {
+    const { type, d1, d2, t1, t2 } = req.body;
+    const data = await filterEvents(type, d1, d2, t1, t2);
+    console.log(data);
+    res.status(200).json(data);
+    const data1 = await studentModel.find({ phoneNumber: '8802940317' });
+    console.log(data1);
 }));
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

@@ -4,8 +4,7 @@ import { EventType } from './types'; // Adjust the import path
 interface IEvent extends Document {
     type: EventType;
     members: string[];
-    creationDate: string;
-    creationTime: string;
+    creationDateTime: Date;
 }
 
 const eventSchema: Schema<IEvent> = new Schema({
@@ -18,33 +17,15 @@ const eventSchema: Schema<IEvent> = new Schema({
         type: [String],
         required: true
     },
-    creationDate: {
-        type: String
-    },
-    creationTime: {
-        type: String
+    creationDateTime: {
+        type: Date,
+        required: true
     }
 });
 
-// Helper function to get the current date in IST
-const getCurrentISTDate = () => {
-    const now = new Date();
-    return now.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' });
-};
-
-// Helper function to get the current time in IST
-const getCurrentISTTime = () => {
-    const now = new Date();
-    return now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false });
-};
-
-// Pre-save hook to set the date and time in IST format
 eventSchema.pre('save', function (next) {
-    if (!this.creationDate) { // Only set the date if it's not already set
-        this.creationDate = getCurrentISTDate();
-    }
-    if (!this.creationTime) { // Only set the time if it's not already set
-        this.creationTime = getCurrentISTTime();
+    if (!this.creationDateTime) {
+        this.creationDateTime = new Date();
     }
     next();
 });
