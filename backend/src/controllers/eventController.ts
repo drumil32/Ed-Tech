@@ -27,7 +27,7 @@ export const getData = expressAsyncHandler(async (req: Request, res: Response) =
         console.log('Added initial members to set:', addResult1);
 
         // Add additional members to the set
-        const addResult2 = await redisClient.sAdd('mySet', ['value4', 'value5']);
+        const addResult2 = await redisClient.sAdd('mySet', ['value4', 'value5', 'value2']);
         console.log('Added additional members to set:', addResult2);
 
         // Retrieve all members from the set
