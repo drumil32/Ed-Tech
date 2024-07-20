@@ -5,8 +5,6 @@ import cors from 'cors';
 import morgan from 'morgan';
 import connectDB from './config/db.js';
 import routes from './routes/index.js';
-import connectRedis from './config/redis.js';
-// import errorHandler from './controllers/errorHandler';
 
 dotenv.config();
 
@@ -20,7 +18,6 @@ app.use(cors({
 app.use(morgan(process.env.ENV!));
 
 connectDB();
-connectRedis();
 
 app.use(routes);
 
