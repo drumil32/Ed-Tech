@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./CourseSyllabus.module.scss";
 import SidebarTriggerButton from "../../components/atoms/SidebarTriggerButton/SidebarTriggerButton";
-import { FaGraduationCap } from "react-icons/fa6";
+import restEndPoints from "../../data/restEndPoints.json";
+import { eventAxiosInstance } from "../../utils/axiosInstance";
+import { EventType } from "../../types/types";import { FaGraduationCap } from "react-icons/fa6";
 import { MdFlightClass } from "react-icons/md";
 import { SiInternetarchive, SiGoogleclassroom } from "react-icons/si";
 import { GrProjects } from "react-icons/gr";
 import { GiFaceToFace } from "react-icons/gi";
 
 const CourseSyllabus: React.FC = () => {
+  useEffect(() => {
+    eventAxiosInstance.post(restEndPoints.event, { type: EventType.COURSE_SYLLABUS_VIEW });
+  }, [])
   return (
     <div className={styles.courseSyllabus}>
       <SidebarTriggerButton />

@@ -45,12 +45,15 @@ export interface ICounsellingSessionModel extends Document {
 }
 
 export enum EventType {
-    PAGE_SIGNIN = 'PAGE_SIGNIN',
-    PAGE_SIGNUP = 'PAGE_SIGNUP',
+    COURSE_SYLLABUS_VIEW = "COURSE_SYLLABUS_VIEW",
+    LOCK_CLICK = "LOCK_BUTTON_CLICK",
+    TALK_TO_CLICK = "TALK_TO_CLICK",
+    NOT_SURE_CLICK = "NOT_SURE_CLICK",
+    REQUEST_A_CALLBACK_CLICK = "REQUEST_A_CALLBACK_CLICK",
 }
 
 
 export interface IEvent extends Document {
     type: EventType;
     count: number;
-  }
+}
