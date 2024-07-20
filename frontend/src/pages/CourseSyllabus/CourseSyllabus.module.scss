@@ -10,15 +10,66 @@
     width: 100%;
     background-color: #fcf2ef;
     padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
 
     .subject {
       color: #10162f;
       font-family: "Courier New", Courier, monospace;
       font-weight: 600;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
     .title {
         color: #10162f;
+        font-size: 2rem;
+    }
+    .subTitle {
+      color: #10162f;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .desc {
+      line-height: 1.4;
+      margin-bottom: 2rem;
+    }
+
+    .highlightedPoints {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .highlightedPoint {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-bottom: 1px solid black;
+        padding: 0.5rem;
+        gap: 1rem;
+
+        .point {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.5rem;
+          svg {
+            font-size: 1.3rem;
+          }
+        }
+      }
+    }
+  }
+
+  .syllabusSection {
+    width: 100%;
+    background-color: #fcf2ef;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .sectionTitle {
+      color: #10162f;
+      margin-bottom: 0.5rem;
     }
   }
 }

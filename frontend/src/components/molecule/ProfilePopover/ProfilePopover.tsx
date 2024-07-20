@@ -36,7 +36,7 @@ const ProfilePopover: React.FC = () => {
         </button>
       </Popover.Trigger>
       <Popover.Portal>
-        <Popover.Content className={styles.PopoverContent} sideOffset={20}>
+        <Popover.Content className={styles.PopoverContent} sideOffset={20} >
           <h1 className={styles.menuTitle}>Hey! <span>{user.name}</span></h1>
           <ul>
             <li>

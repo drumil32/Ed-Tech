@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import Header from "../organisms/Header/Header";
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../organisms/Footer/Footer";
-// import { useMedia } from "react-use";
 import "./HomeLayout.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -12,9 +11,9 @@ import "swiper/css/scrollbar";
 import "swiper/css/effect-creative";
 import "swiper/scss/autoplay";
 import { Autoplay } from "swiper/modules";
+import heighlightedPoints from "../../data/highlightedPoints.json";
 
 const HomeLayout: React.FC = () => {
-  // const isMobile = useMedia("(max-width: 575px)");
   const location = useLocation().pathname;
 
   useEffect(() => {
@@ -37,15 +36,11 @@ const HomeLayout: React.FC = () => {
           onSwiper={(swiper) => console.log(swiper)}
           loop={true}
         >
-          <SwiperSlide>
-            <p>Lucknow’s top offline MERN Full-Stack program 💻</p>
-          </SwiperSlide>
-          <SwiperSlide>
-            <p>New batches starting in August & September 🚀</p>
-          </SwiperSlide>
-          <SwiperSlide>
-            <p>Hurry, Limited seats & scholarships available ⏰</p>
-          </SwiperSlide>
+          {heighlightedPoints.map((point) => (
+            <SwiperSlide>
+              <p>{point}</p>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
       <Outlet />

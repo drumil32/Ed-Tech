@@ -6,4 +6,11 @@
     text-align: center;
     padding: 0.8rem;
     cursor: pointer;
+
+    .swiper {
+        z-index: unset;
+    }
+    .swiper-wrapper {
+        z-index: unset;
+    }
 }

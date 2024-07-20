@@ -14,7 +14,7 @@ import { useMedia } from "react-use";
 
 const Home: React.FC = () => {
   const { user } = useSelector((state: RootState) => state.user);
-  const [requestModal, setRequestModal] = useState<boolean>(true);
+  const [requestModal, setRequestModal] = useState<boolean>(false);
   const isMobile = useMedia("(max-width: 575px)");
   const location = useLocation();
   const featuresRef = useRef<HTMLDivElement>(null);

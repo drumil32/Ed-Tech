@@ -20,6 +20,8 @@ import { useDispatch } from "react-redux";
 import { setUserDetails } from "./redux/slices/UserSliice";
 import ProtectedRoute from "./utils/ProtectRoute";
 import RestrictedRoute from "./utils/RestrictedRoute";
+import Lottie from "react-lottie-player";
+import loader from "./Lottie/loaderSample.json";
 function App() {
   const dispatch = useDispatch();
   const [initialLoader, setInitialLoader] = useState(true);
@@ -48,7 +50,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => setInitialLoader(false), 2000);
+    setTimeout(() => setInitialLoader(false), 3000);
   }, []);
 
   const router = createBrowserRouter([
@@ -58,9 +60,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: (
-              <Home />
-          ),
+          element: <Home />,
         },
         {
           path: "/contact",
@@ -129,10 +129,16 @@ function App() {
   return (
     <div className="App">
       {initialLoader ? (
-        <img
-          className="initialLoader"
-          src="/assets/loader_compressed.gif"
-          alt="loader"
+        // <img
+        //   className="initialLoader"
+        //   src="/assets/loader_compressed.gif"
+        //   alt="loader"
+        // />
+        <Lottie
+          loop
+          animationData={loader}
+          play
+          style={{ width: 300, height: 300 }}
         />
       ) : (
         <RouterProvider router={router} />
