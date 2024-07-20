@@ -42,38 +42,51 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
 
     if (!token) {
         // res.status(200).send('ok'); // use this
-        res.status(401).send('unauthorized'); // remove this
+        // res.status(401).send('unauthorized'); // remove this
     } else {
         token = token.replace('Bearer ', '');
         try {
             // Verify token
             const decoded = await verifyJwtToken(token);
+            // console.log(decoded);
             req.phoneNumber = decoded.phoneNumber;
             next();
         } catch (error) {
             res.status(200).send('ok');
         }
     }
+    res.status(200).send('ok');
 });
 
 // needs to add authMiddleware here
 app.post('/event', authMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
-    console.log(req.body);
+    // console.log(req.body);
     const { type, phoneNumber } = req.body;
+    // console.log(typeof phoneNumber)
+    // console.log(req.phoneNumber);
+    // console.log(typeof req.phoneNumber);
     try {
-        if (type !== EventType.FORM_HOME) { // except FROM_HOME every event is only valid if user is logged in
-            const data = await redisClient.sAdd(type, [phoneNumber]); // after adding authMiddleware will have req.phoneNumber
-            res.status(200).send(data); // remove this
+        if (type != EventType.FORM_HOME) { // except FROM_HOME every event is only valid if user is logged in
+            // const data1 = await redisClient.sAdd("abc", ['ghi', 'jkl']);
+            // console.log('data1')
+            // console.log(data1)
+            // const data = await redisClient.sAdd('REQUEST_A_CALLBACK_CLICK', ['phoneNumber', 'phoneNumbe1r']); // after adding authMiddleware will have req.phoneNumber
+            // console.log(data)
+            // console.log('data')
+            await redisClient.sAdd(type, req.phoneNumber);
+            // console.log('data')
+            // console.log(data)
+            // res.status(200).send(data); // remove this
         } else {
-            const data = await redisClient.sAdd(type, [req.phoneNumber]);
-            res.status(200).json(data); // remove this 
+            await redisClient.sAdd(type, [phoneNumber]);
+            // res.status(200).json(data); // remove this 
         }
+        res.status(200).send('ok'); // use this
     } catch (error) {
         console.log(error.message);
         console.log(error);
         res.status(500).json({ message: error.message, error }); // remove this
     }
-    // res.status(200).send('ok'); // use this
 }));
 
 app.get('/process-data', expressAsyncHandler(async (req: Request, res: Response) => {
@@ -82,11 +95,12 @@ app.get('/process-data', expressAsyncHandler(async (req: Request, res: Response)
         for (const eventType of Object.values(EventType)) {
             const members = await redisClient.sMembers(eventType);
             await (new Event({ type: eventType, members: members, creationDateTime: new Date().toISOString() })).save();
-            const data = await redisClient.del(eventType);
-            memberArray.push(data);
-            memberArray.push(members);
+            await redisClient.del(eventType);
+            // memberArray.push(data);
+            // memberArray.push(members);
         }
-        res.status(200).json(memberArray);
+        // res.status(200).json(memberArray);
+        res.status(200).send('ok');
     } catch (error) {
         res.status(500).json({ message: error.message, error }); // should remove this as well but think once before removing it
     }
@@ -124,9 +138,11 @@ app.post('/show-data', expressAsyncHandler(async (req: Request, res: Response) =
         for (let i = 0; i < data.length; i++) {
             for (let j = 0; j < data[i].members.length; j++) {
                 const studentData = await studentModel.findOne({ phoneNumber: data[i].members[j] });
+                console.log(studentData);
                 data[i].members[j] = studentData;
             }
         }
+        console.log(data);
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({ errorMessage: error.message, error });
