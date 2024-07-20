@@ -55,7 +55,6 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
             res.status(200).send('ok');
         }
     }
-    res.status(200).send('ok');
 });
 
 app.get('/', (req: Request, res: Response) => {
@@ -139,15 +138,19 @@ app.post('/show-data', expressAsyncHandler(async (req: Request, res: Response) =
     const { type, d1, d2, t1, t2 } = req.body;
     try {
         const data = await filterEvents(type, d1, d2, t1, t2);
+        const processedData = [];
         for (let i = 0; i < data.length; i++) {
+            processedData.push({
+                type: data[i].type,
+                members: []
+            });
             for (let j = 0; j < data[i].members.length; j++) {
                 const studentData = await studentModel.findOne({ phoneNumber: data[i].members[j] });
-                console.log(studentData);
-                data[i].members[j] = studentData;
+                processedData[i].members.push(studentData);
             }
         }
-        console.log(data);
-        res.status(200).json(data);
+        console.log(processedData);
+        res.status(200).json(processedData);
     } catch (error) {
         res.status(500).json({ errorMessage: error.message, error });
     }
