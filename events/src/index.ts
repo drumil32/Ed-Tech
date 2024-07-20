@@ -1,30 +1,28 @@
-// src/index.ts
 import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import morgan from 'morgan';
 import connectDB, { primaryDb } from './config/db.js';
-// import routes from './routes/index.js';
 import connectRedis, { redisClient } from './config/redis.js';
 import expressAsyncHandler from 'express-async-handler';
 import { EventType } from './types.js';
 import Event from './event.js';
-import createHttpError from 'http-errors';
 import mongoose from 'mongoose';
-// import errorHandler from './controllers/errorHandler';
 
 dotenv.config();
 
 const app = express();
-const PORT: number = parseInt(process.env.PORT || '3001');
+const PORT: number = parseInt(process.env.PORT || '3002');
 
 app.use(express.json());
+
 app.use(cors({
     origin: process.env.FRONTEND_BASE_URL
 }));
+
 app.use(morgan(process.env.ENV!));
-console.log(process.env.PRIMARY_MONGO_URL, process.env.PRIMARY_DB, process.env.MONGO_URL);
+
 const StudentSchema = new mongoose.Schema({
 
 });
@@ -33,7 +31,7 @@ connectDB().then(
     () =>
         studentModel = primaryDb.model('studentData', StudentSchema)
 );
-// connectRedis();
+connectRedis();
 
 const verifyJwtToken = async (token: string) => {
     return jwt.verify(token, process.env.JWT_SECRET) as { [key: string]: any };
@@ -43,7 +41,8 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
     let token = req.headers.authorization;
 
     if (!token) {
-        res.status(200).send('ok');
+        // res.status(200).send('ok'); // use this
+        res.status(401).send('unauthorized'); // remove this
     } else {
         token = token.replace('Bearer ', '');
         try {
@@ -58,19 +57,21 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
 });
 
 // needs to add authMiddleware here
-app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {
+app.post('/event', authMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, phoneNumber } = req.body;
     try {
         if (type !== EventType.FORM_HOME) { // except FROM_HOME every event is only valid if user is logged in
-            await redisClient.sAdd(type, [phoneNumber]); // after adding authMiddleware will have req.phoneNumber
+            const data = await redisClient.sAdd(type, [phoneNumber]); // after adding authMiddleware will have req.phoneNumber
+            res.status(200).send(data); // remove this
         } else {
-            const data = await redisClient.sAdd(type, [phoneNumber]);
+            const data = await redisClient.sAdd(type, [req.phoneNumber]);
             res.status(200).json(data); // remove this 
         }
     } catch (error) {
         console.log(error.message);
+        res.status(500).json({ message: error.message, error }); // remove this
     }
-    res.status(200).send('ok');
+    // res.status(200).send('ok'); // use this
 }));
 
 app.get('/process-data', expressAsyncHandler(async (req: Request, res: Response) => {
@@ -100,7 +101,7 @@ const toUTCDateTime = (dateStr, timeStr) => {
 export const filterEvents = async (type, d1, d2, t1, t2) => {
     const startDateTime = toUTCDateTime(d1, t1);
     const endDateTime = toUTCDateTime(d2, t2);
-    
+
     // Query to find events that match the criteria
     const events = await Event.find({
         type: type,
@@ -116,14 +117,18 @@ export const filterEvents = async (type, d1, d2, t1, t2) => {
 
 app.post('/show-data', expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, d1, d2, t1, t2 } = req.body;
-    const data = await filterEvents(type, d1, d2, t1, t2);
-    for (let i = 0; i < data.length; i++) {
-        for (let j = 0; j < data[i].members.length; j++) {
-            const studentData = await studentModel.findOne({ phoneNumber: data[i].members[j] });
-            data[i].members[j] = studentData;
+    try {
+        const data = await filterEvents(type, d1, d2, t1, t2);
+        for (let i = 0; i < data.length; i++) {
+            for (let j = 0; j < data[i].members.length; j++) {
+                const studentData = await studentModel.findOne({ phoneNumber: data[i].members[j] });
+                data[i].members[j] = studentData;
+            }
         }
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json({ errorMessage: error.message, error });
     }
-    res.status(200).json(data);
 }));
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
