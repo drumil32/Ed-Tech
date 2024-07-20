@@ -58,6 +58,7 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
 
 // needs to add authMiddleware here
 app.post('/event', authMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
+    console.log(req.body);
     const { type, phoneNumber } = req.body;
     try {
         if (type !== EventType.FORM_HOME) { // except FROM_HOME every event is only valid if user is logged in
@@ -69,6 +70,7 @@ app.post('/event', authMiddleware, expressAsyncHandler(async (req: Request, res:
         }
     } catch (error) {
         console.log(error.message);
+        console.log(error);
         res.status(500).json({ message: error.message, error }); // remove this
     }
     // res.status(200).send('ok'); // use this
