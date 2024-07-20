@@ -100,7 +100,7 @@ const toUTCDateTime = (dateStr, timeStr) => {
 export const filterEvents = async (type, d1, d2, t1, t2) => {
     const startDateTime = toUTCDateTime(d1, t1);
     const endDateTime = toUTCDateTime(d2, t2);
-
+    
     // Query to find events that match the criteria
     const events = await Event.find({
         type: type,
