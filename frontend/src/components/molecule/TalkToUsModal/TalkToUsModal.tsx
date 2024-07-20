@@ -11,8 +11,9 @@ import { validateMessage } from "../../../utils/validations";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import axiosInstance from "../../../utils/axiosInstance";
+import axiosInstance, { eventAxiosInstance } from "../../../utils/axiosInstance";
 import restEndPoints from "../../../data/restEndPoints.json";
+import { EventType } from "../../../types/types";
 
 interface TalkToUsModalProps {
   onClose: () => void;
@@ -33,6 +34,7 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ onClose, message, type })
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    eventAxiosInstance.post(restEndPoints.event, { type: EventType.REQUEST_A_CALLBACK_CLICK });
     const messageTextError = validateMessage(messageText);
     setMessageTextError(messageTextError);
 

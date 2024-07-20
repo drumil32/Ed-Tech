@@ -12,11 +12,14 @@ import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { GrProjects } from "react-icons/gr";
 import { TfiBook } from "react-icons/tfi";
+import { eventAxiosInstance } from "../../utils/axiosInstance";
+import restEndPoints from "../../data/restEndPoints.json";
+import { EventType } from "../../types/types";
 
 const Dashboard: React.FC = () => {
-  const {user} = useSelector((state:RootState) => state.user);
+  const { user } = useSelector((state: RootState) => state.user);
   const [talkToUsModalOpen, setTalkToUsModalOpen] = useState<boolean>(false);
-  if(!user) {
+  if (!user) {
     return null;
   }
   const onClose = () => {
@@ -111,7 +114,10 @@ const Dashboard: React.FC = () => {
               </p>
               <Button
                 text="Request a Callback!"
-                onClick={() => setTalkToUsModalOpen(true)}
+                onClick={() => {
+                  setTalkToUsModalOpen(true);
+                  eventAxiosInstance.post(restEndPoints.event, { type: EventType.REQUEST_A_CALLBACK_CLICK });
+                }}
                 className={styles.availableCoursesCardCta}
               />
             </div>
@@ -128,8 +134,8 @@ const Dashboard: React.FC = () => {
                   with the skills to excel in the competitive tech industry.
                 </p>
                 <div className={styles.cardPointsContainer}>
-                <h5 className={styles.cardPoints}><GrProjects /> Includes live projects</h5>
-                <h5 className={styles.cardPoints}><TfiBook /> Open to all disciplines</h5>
+                  <h5 className={styles.cardPoints}><GrProjects /> Includes live projects</h5>
+                  <h5 className={styles.cardPoints}><TfiBook /> Open to all disciplines</h5>
                 </div>
               </div>
             </div>

@@ -6,6 +6,9 @@ import upgradeNowSection from "../../../data/upgradeNowSection.json";
 import Button from "../../atoms/Button/Button";
 import { IoRefresh } from "react-icons/io5";
 import TalkToUsModal from "../TalkToUsModal/TalkToUsModal";
+import { eventAxiosInstance } from "../../../utils/axiosInstance";
+import { EventType } from "../../../types/types";
+import restEndPoints from "../../../data/restEndPoints.json";
 
 export interface TalkToUsProps {
   enrolled: boolean;
@@ -45,7 +48,10 @@ const TalkToUs: React.FC<TalkToUsProps> = ({ enrolled }) => {
           <Button
             text={upgradeNowSection.CTA}
             className={styles.upgradeButton}
-            onClick={() => setTalkToUsModalOpen(true)}
+            onClick={() => {
+              setTalkToUsModalOpen(true);
+              eventAxiosInstance.post(restEndPoints.event, { type: EventType.TALK_TO_CLICK });
+            }}
           />
         </div>
       )}
