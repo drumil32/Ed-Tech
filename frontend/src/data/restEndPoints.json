@@ -6,5 +6,6 @@
     "auth": "auth",
     "logout": "auth/logout",
     "counselling": "counselling-session",
-    "event": "/event"
+    "event": "/event",
+    "course": "/course"
 }

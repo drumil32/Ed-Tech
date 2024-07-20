@@ -1,18 +1,50 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CourseSyllabus.module.scss";
 import SidebarTriggerButton from "../../components/atoms/SidebarTriggerButton/SidebarTriggerButton";
 import restEndPoints from "../../data/restEndPoints.json";
-import { eventAxiosInstance } from "../../utils/axiosInstance";
-import { EventType } from "../../types/types";import { FaGraduationCap } from "react-icons/fa6";
+import axiosInstance, { eventAxiosInstance } from "../../utils/axiosInstance";
+import { EventType } from "../../types/types";
+import { FaGraduationCap } from "react-icons/fa6";
 import { MdFlightClass } from "react-icons/md";
 import { SiInternetarchive, SiGoogleclassroom } from "react-icons/si";
 import { GrProjects } from "react-icons/gr";
 import { GiFaceToFace } from "react-icons/gi";
+import { nanoid } from "nanoid";
+
+type Topic = {
+  title: string;
+  description: string;
+  isLocked: string;
+};
+
+type Module = {
+  title: string;
+  description: string;
+  topics: Topic[];
+};
+
+type Course = {
+  title: string;
+  modules: Module[];
+};
 
 const CourseSyllabus: React.FC = () => {
+  const [moduleData, setModuleData] = useState<Course[]>([]);
   useEffect(() => {
-    eventAxiosInstance.post(restEndPoints.event, { type: EventType.COURSE_SYLLABUS_VIEW });
-  }, [])
+    eventAxiosInstance.post(restEndPoints.event, {
+      type: EventType.COURSE_SYLLABUS_VIEW,
+    });
+    fetchModuleData();
+  }, []);
+
+  const fetchModuleData = async () => {
+    try {
+      const response = await axiosInstance.get(restEndPoints.course);
+      setModuleData(response.data.sections);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className={styles.courseSyllabus}>
       <SidebarTriggerButton />
@@ -64,6 +96,14 @@ const CourseSyllabus: React.FC = () => {
       </div>
       <div className={styles.syllabusSection}>
         <h3 className={styles.sectionTitle}>Course Syllabus</h3>
+        {moduleData?.length > 0
+          ? moduleData.map((module) => {
+            console.log(module);
+              return (
+                <div className={styles.moduleContainer} key={nanoid()}></div>
+              );
+            })
+          : null}
       </div>
     </div>
   );
