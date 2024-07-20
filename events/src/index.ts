@@ -58,6 +58,10 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
     res.status(200).send('ok');
 });
 
+app.get('/', (req: Request, res: Response) => {
+    res.sendStatus(200);
+});
+
 // needs to add authMiddleware here
 app.post('/event', authMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
     // console.log(req.body);
