@@ -1,7 +1,7 @@
 .PopoverContent {
   border-radius: 0.5rem;
-  padding: 2rem;
-  min-width: 210px;
+  padding: 1.2rem 1.5rem;
+  min-width: 150px;
   background-color: #f5f5f5;
   box-shadow: 0 0 10px 0 #cacaca;
   animation-duration: 800ms;
@@ -16,6 +16,10 @@
     padding-bottom: 0.5rem;
 
     span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 15ch;
       color: #3a10e5;
     }
   }
@@ -24,7 +28,7 @@
     list-style: none;
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 
     li {
       padding: 0.5rem 0;
@@ -41,7 +45,7 @@
         }
 
         svg {
-          font-size: 1.8rem;
+          font-size: 1.4rem;
         }
       }
     }
@@ -61,7 +65,7 @@
     }
 
     svg {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
     }
   }
 
