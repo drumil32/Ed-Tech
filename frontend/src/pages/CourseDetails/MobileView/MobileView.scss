@@ -26,12 +26,8 @@
     height: 100%;
     top: 0;
     width: 200px;
-    &:focus {
-      background: none;
-    }
-    &:active {
-      background: none;
-    }
+    background: none;
+    -webkit-tap-highlight-color: transparent;
     @include md-max {
       width: 150px;
     }

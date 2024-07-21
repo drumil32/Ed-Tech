@@ -14,12 +14,16 @@
     margin-bottom: 0.5rem;
     border-bottom: 1px dashed #999999;
     padding-bottom: 0.5rem;
+    display: flex;
+    gap: 4px;
 
     span {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
-      width: 15ch;
+      width: 11ch;
       color: #3a10e5;
     }
   }
