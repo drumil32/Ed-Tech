@@ -3,7 +3,7 @@ import "./style.scss";
 import Hero from "../../components/organisms/Hero/Hero";
 import Courses from "../../components/organisms/Courses/Courses";
 import Features from "../../components/organisms/Features/Features";
-import AboutUs from "../../components/organisms/AboutUs/AboutUs";
+// import AboutUs from "../../components/organisms/AboutUs/AboutUs";
 import BookLiveClassForm from "../../components/organisms/BookLiveClass/BookLiveClass";
 import { BsWhatsapp } from "react-icons/bs";
 import { useSelector } from "react-redux";
@@ -54,11 +54,11 @@ const Home: React.FC = () => {
       <div ref={featuresRef}>
         <Features />
       </div>
-      <AboutUs />
+      {/* <AboutUs /> */}
       <BookLiveClassForm />
       <a
         className="whatsapp-icon"
-        href="https://wa.me/9560939327"
+        href="https://wa.me/8639322365"
         target="_blank"
         rel="noopener noreferrer"
       >

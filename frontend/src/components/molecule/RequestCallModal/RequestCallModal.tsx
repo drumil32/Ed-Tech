@@ -55,7 +55,7 @@ const RequestCallModal: React.FC<RequestCallModal> = ({ onClose }) => {
           <IoMdCloseCircleOutline />
         </div>
         <h2 className={styles.modalTitle}>Start Your Tech Career Now</h2>
-        <p className={styles.modalSubTitle}>Book a free counselling session</p>
+        <p className={styles.modalSubTitle}>Book a counselling session</p>
         <form onSubmit={handleSubmit} style={{ margin: "auto" }}>
           <Input
             label="Full Name"

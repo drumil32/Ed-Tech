@@ -30,12 +30,12 @@ const ContactUs: React.FC = () => {
       icon: <FiPhoneCall />,
       link: `tel:${contactDetails.phone}`
     },
-    {
-      title: "Secondary",
-      value: contactDetails.secondary,
-      icon: <FiPhoneCall />,
-      link: `tel:${contactDetails.secondary}`
-    },
+    // {
+    //   title: "Secondary",
+    //   value: contactDetails.secondary,
+    //   icon: <FiPhoneCall />,
+    //   link: `tel:${contactDetails.secondary}`
+    // },
     {
       title: "Email",
       value: contactDetails.email,

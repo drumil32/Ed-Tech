@@ -17,11 +17,11 @@ const ContactInfo: React.FC = () => {
       title: `${contactDetails.phone}`,
       link: `tel:${contactDetails.phone}`,
     },
-    {
-      icon: <i className="fa-solid fa-phone-volume"></i>,
-      title: `${contactDetails.secondary}`,
-      link: `tel:${contactDetails.secondary}`,
-    },
+    // {
+    //   icon: <i className="fa-solid fa-phone-volume"></i>,
+    //   title: `${contactDetails.secondary}`,
+    //   link: `tel:${contactDetails.secondary}`,
+    // },
     {
       icon: <i className="fa-regular fa-envelope"></i>,
       title: `${contactDetails.email}`,
