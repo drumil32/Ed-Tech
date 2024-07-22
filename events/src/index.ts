@@ -9,6 +9,7 @@ import expressAsyncHandler from 'express-async-handler';
 import { EventType } from './types.js';
 import Event from './event.js';
 import mongoose from 'mongoose';
+import createHttpError from 'http-errors';
 
 dotenv.config();
 
@@ -37,12 +38,17 @@ const verifyJwtToken = async (token: string) => {
     return jwt.verify(token, process.env.JWT_SECRET) as { [key: string]: any };
 }
 
+const verifyAdminJwtToken = async (token: string) => {
+    return jwt.verify(token, process.env.ADMIN_JWT_SECRET) as { [key: string]: any };
+}
+
 export const authMiddleware = expressAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     let token = req.headers.authorization;
 
     if (!token) {
         // res.status(200).send('ok'); // use this
         // res.status(401).send('unauthorized'); // remove this
+        res.sendStatus(401);
     } else {
         token = token.replace('Bearer ', '');
         try {
@@ -50,6 +56,25 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
             const decoded = await verifyJwtToken(token);
             // console.log(decoded);
             req.phoneNumber = decoded.phoneNumber;
+            next();
+        } catch (error) {
+            res.status(200).send('ok');
+        }
+    }
+});
+
+export const adminAuthMiddleware = expressAsyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    let token = req.headers.authorization;
+
+    if (!token) {
+        // res.status(200).send('ok'); // use this
+        // res.status(401).send('unauthorized'); // remove this
+        res.sendStatus(401);
+    } else {
+        token = token.replace('Bearer ', '');
+        try {
+            // Verify token
+            const decoded = await verifyAdminJwtToken(token);
             next();
         } catch (error) {
             res.status(200).send('ok');
@@ -92,7 +117,7 @@ app.post('/event', authMiddleware, expressAsyncHandler(async (req: Request, res:
     }
 }));
 
-app.get('/process-data', expressAsyncHandler(async (req: Request, res: Response) => {
+app.get('/process-data',adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
     // const memberArray = [];
     try {
         for (const eventType of Object.values(EventType)) {
@@ -117,9 +142,9 @@ const toUTCDateTime = (dateStr, timeStr) => {
 };
 
 // Function to filter events based on type, date range, and time range
-export const filterEvents = async (type, d1, d2, t1, t2) => {
-    const startDateTime = toUTCDateTime(d1, t1);
-    const endDateTime = toUTCDateTime(d2, t2);
+export const filterEvents = async (type: EventType, startingDate: string, endingDate: string, startingTime: string, endingTime: string) => {
+    const startDateTime = toUTCDateTime(startingDate, startingTime);
+    const endDateTime = toUTCDateTime(endingDate, endingTime);
 
     // Query to find events that match the criteria
     const events = await Event.find({
@@ -134,10 +159,13 @@ export const filterEvents = async (type, d1, d2, t1, t2) => {
     return events;
 };
 
-app.post('/show-data', expressAsyncHandler(async (req: Request, res: Response) => {
-    const { type, d1, d2, t1, t2 } = req.body;
+app.post('/show-data',adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
+    const { password, type, startingDate, endingDate, startingTime, endingTime } = req.body;
+    if (password == process.env.ENROLL_PASSWORD) {
+        throw createHttpError(403, "Invalid Password.");
+    }
     try {
-        const data = await filterEvents(type, d1, d2, t1, t2);
+        const data = await filterEvents(type, startingDate, endingDate, startingTime, endingTime);
         const processedData = [];
         for (let i = 0; i < data.length; i++) {
             processedData.push({

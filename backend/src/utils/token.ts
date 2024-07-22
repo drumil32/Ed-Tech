@@ -39,6 +39,10 @@ export const verifyJwtToken = async (token: string) => {
     return jwt.verify(token, process.env.JWT_SECRET) as { [key: string]: any };
 }
 
+export const verifyAdminJwtToken = async (token: string) => {
+    return jwt.verify(token, process.env.ADMIN_JWT_SECRET) as { [key: string]: any };
+}
+
 export const decodeJwtToken = (token: string) => {
     return jwt.decode(token) as { [key: string]: any };
 }
