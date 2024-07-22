@@ -38,7 +38,6 @@ export const signIn = expressAsyncHandler(async (req: Request, res: Response) =>
     const { phoneNumber } = req.body;
 
     const student = await studentModel.findOne({ phoneNumber }).select('-_id -__v');
-    console.log(student);
 
     if (student) {
         const token = await manageUserTokens(student.phoneNumber);

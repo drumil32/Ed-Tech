@@ -5,16 +5,20 @@ export interface IBookLiveClassBookingModel extends Document {
     phoneNumber: string;
     date?: string; // optional field
     time?: string; // optional field
-    creationDate?: string; // optional field
-    creationTime?: string; // optional field
+    createdAt: Date;
+    updatedAt: Date;
+    createdAtIST: string; // Virtual field
+    updatedAtIST: string; // Virtual field
 }
 
 export interface ICallRequestModel extends Document {
     name: string;
     phoneNumber: string;
     message?: string; // optional field
-    creationDate?: string; // optional field
-    creationTime?: string; // optional field
+    createdAt: Date;
+    updatedAt: Date;
+    createdAtIST: string; // Virtual field
+    updatedAtIST: string; // Virtual field
 }
 
 // Define the interface for the enrolled field
@@ -26,8 +30,10 @@ interface IEnrolled {
 export interface IStudentModel extends Document {
     name: string;
     phoneNumber: string;
-    creationDate: string;
-    creationTime: string;
+    createdAt: Date;
+    updatedAt: Date;
+    createdAtIST: string; // Virtual field
+    updatedAtIST: string; // Virtual field
     enrolled?: IEnrolled | null; // Enrolled can be an object following the IEnrolled interface or null
 }
 
@@ -40,8 +46,10 @@ export interface ICounsellingSessionModel extends Document {
     student: Schema.Types.ObjectId;
     message: string;
     type: 'Counselling' | 'NextOpening';
-    creationDate: string;
-    creationTime: string;
+    createdAt: Date;
+    updatedAt: Date;
+    createdAtIST: string; // Virtual field
+    updatedAtIST: string; // Virtual field
 }
 
 export enum EventType {
