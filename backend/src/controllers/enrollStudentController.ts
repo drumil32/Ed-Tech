@@ -1,4 +1,4 @@
-import { NextFunction, Response, Request } from "express";
+import { Response, Request } from "express";
 import studentModel from "../models/studentModel.js";
 import createHttpError from "http-errors";
 import expressAsyncHandler from "express-async-handler";

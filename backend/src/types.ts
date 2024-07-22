@@ -57,3 +57,29 @@ export interface IEvent extends Document {
     type: EventType;
     count: number;
 }
+
+export enum FAQType {
+    Program = 'Program',
+    Curriculum = 'Curriculum',
+    Teaching = 'Teaching',
+    EntranceTest = 'Entrance Test',
+    Mentors = 'Mentors',
+    PlacementSupport = 'Placement Support',
+    EntranceFees = 'Entrance Fees'
+}
+
+// Interface for the FAQ object within the array
+export interface FAQItem {
+    question: string;
+    startingParagraphs: string[];
+    pointerTitle: string;
+    pointers: string[];
+    endingParagraphs: string[];
+    endingLine: string;
+}
+
+// Interface for the FAQ schema
+export interface FAQDocument extends Document {
+    type: FAQType;
+    faq: FAQItem[];
+}
