@@ -7,5 +7,6 @@
     "logout": "auth/logout",
     "counselling": "counselling-session",
     "event": "/event",
-    "course": "/course"
+    "course": "/course",
+    "getFaqByType": "/faqs"
 }

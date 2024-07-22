@@ -12,6 +12,6 @@ export const getAllFaqByType = expressAsyncHandler(async (req: Request, res: Res
         throw createHttpError(404, `No FAQs found for type: ${faqType}`);
     }
 
-    res.status(200).json({ faq: faqDocument })
+    res.status(200).json({ faqDoc: faqDocument })
     
 });

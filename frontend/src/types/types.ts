@@ -62,3 +62,28 @@ export enum EventType {
   REQUEST_A_CALLBACK_CLICK = "REQUEST_A_CALLBACK_CLICK",
   FORM_HOME = "FORM_HOME",
 }
+
+export enum FAQType {
+  Program = 'Program',
+  Curriculum = 'Curriculum',
+  Teaching = 'Teaching',
+  EntranceTest = 'Entrance Test',
+  Mentors = 'Mentors',
+  PlacementSupport = 'Placement Support',
+  EntranceFees = 'Entrance Fees'
+}
+
+export interface FAQItem {
+  question: string;
+  startingParagraphs: string[];
+  pointerTitle: string;
+  pointers: string[];
+  endingParagraphs: string[];
+  endingLine: string;
+}
+
+// Interface for the FAQ schema
+export interface FAQ {
+  type: FAQType;
+  faq: FAQItem[];
+}
