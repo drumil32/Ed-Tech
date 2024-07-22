@@ -93,7 +93,7 @@ app.post('/event', authMiddleware, expressAsyncHandler(async (req: Request, res:
 }));
 
 app.get('/process-data', expressAsyncHandler(async (req: Request, res: Response) => {
-    const memberArray = [];
+    // const memberArray = [];
     try {
         for (const eventType of Object.values(EventType)) {
             const members = await redisClient.sMembers(eventType);
@@ -149,7 +149,7 @@ app.post('/show-data', expressAsyncHandler(async (req: Request, res: Response) =
                 processedData[i].members.push(studentData);
             }
         }
-        console.log(processedData);
+        // console.log(processedData);
         res.status(200).json(processedData);
     } catch (error) {
         res.status(500).json({ errorMessage: error.message, error });
