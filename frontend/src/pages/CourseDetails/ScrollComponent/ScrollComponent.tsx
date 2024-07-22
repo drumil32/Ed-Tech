@@ -99,7 +99,7 @@ const ScrollComponent: React.FC = () => {
         };
       } else {
       }
-    }, 500);
+    }, 1000);
   }, []);
 
   return (

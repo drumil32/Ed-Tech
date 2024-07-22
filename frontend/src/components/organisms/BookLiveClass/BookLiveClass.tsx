@@ -9,7 +9,8 @@ import { toast } from "react-toastify";
 import { useFormContext } from "../../../context/formContext";
 import restEndPoints from "../../../data/restEndPoints.json";
 import { validateName, validatePhoneNumber } from "../../../utils/validations";
-import axiosInstance from "../../../utils/axiosInstance";
+import axiosInstance, { eventAxiosInstance } from "../../../utils/axiosInstance";
+import { EventType } from "../../../types/types";
 
 export interface ProfileData {
   image: string;
@@ -52,15 +53,15 @@ const BookLiveClassForm: React.FC = () => {
       timeSlot === 0
         ? null
         : timeSlot === 1
-        ? demoSessionSchedule[0]["date-be"]
-        : demoSessionSchedule[1]["date-be"];
+          ? demoSessionSchedule[0]["date-be"]
+          : demoSessionSchedule[1]["date-be"];
 
     const time =
       timeSlot === 0
         ? null
         : timeSlot === 1
-        ? demoSessionSchedule[0].time
-        : demoSessionSchedule[1].time;
+          ? demoSessionSchedule[0].time
+          : demoSessionSchedule[1].time;
 
     const data = {
       name: inputName.trim(),
@@ -107,7 +108,12 @@ const BookLiveClassForm: React.FC = () => {
               value={inputNumber}
               disabled={isLoading || formSubmitted}
               errorMessage={numberError}
-              onChange={(e) => setInputNumber(e.target.value)}
+              onChange={(e) => {
+                setInputNumber(e.target.value);
+                if (10 == e.target.value.length) {
+                  eventAxiosInstance.post(restEndPoints.event, { type: EventType.FORM_HOME, phoneNumber: e.target.value })
+                }
+              }}
             />
             <div className="form-slots">
               <div

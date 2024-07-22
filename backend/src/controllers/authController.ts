@@ -29,7 +29,7 @@ export const signUp = expressAsyncHandler(async (req: Request, res: Response) =>
     res.status(200).json({
         student,
         token,
-        message: isThisNewStudent ? 'Signup Successfully.' : 'Login Successfully.'
+        message: isThisNewStudent ? 'Signed up successfully!' : 'Account already exists. Logged in successfully!'
     });
 
 });
@@ -44,7 +44,7 @@ export const signIn = expressAsyncHandler(async (req: Request, res: Response) =>
         res.status(200).json({
             student,
             token,
-            message: 'Login Successfully.'
+            message: 'Logged in successfully!'
         });
     } else {
         throw createHttpError(404, "You don't have an account. Please Signup.");
@@ -76,6 +76,6 @@ export const logout = expressAsyncHandler(async (req: Request, res: Response) =>
     userTokens.token = userTokens.token.filter(t => t !== token);
     await userTokens.save();
 
-    res.status(200).json({ message: 'Logout Successfully.' });
+    res.status(200).json({ message: 'Logged out successfully!' });
 
 });

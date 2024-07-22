@@ -58,7 +58,7 @@ const Home: React.FC = () => {
       <BookLiveClassForm />
       <a
         className="whatsapp-icon"
-        href="https://wa.me/9033107408"
+        href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}`}
         target="_blank"
         rel="noopener noreferrer"
       >
