@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { ICounsellingSessionModel } from "../types.js";
+import moment from "moment-timezone";
 
 
 const counsellingSessionSchema: Schema = new Schema({
@@ -20,36 +21,19 @@ const counsellingSessionSchema: Schema = new Schema({
         type: String,
         enum: ['Counselling', 'NextOpening'],
         required: true
-    },
-    creationDate: {
-        type: String
-    },
-    creationTime: {
-        type: String
     }
+}, {
+    timestamps: true
 });
 
-// Helper function to get the current date in IST
-const getCurrentISTDate = () => {
-    const now = new Date();
-    return now.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' });
-};
+// Define a virtual for createdAtIST
+counsellingSessionSchema.virtual('createdAtIST').get(function () {
+    return moment(this.createdAt).tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
+});
 
-// Helper function to get the current time in IST
-const getCurrentISTTime = () => {
-    const now = new Date();
-    return now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false });
-};
-
-// Pre-save hook to set the date and time in IST format
-counsellingSessionSchema.pre('save', function (next) {
-    if (!this.creationDate) { // Only set the date if it's not already set
-        this.creationDate = getCurrentISTDate();
-    }
-    if (!this.creationTime) { // Only set the time if it's not already set
-        this.creationTime = getCurrentISTTime();
-    }
-    next();
+// Define a virtual for updatedAtIST
+counsellingSessionSchema.virtual('updatedAtIST').get(function () {
+    return moment(this.updatedAt).tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
 });
 
 export const CounsellingSession = mongoose.model<ICounsellingSessionModel>('CounsellingSession', counsellingSessionSchema);
