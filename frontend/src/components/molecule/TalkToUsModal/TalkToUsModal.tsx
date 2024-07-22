@@ -12,7 +12,9 @@ import { validateMessage } from "../../../utils/validations";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
-import axiosInstance, { eventAxiosInstance } from "../../../utils/axiosInstance";
+import axiosInstance, {
+  eventAxiosInstance,
+} from "../../../utils/axiosInstance";
 import restEndPoints from "../../../data/restEndPoints.json";
 import { EventType } from "../../../types/types";
 
@@ -22,7 +24,11 @@ interface TalkToUsModalProps {
   type: string;
 }
 
-const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ onClose, message, type }) => {
+const TalkToUsModal: React.FC<TalkToUsModalProps> = ({
+  onClose,
+  message,
+  type,
+}) => {
   const [messageText, setMessageText] = useState<string>(message);
   const [messageTextError, setMessageTextError] = useState<string | null>(null);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
@@ -35,7 +41,9 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ onClose, message, type })
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    eventAxiosInstance.post(restEndPoints.event, { type: EventType.REQUEST_A_CALLBACK_CLICK });
+    eventAxiosInstance.post(restEndPoints.event, {
+      type: EventType.REQUEST_A_CALLBACK_CLICK,
+    });
     const messageTextError = validateMessage(messageText);
     setMessageTextError(messageTextError);
 
@@ -45,11 +53,15 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({ onClose, message, type })
     setLoading(true);
     const data = {
       message: messageText,
-      type
+      type,
     };
     try {
-      const response = await axiosInstance.post(`/${restEndPoints.counselling}`, data);
+      const response = await axiosInstance.post(
+        `/${restEndPoints.counselling}`,
+        data
+      );
       setFormSubmitted(true);
+      onClose();
       toast.success(response.data.message);
     } catch (error: any) {
       toast.error(error.response.data.error);

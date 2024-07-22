@@ -26,11 +26,13 @@
     height: 100%;
     top: 0;
     width: 200px;
+    background: none;
+    -webkit-tap-highlight-color: transparent;
     @include md-max {
       width: 150px;
     }
     @include xsm-max {
-      width: 100px;
+      width: 50px;
     }
   }
   .swiper-button-prev:after, .swiper-button-next:after {

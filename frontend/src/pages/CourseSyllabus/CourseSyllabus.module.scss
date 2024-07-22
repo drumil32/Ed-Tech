@@ -47,6 +47,11 @@
         padding: 0.5rem;
         gap: 1rem;
 
+        @include md-max {
+          grid-template-columns: 1fr;
+          border: none;
+        }
+
         .point {
           display: flex;
           align-items: flex-start;
@@ -70,6 +75,94 @@
     .sectionTitle {
       color: #10162f;
       margin-bottom: 0.5rem;
+    }
+
+    .moduleContainer {
+      background-color: #fff;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      border-radius: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      .moduleTitle {
+        color: #10162f;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    .lessonContainer {
+      // background-color: #fcf2ef;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      // border: 1px solid #bdbdbd;
+      border-radius: 0.5rem;
+      overflow: hidden;
+
+      .lessonTitle {
+        color: #10162f;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+
+        .expandIcon {
+          font-size: 1.5rem;
+          margin-left: auto;
+          transition: transform 0.3s ease;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      
+        &.expanded .expandIcon {
+          transform: rotate(180deg);
+        }
+      }
+
+      .content {
+        margin-top: 0.5rem;
+
+        .lessonDescription {
+          margin-bottom: 1rem;
+        }
+
+        .topicsContainer {
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+          gap: 2rem;
+        }
+
+        .topic {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+
+          .topicIcon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #000;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+
+            svg {
+              font-size: 1.4rem;
+            }
+          }
+
+          .topicContent {
+            h5 {
+              font-size: 1rem;
+            }
+            p {
+              font-size: 0.9rem;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -63,7 +63,7 @@ const Courses: React.FC = () => {
           </h1>
           <div className={styles.courseHighlights__points}>
             <div className={styles.courseHighlights__point}>
-              <h2 className={styles.title}>8 Months</h2>
+              <h2 className={styles.title}>7 Months</h2>
               <h4 className={styles.subTitle}>Duration</h4>
             </div>
 

@@ -3,9 +3,10 @@ import styles from "./Progress.module.scss";
 
 export interface ProgressProps {
   progress: number;
+  enrolled: boolean;
 }
 
-const Progress: React.FC<ProgressProps> = ({ progress }) => {
+const Progress: React.FC<ProgressProps> = ({ progress, enrolled = false }) => {
   const [currentProgress, setCurrentProgress] = useState(0);
 
   useEffect(() => {
@@ -31,7 +32,16 @@ const Progress: React.FC<ProgressProps> = ({ progress }) => {
         className={styles.progress}
         style={{ "--progress": `${progress}` } as React.CSSProperties}
       ></div>
-      <span className={styles.progressValue}>{currentProgress}%</span>
+      <span
+        className={styles.progressValue}
+        style={{
+          left: !enrolled ? "2%" : `50%`,
+          transform: !enrolled ? "translateY(-50%)" : `translate(-50%, -50%)`,
+
+        }}
+      >
+        {!enrolled ? "Registration Open" : `${currentProgress}%`}
+      </span>
     </div>
   );
 };

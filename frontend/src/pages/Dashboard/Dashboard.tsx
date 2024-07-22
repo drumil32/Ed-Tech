@@ -76,13 +76,12 @@ const Dashboard: React.FC = () => {
             : "Start Learning"}
         </h2>
         <div className={styles.learningContainer}>
-          <Progress progress={user.progress} />
+          <Progress progress={user.progress} enrolled={user.enrolled} />
           <div className={styles.learningContent}>
             <h3>Job Path</h3>
             <p> In-Classroom MERN Full-Stack Web Development Course</p>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim,
-              fuga!
+            Learn job-ready skills with real-world projects
             </p>
           </div>
           <div className={styles.learningCtaContainer}>
