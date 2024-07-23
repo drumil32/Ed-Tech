@@ -44,9 +44,19 @@ const liveClassBookingSchema: Schema = new Schema({
             },
             message: props => `${props.value} is not a valid time format!`
         }
+    },
+    createdAt: {
+        type: Date,
+        select: false
+    },
+    updatedAt: {
+        type: Date,
+        select: false
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
 });
 
 // Define a virtual for createdAtIST

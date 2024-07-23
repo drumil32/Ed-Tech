@@ -50,9 +50,19 @@ const studentSchema: Schema = new Schema({
         type: enrolledSchema,
         required: false, // Allow enrolled to be null
         default: null
+    },
+    createdAt: {
+        type: Date,
+        select: false
+    },
+    updatedAt: {
+        type: Date,
+        select: false
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
 });
 
 // Define a virtual for createdAtIST

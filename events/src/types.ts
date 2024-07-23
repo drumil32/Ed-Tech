@@ -5,5 +5,4 @@ export enum EventType {
     NOT_SURE_CLICK = "NOT_SURE_CLICK",
     REQUEST_A_CALLBACK_CLICK = "REQUEST_A_CALLBACK_CLICK",
     FORM_HOME = "FORM_HOME",
-    abc = "abc"
 }

@@ -123,6 +123,7 @@ app.get('/process-data',adminAuthMiddleware, expressAsyncHandler(async (req: Req
         for (const eventType of Object.values(EventType)) {
             const members = await redisClient.sMembers(eventType);
             await (new Event({ type: eventType, members: members, creationDateTime: new Date().toISOString() })).save();
+            
             await redisClient.del(eventType);
             // memberArray.push(data);
             // memberArray.push(members);

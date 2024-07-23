@@ -21,9 +21,19 @@ const counsellingSessionSchema: Schema = new Schema({
         type: String,
         enum: ['Counselling', 'NextOpening'],
         required: true
+    },
+    createdAt: {
+        type: Date,
+        select: false
+    },
+    updatedAt: {
+        type: Date,
+        select: false
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
 });
 
 // Define a virtual for createdAtIST

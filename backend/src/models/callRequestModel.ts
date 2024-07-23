@@ -26,9 +26,19 @@ const callRequestSchema: Schema = new Schema({
     },
     message: {
         type: String
+    },
+    createdAt: {
+        type: Date,
+        select: false
+    },
+    updatedAt: {
+        type: Date,
+        select: false
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
 });
 
 // Define a virtual for createdAtIST
