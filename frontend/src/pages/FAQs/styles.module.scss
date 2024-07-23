@@ -4,9 +4,6 @@
   width: 100%;
   flex: 1;
   display: flex;
-  @include sm-max {
-    padding: 2rem 1rem;
-  }
 }
 
 .sidebar {
@@ -55,6 +52,10 @@
   padding: 2rem;
   padding-right: 1rem;
 
+  @include md-max {
+    padding: 1rem;
+  }
+
   .pageTitle {
     font-size: 3rem;
     margin-bottom: 3rem;
@@ -81,6 +82,7 @@
     padding: 1rem 0;
     border-radius: 0.5rem;
     overflow: hidden;
+    border-bottom: 1px solid #d1cfcf;
 
     .faqQuestion {
       color: #10162f;

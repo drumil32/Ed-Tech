@@ -26,6 +26,11 @@ const FAQs: React.FC = () => {
     };
     fetchData();
   }, [faqType]);
+
+  const handleClick = (item: FAQType) => {
+    setFaqType(item);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <div className={styles.faqSection}>
       <div className={styles.sidebar}>
@@ -37,7 +42,7 @@ const FAQs: React.FC = () => {
                 item === faqType && styles.active
               )}
               key={nanoid()}
-              onClick={() => setFaqType(item)}
+              onClick={() => handleClick(item)}
             >
               {item}
             </li>
