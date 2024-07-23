@@ -24,6 +24,7 @@ import Lottie from "react-lottie-player";
 import loader from "./Lottie/loaderSample.json";
 import TermsofUse from "./pages/TermsofUse/TermsofUse";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 function App() {
   const dispatch = useDispatch();
   const [initialLoader, setInitialLoader] = useState(true);
@@ -59,6 +60,7 @@ function App() {
     {
       path: "/",
       element: <HomeLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/",
@@ -93,6 +95,7 @@ function App() {
     {
       path: "/",
       element: <LoginLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/login",
@@ -115,6 +118,7 @@ function App() {
     {
       path: "/",
       element: <DashboardLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/dashboard",
