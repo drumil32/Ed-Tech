@@ -34,8 +34,6 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [isLoading, setLoading] = useState<boolean>(false);
   const { user } = useSelector((state: RootState) => state.user);
-  const [isDisabled, setIsDisabled] = useState(true);
-
 
   if (!user) {
     return;
@@ -97,8 +95,8 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({
             value={messageText}
             onChange={(e) => setMessageText(e.target.value)}
             rows={5}
-            disabled={isLoading || formSubmitted || isDisabled}
-            onFocus={()=>setIsDisabled(false)}
+            disabled={isLoading || formSubmitted}
+            autoComplete="off"
             placeholder="Message (max 200 characters)"
             errorMessage={messageTextError}
           />

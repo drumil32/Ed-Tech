@@ -1,4 +1,4 @@
-import React, { TextareaHTMLAttributes } from "react";
+import React, { TextareaHTMLAttributes, useEffect, useRef } from "react";
 import styles from "./style.module.scss";
 
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -9,9 +9,21 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 
 const Textarea: React.FC<TextareaProps> = ({ errorMessage, label, required, customValidation, onChange, ...props }) => {
 
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+
   const handleTextareaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (onChange) onChange(event);
   };
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      console.log("from here");
+      textareaRef.current.blur();
+    } else {
+      console.log("to here");
+    }
+
+  }, [])
 
   return (
     <div className={styles.appTextareaContainer}>
@@ -21,7 +33,7 @@ const Textarea: React.FC<TextareaProps> = ({ errorMessage, label, required, cust
         </label>
       )}
       <div className={styles.textareaBar}>
-        <textarea {...props} onChange={handleTextareaChange} className={errorMessage ?  `${styles.error}` : ""} />
+        <textarea ref={textareaRef} {...props} onChange={handleTextareaChange} className={errorMessage ? `${styles.error}` : ""} />
       </div>
       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
     </div>
