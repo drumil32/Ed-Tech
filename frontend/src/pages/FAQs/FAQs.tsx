@@ -1,64 +1,127 @@
-import React, { useState } from "react";
-import { nanoid } from "nanoid";
-import FAQsList from "../../data/faqs.json";
-import { Faqs } from "../../types/types";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import { FaPlus, FaMinus } from "react-icons/fa6";
-import { motion } from "framer-motion";
-// import axiosInstance from "../../utils/axiosInstance";
-// import restEndPoints from "../../data/restEndPoints.json";
-// import { toast } from "react-toastify";
+import axiosInstance from "../../utils/axiosInstance";
+import restEndPoints from "../../data/restEndPoints.json";
+import { toast } from "react-toastify";
+import { FAQ, FAQItem, FAQType } from "../../types/types";
+import { nanoid } from "nanoid";
+import { AnimatePresence, motion } from "framer-motion";
+import { MdExpandMore } from "react-icons/md";
+import classNames from "classnames";
 
 const FAQs: React.FC = () => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  // const [faq, setFaq] = useState<FAQ | null>(null);
-  // const [faqType, setFaqType] = useState(FAQType.Program);
+  const [faq, setFaq] = useState<FAQ | null>(null);
+  const [faqType, setFaqType] = useState<FAQType>(FAQType.Program);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axiosInstance.get(`${restEndPoints.getFaqByType}/${faqType}`);
-  //       console.log(response);
-  //       setFaq(response.data.faqDoc);
-  //     } catch (error: any) {
-  //       toast.error(error.response.data.error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [faqType]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get(
+          `${restEndPoints.getFaqByType}/${faqType}`
+        );
+        setFaq(response.data.faqDoc);
+      } catch (error: any) {
+        toast.error(error.response.data.error);
+      }
+    };
+    fetchData();
+  }, [faqType]);
+  return (
+    <div className={styles.faqSection}>
+      <div className={styles.sidebar}>
+        <ul className={styles.catagories}>
+          {Object.values(FAQType).map((item) => (
+            <li
+              className={classNames(
+                styles.catagory,
+                item === faqType && styles.active
+              )}
+              key={nanoid()}
+              onClick={() => setFaqType(item)}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={styles.faqs}>
+        <h1 className={styles.pageTitle}>Frequently Asked Questions</h1>
+        <h2 className={styles.faqType}>{faqType}</h2>
+        {faq && faq.faq?.length > 0 ? (
+          <div className={styles.faqsContainer}>
+            {faq.faq.map((faqItem: FAQItem) => (
+              <FaqElement faqItem={faqItem} key={nanoid()} />
+            ))}
+          </div>
+        ) : (
+          <p>Loading ...</p>
+        )}
+      </div>
+    </div>
+  );
+};
 
-  const toggleAccordion = (index: number) => {
-    setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
+const FaqElement: React.FC<{ faqItem: FAQItem }> = ({ faqItem }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleLesson = () => {
+    setIsExpanded((prev) => !prev);
   };
-
-
 
   return (
     <div className={styles.faqContainer}>
-      <h2 className={styles.pageTitle}>Frequently Asked Questions</h2>
-      {FAQsList.map((faq: Faqs, index: number) => (
-        <div key={nanoid()} className={styles.accordionItem}>
-          <div
-            className={styles.accordionHeader}
-            onClick={() => toggleAccordion(index)}
+      <h3
+        className={`${styles.faqQuestion} ${isExpanded ? styles.expanded : ""}`}
+        onClick={toggleLesson}
+      >
+        {faqItem.question}
+        <span className={styles.expandIcon}>
+          <MdExpandMore />
+        </span>
+      </h3>
+      <AnimatePresence>
+        {isExpanded && (
+          <motion.div
+            className={styles.content}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <p>{faq.question}</p>
-            <div className={styles.accordianIcon}>
-              {expandedIndex === index ? <FaMinus /> : <FaPlus />}
-            </div>
-          </div>
-          {expandedIndex === index && (
-            <motion.div
-              className={styles.accordionContent}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <p>{faq.answer}</p>
-            </motion.div>
-          )}
-        </div>
-      ))}
+            {(faqItem?.startingParagraphs || [])?.length > 0 ? (
+              <div className={styles.startingPara}>
+                {faqItem.startingParagraphs.map((item) => (
+                  <p key={nanoid()}>{item}</p>
+                ))}
+              </div>
+            ) : null}
+
+            {faqItem.pointerTitle ? (
+              <p className={styles.pointerTitle}>{faqItem.pointerTitle}</p>
+            ) : null}
+
+            {(faqItem.pointers || [])?.length > 0 ? (
+              <ul className={styles.pointers}>
+                {faqItem.pointers.map((item) => (
+                  <li key={nanoid()}>{item}</li>
+                ))}
+              </ul>
+            ) : null}
+
+            {(faqItem?.endingParagraphs || [])?.length > 0 ? (
+              <div className={styles.endingPara}>
+                {faqItem.endingParagraphs.map((item) => (
+                  <p key={nanoid()}>{item}</p>
+                ))}
+              </div>
+            ) : null}
+
+            {faqItem.endingLine ? (
+              <p className={styles.endingLine}>{faqItem.endingLine}</p>
+            ) : null}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
