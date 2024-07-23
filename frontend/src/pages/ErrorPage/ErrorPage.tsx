@@ -6,11 +6,6 @@ import Button from "../../components/atoms/Button/Button";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
-interface RouteError {
-  statusText?: string;
-  message?: string;
-}
-
 export default function ErrorPage() {
   const error: any = useRouteError();
   const navigate = useNavigate();
