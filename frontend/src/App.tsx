@@ -22,6 +22,7 @@ import ProtectedRoute from "./utils/ProtectRoute";
 import RestrictedRoute from "./utils/RestrictedRoute";
 import Lottie from "react-lottie-player";
 import loader from "./Lottie/loaderSample.json";
+import TermsofUse from "./pages/TermsofUse/TermsofUse";
 function App() {
   const dispatch = useDispatch();
   const [initialLoader, setInitialLoader] = useState(true);
@@ -78,6 +79,10 @@ function App() {
           path: "/values",
           element: <OurValues />,
         },
+        {
+          path: "/terms",
+          element: <TermsofUse />
+        }
       ],
     },
     {

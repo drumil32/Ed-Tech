@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link style={{ color: "white" }} to="#">
+                  <Link style={{ color: "white" }} to="/terms">
                     Terms of Use
                   </Link>
                 </li>
