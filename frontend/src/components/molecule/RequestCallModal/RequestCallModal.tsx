@@ -9,6 +9,8 @@ import Input from "../../atoms/Input/Input";
 import Button from "../../atoms/Button/Button";
 import { toast } from "react-toastify";
 import { validateName, validatePhoneNumber } from "../../../utils/validations";
+import axiosInstance from "../../../utils/axiosInstance";
+import restEndPoints from "../../../data/restEndPoints.json";
 
 interface RequestCallModal {
   onClose: () => void;
@@ -35,17 +37,24 @@ const RequestCallModal: React.FC<RequestCallModal> = ({ onClose }) => {
     }
 
     setLoading(true);
+    const data = {
+      name: inputName,
+      phoneNumber: inputNumber
+    };
 
     try {
-      //TODO logic will be here Request Callback API
+      const response = await axiosInstance.post(`/${restEndPoints.requestACall}`, data);
       setFormSubmitted(true);
-      toast.success("We will contact you soon!");
+      toast.success(response.data.message);
       onClose();
     } catch (error: any) {
       toast.error(error.response.data.error);
-    } finally {
+    }
+    finally {
       setLoading(false);
     }
+
+    setLoading(true);
   };
 
   return (
