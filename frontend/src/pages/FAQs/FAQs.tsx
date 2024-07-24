@@ -51,7 +51,7 @@ const FAQs: React.FC = () => {
       </div>
       <div className={styles.faqs}>
         <h1 className={styles.pageTitle}>Frequently Asked Questions</h1>
-        <h2 className={styles.faqType}>{faqType}</h2>
+        <h2 className={styles.faqType}>{faq?.type}</h2>
         {faq && faq.faq?.length > 0 ? (
           <div className={styles.faqsContainer}>
             {faq.faq.map((faqItem: FAQItem) => (
