@@ -14,6 +14,8 @@ import { nanoid } from "nanoid";
 import { MdExpandMore } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Lottie from "react-lottie-player";
+import loaderData from "../../Lottie/loaderSmall.json"
 
 type SubTopic = {
   name: string;
@@ -36,6 +38,7 @@ type Course = {
 const CourseSyllabus: React.FC = () => {
   const [courseData, setCourseData] = useState<Course[]>([]);
   const navigate = useNavigate();
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     eventAxiosInstance.post(restEndPoints.event, {
@@ -45,6 +48,7 @@ const CourseSyllabus: React.FC = () => {
   }, []);
 
   const fetchCourseData = async () => {
+    setLoading(true);
     try {
       const response = await axiosInstance.get(restEndPoints.course);
       setCourseData(response.data.modules);
@@ -53,8 +57,12 @@ const CourseSyllabus: React.FC = () => {
       if (401 == err.response.status) {
         navigate('/login');
       }
+    } finally {
+      setLoading(false);
     }
   };
+
+
 
   return (
     <div className={styles.courseSyllabus}>
@@ -106,7 +114,15 @@ const CourseSyllabus: React.FC = () => {
       </div>
       <div className={styles.syllabusSection}>
         <h3 className={styles.sectionTitle}>Course Syllabus</h3>
-        {courseData.length > 0 &&
+        {isLoading ? (
+          <div className={styles.loader}>
+            <Lottie
+              animationData={loaderData}
+              play
+              style={{ width: 300, height: 300 }}
+            />
+          </div>
+        ) : courseData.length > 0 ? (
           courseData.map((module) => (
             <div className={styles.moduleContainer} key={nanoid()}>
               <h2 className={styles.moduleTitle}>
@@ -120,7 +136,10 @@ const CourseSyllabus: React.FC = () => {
                 <p>No lessons available.</p>
               )}
             </div>
-          ))}
+          ))
+        ) : (
+          <p>No modules available.</p>
+        )}
       </div>
     </div>
   );

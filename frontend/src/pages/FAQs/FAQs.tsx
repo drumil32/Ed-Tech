@@ -9,9 +9,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { MdExpandMore } from "react-icons/md";
 import classNames from "classnames";
 import Select, { SingleValue } from "react-select";
+import Lottie from "react-lottie-player";
+import loaderData from "../../Lottie/loaderSmall.json";
 
 const FAQs: React.FC = () => {
   const [faq, setFaq] = useState<FAQ | null>(null);
+  const [isLoading, setLoading] = useState<boolean>(false);
   const [faqType, setFaqType] = useState<FAQType>(FAQType.Program);
 
   const options = [
@@ -26,6 +29,7 @@ const FAQs: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await axiosInstance.get(
           `${restEndPoints.getFaqByType}/${faqType}`
@@ -33,6 +37,8 @@ const FAQs: React.FC = () => {
         setFaq(response.data.faqDoc);
       } catch (error: any) {
         toast.error(error.response.data.error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -71,24 +77,33 @@ const FAQs: React.FC = () => {
       <div className={styles.faqs}>
         <h1 className={styles.pageTitle}>Frequently Asked Questions</h1>
         <div className={styles.categoryHeader}>
-          <h2 className={styles.faqType}>{faq?.type}</h2>
+          <h2 className={styles.faqType}>{faqType}</h2>
           <div className={styles.select}>
             <Select
               options={options}
               onChange={handleSelectChange}
               placeholder="Category"
+              isSearchable={false}
               value={options.find((option) => option.value === faqType)}
             />
           </div>
         </div>
-        {faq && faq.faq?.length > 0 ? (
+        {isLoading ? (
+          <div className={styles.loader}>
+            <Lottie
+              animationData={loaderData}
+              play
+              style={{ width: 300, height: 300 }}
+            />
+          </div>
+        ) : faq && faq.faq?.length > 0 ? (
           <div className={styles.faqsContainer}>
             {faq.faq.map((faqItem: FAQItem) => (
               <FaqElement faqItem={faqItem} key={nanoid()} />
             ))}
           </div>
         ) : (
-          <p>Loading ...</p>
+          <p>No Data Found</p>
         )}
       </div>
     </div>
