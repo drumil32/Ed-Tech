@@ -6,619 +6,394 @@ router.get("/", (req: Request, res: Response) => {
   res.status(200).json({
     modules: [
       {
-        title: "Getting Started With SQL",
-        lessons: [
+        name: "Module 0: Fundamental Guiding Principles",
+        topics: [
           {
-            title: "What is SQL?",
-            id: 1,
+            name: "Quick Reads",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Learn why the fundamental principles have become the most important thing to learn first in this new age of AI.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "false",
+                name: "Article",
+                description: "Why should everyone learn to code?",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: false,
               },
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "false",
+                name: "Article",
+                description: "How to break complex problems?",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: false,
               },
+              {
+                name: "Article",
+                description: "How to win every argument?",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: false,
+              },
+              {
+                name: "Article",
+                description: "What's more important - Right skillset or right attitude?",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: false,
+              },
+            ],
+          }
+        ],
+      },
+      {
+        name: "Module 1: Tech Fundamentals and Logical Reasoning",
+        topics: [
+          {
+            name: "Build familiarity with basic tools",
+            description:
+              "Know the necessary basic tools which are an absolute must for all coders.",
+            subtopics: [
+              {
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 2,
+            name: "Mental Models & Critical thinking exercises",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Understand bias in thinking and explore new ways of thinking about real-world problems.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "false",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
+            ],
+          },
+          {
+            name: "Basic puzzles and logical reasoning",
+            description:
+              "This section will cover puzzles and LR exercises that will sharpen your reasoning skills.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "false",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "false",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
         ],
       },
       {
-        title: "Getting Started With SQL",
-        lessons: [
+        name: "Module 2: Intro to Programming and Data Structures",
+        topics: [
           {
-            title: "What is SQL?",
-            id: 3,
+            name: "Introduction to Java/C++",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Learn the syntax and core concepts of programming with languages like Java/C++, laying a strong foundation for coding.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 4,
+            name: "Basics of Data Structures",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Understand and implement fundamental data structures such as arrays, linked lists, and stacks to efficiently store and manage data.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 5,
+            name: "Recursion and Backtracking",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Master recursive algorithms and backtracking techniques to solve complex problems by breaking them down into simpler sub-problems.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
         ],
       },
       {
-        title: "Getting Started With SQL",
-        id: 6,
-        lessons: [
+        name: "Module 3: Advanced-Data Structures and Algorithms",
+        topics: [
           {
-            title: "What is SQL?",
+            name: "Trees and Graphs",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Explore advanced data structures like binary trees, AVL trees, and graph algorithms to manage hierarchical and networked data.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 7,
+            name: "Dynamic Programming",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Learn dynamic programming to solve optimization problems by breaking them into overlapping subproblems and storing solutions.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 8,
+            name: "Searching and Sorting",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Dive deep into various searching and sorting algorithms, such as binary search and quicksort, to improve data retrieval and organization.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
         ],
       },
       {
-        title: "Getting Started With SQL",
-        lessons: [
+        name: "Module 4: Building Blocks of Web",
+        topics: [
           {
-            title: "What is SQL?",
-            id: 9,
+            name: "HTML, CSS and Javascript",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Master the core technologies of web development to create and style web pages, and add interactivity with JavaScript.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 10,
+            name: "Responsive Design",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Learn to create responsive websites that adapt to different screen sizes and devices using CSS frameworks and media queries.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 11,
+            name: "Web Development Project",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Apply your knowledge in a hands-on web development project, building a functional and visually appealing website from scratch.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Project",
+                description: "Project details to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
         ],
       },
       {
-        title: "Getting Started With SQL",
-        lessons: [
+        name: "Module 5: Master React",
+        topics: [
           {
-            title: "What is SQL?",
-            id: 12,
+            name: "React Basics",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Become proficient in React for building interactive user interfaces with reusable components and a virtual DOM.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 13,
+            name: "State Management",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Learn state management with tools like React Router and Context API to manage application state and navigation efficiently.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 14,
+            name: "Personal Portfolio Creation",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Create your own personalized portfolio using React to showcase your projects and skills to potential employers.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Project",
+                description: "Project details to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
         ],
       },
       {
-        title: "Getting Started With SQL",
-        lessons: [
+        name: "Module 6: Backend Fundamentals",
+        topics: [
           {
-            title: "What is SQL?",
-            id: 15,
+            name: "API Development",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Understand the basics of Internet and API architecture to build robust and scalable backend services.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 16,
+            name: "Databases",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Dive into SQL and NoSQL databases to store, retrieve, and manage data effectively in your applications.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 17,
+            name: "Redux Saga",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Integrate advanced React packages like Redux Saga to handle side effects and manage complex state in your applications.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
         ],
       },
       {
-        title: "Getting Started With SQL",
-        lessons: [
+        name: "Module 7: Backend Integration and Final Project",
+        topics: [
           {
-            title: "What is SQL?",
-            id: 18,
+            name: "Database Indexing and Deployment",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Learn about database indexing, deployment strategies, and cybersecurity to ensure your applications are efficient and secure.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 19,
+            name: "Caching and Authentication",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Understand caching techniques and authentication mechanisms to improve performance and security of your web applications.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Lesson",
+                description: "New lessons and articles to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 20,
+            name: "The Final Project",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Build and deploy your first full-stack website, applying all the concepts and skills learned throughout the course.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Project",
+                description: "Project details to be added once the program begins",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
         ],
       },
       {
-        title: "Getting Started With SQL",
-        lessons: [
+        name: "Module 8: Job Readiness Preparation",
+        topics: [
           {
-            title: "What is SQL?",
-            id: 21,
+            name: "Resume Building",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "Two rounds of resume building exercise starting with basic walkthrough of skills & experience to final refinement of the resume.",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
+                name: "Exercise",
+                description: "Resume Building I",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
               },
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Exercise",
+                description: "Resume Building I",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
           {
-            title: "What is SQL?",
-            id: 22,
+            name: "Mock Interviews",
             description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
+              "At least 4 mock interview rounds covering general HRQ interview rounds and technical interview rounds",
+            subtopics: [
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
+                name: "Exercise",
+                description: "General HRQs Prep - Mock Interviews I",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
               },
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
+                name: "Exercise",
+                description: "General HRQs Prep - Mock Interviews I",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
               },
               {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-            ],
-          },
-          {
-            title: "What is SQL?",
-            id: 23,
-            description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: "Getting Started With SQL",
-        lessons: [
-          {
-            title: "What is SQL?",
-            id: 24,
-            description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-            ],
-          },
-          {
-            title: "What is SQL?",
-            id: 25,
-            description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-            ],
-          },
-          {
-            title: "What is SQL?",
-            id: 26,
-            description:
-              "Gain a familirity with code academy platform by learning about what sql and how data alysit use this",
-            topics: [
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
-              {
-                title: "Lesson",
-                description: "Why learn sql?",
-                isLocked: "true",
-              },
+                name: "Exercise",
+                description: "General HRQs Prep - Mock Interviews I",
+                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+                isLocked: true,
+              }
             ],
           },
         ],

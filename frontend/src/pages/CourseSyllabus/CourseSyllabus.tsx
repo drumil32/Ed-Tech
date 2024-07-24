@@ -12,27 +12,30 @@ import { GrProjects } from "react-icons/gr";
 import { GiFaceToFace } from "react-icons/gi";
 import { nanoid } from "nanoid";
 import { MdExpandMore } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-type Topic = {
-  title: string;
+type SubTopic = {
+  name: string;
   description: string;
-  isLocked: string;
+  isLocked: boolean;
 };
 
-type Lesson = {
-  title: string;
+type Topic = {
+  name: string;
   id: number | string;
   description: string;
-  topics: Topic[];
+  subtopics: SubTopic[];
 };
 
 type Course = {
-  title: string;
-  lessons: Lesson[];
+  name: string;
+  topics: Topic[];
 };
 
 const CourseSyllabus: React.FC = () => {
   const [courseData, setCourseData] = useState<Course[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     eventAxiosInstance.post(restEndPoints.event, {
@@ -45,8 +48,11 @@ const CourseSyllabus: React.FC = () => {
     try {
       const response = await axiosInstance.get(restEndPoints.course);
       setCourseData(response.data.modules);
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      toast.error(err.response.data.error);
+      if (401 == err.response.status) {
+        navigate('/login');
+      }
     }
   };
 
@@ -101,14 +107,14 @@ const CourseSyllabus: React.FC = () => {
       <div className={styles.syllabusSection}>
         <h3 className={styles.sectionTitle}>Course Syllabus</h3>
         {courseData.length > 0 &&
-          courseData.map((module, index) => (
+          courseData.map((module) => (
             <div className={styles.moduleContainer} key={nanoid()}>
               <h2 className={styles.moduleTitle}>
-                Module {index}: {module.title}
+                {module.name}
               </h2>
-              {module.lessons.length > 0 ? (
-                module.lessons.map((lesson) => (
-                  <LessonItem key={lesson.id} lesson={lesson} />
+              {module.topics.length > 0 ? (
+                module.topics.map((topic) => (
+                  <LessonItem key={nanoid()} topic={topic} />
                 ))
               ) : (
                 <p>No lessons available.</p>
@@ -120,7 +126,7 @@ const CourseSyllabus: React.FC = () => {
   );
 };
 
-const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
+const LessonItem: React.FC<{ topic: Topic }> = ({ topic }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleLesson = () => {
@@ -133,7 +139,7 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
         className={`${styles.lessonTitle} ${isExpanded ? styles.expanded : ""}`}
         onClick={toggleLesson}
       >
-        {lesson.title}
+        {topic.name}
         <span className={styles.expandIcon}>
           <MdExpandMore />
         </span>
@@ -147,16 +153,16 @@ const LessonItem: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <p className={styles.lessonDescription}>{lesson.description}</p>
+            <p className={styles.lessonDescription}>{topic.description}</p>
             <div className={styles.topicsContainer}>
-              {lesson.topics.map((topic) => (
+              {topic.subtopics.map((subTopic) => (
                 <div className={styles.topic} key={nanoid()}>
                   <div className={styles.topicIcon}>
                     <MdOutlineLock />
                   </div>
                   <div className={styles.topicContent}>
-                    <h5>{topic.title}</h5>
-                    <p>{topic.description}</p>
+                    <h5>{subTopic.name}</h5>
+                    <p>{subTopic.description}</p>
                   </div>
                 </div>
               ))}
