@@ -8,10 +8,21 @@ import { nanoid } from "nanoid";
 import { AnimatePresence, motion } from "framer-motion";
 import { MdExpandMore } from "react-icons/md";
 import classNames from "classnames";
+import Select, { SingleValue } from "react-select";
 
 const FAQs: React.FC = () => {
   const [faq, setFaq] = useState<FAQ | null>(null);
   const [faqType, setFaqType] = useState<FAQType>(FAQType.Program);
+
+  const options = [
+    { value: FAQType.Program, label: "Program" },
+    { value: FAQType.Curriculum, label: "Curriculum" },
+    { value: FAQType.Teaching, label: "Teaching" },
+    { value: FAQType.EntranceTest, label: "Entrance Test" },
+    { value: FAQType.Mentors, label: "Mentors" },
+    { value: FAQType.PlacementSupport, label: "Placement Support" },
+    { value: FAQType.EntranceFees, label: "Entrance Fees" },
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +41,14 @@ const FAQs: React.FC = () => {
   const handleClick = (item: FAQType) => {
     setFaqType(item);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+  const handleSelectChange = (
+    selectedOption: SingleValue<{ value: FAQType; label: string }>
+  ) => {
+    if (selectedOption) {
+      setFaqType(selectedOption.value);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
   return (
     <div className={styles.faqSection}>
@@ -51,7 +70,17 @@ const FAQs: React.FC = () => {
       </div>
       <div className={styles.faqs}>
         <h1 className={styles.pageTitle}>Frequently Asked Questions</h1>
-        <h2 className={styles.faqType}>{faq?.type}</h2>
+        <div className={styles.categoryHeader}>
+          <h2 className={styles.faqType}>{faq?.type}</h2>
+          <div className={styles.select}>
+            <Select
+              options={options}
+              onChange={handleSelectChange}
+              placeholder="Category"
+              value={options.find((option) => option.value === faqType)}
+            />
+          </div>
+        </div>
         {faq && faq.faq?.length > 0 ? (
           <div className={styles.faqsContainer}>
             {faq.faq.map((faqItem: FAQItem) => (

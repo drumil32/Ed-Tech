@@ -68,10 +68,39 @@
     }
   }
 
-  .faqType {
+  .categoryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
     margin-bottom: 1rem;
-    font-size: 1.8rem;
-    color: #3a10e5;
+
+    @include sm-max {
+      position: sticky;
+      top: 72px;
+    }
+
+    .faqType {
+      font-size: 1.8rem;
+      color: #3a10e5;
+
+      @include sm-max {
+        display: none;
+      }
+    }
+    .select {
+      min-width: 150px;
+      display: none;
+
+      @include md-max {
+        display: block;
+      }
+
+      @include sm-max {
+        width: 100%;
+      }
+    }
   }
 
   .faqsContainer {
