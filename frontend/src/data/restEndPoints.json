@@ -6,6 +6,7 @@
     "auth": "auth",
     "logout": "auth/logout",
     "counselling": "counselling-session",
+    "eventAuth": "event-auth",
     "event": "event",
     "course": "course",
     "getFaqByType": "faqs"

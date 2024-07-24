@@ -41,7 +41,7 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    eventAxiosInstance.post(restEndPoints.event, {
+    eventAxiosInstance.post(`/${restEndPoints.event}`, {
       type: EventType.REQUEST_A_CALLBACK_CLICK,
     });
     const messageTextError = validateMessage(messageText);

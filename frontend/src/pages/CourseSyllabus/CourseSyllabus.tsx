@@ -41,7 +41,7 @@ const CourseSyllabus: React.FC = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    eventAxiosInstance.post(restEndPoints.event, {
+    eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, {
       type: EventType.COURSE_SYLLABUS_VIEW,
     });
     fetchCourseData();

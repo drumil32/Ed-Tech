@@ -50,7 +50,7 @@ const TalkToUs: React.FC<TalkToUsProps> = ({ enrolled }) => {
             className={styles.upgradeButton}
             onClick={() => {
               setTalkToUsModalOpen(true);
-              eventAxiosInstance.post(`/${restEndPoints.event}`, { type: EventType.TALK_TO_CLICK });
+              eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, { type: EventType.TALK_TO_CLICK });
             }}
           />
         </div>

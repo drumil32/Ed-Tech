@@ -46,15 +46,11 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
     let token = req.headers.authorization;
 
     if (!token) {
-        // res.status(200).send('ok'); // use this
-        // res.status(401).send('unauthorized'); // remove this
         res.sendStatus(401);
     } else {
         token = token.replace('Bearer ', '');
         try {
-            // Verify token
             const decoded = await verifyJwtToken(token);
-            // console.log(decoded);
             req.phoneNumber = decoded.phoneNumber;
             next();
         } catch (error) {
@@ -67,19 +63,14 @@ export const adminAuthMiddleware = expressAsyncHandler(async (req: Request, res:
     let token = req.headers.authorization;
 
     if (!token) {
-        // res.status(200).send('ok'); // use this
-        // res.status(401).send('unauthorized'); // remove this
         res.sendStatus(401);
     } else {
         token = token.replace('Bearer ', '');
-        console.log(token);
         try {
-            // Verify token
-            const decoded = await verifyAdminJwtToken(token);
+            await verifyAdminJwtToken(token);
             next();
         } catch (error) {
-            console.log(error);
-            res.status(401).send({ message: error.message, error });
+            res.status(401).send({ message: 'Unauthorize' });
         }
     }
 });
@@ -87,36 +78,22 @@ export const adminAuthMiddleware = expressAsyncHandler(async (req: Request, res:
 app.get('/', (req: Request, res: Response) => {
     res.sendStatus(200);
 });
+app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {
+    const { type, phoneNumber } = req.body;
+    if (type != EventType.FORM_HOME) {
+        await redisClient.sAdd(type, [phoneNumber]);
+    }
+    res.sendStatus(200);
+}));
 
 // needs to add authMiddleware here
-app.post('/event', authMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
-    // console.log(req.body);
-    const { type, phoneNumber } = req.body;
-    // console.log(typeof phoneNumber)
-    // console.log(req.phoneNumber);
-    // console.log(typeof req.phoneNumber);
+app.post('/event-auth', authMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
+    const { type } = req.body;
     try {
-        if (type != EventType.FORM_HOME) { // except FROM_HOME every event is only valid if user is logged in
-            // const data1 = await redisClient.sAdd("abc", ['ghi', 'jkl']);
-            // console.log('data1')
-            // console.log(data1)
-            // const data = await redisClient.sAdd('REQUEST_A_CALLBACK_CLICK', ['phoneNumber', 'phoneNumbe1r']); // after adding authMiddleware will have req.phoneNumber
-            // console.log(data)
-            // console.log('data')
-            await redisClient.sAdd(type, req.phoneNumber);
-            // console.log('data')
-            // console.log(data)
-            // res.status(200).send(data); // remove this
-        } else {
-            await redisClient.sAdd(type, [phoneNumber]);
-            // res.status(200).json(data); // remove this 
-        }
-        res.status(200).send('ok'); // use this
+        await redisClient.sAdd(type, req.phoneNumber);
     } catch (error) {
-        console.log(error.message);
-        console.log(error);
-        res.status(500).json({ message: error.message, error }); // remove this
     }
+    res.sendStatus(200);
 }));
 
 app.get('/process-data', adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
@@ -125,15 +102,11 @@ app.get('/process-data', adminAuthMiddleware, expressAsyncHandler(async (req: Re
         for (const eventType of Object.values(EventType)) {
             const members = await redisClient.sMembers(eventType);
             await (new Event({ type: eventType, members: members, creationDateTime: new Date().toISOString() })).save();
-
             await redisClient.del(eventType);
-            // memberArray.push(data);
-            // memberArray.push(members);
         }
-        // res.status(200).json(memberArray);
         res.status(200).send('ok');
     } catch (error) {
-        res.status(500).json({ message: error.message, error }); // should remove this as well but think once before removing it
+        res.status(500).json({ message: error.message });
     }
 }));
 
@@ -163,10 +136,8 @@ export const filterEvents = async (type: EventType, startingDate: string, ending
 };
 
 app.post('/show-data', adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
-    const { password, type, startingDate, endingDate, startingTime, endingTime } = req.body;
-    if (password == process.env.ENROLL_PASSWORD) {
-        throw createHttpError(403, "Invalid Password.");
-    }
+    const { type, startingDate, endingDate, startingTime, endingTime } = req.body;
+
     try {
         const data = await filterEvents(type, startingDate, endingDate, startingTime, endingTime);
         const processedData = [];
@@ -180,10 +151,9 @@ app.post('/show-data', adminAuthMiddleware, expressAsyncHandler(async (req: Requ
                 processedData[i].members.push(studentData);
             }
         }
-        // console.log(processedData);
         res.status(200).json(processedData);
     } catch (error) {
-        res.status(500).json({ errorMessage: error.message, error });
+        res.status(500).json({ errorMessage: error.message });
     }
 }));
 
