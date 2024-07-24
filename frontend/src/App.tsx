@@ -21,7 +21,7 @@ import { setUserDetails } from "./redux/slices/UserSliice";
 import ProtectedRoute from "./utils/ProtectRoute";
 import RestrictedRoute from "./utils/RestrictedRoute";
 import Lottie from "react-lottie-player";
-import loader from "./Lottie/loaderSample.json";
+import loader from "./Lottie/loader.json";
 import TermsofUse from "./pages/TermsofUse/TermsofUse";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";

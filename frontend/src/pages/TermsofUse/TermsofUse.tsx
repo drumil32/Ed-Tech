@@ -16,8 +16,8 @@ const TermsofUse: React.FC = () => {
             Digital Space Private Limited (“SprintUp”, “we”, or “us”), having
             its office at B-2/12, Second Floor, Vibhuti Khand, Gomti Nagar,
             Lucknow, Uttar Pradesh - 226010 IN. By accessing the website at{" "}
-            <a href="mailto:https://www.sprintup">https://www.sprintup</a>
-            .in, you are agreeing to be bound by these terms of service, and all
+            <a href="mailto:https://www.sprintup.in">https://www.sprintup.in</a>
+            , you are agreeing to be bound by these terms of service, and all
             applicable laws and regulations, and you agree that you are
             responsible for compliance with any applicable local laws
           </p>
@@ -177,7 +177,7 @@ const TermsofUse: React.FC = () => {
           <p>
             Users can unsubscribe/opt-out from our communications sent via
             e-mails, Whatsapp messages, calls and SMS anytime: Please email us
-            at <a href="mailto:https://www.sprintup">https://www.sprintup</a> to
+            at <a href="mailto:help.sprintup@gmail.com">help.sprintup@gmail.com</a> to
             unsubscribe from e-mails, WhatsApp messages, calls and SMS; Users
             can also unsubscribe from emails, by clicking the "Unsubscribe URL"
             mentioned in the footer of the emails.
@@ -319,7 +319,7 @@ const TermsofUse: React.FC = () => {
           </ul>
           <p>
             For exceptional cases, please mail the details of the case to{" "}
-            <a href="mailto:https://www.sprintup">https://www.sprintup</a>.
+            <a href="mailto:help.sprintup@gmail.com">help.sprintup@gmail.com</a>.
           </p>
         </section>
       </div>

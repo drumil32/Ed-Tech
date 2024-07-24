@@ -77,6 +77,7 @@ const FAQs: React.FC = () => {
               options={options}
               onChange={handleSelectChange}
               placeholder="Category"
+              isSearchable={false}
               value={options.find((option) => option.value === faqType)}
             />
           </div>
