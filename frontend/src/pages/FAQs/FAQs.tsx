@@ -32,7 +32,7 @@ const FAQs: React.FC = () => {
       setLoading(true);
       try {
         const response = await axiosInstance.get(
-          `${restEndPoints.getFaqByType}/${faqType}`
+          `/${restEndPoints.getFaqByType}/${faqType}`
         );
         setFaq(response.data.faqDoc);
       } catch (error: any) {

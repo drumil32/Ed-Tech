@@ -50,7 +50,7 @@ const CourseSyllabus: React.FC = () => {
   const fetchCourseData = async () => {
     setLoading(true);
     try {
-      const response = await axiosInstance.get(restEndPoints.course);
+      const response = await axiosInstance.get(`/${restEndPoints.course}`);
       setCourseData(response.data.modules);
     } catch (err: any) {
       toast.error(err.response.data.error);

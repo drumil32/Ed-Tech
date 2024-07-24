@@ -8,7 +8,7 @@ import axiosInstance from "../../../utils/axiosInstance";
 import { setUserDetails } from "../../../redux/slices/UserSliice";
 import { toast } from "react-toastify";
 import { LuLogOut } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiHelpCircle, FiHome } from "react-icons/fi";
 import LoaderOverlay from "../LoaderOverlay/LoaderOverlay";
 
@@ -16,6 +16,7 @@ const ProfilePopover: React.FC = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state: RootState) => state.user);
   const [isLoading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
   if (!user) {
     return null;
   }
@@ -27,8 +28,11 @@ const ProfilePopover: React.FC = () => {
       localStorage.removeItem("token");
       dispatch(setUserDetails(null));
       toast.success(response.data.message);
-    } catch (error: any) {
-      toast.error(error.response.data.error);
+    } catch (err: any) {
+      toast.error(err.response.data.error);
+      if (401 == err.response.status) {
+        navigate('/login');
+      }
     } finally {
       setLoading(false);
     }
