@@ -72,13 +72,14 @@ export const adminAuthMiddleware = expressAsyncHandler(async (req: Request, res:
         res.sendStatus(401);
     } else {
         token = token.replace('Bearer ', '');
+        console.log(token);
         try {
             // Verify token
             const decoded = await verifyAdminJwtToken(token);
             next();
         } catch (error) {
             console.log(error);
-            res.status(401).send("anothorized");
+            res.status(401).send({ message: error.message, error });
         }
     }
 });
@@ -118,13 +119,13 @@ app.post('/event', authMiddleware, expressAsyncHandler(async (req: Request, res:
     }
 }));
 
-app.get('/process-data',adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
+app.get('/process-data', adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
     // const memberArray = [];
     try {
         for (const eventType of Object.values(EventType)) {
             const members = await redisClient.sMembers(eventType);
             await (new Event({ type: eventType, members: members, creationDateTime: new Date().toISOString() })).save();
-            
+
             await redisClient.del(eventType);
             // memberArray.push(data);
             // memberArray.push(members);
@@ -161,7 +162,7 @@ export const filterEvents = async (type: EventType, startingDate: string, ending
     return events;
 };
 
-app.post('/show-data',adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
+app.post('/show-data', adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
     const { password, type, startingDate, endingDate, startingTime, endingTime } = req.body;
     if (password == process.env.ENROLL_PASSWORD) {
         throw createHttpError(403, "Invalid Password.");
