@@ -12,6 +12,7 @@ import "swiper/css/effect-creative";
 import "swiper/scss/autoplay";
 import { Autoplay } from "swiper/modules";
 import heighlightedPoints from "../../data/highlightedPoints.json";
+import { nanoid } from "nanoid";
 
 const HomeLayout: React.FC = () => {
   const location = useLocation().pathname;
@@ -32,12 +33,10 @@ const HomeLayout: React.FC = () => {
             delay: 5000,
             disableOnInteraction: false,
           }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
           loop={true}
         >
           {heighlightedPoints.map((point) => (
-            <SwiperSlide>
+            <SwiperSlide key={nanoid()}>
               <p>{point}</p>
             </SwiperSlide>
           ))}
