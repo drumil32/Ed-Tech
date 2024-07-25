@@ -63,7 +63,7 @@ export const adminAuthMiddleware = expressAsyncHandler(async (req: Request, res:
     let token = req.headers.authorization;
 
     if (!token) {
-        res.sendStatus(401);
+        res.status(401).send({ message: 'Unauthorize' });
     } else {
         token = token.replace('Bearer ', '');
         try {

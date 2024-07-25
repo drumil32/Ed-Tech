@@ -52,7 +52,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -65,7 +65,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -78,7 +78,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -96,7 +96,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -109,7 +109,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -122,7 +122,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -140,7 +140,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -153,7 +153,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -166,7 +166,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -184,7 +184,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -197,7 +197,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -210,7 +210,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Project",
                 description: "Project details to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -228,7 +228,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -241,7 +241,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -254,7 +254,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Project",
                 description: "Project details to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -272,7 +272,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -285,7 +285,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -298,7 +298,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -316,7 +316,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -329,7 +329,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Lesson",
                 description: "New lessons and articles to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -342,7 +342,7 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Project",
                 description: "Project details to be added once the program begins",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -360,13 +360,13 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Exercise",
                 description: "Resume Building I",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               },
               {
                 name: "Exercise",
                 description: "Resume Building I",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],
@@ -379,19 +379,19 @@ router.get("/", (req: Request, res: Response) => {
               {
                 name: "Exercise",
                 description: "General HRQs Prep - Mock Interviews I",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               },
               {
                 name: "Exercise",
                 description: "General HRQs Prep - Mock Interviews I",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               },
               {
                 name: "Exercise",
                 description: "General HRQs Prep - Mock Interviews I",
-                link: "https://www.pureblueocean.com/my-product/skills-vs-behaviours/",
+
                 isLocked: true,
               }
             ],

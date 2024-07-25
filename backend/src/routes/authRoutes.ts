@@ -25,6 +25,6 @@ router.get('/',
 router.get('/logout',
     authMiddleware,
     logout
-)
+);
 
 export default router;
