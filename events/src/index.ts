@@ -135,12 +135,6 @@ export const filterEvents = async (type: EventType, startingDate: string, ending
     return events;
 };
 
-// setInterval(() => {
-//     for (const eventType of Object.values(EventType)) {
-
-//     }
-// }, 10_000);
-
 app.post('/show-data', adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, startingDate, endingDate, startingTime, endingTime } = req.body;
 

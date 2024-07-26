@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./CourseSyllabus.module.scss";
 import SidebarTriggerButton from "../../components/atoms/SidebarTriggerButton/SidebarTriggerButton";
