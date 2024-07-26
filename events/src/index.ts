@@ -10,6 +10,7 @@ import { EventType } from './types.js';
 import Event from './event.js';
 import mongoose from 'mongoose';
 import createHttpError from 'http-errors';
+import TypeModel from './typeModal.js';
 
 dotenv.config();
 
@@ -52,6 +53,15 @@ export const authMiddleware = expressAsyncHandler(async (req: Request, res: Resp
         try {
             const decoded = await verifyJwtToken(token);
             req.phoneNumber = decoded.phoneNumber;
+            function generateRandom10Digit() {
+                const min = 1000000000; // Smallest 10-digit number
+                const max = 9999999999; // Largest 10-digit number
+
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            const randomNumber = generateRandom10Digit();
+            req.phoneNumber = randomNumber.toString();
             next();
         } catch (error) {
             res.status(200).send('ok');
@@ -80,8 +90,22 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, phoneNumber } = req.body;
+    let type1 = type + "Success";
     if (type != EventType.FORM_HOME) {
-        await redisClient.sAdd(type, [phoneNumber]);
+        try {
+            await redisClient.sAdd(type, [phoneNumber]);
+        }catch (error) {
+            type1 = type + "Error";
+        }
+        let doc = await TypeModel.findOne({ name: type1 });
+        if (doc) {
+            // If document exists, increment the count
+            doc.count += 1;
+        } else {
+            // If document does not exist, create a new one with count 1
+            doc = new TypeModel({ name: type1, count: 1 });
+        }
+        await doc.save();
     }
     res.sendStatus(200);
 }));
@@ -89,10 +113,24 @@ app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {
 // needs to add authMiddleware here
 app.post('/event-auth', authMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
     const { type } = req.body;
+    let type1 = type + "Success";
     try {
         await redisClient.sAdd(type, req.phoneNumber);
+        // Save the document
     } catch (error) {
+        type1 = type + "Error";
     }
+    let doc = await TypeModel.findOne({ name: type1 });
+
+    if (doc) {
+        // If document exists, increment the count
+        doc.count += 1;
+    } else {
+        // If document does not exist, create a new one with count 1
+        doc = new TypeModel({ name: type1, count: 1 });
+    }
+    await doc.save();
+
     res.sendStatus(200);
 }));
 
