@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./CourseSyllabus.module.scss";
 import SidebarTriggerButton from "../../components/atoms/SidebarTriggerButton/SidebarTriggerButton";
@@ -6,7 +6,7 @@ import restEndPoints from "../../data/restEndPoints.json";
 import axiosInstance, { eventAxiosInstance } from "../../utils/axiosInstance";
 import { EventType } from "../../types/types";
 import { FaGraduationCap } from "react-icons/fa6";
-import {  MdFlightClass, MdOutlineCheck, MdOutlineLock } from "react-icons/md";
+import { MdFlightClass, MdOutlineCheck, MdOutlineLock } from "react-icons/md";
 import { SiInternetarchive, SiGoogleclassroom } from "react-icons/si";
 import { GrProjects } from "react-icons/gr";
 import { GiFaceToFace } from "react-icons/gi";
@@ -153,6 +153,12 @@ const LessonItem: React.FC<{ topic: Topic }> = ({ topic }) => {
     setIsExpanded((prev) => !prev);
   };
 
+  const triggerEvent = () => {
+    eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, {
+      type: EventType.LOCK_CLICK,
+    });
+  }
+
   return (
     <div className={styles.lessonContainer}>
       <h3
@@ -176,44 +182,39 @@ const LessonItem: React.FC<{ topic: Topic }> = ({ topic }) => {
             <p className={styles.lessonDescription}>{topic.description}</p>
             <div className={styles.topicsContainer}>
               {topic.subtopics.map((subTopic) => (
-                <div className={styles.topic} key={nanoid()}>
-                  {
-                    subTopic.link ? (
-                      <>
-                        {/* <a
-                          href={subTopic.link}
-                          target="_blank"
-                          // rel="noopener noreferrer"
-                          className={styles.topicLink}
-                        > */}
-                        <div className={styles.topicIcon}>
-                          {subTopic.isLocked ? <MdOutlineLock /> : <MdOutlineCheck />}
-                        </div>
-                        <div className={styles.topicContent}>
-                          <h5>{subTopic.name}</h5>
-                          <p>{subTopic.description}</p>
-                        </div>
-                        {/* </a> */}
-                      </>
-                    ) :
-                      <>
-                        <div className={styles.topicIcon}>
-                          {subTopic.isLocked ? <MdOutlineLock /> : <MdOutlineCheck />}
-                        </div>
-                        <div className={styles.topicContent}>
-                          <h5>{subTopic.name}</h5>
-                          <p>{subTopic.description}</p>
-                        </div>
-                      </>
-                  }
-
-                </div>
+                subTopic.link ? (
+                  <a
+                    href={subTopic.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.topicLink}
+                  >
+                    <div className={styles.topic} key={nanoid()}>
+                      <div className={styles.topicIcon}>
+                        {subTopic.isLocked ? <MdOutlineLock /> : <MdOutlineCheck />}
+                      </div>
+                      <div className={styles.topicContent}>
+                        <h5>{subTopic.name}</h5>
+                        <p>{subTopic.description}</p>
+                      </div>
+                    </div>
+                  </a>
+                ) :
+                  <div className={styles.topic} key={nanoid()} onClick={triggerEvent}>
+                    <div className={styles.topicIcon}>
+                      {subTopic.isLocked ? <MdOutlineLock /> : <MdOutlineCheck />}
+                    </div>
+                    <div className={styles.topicContent}>
+                      <h5>{subTopic.name}</h5>
+                      <p>{subTopic.description}</p>
+                    </div>
+                  </div>
               ))}
             </div>
-          </motion.div>
+          </motion.div >
         )}
-      </AnimatePresence>
-    </div>
+      </AnimatePresence >
+    </div >
   );
 };
 
