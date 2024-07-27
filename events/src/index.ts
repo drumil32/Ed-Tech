@@ -100,13 +100,17 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, phoneNumber } = req.body;
+    console.log(phoneNumber);
+    console.log(type);
     if (type == EventType.FORM_HOME) {
         try {
             await redisClient.sAdd(type, [phoneNumber]);
         } catch (error) {
         }
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(404);
     }
-    res.sendStatus(200);
 }));
 
 // needs to add authMiddleware here
