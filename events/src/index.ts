@@ -95,7 +95,7 @@ export const adminAuthMiddleware = expressAsyncHandler(async (req: Request, res:
     }
 });
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/health', (req: Request, res: Response) => {
     res.sendStatus(200);
 });
 app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {

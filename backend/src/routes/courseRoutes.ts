@@ -1,8 +1,9 @@
 import express, { Request, Response } from "express";
+import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.get("/", (req: Request, res: Response) => {
+router.get("/",authMiddleware, (req: Request, res: Response) => {
   res.status(200).json({
     modules: [
       {
