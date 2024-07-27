@@ -1,6 +1,6 @@
 // src/routes/authRoutes.ts
 import express from 'express';
-import { signUp, signIn, auth, logout } from '../controllers/authController.js';
+import { signUp, signIn, auth, logout, increaseProgress } from '../controllers/authController.js';
 import { validateName, validatePhoneNumber } from '../middleware/validationMiddleware.js';
 import { authMiddleware } from '../middleware/authMiddleware.js';
 
@@ -20,6 +20,11 @@ router.post('/sign-in',
 router.get('/',
     authMiddleware,
     auth
+);
+
+router.post('/increase-progress',
+    authMiddleware,
+    increaseProgress
 );
 
 router.get('/logout',

@@ -34,6 +34,28 @@ export const signUp = expressAsyncHandler(async (req: Request, res: Response) =>
 
 });
 
+export const increaseProgress = expressAsyncHandler(async (req: Request, res: Response) => {
+    const { phoneNumber } = req;
+
+    // Find the student by phone number
+    const student = await studentModel.findOne({ phoneNumber });
+
+    if (!student) {
+        throw createHttpError(404, 'Student not found');
+    }
+
+    // Update the progress
+    if (student.enrolled) {
+        student.enrolled.progress = 2;
+    } else {
+        student.enrolled = { progress: 2 };
+    }
+
+    await student.save();
+
+    res.status(200).json({ message: 'Progress updated successfully', student });
+});
+
 export const signIn = expressAsyncHandler(async (req: Request, res: Response) => {
     const { phoneNumber } = req.body;
 

@@ -8,7 +8,8 @@ export interface ProgressProps {
 
 const Progress: React.FC<ProgressProps> = ({ progress, enrolled = false }) => {
   const [currentProgress, setCurrentProgress] = useState(0);
-
+  console.log(progress)
+  console.log(currentProgress);
   useEffect(() => {
     const incrementProgress = () => {
       setCurrentProgress((prev) => {
@@ -30,7 +31,7 @@ const Progress: React.FC<ProgressProps> = ({ progress, enrolled = false }) => {
     <div className={styles.progressBar}>
       <div
         className={styles.progress}
-        style={{ "--progress": `${progress}` } as React.CSSProperties}
+        style={{ "--progress": `${progress}%` } as React.CSSProperties}
       ></div>
       <span
         className={styles.progressValue}
