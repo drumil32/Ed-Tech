@@ -126,21 +126,41 @@ app.post('/event-auth', authMiddleware, expressAsyncHandler(async (req: Request,
     res.sendStatus(200);
 }));
 
+// app.get('/process-data', adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
+//     // const memberArray = [];
+//     try {
+//         const keys = await redisClient.keys("*");
+//         for (const key of keys) {
+//             // for (const eventType of Object.values(EventType)) {
+//             const members = await redisClient.sMembers(key);
+//             await (new Event({ type: key, members: members, creationDateTime: new Date().toISOString() })).save();
+//             await redisClient.del(key);
+//         }
+//         res.status(200).send('ok');
+//     } catch (error) {
+//         res.status(500).json({ message: error.message });
+//     }
+// }));
+
 app.get('/process-data', adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
-    // const memberArray = [];
     try {
-        const keys = await redisClient.keys("*");
+        const keys = await redisClient.keys("*LOCK_CLICK"); // Adjust pattern as needed
         for (const key of keys) {
-            // for (const eventType of Object.values(EventType)) {
-            const members = await redisClient.sMembers(key);
-            await (new Event({ type: key, members: members, creationDateTime: new Date().toISOString() })).save();
-            await redisClient.del(key);
+            const type = await redisClient.type(key);
+            if (type === 'set') {
+                const members = await redisClient.sMembers(key);
+                await (new Event({ type: key, members: members, creationDateTime: new Date().toISOString() })).save();
+                await redisClient.del(key);
+            } else {
+                console.warn(`Key ${key} is not of type set, skipping...`);
+            }
         }
         res.status(200).send('ok');
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }));
+
 
 const toUTCDateTime = (dateStr, timeStr) => {
     const [day, month, year] = dateStr.split('/').map(Number);
