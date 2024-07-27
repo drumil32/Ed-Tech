@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from 'mongoose';
 import { EventType } from './types'; // Adjust the import path
 
 interface IEvent extends Document {
-    type: EventType;
+    type: string;
     members: string[];
     creationDateTime: Date;
 }
@@ -10,7 +10,7 @@ interface IEvent extends Document {
 const eventSchema: Schema<IEvent> = new Schema({
     type: {
         type: String,
-        enum: Object.values(EventType),
+        // enum: Object.values(EventType),
         required: true
     },
     members: {
