@@ -17,8 +17,7 @@ import { toast } from "react-toastify";
 import Lottie from "react-lottie-player";
 import loaderData from "../../Lottie/loaderSmall.json"
 import { setUserDetails } from "../../redux/slices/UserSliice";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { useDispatch } from "react-redux";
 
 type SubTopic = {
   name: string;
@@ -149,7 +148,6 @@ const CourseSyllabus: React.FC = () => {
 
 const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, topic }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { user } = useSelector((state: RootState) => state.user);
 
   const dispatch = useDispatch();
 
@@ -167,7 +165,7 @@ const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, 
 
   const increaseProgress = async () => {
     const response = await axiosInstance.post(`/${restEndPoints.increaseProgress}`);
-    console.log(response.data)
+
     const studentDetails = response.data.student;
     dispatch(setUserDetails({
       enrolled: studentDetails.enrolled ? true : false,
@@ -183,7 +181,7 @@ const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, 
 
   return (
     <div className={styles.lessonContainer}>
-      <h3
+      <p
         className={`${styles.lessonTitle} ${isExpanded ? styles.expanded : ""}`}
         onClick={toggleLesson}
       >
@@ -191,7 +189,7 @@ const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, 
         <span className={styles.expandIcon}>
           <MdExpandMore />
         </span>
-      </h3>
+      </p>
       <AnimatePresence>
         {isExpanded && (
           <motion.div
