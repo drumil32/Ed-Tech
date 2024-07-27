@@ -59,7 +59,7 @@ export const adminAuthMiddleware = expressAsyncHandler(async (req: Request, res:
             const decoded = await verifyAdminJwtToken(token);
             next();
         } catch (error) {
-            res.status(200).send('ok');
+            res.status(401).send('Unauthorized');
         }
     }
 });
