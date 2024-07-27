@@ -100,7 +100,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, phoneNumber } = req.body;
-    if (type != EventType.FORM_HOME) {
+    if (type == EventType.FORM_HOME) {
         try {
             await redisClient.sAdd(type, [phoneNumber]);
         } catch (error) {
