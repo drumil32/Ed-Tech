@@ -153,9 +153,10 @@ app.get('/process-data', adminAuthMiddleware, expressAsyncHandler(async (req: Re
                 await redisClient.del(key);
             } else {
                 console.warn(`Key ${key} is not of type set, skipping...`);
+                res.status(500).json({ messsage: `Key ${key} is not of type set, skipping...` });
             }
         }
-        res.status(200).send('ok');
+        // res.status(200).send('ok');
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
