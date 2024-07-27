@@ -54,7 +54,7 @@ const Home: React.FC = () => {
       <div ref={featuresRef}>
         <Features />
       </div>
-      <AboutUs />
+      {/* <AboutUs /> */}
       <BookLiveClassForm />
       <a
         className="whatsapp-icon"
