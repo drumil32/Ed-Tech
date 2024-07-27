@@ -151,6 +151,11 @@ app.get('/process-data', adminAuthMiddleware, expressAsyncHandler(async (req: Re
     }
 }));
 
+app.get('/delete-redis', expressAsyncHandler(async (req: Request, res: Response) => {
+    await redisClient.flushDb();
+    res.sendStatus(200);
+}));
+
 // app.get('/process-data', adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
 //     try {
 //         const keys = await redisClient.keys("*LOCK_CLICK"); // Adjust pattern as needed
