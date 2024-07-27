@@ -100,8 +100,6 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, phoneNumber } = req.body;
-    console.log(phoneNumber);
-    console.log(type);
     if (type == EventType.FORM_HOME) {
         try {
             await redisClient.sAdd(type, [phoneNumber]);
@@ -170,13 +168,21 @@ app.post('/show-data', adminAuthMiddleware, expressAsyncHandler(async (req: Requ
         const data = await filterEvents(type, startingDate, endingDate, startingTime, endingTime);
         const processedData = [];
         for (let i = 0; i < data.length; i++) {
-            processedData.push({
-                type: data[i].type,
-                members: []
-            });
-            for (let j = 0; j < data[i].members.length; j++) {
-                const studentData = await studentModel.findOne({ phoneNumber: data[i].members[j] });
-                processedData[i].members.push(studentData);
+
+            if (type == EventType.FORM_HOME) {
+                processedData.push({
+                    type: data[i].type,
+                    members: data[i].members
+                });
+            } else {
+                processedData.push({
+                    type: data[i].type,
+                    members: []
+                });
+                for (let j = 0; j < data[i].members.length; j++) {
+                    const studentData = await studentModel.findOne({ phoneNumber: data[i].members[j] });
+                    processedData[i].members.push(studentData);
+                }
             }
         }
         res.status(200).json(processedData);
