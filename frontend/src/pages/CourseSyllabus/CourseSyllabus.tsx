@@ -181,7 +181,7 @@ const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, 
 
   return (
     <div className={styles.lessonContainer}>
-      <h5
+      <h6
         className={`${styles.lessonTitle} ${isExpanded ? styles.expanded : ""}`}
         onClick={toggleLesson}
       >
@@ -189,7 +189,7 @@ const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, 
         <span className={styles.expandIcon}>
           <MdExpandMore />
         </span>
-      </h5>
+      </h6>
       <AnimatePresence>
         {isExpanded && (
           <motion.div
