@@ -9,6 +9,7 @@ import expressAsyncHandler from 'express-async-handler';
 import { EventType } from './types.js';
 import Event from './event.js';
 import mongoose from 'mongoose';
+import createHttpError from 'http-errors';
 
 dotenv.config();
 
@@ -16,6 +17,10 @@ const app = express();
 const PORT: number = parseInt(process.env.PORT || '3002');
 
 app.use(express.json());
+
+// app.use(cors({
+//     origin: process.env.FRONTEND_BASE_URL
+// }));
 
 const allowedOrigins: string[] = [];
 
@@ -104,11 +109,10 @@ app.post('/event', expressAsyncHandler(async (req: Request, res: Response) => {
         try {
             await redisClient.sAdd(type, [phoneNumber]);
         } catch (error) {
+            console.error(error);
         }
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(404);
     }
+    res.sendStatus(200);
 }));
 
 // needs to add authMiddleware here
@@ -117,18 +121,20 @@ app.post('/event-auth', authMiddleware, expressAsyncHandler(async (req: Request,
     try {
         await redisClient.sAdd(type, req.phoneNumber);
     } catch (error) {
+        console.error(error);
     }
-
     res.sendStatus(200);
 }));
 
 app.get('/process-data', adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
     // const memberArray = [];
     try {
-        for (const eventType of Object.values(EventType)) {
-            const members = await redisClient.sMembers(eventType);
-            await (new Event({ type: eventType, members: members, creationDateTime: new Date().toISOString() })).save();
-            await redisClient.del(eventType);
+        const keys = await redisClient.keys("*");
+        for (const key of keys) {
+            // for (const eventType of Object.values(EventType)) {
+            const members = await redisClient.sMembers(key);
+            await (new Event({ type: key, members: members, creationDateTime: new Date().toISOString() })).save();
+            await redisClient.del(key);
         }
         res.status(200).send('ok');
     } catch (error) {
@@ -163,12 +169,10 @@ export const filterEvents = async (type: EventType, startingDate: string, ending
 
 app.post('/show-data', adminAuthMiddleware, expressAsyncHandler(async (req: Request, res: Response) => {
     const { type, startingDate, endingDate, startingTime, endingTime } = req.body;
-
     try {
         const data = await filterEvents(type, startingDate, endingDate, startingTime, endingTime);
         const processedData = [];
         for (let i = 0; i < data.length; i++) {
-
             if (type == EventType.FORM_HOME) {
                 processedData.push({
                     type: data[i].type,
@@ -192,7 +196,9 @@ app.post('/show-data', adminAuthMiddleware, expressAsyncHandler(async (req: Requ
 }));
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    console.error(err);
+    if (!err.statusCode) {
+        console.error(err);
+    }
     // if statusCode is there it means that message will also be created by me
     // if statusCode is not there it means that message is not created by me its something else in this situation we want to send internal server error.
     res.status(err.statusCode ? err.statusCode : 500).json({ error: err.statusCode ? err.message : 'Internal Server Error.Please try again later.' });
