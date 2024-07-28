@@ -12,7 +12,7 @@ export const enrollStudent = expressAsyncHandler(async (req: Request, res: Respo
 
     const student = await studentModel.findOneAndUpdate(
         { phoneNumber },
-        { $set: { enrolled: { progress: 0 } } },
+        { $set: { isEnrolled: true } },
         { new: true, runValidators: true }
     ).select('-_id -__v');
 

@@ -164,19 +164,21 @@ const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, 
   }
 
   const increaseProgress = async () => {
-    const response = await axiosInstance.post(`/${restEndPoints.increaseProgress}`);
+    try {
+      const response = await axiosInstance.post(`/${restEndPoints.increaseProgress}`);
 
-    const studentDetails = response.data.student;
-    dispatch(setUserDetails({
-      enrolled: studentDetails.enrolled ? true : false,
-      phoneNumber: studentDetails.phoneNumber,
-      name: studentDetails.name,
-      progress: studentDetails.enrolled
-        ? studentDetails.enrolled.progress
-        : 0,
-      avatar: studentDetails.avatar,
-    }));
-    toast.success(response.data.message);
+      const studentDetails = response.data.student;
+      dispatch(setUserDetails({
+        enrolled: studentDetails.enrolled ? true : false,
+        phoneNumber: studentDetails.phoneNumber,
+        name: studentDetails.name,
+        progress: studentDetails.enrolled
+          ? studentDetails.enrolled.progress
+          : 0,
+        avatar: studentDetails.avatar,
+      }));
+    } catch (error) {
+    }
   }
 
   return (

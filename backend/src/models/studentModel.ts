@@ -51,6 +51,11 @@ const studentSchema: Schema = new Schema({
         required: false, // Allow enrolled to be null
         default: null
     },
+    isEnrolled: {
+        type: Boolean,
+        default: false,
+        required: false
+    },
     createdAt: {
         type: Date,
         select: false

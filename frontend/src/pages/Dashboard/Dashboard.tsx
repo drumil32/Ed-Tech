@@ -116,7 +116,7 @@ const Dashboard: React.FC = () => {
                 text="Request a Callback!"
                 onClick={() => {
                   setTalkToUsModalOpen(true);
-                  eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, { type: EventType.REQUEST_A_CALLBACK_CLICK });
+                  eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, { type: EventType.NOT_SURE_CLICK });
                 }}
                 className={styles.availableCoursesCardCta}
               />
