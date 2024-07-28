@@ -111,6 +111,9 @@
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
+        @include xsm-max {
+          font-size: 0.9rem;
+        }
 
         .expandIcon {
           font-size: 1.5rem;
