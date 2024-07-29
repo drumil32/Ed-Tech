@@ -40,13 +40,10 @@ const MobileView: React.FC = () => {
             rotate: [0, -100, 0],
           },
         }}
-        // loop={true}
         spaceBetween={50}
         slidesPerView={1}
         navigation={true}
         pagination={{ clickable: true }}
-        // onSwiper={(swiper) => console.log(swiper)}
-        // onSlideChange={() => console.log("slide change")}
       >
         {courseModulesDetails.map((module, index) => {
           const sanitizedHtml = SafeHtmlComponent(module.title as string);

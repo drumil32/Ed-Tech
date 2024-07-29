@@ -8,8 +8,7 @@ export interface ProgressProps {
 
 const Progress: React.FC<ProgressProps> = ({ progress, enrolled = false }) => {
   const [currentProgress, setCurrentProgress] = useState(0);
-  console.log(progress)
-  console.log(currentProgress);
+  
   useEffect(() => {
     const incrementProgress = () => {
       setCurrentProgress((prev) => {
