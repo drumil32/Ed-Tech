@@ -17,7 +17,10 @@ const Textarea: React.FC<TextareaProps> = ({ errorMessage, label, required, cust
 
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.blur();
+      setTimeout(() => textareaRef.current?.blur(), 0);
+      // console.log("if")
+    } else {
+      // console.log("else")
     }
   }, []);
 
