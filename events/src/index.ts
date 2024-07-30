@@ -9,7 +9,6 @@ import expressAsyncHandler from 'express-async-handler';
 import { EventType } from './types.js';
 import Event from './event.js';
 import mongoose from 'mongoose';
-import createHttpError from 'http-errors';
 
 dotenv.config();
 

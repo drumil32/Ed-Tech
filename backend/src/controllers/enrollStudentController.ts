@@ -4,11 +4,7 @@ import createHttpError from "http-errors";
 import expressAsyncHandler from "express-async-handler";
 
 export const enrollStudent = expressAsyncHandler(async (req: Request, res: Response) => {
-    const { password, phoneNumber } = req.body;
-
-    if (password == process.env.ENROLL_PASSWORD) {
-        throw createHttpError(403, "Invalid enrollment password.");
-    }
+    const { phoneNumber } = req.body;
 
     const student = await studentModel.findOneAndUpdate(
         { phoneNumber },

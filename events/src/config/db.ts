@@ -1,10 +1,8 @@
-import mongoose, { set, connect, createConnection } from 'mongoose';
+import { set, connect, createConnection } from 'mongoose';
 
 export let primaryDb;
 
-export
-
-const connectDB = async () => {
+export const connectDB = async () => {
     primaryDb = createConnection(process.env.PRIMARY_MONGO_URL, { dbName: process.env.PRIMARY_DB })
     try {
         set("strictQuery", false);
