@@ -18,9 +18,7 @@ const Textarea: React.FC<TextareaProps> = ({ errorMessage, label, required, cust
   useEffect(() => {
     if (textareaRef.current) {
       setTimeout(() => textareaRef.current?.blur(), 0);
-      // console.log("if")
     } else {
-      // console.log("else")
     }
   }, []);
 
@@ -33,7 +31,7 @@ const Textarea: React.FC<TextareaProps> = ({ errorMessage, label, required, cust
       )}
       <div className={styles.textareaBar}>
         <textarea ref={textareaRef}
-          {...props} autoFocus={false} onChange={handleTextareaChange} className={errorMessage ? `${styles.error}` : ""} />
+          {...props} onChange={handleTextareaChange} className={errorMessage ? `${styles.error}` : ""} />
       </div>
       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
     </div>
