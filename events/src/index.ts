@@ -56,7 +56,7 @@ connectDB().then(
     () =>
         studentModel = primaryDb.model('studentData', StudentSchema)
 );
-connectRedis();
+// connectRedis();
 
 const verifyJwtToken = async (token: string) => {
     return jwt.verify(token, process.env.JWT_SECRET) as { [key: string]: any };
@@ -153,7 +153,8 @@ export const filterEvents = async (type: EventType, startingDate: string, ending
 
     let typeQuery: any;
     if (type === 'LOCK_BUTTON_CLICK') {
-        typeQuery = { $regex: /^Module [0-100]_LOCK_BUTTON_CLICK$/ };
+        console.log("event")
+        typeQuery = { $regex: /LOCK_BUTTON_CLICK/ };
     } else {
         typeQuery = type;
     }
