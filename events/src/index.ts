@@ -153,7 +153,7 @@ export const filterEvents = async (type: EventType, startingDate: string, ending
 
     let typeQuery: any;
     if (type === 'LOCK_BUTTON_CLICK') {
-        typeQuery = { $regex: /^module [0-100]_LOCK_BUTTON_CLICK$/ };
+        typeQuery = { $regex: /^Module [0-100]_LOCK_BUTTON_CLICK$/ };
     } else {
         typeQuery = type;
     }
