@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
-import cors, { CorsOptions } from 'cors';
+import cors from 'cors';
 // import morgan from 'morgan';
 import connectDB, { primaryDb } from './config/db.js';
 import connectRedis, { redisClient } from './config/redis.js';
@@ -17,34 +17,34 @@ const PORT: number = parseInt(process.env.PORT || '3002');
 
 app.use(express.json());
 
-// app.use(cors({
-//     origin: process.env.FRONTEND_BASE_URL
-// }));
+app.use(cors({
+    origin: process.env.FRONTEND_BASE_URL
+}));
 
-const allowedOrigins: string[] = [];
+// const allowedOrigins: string[] = [];
 
-if (process.env.FRONTEND_BASE_URL) {
-    allowedOrigins.push(process.env.FRONTEND_BASE_URL);
-}
+// if (process.env.FRONTEND_BASE_URL) {
+//     allowedOrigins.push(process.env.FRONTEND_BASE_URL);
+// }
 
-if (process.env.ANOTHER_FRONTEND_URL) {
-    allowedOrigins.push(process.env.ANOTHER_FRONTEND_URL);
-}
+// if (process.env.ANOTHER_FRONTEND_URL) {
+//     allowedOrigins.push(process.env.ANOTHER_FRONTEND_URL);
+// }
 
-const corsOptions: CorsOptions = {
-    origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    // Other options can be added here
-};
+// const corsOptions: CorsOptions = {
+//     origin: (origin, callback) => {
+//         // Allow requests with no origin (like mobile apps or curl requests)
+//         if (!origin) return callback(null, true);
+//         if (allowedOrigins.indexOf(origin) !== -1) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+//     // Other options can be added here
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // app.use(morgan(process.env.ENV!));
 
@@ -151,9 +151,16 @@ export const filterEvents = async (type: EventType, startingDate: string, ending
     const startDateTime = toUTCDateTime(startingDate, startingTime);
     const endDateTime = toUTCDateTime(endingDate, endingTime);
 
+    let typeQuery: any;
+    if (type === 'LOCK_BUTTON_CLICK') {
+        typeQuery = { $regex: /^module [0-100]_LOCK_BUTTON_CLICK$/ };
+    } else {
+        typeQuery = type;
+    }
+
     // Query to find events that match the criteria
     const events = await Event.find({
-        type: type,
+        type: typeQuery,
         creationDateTime:
         {
             $gte: startDateTime,
