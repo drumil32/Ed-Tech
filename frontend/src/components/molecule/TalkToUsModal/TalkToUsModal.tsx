@@ -91,6 +91,7 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({
             disabled={true}
           />
           <Textarea
+            initialFocus={false}
             label="Your Message"
             value={messageText}
             onChange={(e) => setMessageText(e.target.value)}
