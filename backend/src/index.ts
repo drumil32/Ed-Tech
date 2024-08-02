@@ -1,7 +1,7 @@
 // src/index.ts
 import express, { Request, Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
-import cors, { CorsOptions } from 'cors';
+import cors from 'cors';
 // import morgan from 'morgan';
 import connectDB from './config/db.js';
 import routes from './routes/index.js';
@@ -12,30 +12,33 @@ const app = express();
 const PORT: number = parseInt(process.env.PORT || '3000');
 
 app.use(express.json());
-const allowedOrigins: string[] = [];
+app.use(cors({
+    origin: process.env.FRONTEND_BASE_URL
+}));
+// const allowedOrigins: string[] = [];
 
-if (process.env.FRONTEND_BASE_URL) {
-    allowedOrigins.push(process.env.FRONTEND_BASE_URL);
-}
+// if (process.env.FRONTEND_BASE_URL) {
+//     allowedOrigins.push(process.env.FRONTEND_BASE_URL);
+// }
 
-if (process.env.ANOTHER_FRONTEND_URL) {
-    allowedOrigins.push(process.env.ANOTHER_FRONTEND_URL);
-}
+// if (process.env.ANOTHER_FRONTEND_URL) {
+//     allowedOrigins.push(process.env.ANOTHER_FRONTEND_URL);
+// }
 
-const corsOptions: CorsOptions = {
-    origin: (origin, callback) => {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    // Other options can be added here
-};
+// const corsOptions: CorsOptions = {
+//     origin: (origin, callback) => {
+//         // Allow requests with no origin (like mobile apps or curl requests)
+//         if (!origin) return callback(null, true);
+//         if (allowedOrigins.indexOf(origin) !== -1) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+//     // Other options can be added here
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 // app.use(morgan(process.env.ENV!));
 
 connectDB();
