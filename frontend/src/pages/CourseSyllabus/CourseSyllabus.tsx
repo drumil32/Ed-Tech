@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "./CourseSyllabus.module.scss";
 import SidebarTriggerButton from "../../components/atoms/SidebarTriggerButton/SidebarTriggerButton";
 import restEndPoints from "../../data/restEndPoints.json";
-import axiosInstance, { eventAxiosInstance } from "../../utils/axiosInstance";
+import axiosInstance from "../../utils/axiosInstance";
 import { EventType } from "../../types/types";
 import { FaGraduationCap } from "react-icons/fa6";
 import { MdFlightClass, MdOutlineCheck, MdOutlineLock } from "react-icons/md";
@@ -44,9 +44,9 @@ const CourseSyllabus: React.FC = () => {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, {
-      type: EventType.COURSE_SYLLABUS_VIEW,
-    });
+    // eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, {
+    //   type: EventType.COURSE_SYLLABUS_VIEW,
+    // });
     fetchCourseData();
   }, []);
 
@@ -157,9 +157,9 @@ const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, 
 
   const triggerEvent = (modueName: string) => {
     const type = modueName.split(':')[0] + '_' + EventType.LOCK_CLICK;
-    eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, {
-      type: type,
-    });
+    // eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, {
+    //   type: type,
+    // });
   }
 
   const increaseProgress = async () => {

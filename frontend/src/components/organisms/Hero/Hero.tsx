@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { useFormContext } from "../../../context/formContext";
 import restEndPoints from "../../../data/restEndPoints.json";
 import { validateName, validatePhoneNumber } from "../../../utils/validations";
-import axiosInstance, { eventAxiosInstance } from "../../../utils/axiosInstance";
+import axiosInstance from "../../../utils/axiosInstance";
 import { EventType } from "../../../types/types";
 
 export interface ProfileData {
@@ -115,7 +115,7 @@ const Hero: React.FC = () => {
                 onChange={(e) => {
                   setInputNumber(e.target.value);
                   if (10 == e.target.value.length) {
-                    eventAxiosInstance.post(`/${restEndPoints.event}`, { type: EventType.FORM_HOME, phoneNumber: e.target.value })
+                    // eventAxiosInstance.post(`/${restEndPoints.event}`, { type: EventType.FORM_HOME, phoneNumber: e.target.value })
                   }
                 }}
               />

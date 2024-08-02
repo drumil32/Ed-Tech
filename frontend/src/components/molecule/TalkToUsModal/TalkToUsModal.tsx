@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import axiosInstance, {
-  eventAxiosInstance,
+  // eventAxiosInstance,
 } from "../../../utils/axiosInstance";
 import restEndPoints from "../../../data/restEndPoints.json";
 import { EventType } from "../../../types/types";
@@ -41,9 +41,9 @@ const TalkToUsModal: React.FC<TalkToUsModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    eventAxiosInstance.post(`/${restEndPoints.event}`, {
-      type: EventType.REQUEST_A_CALLBACK_CLICK,
-    });
+    // eventAxiosInstance.post(`/${restEndPoints.event}`, {
+    //   type: EventType.REQUEST_A_CALLBACK_CLICK,
+    // });
     const messageTextError = validateMessage(messageText);
     setMessageTextError(messageTextError);
 

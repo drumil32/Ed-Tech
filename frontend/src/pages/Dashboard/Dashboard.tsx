@@ -12,7 +12,7 @@ import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { GrProjects } from "react-icons/gr";
 import { TfiBook } from "react-icons/tfi";
-import { eventAxiosInstance } from "../../utils/axiosInstance";
+// import { eventAxiosInstance } from "../../utils/axiosInstance";
 import restEndPoints from "../../data/restEndPoints.json";
 import { EventType } from "../../types/types";
 
@@ -115,7 +115,7 @@ const Dashboard: React.FC = () => {
                 text="Request a Callback!"
                 onClick={() => {
                   setTalkToUsModalOpen(true);
-                  eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, { type: EventType.NOT_SURE_CLICK });
+                  // eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, { type: EventType.NOT_SURE_CLICK });
                 }}
                 className={styles.availableCoursesCardCta}
               />
