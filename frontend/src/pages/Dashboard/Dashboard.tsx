@@ -13,8 +13,8 @@ import { useSelector } from "react-redux";
 import { GrProjects } from "react-icons/gr";
 import { TfiBook } from "react-icons/tfi";
 // import { eventAxiosInstance } from "../../utils/axiosInstance";
-import restEndPoints from "../../data/restEndPoints.json";
-import { EventType } from "../../types/types";
+// import restEndPoints from "../../data/restEndPoints.json";
+// import { EventType } from "../../types/types";
 
 const Dashboard: React.FC = () => {
   const { user } = useSelector((state: RootState) => state.user);

@@ -16,7 +16,7 @@ import axiosInstance, {
   // eventAxiosInstance,
 } from "../../../utils/axiosInstance";
 import restEndPoints from "../../../data/restEndPoints.json";
-import { EventType } from "../../../types/types";
+// import { EventType } from "../../../types/types";
 
 interface TalkToUsModalProps {
   onClose: () => void;

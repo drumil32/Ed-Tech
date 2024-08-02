@@ -7,8 +7,8 @@ import Button from "../../atoms/Button/Button";
 import { IoRefresh } from "react-icons/io5";
 import TalkToUsModal from "../TalkToUsModal/TalkToUsModal";
 // import { eventAxiosInstance } from "../../../utils/axiosInstance";
-import { EventType } from "../../../types/types";
-import restEndPoints from "../../../data/restEndPoints.json";
+// import { EventType } from "../../../types/types";
+// import restEndPoints from "../../../data/restEndPoints.json";
 
 export interface TalkToUsProps {
   enrolled: boolean;

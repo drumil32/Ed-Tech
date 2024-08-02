@@ -10,7 +10,7 @@ import { useFormContext } from "../../../context/formContext";
 import restEndPoints from "../../../data/restEndPoints.json";
 import { validateName, validatePhoneNumber } from "../../../utils/validations";
 import axiosInstance from "../../../utils/axiosInstance";
-import { EventType } from "../../../types/types";
+// import { EventType } from "../../../types/types";
 
 export interface ProfileData {
   image: string;

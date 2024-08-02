@@ -4,7 +4,7 @@ import styles from "./CourseSyllabus.module.scss";
 import SidebarTriggerButton from "../../components/atoms/SidebarTriggerButton/SidebarTriggerButton";
 import restEndPoints from "../../data/restEndPoints.json";
 import axiosInstance from "../../utils/axiosInstance";
-import { EventType } from "../../types/types";
+// import { EventType } from "../../types/types";
 import { FaGraduationCap } from "react-icons/fa6";
 import { MdFlightClass, MdOutlineCheck, MdOutlineLock } from "react-icons/md";
 import { SiInternetarchive, SiGoogleclassroom } from "react-icons/si";
@@ -146,7 +146,7 @@ const CourseSyllabus: React.FC = () => {
   );
 };
 
-const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, topic }) => {
+const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ topic }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const dispatch = useDispatch();
@@ -155,12 +155,12 @@ const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, 
     setIsExpanded((prev) => !prev);
   };
 
-  const triggerEvent = (modueName: string) => {
-    const type = modueName.split(':')[0] + '_' + EventType.LOCK_CLICK;
-    // eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, {
-    //   type: type,
-    // });
-  }
+  // const triggerEvent = (modueName: string) => {
+  //   // const type = modueName.split(':')[0] + '_' + EventType.LOCK_CLICK;
+  //   // eventAxiosInstance.post(`/${restEndPoints.eventAuth}`, {
+  //   //   type: type,
+  //   // });
+  // }
 
   const increaseProgress = async () => {
     try {
@@ -210,7 +210,7 @@ const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, 
                     rel="noopener noreferrer"
                     className={styles.topicLink}
                   >
-                    <div className={styles.topic} key={nanoid()} onClick={() => { triggerEvent(modueName); increaseProgress(); }}>
+                    <div className={styles.topic} key={nanoid()} onClick={() => { increaseProgress(); }}>
                       <div className={styles.topicIcon}>
                         {subTopic.isLocked ? <MdOutlineLock /> : <MdOutlineCheck />}
                       </div>
@@ -221,7 +221,7 @@ const LessonItem: React.FC<{ modueName: string, topic: Topic }> = ({ modueName, 
                     </div>
                   </a>
                 ) :
-                  <div className={styles.topic} key={nanoid()} onClick={() => triggerEvent(modueName)}>
+                  <div className={styles.topic} key={nanoid()}>
                     <div className={styles.topicIcon}>
                       {subTopic.isLocked ? <MdOutlineLock /> : <MdOutlineCheck />}
                     </div>
