@@ -5,6 +5,7 @@ import { getRandomNumber } from '../utils/randomNumberGenerator.js';
 import createHttpError from 'http-errors';
 import expressAsyncHandler from 'express-async-handler';
 import { manageUserTokens } from '../utils/token.js';
+import axios from 'axios';
 
 export const signUp = expressAsyncHandler(async (req: Request, res: Response) => {
     const { phoneNumber, name } = req.body;
@@ -87,6 +88,20 @@ export const auth = expressAsyncHandler(async (req: Request, res: Response) => {
     });
 
 });
+
+export const verifyCaptcha = async (req: Request, res: Response) => {
+    const { token } = req.body;
+    const secretKey = process.env.GOOGLE_CAPTCHA_SECRET;
+    const verificationUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
+    const response = await axios.post(verificationUrl);
+    if (response.data.success) {
+        // reCAPTCHA verified
+        res.json({ success: true });
+    } else {
+        // reCAPTCHA failed
+        res.json({ success: false });
+    }
+};
 
 export const logout = expressAsyncHandler(async (req: Request, res: Response) => {
 

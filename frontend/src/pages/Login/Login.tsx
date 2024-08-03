@@ -11,7 +11,6 @@ import restEndPoints from "../../data/restEndPoints.json";
 import axiosInstance from "../../utils/axiosInstance";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "../../redux/slices/UserSliice";
-import axios from "axios";
 
 const Login = () => {
   const [inputNumber, setInputNumber] = useState<string>("");
@@ -93,14 +92,17 @@ const Login = () => {
   };
 
   const onChangecaptcha = async (value: string | null) => {
-    console.log(value);
-    const response = await axios.post("https://www.google.com/recaptcha/api/siteverify", {
-      secert: import.meta.env.VITE_RECAPTCHA_SITE_KEY,
-      response: value
-    })
-    console.log(response);
     if (value) {
-      setCaptchaVerified(true);
+      const response = await axiosInstance.post(`${restEndPoints.captchaVerify}`, {
+        token: value
+      });
+      console.log(response);
+      if (response.data.success) {
+        setCaptchaVerified(true);
+      }
+      else {
+        setCaptchaVerified(false);
+      }
     } else {
       setCaptchaVerified(false);
     }

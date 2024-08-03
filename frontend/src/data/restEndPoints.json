@@ -10,5 +10,6 @@
     "event": "event",
     "course": "course",
     "getFaqByType": "faqs",
-    "increaseProgress" : "auth/increase-progress"
+    "increaseProgress" : "auth/increase-progress",
+    "captchaVerify": "auth/verify-captcha"
 }
