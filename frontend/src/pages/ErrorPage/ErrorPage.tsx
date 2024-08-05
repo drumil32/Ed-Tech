@@ -10,7 +10,6 @@ export default function ErrorPage() {
   const error: any = useRouteError();
   const navigate = useNavigate();
   const {user} = useSelector((state: RootState) => state.user) 
-  console.error(error);
 
   return (
     <div className={styles.errorPage}>

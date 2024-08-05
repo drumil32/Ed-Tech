@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import axiosInstance from "../../utils/axiosInstance";
 import restEndPoints from "../../data/restEndPoints.json";
@@ -44,18 +44,20 @@ const FAQs: React.FC = () => {
     fetchData();
   }, [faqType]);
 
-  const handleClick = (item: FAQType) => {
+  const handleClick = useCallback((item: FAQType) => {
     setFaqType(item);
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-  const handleSelectChange = (
+  },[]);
+
+  const handleSelectChange = useCallback((
     selectedOption: SingleValue<{ value: FAQType; label: string }>
   ) => {
     if (selectedOption) {
       setFaqType(selectedOption.value);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  };
+  },[]);
+
   return (
     <div className={styles.faqSection}>
       <div className={styles.sidebar}>

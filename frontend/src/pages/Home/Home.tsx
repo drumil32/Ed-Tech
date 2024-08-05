@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import "./style.scss";
 import Hero from "../../components/organisms/Hero/Hero";
 import Courses from "../../components/organisms/Courses/Courses";
@@ -37,10 +37,10 @@ const Home: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMobile]);
 
-  const onClose = () => {
+  const onClose = useCallback(() => {
     setRequestModal(false);
     sessionStorage.setItem("userClosedModal", "true");
-  };
+  }, []);
 
   if (!location.state && user) {
     return <Navigate to="/dashboard" state={{ from: location }} replace />;

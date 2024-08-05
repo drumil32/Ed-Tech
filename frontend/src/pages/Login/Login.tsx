@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Button from "../../components/atoms/Button/Button";
 import styles from "./Login.module.scss";
 import Input from "../../components/atoms/Input/Input";
@@ -23,7 +23,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     const numberError = validatePhoneNumber(inputNumber);
     setNumberError(numberError);
@@ -89,14 +89,13 @@ const Login = () => {
       }
       setLoading(false);
     }
-  };
+  }, [inputName, inputNumber, captchaVerified, pathName, dispatch, navigate]);
 
-  const onChangecaptcha = async (value: string | null) => {
+  const onChangecaptcha = useCallback(async (value: string | null) => {
     if (value) {
       const response = await axiosInstance.post(`${restEndPoints.captchaVerify}`, {
         token: value
       });
-      console.log(response);
       if (response.data.success) {
         setCaptchaVerified(true);
       }
@@ -106,29 +105,34 @@ const Login = () => {
     } else {
       setCaptchaVerified(false);
     }
-  };
+  }, []);
+
+
+  const formTitle = useMemo(() => (
+    pathName === "/signup"
+      ? "Sign Up to SprintUp"
+      : "Log In to SprintUp"
+  ), [pathName]);
+
+  const formSubTitle = useMemo(() => (
+    "Explore the available courses in detail"
+  ), []);
+  const imgSrc = useMemo(() => (
+    pathName === "/signup"
+      ? "/assets/signup.svg"
+      : "/assets/login.svg"
+  ), [pathName]);
+
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginFormContainer}>
         <div className={styles.loginForm}>
           <img
-            src={
-              pathName === "/signup"
-                ? "/assets/signup.svg"
-                : "/assets/login.svg"
-            }
+            src={imgSrc}
             alt=""
           />
-          <h2 className={styles.formTitle}>
-            {pathName === "/signup"
-              ? "Sign Up to SprintUp"
-              : "Log In to SprintUp"}
-          </h2>
-          <p className={styles.formSubTitle}>
-            {pathName === "/signup"
-              ? "Explore the available courses in detail"
-              : "Explore the available courses in detail"}
-          </p>
+          <h2 className={styles.formTitle}>{formTitle}</h2>
+          <p className={styles.formSubTitle}>{formSubTitle}</p>
           <form className={styles.form} onSubmit={handleSubmit}>
             {pathName === "/signup" ? (
               <Input

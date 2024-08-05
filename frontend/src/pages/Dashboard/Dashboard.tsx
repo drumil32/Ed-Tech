@@ -1,6 +1,6 @@
 import styles from "./Dashboard.module.scss";
 import marketingBannerDetails from "../../data/marketingBannerDetails.json";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Progress from "../../components/atoms/ProgressBar/Progress";
 import { Link } from "react-router-dom";
 import Button from "../../components/atoms/Button/Button";
@@ -22,9 +22,9 @@ const Dashboard: React.FC = () => {
   if (!user) {
     return null;
   }
-  const onClose = () => {
+  const onClose = useCallback(() => {
     setTalkToUsModalOpen(false);
-  };
+  }, []);
 
   return (
     <div className={styles.dashboard}>

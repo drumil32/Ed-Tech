@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./styles.module.scss";
 import { FiPhoneCall } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
@@ -44,16 +44,15 @@ const ContactUs: React.FC = () => {
     },
   ];
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     const nameError = validateName(inputName);
     const numberError = validatePhoneNumber(inputNumber);
     const messageTextError = validateMessage(messageText);
     setNameError(nameError);
     setNumberError(numberError);
     setMessageTextError(messageTextError);
-
+    
     if (nameError || numberError || messageTextError) {
       return;
     }
@@ -73,7 +72,7 @@ const ContactUs: React.FC = () => {
     finally {
       setLoading(false);
     }
-  };
+  }, [inputName,inputNumber,messageText]);
   return (
     <div>
       <div className={styles.contacts}>

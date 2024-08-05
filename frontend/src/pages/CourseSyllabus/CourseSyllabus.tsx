@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./CourseSyllabus.module.scss";
 import SidebarTriggerButton from "../../components/atoms/SidebarTriggerButton/SidebarTriggerButton";
@@ -50,7 +50,7 @@ const CourseSyllabus: React.FC = () => {
     fetchCourseData();
   }, []);
 
-  const fetchCourseData = async () => {
+  const fetchCourseData = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axiosInstance.get(`/${restEndPoints.course}`);
@@ -63,7 +63,7 @@ const CourseSyllabus: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   return (
     <div className={styles.courseSyllabus}>
